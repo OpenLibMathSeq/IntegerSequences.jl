@@ -1,7 +1,7 @@
-<img src="(https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/SequencesLogo.jpg">
+<img src="https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/Sequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/Sequences.jl) 
-[![Build status](https://ci.appveyor.com/api/projects/status/3qt5x8eej5kf2w98/branch/master?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/Sequences.jl)
+[![Build status](https://travis-ci.org/OpenLibMathSeq/Sequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/Sequences.jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/3qt5x8eej5kf2w98?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/Sequences.jl)
 [![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/Sequences.jl/dev)
 --
 
