@@ -28,7 +28,7 @@ function write_oeis_bfile(anum, range, seq, comments, targetdir)
     close(file)
 end
 
-path = "C:/Users/Home/JuliaProjects/Sequences/data"
+path = "C:/Users/Home/JuliaProjects/IntegerSequences/data"
 
 # Example use:
 comments = ["Author: Julia Verona",

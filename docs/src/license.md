@@ -1,7 +1,6 @@
 # License
 
-Sequences is a Julia package implementing mathematical integer
-sequences.
+IntegerSequences is a Julia package implementing mathematical integer sequences.
 
 Copyright (c) 2019 Peter Luschny / OpenLibMathSeq
 

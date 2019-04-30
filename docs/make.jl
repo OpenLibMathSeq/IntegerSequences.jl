@@ -1,13 +1,13 @@
 push!(LOAD_PATH, "../src/")
 
-using Documenter, Sequences
+using Documenter, IntegerSequences
 
 makedocs(
-   modules = [Sequences],
+   modules = [IntegerSequences],
    clean = true,
    doctest = false,
    format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
-   sitename = "Sequences",
+   sitename = "IntegerSequences",
    pages = [
       "About" => "about.md",
       "Sequences" => "index.md",
@@ -21,5 +21,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/OpenLibMathSeq/Sequences.jl.git"
+    repo = "github.com/OpenLibMathSeq/IntegerSequences.jl.git"
 )

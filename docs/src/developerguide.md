@@ -16,7 +16,7 @@ conventions must be adhered to.
 ## Module format
 
 ```
-    # This file is part of Sequences.
+    # This file is part of IntegerSequences.
     # Copyright Name. License is MIT.
 
     (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
@@ -58,17 +58,17 @@ The package is build by executing BuildSequences.jl.
 This will pars the individual module files and
 recombine and distribute their content into three new files:
 
-* Sequences.jl
+* IntegerSequences.jl
 * runtests.jl
 * perftests.jl
 
 The functions in the module which come before the line starting with
-"#START-TEST" will be copied to Sequences.jl, the function test() will be
+"#START-TEST" will be copied to IntegerSequences.jl, the function test() will be
 copied to runtests.jl, and the function perf() will be copied to perftests.jl.
 Everything else will be discarded.
 
-In particular: Do not edit Sequences.jl, it is generated from the modules and will be overwritten! Instead edit the modules in the 'src' directory. These modules can and
-should be tested standalone. Only construct Sequences.jl with BuildSequences.jl
+In particular: Do not edit IntegerSequences.jl, it is generated from the modules and will be overwritten! Instead edit the modules in the 'src' directory. These modules can and
+should be tested standalone. Only construct IntegerSequences.jl with BuildSequences.jl
 in a final step.
 
 

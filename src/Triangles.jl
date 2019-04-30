@@ -1,5 +1,5 @@
 __precompile__(true)
-# This file is part of Sequences.
+# This file is part of IntegerSequences.
 # Copyright Peter Luschny. License is MIT.
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))

@@ -20,7 +20,7 @@ For instance the Möbius function has the simple definition μ(1) = 1 and for al
 
 are the proper divisors of n. We see that the special case n = 0 is covered by the formula: since δ(0) is empty the sum is zero and thus μ(0) = 0. (As a side note: Mathematica's Möbius function behaves exactly this way.)
 
-So we do not take the (meta-) point of view: "This is an arithmetical function and thus not defined for n = 0.", rather we say: "This is the nice definition of a nice sequence and if someone wants to use only parts of this sequence for whatever reason we leave that restriction to him or her.".
+So we do not take the (meta-) point of view: "This is an arithmetical function and thus not defined for n = 0."; rather we say: "This is the nice definition of a nice sequence and if someone wants to use only parts of this sequence for whatever reason we leave that restriction to him or her.".
 
 _We always defend the sequence against the interpretation_.
 

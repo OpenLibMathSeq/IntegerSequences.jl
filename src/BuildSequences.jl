@@ -1,4 +1,4 @@
-# This file is part of Sequences.
+# This file is part of IntegerSequences.
 # Copyright Peter Luschny. License is MIT.
 
 # Builds the modules Sequences, runtests and perftests from the src modules.
@@ -16,7 +16,7 @@ using Dates
 using UUIDs
 export build_all
 
-cloudpath = "https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/src/"
+cloudpath = "https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/"
 
 srcdir = realpath(joinpath(dirname(@__FILE__)))
 pkgdir = dirname(srcdir)
@@ -24,10 +24,10 @@ docdir = joinpath(pkgdir, "docs")
 docsrcdir = joinpath(docdir, "src")
 tstdir = joinpath(pkgdir, "test")
 
-exclude = ["BuildSequences.jl", "Sequences.jl",  "SeqTests.jl", "_EXPORT.jl", "_TEMP.jl", "_INDEX.jl"]
+exclude = ["BuildSequences.jl", "IntegerSequences.jl",  "SeqTests.jl", "_EXPORT.jl", "_TEMP.jl", "_INDEX.jl", "S_Index.jl"]
 
 function header(f)
-    println(f, "# This file is part of Sequences.")
+    println(f, "# This file is part of IntegerSequences.")
     println(f, "# Copyright Peter Luschny. License is MIT.")
     println(f, "# This file includes parts from Combinatorics.jl in modified form.")
     println(f)
@@ -186,12 +186,12 @@ function build_seq(docdefs)
 
     tmp = open("_TEMP.jl", "r")
     sor = open("S_INDEX.jl", "r")
-    target = joinpath(srcdir, "_Sequences.jl")
+    target = joinpath(srcdir, "_IntegerSequences.jl")
     olm = open(target, "w")
     header(olm)
     println(olm, "__precompile__()")
 
-    println(olm, "module Sequences")
+    println(olm, "module IntegerSequences")
     println(olm, "using Nemo, IterTools, HTTP, DocStringExtensions")
 
     for l in eachline(sor, keep=true)
@@ -221,7 +221,7 @@ function build_test()
     println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
 
     println(o, "module runtests")
-    println(o, "using Test, SeqTests, Sequences, Nemo, IterTools, Combinatorics")
+    println(o, "using Test, SeqTests, IntegerSequences, Nemo, IterTools, Combinatorics")
 
     path = joinpath(tstdir, "runtests.jl")
     i = open(path, "r")
@@ -288,7 +288,7 @@ function build_perf()
     println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
 
     println(o, "module perftests")
-    println(o, "using Sequences, Dates, InteractiveUtils")
+    println(o, "using IntegerSequences, Dates, InteractiveUtils")
 
     println(o, "InteractiveUtils.versioninfo()")
     println(o, "start = Dates.now()")
@@ -426,14 +426,14 @@ function addsignature()
     docdir = realpath(joinpath(dirname(@__FILE__)))
     pkgdir = dirname(docdir)
     srcdir = joinpath(pkgdir, "src")
-    srcfile = open(joinpath(srcdir, "_Sequences.jl"), "r")
-    docfile = open(joinpath(docdir, "Sequences.jl"), "w")
+    srcfile = open(joinpath(srcdir, "_IntegerSequences.jl"), "r")
+    docfile = open(joinpath(docdir, "IntegerSequences.jl"), "w")
 
     addsig(srcfile, docfile)
 
     close(srcfile)
     close(docfile)
-    rm("_Sequences.jl")
+    rm("_IntegerSequences.jl")
 end
 
 function build_all(docdefs=false)

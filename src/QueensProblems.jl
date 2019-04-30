@@ -1,4 +1,4 @@
-# This file is part of Sequences.
+# This file is part of IntegerSequences.
 # Copyright Peter Luschny. License is MIT.
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
@@ -48,7 +48,7 @@ function search(n::Int)
 end
 
 """
-Returns the profile of the backtrack tree for the n queens problem (see `[A319284]`).
+Returns the profile of the backtrack tree for the n queens problem (see `A319284`).
 """
 function Queens(n::Int)
     n == 0 && return [1]
