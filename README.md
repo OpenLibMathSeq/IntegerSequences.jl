@@ -1,8 +1,8 @@
-<img src="https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/SequencesLogo.jpg">
+<img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/Sequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/Sequences.jl)
-[![Build status](https://ci.appveyor.com/api/projects/status/3qt5x8eej5kf2w98?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/Sequences.jl)
-[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/Sequences.jl/dev)
+[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/3qt5x8eej5kf2w98?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/IntegerSequences.jl)
+[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
 Requires Julia version &ge; 1.1 .
@@ -213,13 +213,13 @@ ListToTriangle(A::Array{})
 
 ## Notebook
 
-More examples can be found in this [Jupyter notebook](https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/demos/SequencesIntro.ipynb).
+More examples can be found in this [Jupyter notebook](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/demos/SequencesIntro.ipynb).
 
 ## Contribute!
 
 Sequences are fun!  
 
-* Start with cloning the module [NarayanaCows](https://github.com/OpenLibMathSeq/Sequences.jl/blob/master/src/NarayanaCows.jl)
+* Start with cloning the module [NarayanaCows](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NarayanaCows.jl)
 as a blueprint. Replace what is to be replaced.
 
 * Execute the module 'BuildSequences' which will integrate your module into 'Sequences'.
