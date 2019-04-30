@@ -186,13 +186,13 @@ function build_seq(docdefs)
 
     tmp = open("_TEMP.jl", "r")
     sor = open("S_INDEX.jl", "r")
-    target = joinpath(srcdir, "Sequences.jl")
+    target = joinpath(srcdir, "_Sequences.jl")
     olm = open(target, "w")
     header(olm)
     println(olm, "__precompile__()")
 
     println(olm, "module Sequences")
-    println(olm, "using Nemo, IterTools, HTTP")
+    println(olm, "using Nemo, IterTools, HTTP, DocStringExtensions")
 
     for l in eachline(sor, keep=true)
         print(olm, l)
@@ -282,6 +282,11 @@ function build_perf()
     o = open(path, "w")
 
     header(o)
+    println(o, "tstdir = realpath(joinpath(dirname(@__FILE__)))")
+    println(o, "srcdir = joinpath(dirname(tstdir), \"src\")")
+    println(o, "tstdir ∉ LOAD_PATH && push!(LOAD_PATH, tstdir)")
+    println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
+
     println(o, "module perftests")
     println(o, "using Sequences, Dates, InteractiveUtils")
 
@@ -377,8 +382,63 @@ function make_modules()
     close(ind)
 end
 
+function nextline(srcfile)
+
+    while !eof(srcfile)
+        n = readline(srcfile)
+        n == "" && continue
+        # startswith(n, "#") && continue
+        return n
+    end
+    return nothing
+end
+
+function addsig(srcfile, docfile)
+
+    while true
+
+        n = nextline(srcfile)
+        n == nothing && return
+        while ! startswith(n, "\"\"\"")
+            println(docfile, n)
+            n = nextline(srcfile)
+            n == nothing && return
+        end
+
+        if startswith(n, "\"\"\"")
+            println(docfile, n)
+            n = nextline(srcfile)
+            n == nothing && return
+            while ! startswith(n, "\"\"\"")
+                println(docfile, n)
+                n = nextline(srcfile)
+                n == nothing && return
+            end
+               
+            println(docfile, "\$(SIGNATURES)")
+            println(docfile, n)
+        end
+    end
+end
+
+function addsignature()
+
+    docdir = realpath(joinpath(dirname(@__FILE__)))
+    pkgdir = dirname(docdir)
+    srcdir = joinpath(pkgdir, "src")
+    srcfile = open(joinpath(srcdir, "_Sequences.jl"), "r")
+    docfile = open(joinpath(docdir, "Sequences.jl"), "w")
+
+    addsig(srcfile, docfile)
+
+    close(srcfile)
+    close(docfile)
+    rm("_Sequences.jl")
+end
+
 function build_all(docdefs=false)
     build_seq(docdefs)
+    addsignature()
 
     build_test()
     build_perf()
