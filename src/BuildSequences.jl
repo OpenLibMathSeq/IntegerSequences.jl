@@ -12,19 +12,35 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module BuildSequences
-using Dates
-using UUIDs
+using Dates, UUIDs
 export build_all
 
 cloudpath = "https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/"
 
-srcdir = realpath(joinpath(dirname(@__FILE__)))
-pkgdir = dirname(srcdir)
-docdir = joinpath(pkgdir, "docs")
-docsrcdir = joinpath(docdir, "src")
-tstdir = joinpath(pkgdir, "test")
+#srcdir = realpath(joinpath(dirname(@__FILE__)))
+#pkgdir = dirname(srcdir)
+#docdir = joinpath(pkgdir, "docs")
+#docsrcdir = joinpath(docdir, "src")
+#tstdir = joinpath(pkgdir, "test")
 
-exclude = ["BuildSequences.jl", "IntegerSequences.jl",  "SeqTests.jl", "_EXPORT.jl", "_TEMP.jl", "_INDEX.jl", "S_Index.jl"]
+pkgdir = dirname((@__DIR__))
+@info("Package directory is: " * pkgdir)
+
+srcdir = dirname((@__FILE__))
+cd(srcdir)
+@info("Working directory is: " * pwd())
+
+docdir = joinpath(pkgdir, "docs")
+@info("Docs directory is:    " * docdir)
+
+docsrcdir = joinpath(docdir, "src")
+@info("Docs sources are in:  " * docsrcdir)
+
+tstdir = joinpath(pkgdir, "test")
+@info("Test files are in:    " * tstdir)
+
+exclude = ["BuildSequences.jl", "IntegerSequences.jl",  "SeqTests.jl",
+"_EXPORT.jl", "_TEMP.jl", "_INDEX.jl", "_SINDEX.jl", "_IS.jl", "tempCodeRunnerFile.jl"]
 
 function header(f)
     println(f, "# This file is part of IntegerSequences.")
@@ -42,7 +58,7 @@ end
 function sortnames()
 
     index = open("_INDEX.jl", "r")
-    sindex = open("S_INDEX.jl", "w")
+    sindex = open("_SINDEX.jl", "w")
 
     dict = Dict{Int64, Array{String}}()
 
@@ -185,8 +201,8 @@ function build_seq(docdefs)
     sortnames()
 
     tmp = open("_TEMP.jl", "r")
-    sor = open("S_INDEX.jl", "r")
-    target = joinpath(srcdir, "_IntegerSequences.jl")
+    sor = open("_SINDEX.jl", "r")
+    target = joinpath(srcdir, "_IS.jl")
     olm = open(target, "w")
     header(olm)
     println(olm, "__precompile__()")
@@ -197,8 +213,7 @@ function build_seq(docdefs)
     for l in eachline(sor, keep=true)
         print(olm, l)
     end
-    println("ROOTDIR name:")
-    println(dirname(realpath(joinpath(dirname(@__FILE__)))))
+
     for l in eachline(tmp, keep=true) print(olm, l) end
     print(olm, "end")
 
@@ -341,7 +356,7 @@ end
 function make_index()
     path = joinpath(docsrcdir, "index.md")
     ind = open(path, "w")
-    tind = open("S_INDEX.jl", "r")
+    tind = open("_SINDEX.jl", "r")
 
     first = true
     for l in eachline(tind, keep=false)
@@ -382,6 +397,7 @@ function make_modules()
     close(ind)
 end
 
+
 function nextline(srcfile)
 
     while !eof(srcfile)
@@ -414,7 +430,7 @@ function addsig(srcfile, docfile)
                 n = nextline(srcfile)
                 n == nothing && return
             end
-               
+
             println(docfile, "\$(SIGNATURES)")
             println(docfile, n)
         end
@@ -423,32 +439,32 @@ end
 
 function addsignature()
 
-    docdir = realpath(joinpath(dirname(@__FILE__)))
-    pkgdir = dirname(docdir)
-    srcdir = joinpath(pkgdir, "src")
-    srcfile = open(joinpath(srcdir, "_IntegerSequences.jl"), "r")
-    docfile = open(joinpath(docdir, "IntegerSequences.jl"), "w")
+    srcdir = dirname(@__FILE__)
+    srcfile = open(joinpath(srcdir, "_IS.jl"), "r")
+    profile = open(joinpath(srcdir, "IntegerSequences.jl"), "w")
 
-    addsig(srcfile, docfile)
+    addsig(srcfile, profile)
 
     close(srcfile)
-    close(docfile)
-    rm("_IntegerSequences.jl")
+    close(profile)
 end
 
+
 function build_all(docdefs=false)
+
     build_seq(docdefs)
     addsignature()
-
     build_test()
     build_perf()
     make_index()
+
     make_modules()
 
-    rm("_TEMP.jl")
     rm("_EXPORT.jl")
     rm("_INDEX.jl")
-    rm("S_INDEX.jl")
+    rm("_IS.jl")
+    rm("_SINDEX.jl")
+    rm("_TEMP.jl")
 end
 
 build_all()

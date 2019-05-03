@@ -20,9 +20,7 @@ export André, C000111, V000111, V178963, V178964, V181936, V250283
 Return the generalized André numbers which are the ``m``-alternating permutations of length ``n``, cf. A181937.
 """
 function André(m::Int, n::Int)
-    if haskey(CacheAndré, (m, n))
-        return CacheAndré[(m, n)]
-    end
+    haskey(CacheAndré, (m, n)) && return CacheAndré[(m, n)]
     n ≤ 0 && return fmpz(1)
     r = range(0, step=m, stop=n-1)
     S = sum(binom(n, k) * André(m, k) for k in r)

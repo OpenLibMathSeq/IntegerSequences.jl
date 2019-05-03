@@ -4,7 +4,7 @@ We emphasize that references to the Online Encyclopedia of Integer Sequences alw
 
 There is a variety of reasons to deviate occasionally from the definitions used in the OEIS.
 
-* Many sequences there are frozen by the editor in chief for so-called 'historical reasons' (for example because they were published in this form in printed versions of the encyclopedia).
+* Many sequences there are frozen by the editor in chief for so-called 'historical reasons' (for example because they were published in this form in printed versions of the encyclopedia or referenced in scientific papers).
 
 * Conventions in the OEIS are used that made more sense in times of punch cards than today, for example the suppression of 0's in many series expansions.
 

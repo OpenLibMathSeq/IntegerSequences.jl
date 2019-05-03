@@ -3,13 +3,13 @@
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
-module Deleham
+module DelehamDelta
 using Nemo, NumberTheory, Triangles
 
 export DeléhamΔ, T084938, T060693, T106566, T094665, T090238, T225478
 export T055883, T184962, T088969, T090981, T011117
 
-# Applying Deléham's T-operation often gives an additional first column
+# Applying Deléham's Δ-operation often gives an additional first column
 # or an additional main diagonal in the resulting triangle compared to what is
 # listed in the OEIS.
 

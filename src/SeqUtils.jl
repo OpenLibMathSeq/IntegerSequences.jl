@@ -82,11 +82,30 @@ function SeqPrint(v::AbstractVector, typeinfo = false)
 end
 
 """
+Valid prefixes to the numerical part of the OEIS A-numbers.
+
+* C => Channel
+* F => Filter (all below n)
+* G => Generating function
+* I => Iteration
+* L => List (array based)
+* M => Matrix
+* R => RealFunction
+* S => Staircase (iteration)
+* T => Triangle (iteration)
+* TA => Triangle (triangular array)
+* TL => Triangle (flat-list array)
+* V => Value
+* is => is a (predicate), boolean
+"""
+const ValidPrefixes = ['C', 'F', 'G', 'I', 'L', 'M', 'R', 'S', 'T', 'V']
+
+"""
 Return the name of a OEIS sequence given a similar named function as a string.
 """
 function SeqName(fun)
     aname = string(fun)
-    for X in ['L', 'F', 'T', 'G', 'B', 'Q', 'V']
+    for X in ValidPrefixes
         aname = replace(aname, X => 'A')
     end
 
@@ -110,6 +129,7 @@ function SeqNum(seq)
 end
 
 #START-TEST-########################################################
+
 using Test
 
 function test()

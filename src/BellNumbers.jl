@@ -105,9 +105,7 @@ The Bell transform transforms an integer sequence into an integer triangle; also
 Let ``F`` be an integer sequence generating function, then ``B_{n,k}(F) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} F(m) B_{n-m,k-1}(F)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, F::Function)
-    if haskey(CacheBellF, (n, k, F))
-        return CacheBellF[(n, k, F)]
-    end
+    haskey(CacheBellF, (n, k, F)) && return CacheBellF[(n, k, F)]
     a = fmpz(1); s = fmpz(0)
 
     if (n == 0) && (k == 0) return a end

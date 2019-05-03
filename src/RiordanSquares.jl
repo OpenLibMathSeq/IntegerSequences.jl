@@ -71,10 +71,11 @@ The Riordan square of the Jacobsthal numbers.
 """
 T322942(n) = RiordanSquare(G001045, n)
 
-"""
-The Riordan square of the number of rooted bicubic maps.
-"""
-Txxx(n) = RiordanSquare(G000257, n)
+#"""
+#The Riordan square of the number of rooted bicubic maps.
+#(Does not yet exist in the OEIS.)
+#"""
+# Tx(n) = RiordanSquare(G000257, n)
 
 #START-TEST-########################################################
 
@@ -141,9 +142,6 @@ function demo()
 
     println("\nT322942")
     T322942(5) |> ShowAsΔ
-
-    #println("\nTxxx")
-    #Txxx(8) |> ShowAsΔ
 end
 
 function perf()

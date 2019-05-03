@@ -4,7 +4,7 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 # Another demo for Julia's iteration protokoll.
-# Also demonstrates the layout of Sequences-modules.
+# Also demonstrates the layout of an IntegerSequences module.
 
 module NarayanaCows
 using IterTools

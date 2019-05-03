@@ -222,7 +222,7 @@ Sequences are fun!
 * Start with cloning the module [NarayanaCows](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NarayanaCows.jl)
 as a blueprint. Replace what is to be replaced.
 
-* Execute the module 'BuildSequences' which will integrate your module into 'Sequences'.
+* Execute the module 'BuildSequences' which will integrate your module into 'IntegerSequences'.
 
 * Send us a pull request.
 
