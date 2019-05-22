@@ -1,8 +1,8 @@
 <img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl)
-[![Build status](https://ci.appveyor.com/api/projects/status/3qt5x8eej5kf2w98?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/IntegerSequences.jl)
-[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
+[![Build status](https://travis-ci.org/OpenLibMathSeq/Sequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/Sequences.jl) 
+[![Build status](https://ci.appveyor.com/api/projects/status/1irsamfi66jnk71m/branch/master?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/integersequences-jl)
+[![Docs stable](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/Sequences.jl/stable)
 --
 
 The package is tested against, and being developed for, Julia 1.1 and above on Linux, macOS, and Windows64.
@@ -43,26 +43,26 @@ Four of those are based on the iteration protocol `FiboIterate` which is kept in
 The implementations are:
 
 * Iterate over the first ``n`` Fibonacci numbers.
-```javascript
+```
 I000045(n) = FiboIterate(n)
 ```
 
 * Iterate over the Fibonacci numbers which do not exceed ``n``.
-```javascript
+```
 F000045(n) = takewhile(k -> k <= n, FiboIterate(n+1))
 ```
 
 * Return the first ``n`` Fibonacci numbers in an array.
-```javascript
+```
 L000045(n) = collect(FiboIterate(n))
 ```
 Alternatively one can use a generating function if available:
-```javascript
+```
 L000045(n) = coefficients(G000045, n)
 ```
 
 * Return the ``n``-th Fibonacci number.
-```javascript
+```
 function V000045(n)
    F = ZZ[1 1; 1 0]
    Fn = F^n
@@ -71,7 +71,7 @@ end
 ```
 
 * Fibonacci function for real values, returns a Float64.
-```javascript
+```
 function R000045(x::Float64)
     (Base.MathConstants.golden^x - cos(x Base.MathConstants.pi)
         Base.MathConstants.golden^(-x)) / sqrt(5)
@@ -79,7 +79,7 @@ end
 ```
 
 * Query if ``n`` is a Fibonacci number, returns a Bool.
-```javascript
+```
 function is000045(n)
     d = 0
     for f in FiboIterate(n+2)
@@ -97,27 +97,27 @@ For the abundant numbers (i.e. numbers n where the sum of divisors exceeds 2n) w
     is005101, I005101, F005101, L005101, V005101
 
 * Is ``n`` an abundant number, i.e. is ``σ(n) > 2 n `` ?
-```javascript
+```
 is005101(n) = σ(n) > 2 n
 ```
 
 * Iterate over the first ``n`` abundant numbers.
-```javascript
+```
 I005101(n) = takefirst(isAbundant, n)
 ```
 
 * Iterate over the abundant numbers which do not exceed ``n``.
-```javascript
+```
 F005101(n) = filter(isAbundant, 1:n)
 ```
 
 * Return the first ``n`` abundant numbers in an array.
-```javascript
+```
 L005101(n) = collect(I005101(n))
 ```
 
 * Return the value of the ``n``-th abundant number.
-```javascript
+```
 V005101(n) = nth(I005101(n), n)
 ```
 
@@ -136,7 +136,7 @@ that of Julia.
 The matrix view of a number triangle of dimension dim has dim rows and the n-th row has length n.
 Note that the rows are enumerated like the terms 0, 1, 2, ...
 
-```javascript
+```
     T(0,0)                          row 0
     T(1,0) T(1,1)                   row 1
     T(2,0) T(2,1) T(2,2)            row 2
@@ -149,7 +149,7 @@ chain of lists. On the first level a triangle iterates over the rows of the
 triangle and on the secondary level over the terms of the rows, which are
 given by the user-supplied function t(n, k).
 
-```javascript
+``` 
     T = (row(0), row(1), ..., row(dim-1))
     Row(T, n) = [t(n, 0), t(n, 1), ..., t(n, n)]
 ```
@@ -160,7 +160,7 @@ Sequence A097805 gives the number of ordered partitions of n into k parts.
 The corresponding triangle can be constructed like this:
 * Triangle T097805 based of explicite value.
 
-```javascript
+``` 
 V097805(n, k) = k == 0 ? k^n : binomial(n-1, k-1)
 T097805(dim) = Triangle(dim, V097805)
 ```
@@ -170,7 +170,7 @@ To support this the type RecTriangle has a buffer which saves the
 previously computed row. This buffer can be accessed through a function 'prevrow'.  
 
 * Triangle T097805 based on recurrence.
-```javascript
+``` 
 R097805(n, k, prevrow) = k == 0 ? k^n : prevrow(k-1) + prevrow(k)
 T097805(dim) = RecTriangle(dim, R097805)
 ```
@@ -185,7 +185,7 @@ A nice alternative for 'prevrow' is 'Tn_1' because Tn_1(k) = T(n-1, k) in matrix
 The following functions are supplied:
 
 * Return the row n (0 <= n < dim) of a triangle.
-```javascript
+``` 
 Row(T::Triangle, n::Int, rev=true) = rev ? reversed(T(n)) : T(n)
 ```
 
@@ -193,12 +193,12 @@ If in the call the third -- optional -- parameter `rev` is true the
 row is returned in reversed order.
 
 * Return the triangle as a list of rows.
-```javascript
+``` 
 TriangularArray(T::Triangle) = [row for row in T]
 ```
 
 * Return the triangle as a list of integers.
-```javascript
+``` 
 TriangleToList(T::Triangle) = [k for row in T for k in row]
 ```
 
@@ -207,7 +207,7 @@ returns a list of integers of length dim(dim + 1)/2. Conversely, given
 an integer list of length n(n + 1)/2 the function ListToTriangle returns a
 triangle as a chain of iterators.
 
-```javascript
+``` 
 ListToTriangle(A::Array{})
 ```
 
