@@ -1,14 +1,8 @@
 <img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl) 
+[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl) 
 [![Build status](https://ci.appveyor.com/api/projects/status/1irsamfi66jnk71m/branch/master?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/integersequences-jl)
-[![Docs stable](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/Sequences.jl/stable)
-
-
-| **Documentation**                                                               | **Build Status**                                                                                |
-|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
-| [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
-
+[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
 The package is tested against, and being developed for, Julia 1.1 and above on Linux, macOS, and Windows64.
