@@ -6,23 +6,31 @@
 module AndreNumbers
 using Nemo
 
+export ModuleAndreNumbers
 export André, C000111, V000111, V178963, V178964, V181936, V250283
 
-# n\k [0][1][2][3][4] [5] [6]  [7]   [8]   [9]  [10]    [11]
-# [1]  1, 1, 1, 1, 1,  1,  1,   1,    1,    1,    1,       1  [V000012]
-# [2]  1, 1, 1, 2, 5, 16, 61, 272, 1385, 7936, 50521, 353792  [V000111]
-# [3]  1, 1, 1, 1, 3,  9, 19,  99,  477, 1513, 11259,  74601  [V178963]
-# [4]  1, 1, 1, 1, 1,  4, 14,  34,   69,  496,  2896,  11056  [V178964]
-# [5]  1, 1, 1, 1, 1,  1,  5,  20,   55,  125,   251,   2300  [V181936]
-# [6]  1, 1, 1, 1, 1,  1,  1,   6,   27,   83,   209,    461  [V250283]
+"""@
+Generalized André numbers count the ``m``-alternating permutations of length ``n``, cf. A181937.
+
+André, C000111, V000111, V178963, V178964, V181936, V250283.
+
+```
+[  SEQ  ] n|k [0][1][2][3][4] [5] [6]  [7]   [8]   [9]  [10]
+[V000012] [1]  1, 1, 1, 1, 1,  1,  1,   1,    1,    1,     1
+[V000111] [2]  1, 1, 1, 2, 5, 16, 61, 272, 1385, 7936, 50521
+[V178963] [3]  1, 1, 1, 1, 3,  9, 19,  99,  477, 1513, 11259
+[V178964] [4]  1, 1, 1, 1, 1,  4, 14,  34,   69,  496,  2896
+[V181936] [5]  1, 1, 1, 1, 1,  1,  5,  20,   55,  125,   251
+[V250283] [6]  1, 1, 1, 1, 1,  1,  1,   6,   27,   83,   209  
+```
+"""
+const ModuleAndreNumbers = ""
 
 """
 Return the generalized André numbers which are the ``m``-alternating permutations of length ``n``, cf. A181937.
 """
 function André(m::Int, n::Int)
-    if haskey(CacheAndré, (m, n))
-        return CacheAndré[(m, n)]
-    end
+    haskey(CacheAndré, (m, n)) && return CacheAndré[(m, n)]
     n ≤ 0 && return fmpz(1)
     r = range(0, step=m, stop=n-1)
     S = sum(binom(n, k) * André(m, k) for k in r)

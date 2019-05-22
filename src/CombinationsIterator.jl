@@ -4,8 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module CombinationsIterator
+
 using IterTools
+
+export ModuleCombinationsIterator
 export Combinations
+
+"""@
+Combinations
+"""
+const ModuleCombinationsIterator = ""
 
 #The combinations iterator
 struct combinations

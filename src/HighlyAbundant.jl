@@ -4,9 +4,18 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module HighlyAbundant
+
 using IterTools, NumberTheory, RecordSearch
+
+export ModuleHighlyAbundant
 export I002093, F002093, L002093, V002093
 export I034885, F034885, L034885, V034885
+
+"""@
+I002093, F002093, L002093, V002093
+I034885, F034885, L034885, V034885
+"""
+const ModuleHighlyAbundant = ""
 
 # -----------------------------------------------------------------
 # Indices!

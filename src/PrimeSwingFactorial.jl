@@ -4,8 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module PrimeSwingFactorial
+
 using PrimesIterator, Products, Nemo
+
+export ModulePrimeSwingFactorial
 export PSfactorial, Swing
+
+"""@
+PSfactorial, Swing
+"""
+const ModulePrimeSwingFactorial = ""
 
 const SwingOddpart = [1,1,1,3,3,15,5,35,35, 315, 63, 693, 231,
    3003, 429, 6435, 6435, 109395,12155,230945,46189,969969,

@@ -6,7 +6,14 @@
 module Compositions
 
 using Nemo, IterTools, Triangles
+
+export ModuleCompositions
 export I097805, L097805, V097805, M097805
+
+"""@
+I097805, L097805, V097805, M097805
+"""
+const ModuleCompositions = ""
 
 """
 Recurrence for `A097805`, the compositions of ``n`` with ``k`` parts.

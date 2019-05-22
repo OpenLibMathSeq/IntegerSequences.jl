@@ -6,15 +6,24 @@
 module CarmichaelNumbers
 
 using Nemo, NumberTheory, Counts
+
+export ModuleCarmichaelNumbers
 export isCarmichael, I002997, F002997, L002997
+export isweakCarmichael, I225498, F225498, L225498
+
+"""@
+isCarmichael, I002997, F002997, L002997
+
+isweakCarmichael, I225498, F225498, L225498
+"""
+const ModuleCarmichaelNumbers = ""
 
 """
 Is ``n`` a Carmichael/Šimerka number?
 """
 function isCarmichael(n)
     (n == 1 || isEven(n) || isPrime(n)) && return false
-    factors = Factors(n)
-    for f in factors
+    for f in Factors(n)
         (f[2] > 1 || (n - 1) % (f[1] - 1) != 0) && return false
     end
     return true
@@ -23,7 +32,7 @@ end
 """
 Iterate over the first n Carmichael/Šimerka numbers.
 """
-I002997(n) = takefirst(isCarmichael, n)
+I002997(n) = takeFirst(isCarmichael, n)
 
 """
 Iterate over the Carmichael/Šimerka numbers which do not exceed n.
@@ -35,15 +44,50 @@ Return the first n Carmichael/Šimerka numbers in an array.
 """
 L002997(n) = collect(I002997(n))
 
+"""
+Is ``n`` a weak Carmichael number?
+"""
+function isweakCarmichael(n)
+    (n == 1 || isEven(n) || isPrime(n)) && return false
+    for f in Factors(n)
+        (n - 1) % (f[1] - 1) != 0 && return false
+    end
+    return true
+end
+
+"""
+Iterate over the first n weak Carmichael numbers.
+"""
+I225498(n) = takeFirst(isweakCarmichael, n)
+
+"""
+Iterate over the weak Carmichael numbers which do not exceed n.
+"""
+F225498(n) = filter(isweakCarmichael, 1:n)
+
+"""
+Return the first n weak Carmichael numbers in an array.
+"""
+L225498(n) = collect(I225498(n))
+
 #START-TEST-########################################################
 
-using Test
+using Test, SeqTests
 
 function test()
     @testset "Carmichael" begin
         @test ! isCarmichael(560)
         @test isCarmichael(561)
         @test ! isCarmichael(563)
+        @test isweakCarmichael(561)
+        @test !isweakCarmichael(563)
+        @test isweakCarmichael(625)
+
+        if is_oeis_installed()
+            L = [L002997, L225498]
+            SeqTest(L, 'L')
+        end
+
     end
 end
 
@@ -53,7 +97,7 @@ function demo()
     end
 
     println()
-    for v in I002997(20)
+    for v in I225498(10)
         println(v)
     end
 end

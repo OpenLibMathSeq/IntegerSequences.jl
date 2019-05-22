@@ -4,9 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module Hyper1F1
+
 using Nemo
 
+export ModuleHyper1F1
 export GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
+
+"""@
+GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
+"""
+const ModuleHyper1F1 = ""
 
 # Numerical evaluation based on hypergeometric functions.
 # Nemo.hyp1f1(a::acb, b::acb, x::acb)

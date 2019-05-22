@@ -6,6 +6,7 @@
 module DedekindEta
 using Nemo
 
+export ModuleDedekindEta
 export DedekindEtaPowers, RamanujanTau, RamanujanTauList, PartitionNumberList
 export L010815, L002107, L010816, L000727, L000728, L000729, L000730, L000731
 export L010817, L010819, L000735, L010820, L010821, L010822, L000739, L010823
@@ -15,6 +16,11 @@ export L010838, L010839, L010841, L000041, L000712, L000716, L023003, L023004
 export L023005, L023006, L023007, L023008, L023009, L023010, L005758, L023011
 export L023012, L023013, L023014, L023015, L023016, L023017, L023018, L023019
 export L023020, L023021, L006922, L082556, L082557, L082558, L082559
+
+"""@
+DedekindEtaPowers, RamanujanTau, RamanujanTauList, PartitionNumberList
+"""
+const ModuleDedekindEta = ""
 
 """
 Compute the ``q``-expansion to length len of the Dedekind ``η`` function (without

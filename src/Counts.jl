@@ -6,11 +6,18 @@
 module Counts
 using Nemo, NumberTheory
 
+export ModuleCounts
 export L000961, L002808, L005117, L013928, L025528, L065515
 export L065855, L069637, L246547, L246655, L000720
 export A007917, A151800, A257993
 export PreviousPrime, NextPrime, PrimePiList
-export takefirst, Nth, Count, List, HilbertHotel
+export takeFirst, Nth, Count, List, HilbertHotel
+
+"""@
+L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
+PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
+"""
+const ModuleCounts = ""
 
 """
 Return a list of length len of integers ``≥ 0`` which are isA.
@@ -44,7 +51,7 @@ Inverse Iverson brackets.
 """
 Return a iterator of length n which has value 1 if isA(i) is true and otherwise 0.
 """
-function Indicators(n, isA)
+function Indicators(n, isA::Function)
     (ι(isA(i)) for i in 0:n - 1)
 end
 
@@ -65,25 +72,31 @@ CountList(len::Int, isA::Function) = Accumulate(Indicators(len, isA))
 # if Nth(n) = NthPrime(n) then Count(n) = PrimePi(n) (A000720).
 
 """
-Return the numbers of integers ≤ n which are isA. Integers start at ``n=0``.
+Return the numbers of integers in the range 0:n which are isA. 
 ```
 julia> Count(8, isPrime)
 4
 ```
 """
-function Count(n, isA)
-    # +1 because of offset 0
-    count(!iszero, Indicators(n + 1, isA))
-end
+Count(n::Int, isAb::Function) = Base.count((isAb(i) for i in 0:n))
+
+"""
+Return the numbers of integers in the range a:b which are isA. 
+```
+julia> Count(3:8, isPrime)
+3
+```
+"""
+Count(r, isAb::Function) = Base.count((isAb(i) for i in r))
 
 """
 Return a SeqArray listing the values satisfying the predicate isA for arguments ``0 ≤ x ≤ `` bound.
 ```
-julia> FindUpTo(7, IsPrime)
+julia> FindUpTo(7, isPrime)
 [2, 3, 5, 7]
 ```
 """
-function FindUpTo(bound, isA)
+function FindUpTo(bound, isA::Function)
     bound < 0 && return fmpz[]
     filter(isA, 0:bound)
 end
@@ -91,19 +104,19 @@ end
 """
 Return the first ``n`` numbers satisfying the predicate isA.
 """
-takefirst(isA, n) = Iterators.take(Iterators.filter(isA, Iterators.countfrom(1)), n)
+takeFirst(isA, n) = Iterators.take(Iterators.filter(isA, Iterators.countfrom(1)), n)
 
 """
 Return a iterator listing the values satisfying the predicate isA for arguments in ``0 ≤ n ≤ bound .``
 """
-function IterateUpTo(bound, isA)
+function IterateUpTo(bound, isA::Function)
     (i for i in 0:bound if isA(i))
 end
 
 """
 Returns an integer which is the highest index in `b` for the value `a`. Whenever `a` is not a member of `b` it returns -1.
 ```
-julia> L = List(10, IsPrime); IndexIn(13, L)
+julia> L = List(10, isPrime); IndexIn(13, L)
 5
 ```
 """
@@ -185,6 +198,7 @@ First(A::Array{Int}) = A == [] ? nothing : first(A)
 Return the element at the end of the list A if A is not empty, 0 otherwise.
 """
 Last(A) = A == [] ? "undef" : A[end]
+
 """
 Trick described by David Hilbert in a 1924 lecture "Über das Unendliche".
 """
@@ -380,6 +394,7 @@ function A257993(n::Int)
 end
 
 #START-TEST-########################################################
+
 using Test, SeqTests, SeqUtils
 
 function test()
@@ -405,8 +420,8 @@ function test()
         for (i, isA) in enumerate(indicators)
             # This test shows that the logic behind 'Nth' and 'Count' is OK.
             for n in 1:len
-                @test isA(n) == (Nth(Count(n, isA), isA) == n)
-                @test     n  ==  Count(Nth(n, isA), isA)
+               @test isA(n) == (Nth(Count(n, isA), isA) == n)
+               @test     n  ==  Count(Nth(n, isA), isA)
             end
         end
 
@@ -435,6 +450,7 @@ function demo()
     "isPerfectPower", "isPrime"
     ]
 
+    println()
     len = 14
     for (i, isA) in enumerate(indicators)
 

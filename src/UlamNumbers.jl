@@ -5,10 +5,16 @@
 
 module UlamNumbers
 
+export ModuleUlamNumbers
 export L002858, UlamList, isUlam
 
+"""@
+L002858, UlamList, isUlam
 """
-Is ``n`` an Ulam number?
+const ModuleUlamNumbers = ""
+
+"""
+Is ``n`` an Ulam number? 
 """
 function isUlam(u, n, h, i, r)
     ur = u[r]; ui = u[i]
@@ -25,8 +31,7 @@ function isUlam(u, n, h, i, r)
 end
 
 """
-Return a list of Ulam numbers u(n), u(n) the least number > u(n-1) which is
-a unique sum of two distinct earlier terms, u(1) = 1 and u(2) = 2.
+Return a list of Ulam numbers. An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
 """
 function UlamList(len)
     u = Array{Int, 1}(undef, len)
@@ -55,7 +60,7 @@ using Test
 
 function test(oeis_isinstalled=false)
     @testset "UlamNumbers" begin
-        @test UlamList(6)[end] == 8
+    @test UlamList(6)[end] == 8
     end
 end
 

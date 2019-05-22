@@ -4,11 +4,20 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 # Another demo for Julia's iteration protokoll.
-# Also demonstrates the layout of Sequences-modules.
+# Also demonstrates the layout of an IntegerSequences module.
 
 module NarayanaCows
 using IterTools
-export NarayanasCows, L214551
+export ModuleNarayanaCows, NarayanasCows, L214551
+
+"""@
+NarayanasCows, L214551
+
+For background information see 
+http://recherche.ircam.fr/equipes/repmus/jim96/actes/Allouche.ps
+https://iopscience.iop.org/article/10.1088/1742-6596/574/1/012097/pdf
+"""
+const ModuleNarayanaCows = ""
 
 """
 The type object to construct a new instance of the modified Narayanas cows sequence with given length.

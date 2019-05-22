@@ -6,16 +6,22 @@
 module BellNumbers
 using Nemo, Triangles, Products, NumberTheory, SeqUtils
 
+export ModuleBellNumbers
 export BellTrans, BellTriangle, BellNumberList, BellNumber
 export V000110, L000110
 export T137452, T264428, T137513, T104556, T001497, T132062, T039683, T203412
 export T004747, T051141, T265606, T119274, T000369, T051142
 
-# Note that the triangles in the OEIS often are missing the first column 1,0,0,0,...
-# (the triangles are (1,1)-based). On the other hand the Bell transforme is
-# (0,0)-based and always has as first column 1,0,0,0,...
+"""@
+BellTrans, BellTriangle, BellNumberList, BellNumber, V000110, L000110, T137452, T264428, T137513, T104556, T001497, T132062, T039683, T203412, T004747, T051141, T265606, T119274, T000369, T051142
 
-# Other Stirling number related sequences are implemented in the module StirlingLah.
+The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
+
+Let ``X`` be an integer sequence, then ``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+
+The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
+"""
+const ModuleBellNumbers = ""
 
 """
 Return a list of the first m Bell numbers (a.k.a. exponential numbers).
@@ -105,9 +111,7 @@ The Bell transform transforms an integer sequence into an integer triangle; also
 Let ``F`` be an integer sequence generating function, then ``B_{n,k}(F) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} F(m) B_{n-m,k-1}(F)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, F::Function)
-    if haskey(CacheBellF, (n, k, F))
-        return CacheBellF[(n, k, F)]
-    end
+    haskey(CacheBellF, (n, k, F)) && return CacheBellF[(n, k, F)]
     a = fmpz(1); s = fmpz(0)
 
     if (n == 0) && (k == 0) return a end

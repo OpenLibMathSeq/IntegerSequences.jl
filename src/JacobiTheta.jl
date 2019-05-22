@@ -4,8 +4,10 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module JacobiTheta
+
 using Nemo
 
+export ModuleJacobiTheta
 export JacobiTheta3Powers, JacobiTheta4Powers
 export L000122, L002448, L004018, L104794, L005875, L213384, L000118, L035016
 export L008452, L096727, L000132, L000141, L008451, L000143, L000144, L008453
@@ -13,6 +15,13 @@ export L000145, L276285, L276286, L276287, L004402, L004406, L004407, L015128
 export L004403, L001934, L004404, L004405, L004408, L004409, L004410, L004411
 export L004412, L004413, L004414, L004420, L004421, L004415, L004416, L004417
 export L004418, L004419, L004422, L004423, L004424, L004425
+
+"""@
+JacobiTheta3Powers, JacobiTheta4Powers, L000122, L002448, L004018, L104794, L005875, L213384, L000118, L035016, L008452, L096727, L000132, L000141, L008451, L000143, L000144, L008453, L000145, L276285, L276286, L276287, L004402, L004406, L004407, L015128, L004403, L001934, L004404, L004405, L004408, L004409, L004410, L004411, L004412, L004413, L004414, L004420, L004421, L004415, L004416, L004417, L004418, L004419, L004422, L004423, L004424, L004425
+
+The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``r`` is computed for various values of ``r``.
+"""
+const ModuleJacobiTheta = ""
 
 """
 The ``q``-expansion to length len of the Jacobi theta function raised to the power ``r``, i.e. ``ϑ(q)^r`` where ``ϑ(q) = 1 + ∑_{k ≥ 1} q^{k^2}``. Number of ways of writing ``n`` as a sum of ``r`` squares.

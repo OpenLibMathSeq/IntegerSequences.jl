@@ -3,13 +3,20 @@
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
-module GaussFactorialRecords
+module GaussFactorial
 
 using Nemo, IterTools
 using RecordSearch, NumberTheory, Products
 
+export ModuleGaussFactorial
 export I193338, F193338, L193338, V193338
 export I193339, F193339, L193339, V193339
+
+"""@
+I193338, F193338, L193338, V193338, I193339, F193339, L193339, V193339
+"""
+const ModuleGaussFactorial = ""
+
 
 """
 Return ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.
@@ -83,8 +90,6 @@ function demo()
 
     println("\n Return the index of the 9-th record value of the Gauß factorial.")
     println("9 -> ", V193339(9))
-
-    # 1, 2, 3, 24, 720, 2240, 3628800, 479001600, ...
 
     println("\n Iterate over the first 10 record values of the Gauß factorial.")
     for r in I193338(10) print(r, ", ") end; println("...")

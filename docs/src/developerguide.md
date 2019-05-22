@@ -77,11 +77,11 @@ in a final step.
 All terms of all sequences have the same type. Currently this is the
 type fmpz as provided by the Nemo library.
 
-Sequences supports the use of notation using unicode characters, especially the
-traditional notation used in number theory. For example we define
+IntegerSequences supports the use of notation using unicode characters, especially the traditional notation used in number theory. For example we define
 ```
     τ(n) = Nemo.sigma(n, 0)
     μ(n) = Nemo.moebiusmu(n)
+    V006171(n) = EulerTransform(τ)(n)
 ```
 We also support new notations like the proposal from Knuth, Graham and
 Patashnik in Concrete Mathematics:
@@ -96,8 +96,7 @@ where `isPrimeTo` is defined as:
 
 For example ``⊥(n, ϕ(n))`` indicates if there is just one group of order ``n``.
 But this is not only a concise mathematical formula, this is also valid Julia
-code (defined in Sequences). The predicate gives rise to the sequence of cyclic
-numbers, A003277 in the OEIS.
+code (defined in IntegerSequences). The predicate gives rise to the sequence of cyclic numbers, A003277 in the OEIS.
 
 Similarly possible definitions of some sequences (not necessarily efficient ones
 in the computational sense) are
@@ -136,12 +135,12 @@ returned in the given order by a generating function.
 
 In the OEIS, on the other hand, a sequence is an enumeration, a set with an index function where the first index (called offset o) is specified. With this we arrive at this picture:
 
-    ``a_o, b_{o+1}, c_{o+2}, d_{o+3}, ...``
+    ``a_o, a_{o+1}, a_{o+2}, a_{o+3}, ...``
 
 In this view a list (representing the initial segment of the sequence)
 takes the place of the iteration.
 
-    ``[ a_{o}, b_{o+1}, c_{o+2}, ..., z_{o+n-1} ]``
+    ``[ a_{o}, a_{o+1}, a_{o+2}, ..., a_{o+n-1} ]``
 
 In contrast in our setup the concept of offset and indexing does not occur at all but is transferred to the interpretation: only the application decides about indexing and offset. In practice our setup avoiding the use of an offset turns out
 to be more flexible.

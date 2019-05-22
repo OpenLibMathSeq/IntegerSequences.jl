@@ -4,8 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module ZumkellerNumbers
+
 using NumberTheory, IterTools, CombinationsIterator
+
+export ModuleZumkellerNumbers
 export isZumkeller, is083207, I083207, F083207, L083207, V083207
+
+"""@
+isZumkeller, is083207, I083207, F083207, L083207, V083207
+"""
+const ModuleZumkellerNumbers = ""
 
 """
 Is ``n`` a Zumkeller number? A Zumkeller number ``n`` is an integer whose divisors can be partitioned into two disjoint sets whose sums are both ``σ(n)/2``.

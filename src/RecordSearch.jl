@@ -4,8 +4,18 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module RecordSearch
+
 using Nemo
+
+export ModuleRecordSearch
 export Records
+
+"""@
+The type object to construct an iterated search for records in sequences.
+
+Records
+"""
+const ModuleRecordSearch = ""
 
 """
 The type object to construct an iterated search for records in sequences.

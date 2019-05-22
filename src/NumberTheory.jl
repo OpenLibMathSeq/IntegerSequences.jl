@@ -6,12 +6,23 @@
 module NumberTheory
 using  Nemo, Products
 
-export τ, σ, ϕ, ω, Ω, ⊥, ⍊, Divisors, PrimeDivisors, Factors, Radical, mods
+export ModuleNumberTheory
+export τ, σ, σ2, ϕ, ω, Ω, ⊥, ⍊, Divisors, PrimeDivisors, Factors, Radical, mods
 export V000005, V000010, V000203, V001222, V001221, V008683, V181830, V034444
-export I003277, L003277, V061142, V034386, V002110, I050384, L050384
+export I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
 export Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
 export isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
 export isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
+
+"""@
+τ, σ, σ2, ϕ, ω, Ω, ⊥, ⍊, Divisors, PrimeDivisors, Factors, Radical, mods
+V000005, V000010, V000203, V001222, V001221, V008683, V181830, V034444
+I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
+Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
+isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
+isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
+"""
+const ModuleNumberTheory = ""
 
 """
 Return true if n is prime false otherwise.
@@ -25,7 +36,7 @@ Return factors of ``n``.
 Factors(n) = n == 0 ? [] : Nemo.factor(fmpz(n))
 
 """
-Return the positive intgers dividing ``n``.
+Return the positive integers dividing ``n``.
 """
 function Divisors(m, dosort=false)
     n = ZZ(m)
@@ -104,6 +115,18 @@ V000005(n) = τ(n)
 Return ``σ(n)`` (a.k.a. ``σ_1(n)``), the sum of the divisors of ``n`` (cf. A000203).
 """
 σ(n) = Nemo.sigma(fmpz(n), 1)
+
+"""
+Return ``σ2(n)`` (a.k.a. ``σ_2(n)``), the sum of squares of the divisors of ``n`` (cf. A001157).
+"""
+σ2(n) = Nemo.sigma(fmpz(n), 2)
+
+# σ2(n) = sum(d^2 for d in Divisors(n))
+
+"""
+Return ``σ2(n)`` (a.k.a. ``σ_2(n)``), the sum of squares of the divisors of ``n``.
+"""
+V001157(n) = σ2(n)
 
 """
 Return the Euler totient ``ϕ(n)``, numbers which are ``≤ n`` and prime to ``n``.

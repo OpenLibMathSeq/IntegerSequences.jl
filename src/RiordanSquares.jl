@@ -4,11 +4,20 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module RiordanSquares
+
 using Nemo, SeriesExpansion, Triangles
 
+export ModuleRiordanSquares
 export RiordanProduct, RiordanSquare
 export T039599, T116392, T172094, T321620, T321621
 export T321623, T321624, T322942
+
+"""@
+RiordanProduct, RiordanSquare
+T039599, T116392, T172094, T321620, T321621
+T321623, T321624, T322942
+"""
+const ModuleRiordanSquares = ""
 
 """
 Return the Riordan array associated with the generating functions a and b.
@@ -71,10 +80,11 @@ The Riordan square of the Jacobsthal numbers.
 """
 T322942(n) = RiordanSquare(G001045, n)
 
-"""
-The Riordan square of the number of rooted bicubic maps.
-"""
-Txxx(n) = RiordanSquare(G000257, n)
+#"""
+#The Riordan square of the number of rooted bicubic maps.
+#(Does not yet exist in the OEIS.)
+#"""
+# Tx(n) = RiordanSquare(G000257, n)
 
 #START-TEST-########################################################
 
@@ -141,9 +151,6 @@ function demo()
 
     println("\nT322942")
     T322942(5) |> ShowAsΔ
-
-    #println("\nTxxx")
-    #Txxx(8) |> ShowAsΔ
 end
 
 function perf()

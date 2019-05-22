@@ -6,7 +6,13 @@
 module GeneralizedBinomial
 using Nemo, PrimesIterator, NumberTheory, Products, Triangles
 
+export ModuleGeneralizedBinomial
 export Binomial, Pascal, T007318
+
+"""@
+Binomial, Pascal, T007318
+"""
+const ModuleGeneralizedBinomial = ""
 
 """
 The classical binomial coefficients defined for ``n≥0`` and ``0≤k≤n`` (a.k.a. Pascal's triangle).

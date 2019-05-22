@@ -4,8 +4,22 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module SwingFactorial
+
 using Nemo
+
+export ModuleSwingFactorial
 export Sfactorial
+
+"""@
+Sfactorial
+
+Basic implementation of the swing algorithm using no primes. 
+Claims to be the most efficient simple algorithm to compute the factorial.
+
+An advanced version based on prime-factorization is available 
+as the prime-swing factorial factorialPS.
+"""
+const ModuleSwingFactorial = ""
 
 """
 Return the factorial of ``n``. Basic implementation of the swing algorithm using no primes. An advanced version based on prime-factorization is available as the prime-swing factorial factorialPS.
@@ -68,6 +82,7 @@ function Sfactorial(n::Int)::fmpz
 end
 
 #START-TEST-########################################################
+
 using Test
 
 function test()

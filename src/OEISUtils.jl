@@ -9,9 +9,7 @@ using HTTP, Nemo
 export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
 export oeis_notinstalled, oeis_path, oeis_search, oeis_readbfile
 
-#"""
-#Directory of oeis data.
-#"""
+# Directory of OEIS data.
 srcdir = realpath(joinpath(dirname(@__FILE__)))
 ROOTDIR = dirname(srcdir)
 datadir = joinpath(ROOTDIR, "data")

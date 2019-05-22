@@ -5,7 +5,7 @@
 [![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
-Requires Julia version &ge; 1.1 .
+The package is tested against, and being developed for, Julia 1.1 and above on Linux, macOS, and Windows64.
 
 ## Naming conventions
 
@@ -222,7 +222,7 @@ Sequences are fun!
 * Start with cloning the module [NarayanaCows](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NarayanaCows.jl)
 as a blueprint. Replace what is to be replaced.
 
-* Execute the module 'BuildSequences' which will integrate your module into 'Sequences'.
+* Execute the module 'BuildSequences' which will integrate your module into 'IntegerSequences'.
 
 * Send us a pull request.
 
