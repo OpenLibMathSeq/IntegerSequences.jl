@@ -4,8 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module Kolakoski
+
 using Nemo
+
+export ModuleKolakoski
 export KolakoskiList, C000002, I000002, L000002
+
+"""@
+KolakoskiList, C000002, I000002, L000002
+"""
+const ModuleKolakoski = ""
 
 """
 Generate the Kolakoski sequence which is the unique sequence over the alphabet ``{1, 2}`` starting with ``1`` and having the sequence of run lengths identical with itself.

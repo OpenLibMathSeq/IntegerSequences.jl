@@ -5,7 +5,13 @@
 
 module UlamNumbers
 
+export ModuleUlamNumbers
 export L002858, UlamList, isUlam
+
+"""@
+L002858, UlamList, isUlam
+"""
+const ModuleUlamNumbers = ""
 
 """
 Is ``n`` an Ulam number? 

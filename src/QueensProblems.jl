@@ -5,7 +5,13 @@
 
 module QueensProblems
 
+export ModuleQueensProblems
 export L319284, Queens
+
+"""@
+L319284, Queens
+"""
+const ModuleQueensProblems = ""
 
 # For some background see: https://wp.me/paipV7-E
 

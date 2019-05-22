@@ -5,7 +5,16 @@
 
 module Abundant
 using NumberTheory, IterTools, Counts
+
+export ModuleAbundant
 export isAbundant, is005101, I005101, F005101, L005101, V005101
+
+"""@
+``n`` is an abundant number if ``σ(n) > 2n``. An abundant number is a number for which the sum of its proper divisors is greater than the number itself.
+
+isAbundant, is005101, I005101, F005101, L005101, V005101.
+"""
+const ModuleAbundant = ""
 
 """
 Is ``n`` an abundant number, i.e. is ``σ(n) > 2n`` ?
@@ -20,7 +29,7 @@ is005101(n) = isAbundant(n)
 """
 Iterate over the first ``n`` abundant numbers.
 """
-I005101(n) = takefirst(isAbundant, n)
+I005101(n) = takeFirst(isAbundant, n)
 
 """
 Iterate over the abundant numbers which do not exceed ``n (1 ≤ i ≤ n)``.

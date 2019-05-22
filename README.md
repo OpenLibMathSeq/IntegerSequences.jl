@@ -5,7 +5,7 @@
 [![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
-Requires Julia version &ge; 1.1 .
+The package is tested against, and being developed for, Julia 1.1 and above on Linux, macOS, and Windows64.
 
 ## Naming conventions
 

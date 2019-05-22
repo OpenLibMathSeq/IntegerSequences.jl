@@ -5,13 +5,19 @@
 
 module BinaryInteger
 
+export ModuleBinaryInteger
 export V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753
 export V295513, BinaryIntegerLength, Bil
+
+"""@
+V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513, BinaryIntegerLength, Bil
+"""
+const ModuleBinaryInteger = ""
 
 """
 Return the length of the binary extension of an integer ``n``, which is defined as ``0`` if ``n = 0`` and for ``n > 0`` as ``⌊ log _2(n) ⌋ + 1``.
 """
-BinaryIntegerLength(n) = n == 0 ? 0 : Int(floor(log2(n))) + 1
+BinaryIntegerLength(n) = n == 0 ? 0 : floor(Int, log2(n)) + 1
 
 """
 Alias for the function BinaryIntegerLength.
@@ -19,7 +25,7 @@ Alias for the function BinaryIntegerLength.
 Bil(n) = BinaryIntegerLength(n)
 
 """
-Return ``n`` Bil``(n) - 2^{Bil(n)}`` where Bil``(n)`` is the binary integer length of ``n``.
+Return ``n`` Bil``(n) - 2^{\\text{Bil}(n)}`` where Bil``(n)`` is the binary integer length of ``n``.
 """
 V295513(n) = n*Bil(n) - 2^Bil(n)
 

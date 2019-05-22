@@ -7,9 +7,16 @@ module EulerTransforms
 
 using Nemo, NumberTheory
 
+export ModuleEulerTransforms
 export EulerTransform
 export V006171, L006171, V107895, L107895, V061256, L061256
-export V190905, L190905, V275585, L275585
+export V190905, L190905, V275585, L275585, V290351, L290351
+export V052847, L052847
+
+"""@
+V006171, L006171, V107895, L107895, V061256, L061256, V190905, L190905, V275585, L275585, V290351, L290351
+"""
+const ModuleEulerTransforms = ""
 
 """
 Return the Euler transform of f.
@@ -78,7 +85,26 @@ Return a list of length len of the Euler transform of the swinging factorial.
 """
 L190905(len) = [V190905(n) for n in 0:len-1]
 
-# A290351 Euler transform of the Bell numbers (A000110).
+"""
+Return the Euler transform of the Bell numbers.
+"""
+V290351(n) = EulerTransform(Nemo.bell)(n)
+
+"""
+Return a list of length len of the Euler transform of the Bell numbers.
+"""
+L290351(len) = [V290351(n) for n in 0:len-1]
+
+"""
+Return the Euler transform of [0, 1, 2, 3, ...].
+"""
+V052847(n) = EulerTransform(k -> k-1)(n)
+
+"""
+Return a list of length len of the Euler transform of [0, 1, 2, 3, ...].
+"""
+L052847(len) = [V052847(n) for n in 0:len-1]
+
 
 #START-TEST-########################################################
 
@@ -90,7 +116,7 @@ function test()
 
         if is_oeis_installed()
 
-            L = [L107895, L190905, L061256, L275585, L006171]
+            L = [L107895, L190905, L061256, L275585, L006171, L290351, L052847]
             SeqTest(L, 'L')
 
             V = [V107895, V190905, V061256, V275585, V006171]
@@ -119,4 +145,3 @@ end
 main()
 
 end # module
-

@@ -6,8 +6,15 @@
 module ClausenNumbers
 using  Nemo, PrimesIterator, Products, NumberTheory
 
+export ModuleClausenNumbers
 export ClausenNumber, ClausenNumberList
 export V002445, L002445, V027642
+
+"""@
+ClausenNumber, ClausenNumberList
+V002445, L002445, V027642
+"""
+const ModuleClausenNumbers = ""
 
 """
 Return the Clausen number ``C_n`` which is the denominator of the Bernoulli number ``B_{2n}``.

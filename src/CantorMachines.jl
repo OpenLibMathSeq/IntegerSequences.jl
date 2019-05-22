@@ -5,6 +5,7 @@
 
 module CantorMachines
 
+export ModuleCantorMachines
 export CantorMachine, CantorEnumeration, CantorPairing
 export CantorBoustrophedonicMachine, CantorBoustrophedonicEnumeration, CantorBoustrophedonicPairing
 export RosenbergStrongBoustrophedonicMachine, RosenbergStrongBoustrophedonicEnumeration, RosenbergStrongBoustrophedonicPairing
@@ -14,6 +15,14 @@ export V319514, L319514
 # https://luschny.wordpress.com/2018/09/25/the-cantor-jump-machine/
 # https://oeis.org/search?q=A319514&go=Search
 
+"""@
+CantorMachine, CantorEnumeration, CantorPairing
+CantorBoustrophedonicMachine, CantorBoustrophedonicEnumeration, CantorBoustrophedonicPairing
+RosenbergStrongBoustrophedonicMachine, RosenbergStrongBoustrophedonicEnumeration, RosenbergStrongBoustrophedonicPairing
+
+https://luschny.wordpress.com/2018/09/24/cantors-enumeration-of-n2-revisited/
+"""
+const ModuleCantorMachines = ""
 
 """
 The Cantor enumeration implemented as a state machine to avoid the evaluation of the square root function.

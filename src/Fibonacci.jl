@@ -4,8 +4,16 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module Fibonacci
+
 using Nemo, IterTools
+
+export ModuleFibonacci
 export I000045, F000045, L000045, V000045, R000045, is000045
+
+"""@
+I000045, F000045, L000045, V000045, R000045, is000045
+"""
+const ModuleFibonacci = ""
 
 struct FiboIterate
     length

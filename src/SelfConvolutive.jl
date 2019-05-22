@@ -4,12 +4,21 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module SelfConvolutive
+
 using Nemo
 
-export SelfConvRec
+export ModuleSelfConvolutive, SelfConvRec
 export L000698, L001710, L003319, L005411, L005412, L006012, L006318
 export L047891, L062980, L082298, L082301, L082302, L105523, L107716
 export L111529, L111530, L111531, L111532, L111533, L146559, L167872
+
+"""@
+SelfConvRec
+L000698, L001710, L003319, L005411, L005412, L006012, L006318
+L047891, L062980, L082298, L082301, L082302, L105523, L107716
+L111529, L111530, L111531, L111532, L111533, L146559, L167872
+"""
+const ModuleSelfConvolutive = ""
 
 # R. J. Martin and M. J. Kearney,
 # An exactly solvable self-convolutive recurrence

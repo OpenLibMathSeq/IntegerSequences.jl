@@ -4,7 +4,14 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module PrimesIterator
+
+export ModulePrimesIterator
 export Primes, PrimePi, PrimeSieve
+
+"""@
+Primes, PrimePi, PrimeSieve
+"""
+const ModulePrimesIterator = ""
 
 # Primes generating functions
 

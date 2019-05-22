@@ -6,12 +6,23 @@
 module StirlingNumbers
 
 using Nemo, IterTools, Triangles
+
+export ModuleStirlingNumbers
 export I132393, L132393, V132393, M132393
 export I048993, L048993, V048993, M048993
 export I271703, L271703, V271703, M271703
 export I094587, L094587, V094587, M094587
 export I008279, L008279, V008279, M008279
 # export Lah, StirlingSet, StirlingCycle
+
+"""@
+I132393, L132393, V132393, M132393
+I048993, L048993, V048993, M048993
+I271703, L271703, V271703, M271703
+I094587, L094587, V094587, M094587
+I008279, L008279, V008279, M008279
+"""
+const ModuleStirlingNumbers = ""
 
 """
 Recurrence for A132393, StirlingCycle numbers.

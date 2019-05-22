@@ -8,10 +8,17 @@ module Triangles
 
 using Nemo, SeqUtils
 
+export ModuleTriangles
 export Triangle, ZTriangle, QTriangle, RecTriangle
 export TriangularNumber, isTriangular, assertTriangular
 export ShowAsΔ, ShowAsMatrix, Row, RowSums
 export fromΔ, toΔ, TriangleToList
+
+"""@
+Triangle, ZTriangle, QTriangle, RecTriangle, TriangularNumber, isTriangular, assertTriangular
+ShowAsΔ, ShowAsMatrix, Row, RowSums, fromΔ, toΔ, TriangleToList
+"""
+const ModuleTriangles = ""
 
 #    T(0,0)                          row 0
 #    T(1,0) T(1,1)                   row 1

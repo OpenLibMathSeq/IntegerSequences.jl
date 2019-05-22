@@ -4,7 +4,9 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module SeqUtils
+
 using Nemo
+
 export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray, Nemofmpz
 
 """
