@@ -54,7 +54,7 @@ The rational Bernoulli numbers are defined here with ``B(1) = 1/2``. Why this is
 
    🔶  [BinaryInteger](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BinaryInteger.jl)
 
-For positive n, BinaryIntegerLength is ``floor(log(2, n)) + 1``, BinaryIntegerLength(0) = 0.
+For positive n, BinaryIntegerLength is ``\\lfloor(\\operatorname{log}(2, n)\\rfloor) + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
 

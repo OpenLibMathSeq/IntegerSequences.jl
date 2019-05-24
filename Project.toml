@@ -15,5 +15,5 @@ Nemo = "2edaba10-b0f1-5616-af89-8c11ac63239a"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
-julia = ">= 1.1.0"
+julia = ">= 1.2.0"
 Nemo = ">= 0.13.4"

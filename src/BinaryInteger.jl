@@ -10,7 +10,7 @@ export V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753
 export V295513, BinaryIntegerLength, Bil
 
 """
-For positive n, BinaryIntegerLength is ``floor(log(2, n)) + 1``, BinaryIntegerLength(0) = 0.
+For positive n, BinaryIntegerLength is ``\\lfloor(\\operatorname{log}(2, n)\\rfloor) + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
 """
