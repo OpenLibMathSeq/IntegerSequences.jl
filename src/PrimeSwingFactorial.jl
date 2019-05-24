@@ -10,8 +10,10 @@ using PrimesIterator, Products, Nemo
 export ModulePrimeSwingFactorial
 export PSfactorial, Swing
 
-"""@
-PSfactorial, Swing
+"""
+ Cf. P. Luschny, [Swing, divide and conquer the factorial](https://oeis.org/A000142/a000142.pdf), excerpt.
+
+* PSfactorial, Swing
 """
 const ModulePrimeSwingFactorial = ""
 

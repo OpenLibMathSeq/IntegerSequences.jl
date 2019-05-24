@@ -10,8 +10,10 @@ using Nemo
 export ModuleHyper1F1
 export GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
 
-"""@
-GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
+"""
+GammaHyp: ``(a, b, c, d)`` ↦ ``Γ(a) `` Hypergeometric``1F1(b, c, d).``
+
+* GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
 """
 const ModuleHyper1F1 = ""
 

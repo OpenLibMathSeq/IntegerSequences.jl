@@ -10,9 +10,8 @@ export ModuleClausenNumbers
 export ClausenNumber, ClausenNumberList
 export V002445, L002445, V027642
 
-"""@
-ClausenNumber, ClausenNumberList
-V002445, L002445, V027642
+"""
+* ClausenNumber, ClausenNumberList, V002445, L002445, V027642
 """
 const ModuleClausenNumbers = ""
 

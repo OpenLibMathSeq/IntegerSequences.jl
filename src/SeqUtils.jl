@@ -7,11 +7,16 @@ module SeqUtils
 
 using Nemo
 
+export ModuleSeqUtils
 export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray, Nemofmpz
 
 """
-Think of a 'Nemo.fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl (Zahl=integer)'. Nemo is a library designed, developed and maintained by William Hart with the help of others. The mathematical symbol for the ring of
- integers is the blackbord (double-struck) Z, also written ZZ. In reference to this ZZ(n) defines the integer n as a fmpz.
+Nemo is a library designed, developed and maintained by William Hart with the help of others. Many functions in our project are based on Nemo.
+"""
+const ModuleSeqUtils = ""
+
+"""
+The basic integer type of our project is 'Nemo.fmpz'. Think of a 'Nemo.fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl' (zahl=integer). The mathematical symbol for the ring of integers is the blackboard (double-struck) Z, also written ZZ. In reference to this ZZ(n) defines the integer n as a fmpz.
 """
 function Nemofmpz(n::Int) return ZZ(n) end
 

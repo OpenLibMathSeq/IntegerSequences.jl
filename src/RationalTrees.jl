@@ -10,20 +10,21 @@ using Nemo, NumberTheory, Counts
 export ModuleRationalTrees
 export EuclidTree, CalkinWilfTree, SchinzelSierpinskiEncoding
 
-# http://oeis.org/wiki/User:Peter_Luschny/SchinzelSierpinskiConjectureAndCalkinWilfTree
-# A294442 A294446
 
-"""@
-EuclidTree, CalkinWilfTree, SchinzelSierpinskiEncoding
-
-Rational trees as understood here are binary trees enumerating the positive or 
+"""
+Rational trees as understood here are binary trees enumerating the positive or
 nonnegative rational numbers. Examples are the Euclid tree, the Kepler tree and the
 Stern-Brocot tree (a.k.a. Farey tree). They are closely related to binary partitions
 and to Stern's diatomic sequence or Dijkstra's fusc function.
 
-See Malter, Schleicher, Zagier, New looks at old number theory, Amer. Math. Monthly, 120(3), 2013, pp. 243-264.
+Malter, Schleicher, Zagier, [New looks at old number theory](https://pdfs.semanticscholar.org/6d28/dcef911dd91f47e6ca4bd2c564c1f3099a05.pdf), Amer. Math. Monthly, 120(3), 2013, pp. 243-264.
+
+* EuclidTree, CalkinWilfTree, SchinzelSierpinskiEncoding
 """
 const ModuleRationalTrees = ""
+
+# http://oeis.org/wiki/User:Peter_Luschny/SchinzelSierpinskiConjectureAndCalkinWilfTree
+# A294442 A294446
 
 """
 ```
@@ -58,7 +59,7 @@ Return the Schinzel-Sierpinski encoding of the positive rational number r.
 
 ```
 julia> for n in 1:4 println([SchinzelSierpinski(l) for l in EuclidTree(n)]) end
-[1//1]                 
+[1//1]
 [2//5, 5//2]
 [3//11, 5//3, 3//5, 11//3]
 [2//11, 3//2, 11//19, 19//7, 7//19, 19//11, 2//3, 11//2]
@@ -137,7 +138,7 @@ end # module
 #=
 # A062251 := n -> SchinzelSierpinskiPrimes(n,"numer"):
 # A062251 = 2, 5, 11, 11, 19, 17, 41, 23, 53, 29, 43, 47, 103, 41,
-# 59, 47, 67, 53, 113, 59, 83, 131, 137, 71, 149, 103, 107, 83, 
+# 59, 47, 67, 53, 113, 59, 83, 131, 137, 71, 149, 103, 107, 83,
 # A060324 := n -> SchinzelSierpinskiPrimes(n,"denom"):
 # A060324 = 2, 2, 3, 2, 3, 2, 5, 2, 5, 2, 3, 3, 7, 2, 3, 2,
 # 3, 2, 5, 2, 3, 5, 5, 2, 5, 3, 3, 2, 5, 2, 13, 3

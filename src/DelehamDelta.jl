@@ -11,11 +11,15 @@ export ModuleDelehamDelta
 export DeléhamΔ, T084938, T060693, T106566, T094665, T090238, T225478
 export T055883, T184962, T088969, T090981, T011117
 
-"""@
-DeléhamΔ, T084938, T060693, T106566, T094665, T090238, T225478, T055883, T184962, T088969, T090981, T011117
+"""
+Philippe Deléham’s Δ-operation maps, similar to the Riordan product, two integer sequences on a lower triangular matrix.
+It effectively computes a continued fraction depending on the two input sequences!
 
-Applying Deléham's Δ-operation often gives an additional first column or an 
-additional main diagonal in the resulting triangle compared to what is listed in the OEIS.
+Applying Deléham's Δ-operation often gives an additional first column or an additional main diagonal in the resulting triangle compared to what is listed in the OEIS.
+
+[Introduction to the Riordan Square](http://luschny.de/math/seq/RiordanSquare.html)
+
+* DeléhamΔ, T084938, T060693, T106566, T094665, T090238, T225478, T055883, T184962, T088969, T090981, T011117
 """
 const ModuleDelehamDelta = ""
 

@@ -12,10 +12,13 @@ export RiordanProduct, RiordanSquare
 export T039599, T116392, T172094, T321620, T321621
 export T321623, T321624, T322942
 
-"""@
-RiordanProduct, RiordanSquare
-T039599, T116392, T172094, T321620, T321621
-T321623, T321624, T322942
+"""
+The Riordan product is a map a, b ↦ [a, b] associating two formal power series a, b with a lower triangular matrix [a, b]. The Riordan square is the case a = b of the Riordan product. Formally we can describe the Riordan square as a transform RS: Z[[x]] ↦ Mat[Z] which maps power series over the integers to (lower triangular) integer matrices.
+
+* RiordanProduct, RiordanSquare
+* T039599, T116392, T172094, T321620, T321621, T321623, T321624, T322942
+
+[Introduction to the Riordan Square](http://luschny.de/math/seq/RiordanSquare.html)
 """
 const ModuleRiordanSquares = ""
 

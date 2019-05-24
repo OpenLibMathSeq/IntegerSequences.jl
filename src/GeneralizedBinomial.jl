@@ -9,8 +9,10 @@ using Nemo, PrimesIterator, NumberTheory, Products, Triangles
 export ModuleGeneralizedBinomial
 export Binomial, Pascal, T007318
 
-"""@
-Binomial, Pascal, T007318
+"""
+ P. Luschny, [Generalized Binomial](http://oeis.org/wiki/User:Peter_Luschny/ExtensionsOfTheBinomial), OEIS Wiki.
+
+* Binomial, Pascal, T007318
 """
 const ModuleGeneralizedBinomial = ""
 

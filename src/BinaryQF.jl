@@ -11,14 +11,14 @@ export L002476, L008784, L031363, L034017, L035251, L038872, L038873
 export L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660
 export L243655, L244779, L244780, L244819, L243168, L244291, L007522, L033200
 
-"""@
-A binary quadratic form over Z is a quadratic homogeneous polynomial in two variables with integer coefficients, q(x, y) = ax^2 + bxy + cy^2. 
+"""
+A binary quadratic form over Z is a quadratic homogeneous polynomial in two variables with integer coefficients, ``q(x, y) = ax^2 + bxy + cy^2``.
 
-A quadratic form q(x, y) represents an integer n if there exist integers x and y with q(x, y) = n. We say that q primitively represents n if there exist relatively prime integers x and y such that q(x, y) = n.
+A quadratic form ``q(x, y)`` represents an integer ``n`` if there exist integers ``x`` and ``y`` with ``q(x, y) = n``. We say that ``q`` primitively represents ``n`` if there exist relatively prime integers ``x`` and ``y`` such that ``q(x, y) = n``.
 
 Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/BinaryQuadraticForms) where you can find much more information on this subject.
 
-L002476, L008784, L031363, L034017, L035251, L038872, L038873, L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660, L243655, L244779, L244780, L244819, L243168, L244291, L007522, L033200
+* L002476, L008784, L031363, L034017, L035251, L038872, L038873, L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660, L243655, L244779, L244780, L244819, L243168, L244291, L007522, L033200
 """
 const ModuleBinaryQF = ""
 

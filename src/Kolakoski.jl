@@ -10,8 +10,8 @@ using Nemo
 export ModuleKolakoski
 export KolakoskiList, C000002, I000002, L000002
 
-"""@
-KolakoskiList, C000002, I000002, L000002
+"""
+* KolakoskiList, C000002, I000002, L000002
 """
 const ModuleKolakoski = ""
 

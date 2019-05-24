@@ -13,16 +13,16 @@ export V006171, L006171, V107895, L107895, V061256, L061256
 export V190905, L190905, V275585, L275585, V290351, L290351
 export V052847, L052847
 
-"""@
-V006171, L006171, V107895, L107895, V061256, L061256, V190905, L190905, V275585, L275585, V290351, L290351
+"""
+* V006171, L006171, V107895, L107895, V061256, L061256, V190905, L190905, V275585, L275585, V290351, L290351
 """
 const ModuleEulerTransforms = ""
 
 """
 Return the Euler transform of f.
 """
-function EulerTransform(f::Function) 
-    function E(n)    
+function EulerTransform(f::Function)
+    function E(n)
         haskey(CacheET, (f, n)) && return CacheET[(f, n)]
         n == 0 && return ZZ(1)
         a(j) = ZZ(sum(d*f(Int(d)) for d in Divisors(j)))
@@ -30,7 +30,7 @@ function EulerTransform(f::Function)
         r = div(b, n)
         CacheET[(f, n)] = r
         return r
-    end 
+    end
 end
 
 const CacheET = Dict{Tuple{Function, Int}, fmpz}()
@@ -38,7 +38,7 @@ const CacheET = Dict{Tuple{Function, Int}, fmpz}()
 """
 Return the number of factorization patterns of polynomials of degree n over integers.
 """
-V006171(n) = EulerTransform(τ)(n)		
+V006171(n) = EulerTransform(τ)(n)
 
 """
 Return a list of length len of the Euler transform of tau.
@@ -129,7 +129,7 @@ function demo()
 end
 
 """
-for n in 0:150 V107895(n) end :: 
+for n in 0:150 V107895(n) end ::
     0.303605 seconds (1.01 M allocations: 32.276 MiB, 29.90% gc time)
 """
 function perf()

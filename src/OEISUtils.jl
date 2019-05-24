@@ -6,8 +6,14 @@
 module OEISUtils
 using HTTP, Nemo
 
+export ModuleOEISUtils
 export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
 export oeis_notinstalled, oeis_path, oeis_search, oeis_readbfile
+
+"""
+A collection of utilities for handling OEIS related tasks.
+"""
+const ModuleOEISUtils = ""
 
 # Directory of OEIS data.
 srcdir = realpath(joinpath(dirname(@__FILE__)))

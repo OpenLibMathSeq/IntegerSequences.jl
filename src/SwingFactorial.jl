@@ -10,14 +10,10 @@ using Nemo
 export ModuleSwingFactorial
 export Sfactorial
 
-"""@
-Sfactorial
+"""
+Basic implementation of the swing algorithm using no primes. Claims to be the most efficient simple algorithm to compute the factorial. An advanced version based on prime-factorization is available as the prime-swing factorial factorialPS.
 
-Basic implementation of the swing algorithm using no primes. 
-Claims to be the most efficient simple algorithm to compute the factorial.
-
-An advanced version based on prime-factorization is available 
-as the prime-swing factorial factorialPS.
+* Sfactorial
 """
 const ModuleSwingFactorial = ""
 

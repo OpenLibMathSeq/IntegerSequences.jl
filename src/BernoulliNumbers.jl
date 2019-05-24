@@ -10,20 +10,24 @@ export ModuleBernoulliNumbers
 export BernoulliInt, BernoulliIntList, Bernoulli, BernoulliList
 export V195441, V065619, V281586, V281588, V027641, L065619
 
-"""@
-BernoulliInt, BernoulliIntList, Bernoulli, BernoulliList, V195441, V065619, V281586, V281588, V027641, L065619
+"""
+We are primarily concerned with the integer Bernoulli numbers.
 
-We are primarily concerned with the integer Bernoulli numbers. 
-Cf. A000182 (m=2), A293951 (m=3), A273352 (m=4), A318258 (m=5).
+Cf. ``A000182 (m=2), A293951 (m=3), A273352 (m=4), A318258 (m=5).``
 
-[1] [0, 1,    0,       0,             0,                  0,                         0]
-[2] [0, 1,   -2,      16,          -272,               7936,                   -353792]
-[3] [0, 1,   -9,     477,        -74601,           25740261,              -16591655817]
-[4] [0, 1,  -34,   11056,     -14873104,        56814228736,          -495812444583424]
-[5] [0, 1, -125,  249250,   -2886735625,    122209131374375,     -14455143383196875000]
-[6] [0, 1, -461, 5699149, -574688719793, 272692888959243481, -442144665466496478257141]
+```
+[1] [0, 1,    0,       0,             0,                  0]
+[2] [0, 1,   -2,      16,          -272,               7936]
+[3] [0, 1,   -9,     477,        -74601,           25740261]
+[4] [0, 1,  -34,   11056,     -14873104,        56814228736]
+[5] [0, 1, -125,  249250,   -2886735625,    122209131374375]
+[6] [0, 1, -461, 5699149, -574688719793, 272692888959243481]
+```
 
-The rational Bernoulli numbers are defined here with B_(1) = 1/2. Why this is preferred over B_(1) = -1/2 is explained in  http://luschny.de/math/zeta/The-Bernoulli-Manifesto.html
+The rational Bernoulli numbers are defined here with ``B(1) = 1/2``. Why this is preferred over ``B(1) = -1/2`` is explained in the [Bernoulli Manifesto](http://luschny.de/math/zeta/The-Bernoulli-Manifesto.html).
+
+* BernoulliInt, BernoulliIntList, Bernoulli, BernoulliList
+* V195441, V065619, V281586, V281588, V027641, L065619
 """
 const ModuleBernoulliNumbers = ""
 

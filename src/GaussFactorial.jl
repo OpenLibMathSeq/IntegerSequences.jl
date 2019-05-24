@@ -8,15 +8,16 @@ module GaussFactorial
 using Nemo, IterTools
 using RecordSearch, NumberTheory, Products
 
-export ModuleGaussFactorial
+export ModuleGaussFactorial, GaußFactorial
 export I193338, F193338, L193338, V193338
 export I193339, F193339, L193339, V193339
 
-"""@
-I193338, F193338, L193338, V193338, I193339, F193339, L193339, V193339
+"""
+The Gauß factorial is ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.
+
+* GaußFactorial, I193338, F193338, L193338, V193338, I193339, F193339, L193339, V193339
 """
 const ModuleGaussFactorial = ""
-
 
 """
 Return ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.

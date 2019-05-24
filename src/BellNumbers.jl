@@ -12,14 +12,15 @@ export V000110, L000110
 export T137452, T264428, T137513, T104556, T001497, T132062, T039683, T203412
 export T004747, T051141, T265606, T119274, T000369, T051142
 
-"""@
-BellTrans, BellTriangle, BellNumberList, BellNumber, V000110, L000110, T137452, T264428, T137513, T104556, T001497, T132062, T039683, T203412, T004747, T051141, T265606, T119274, T000369, T051142
-
+"""
 The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
 
-Let ``X`` be an integer sequence, then ``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 
 The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
+
+* BellTrans, BellTriangle, BellNumberList, BellNumber
+* V000110, L000110, T137452, T264428, T137513, T104556, T001497, T132062, T039683, T203412, T004747, T051141, T265606, T119274, T000369, T051142
 """
 const ModuleBellNumbers = ""
 

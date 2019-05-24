@@ -8,8 +8,8 @@ module PrimesIterator
 export ModulePrimesIterator
 export Primes, PrimePi, PrimeSieve
 
-"""@
-Primes, PrimePi, PrimeSieve
+"""
+* Primes, PrimePi, PrimeSieve
 """
 const ModulePrimesIterator = ""
 

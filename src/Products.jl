@@ -11,10 +11,9 @@ export ∏, Product, F!, RisingFactorial, ↑, FallingFactorial, ↓, MultiFacto
 export V000407, V124320, V265609, V000142, V081125, V001147
 export V000165, V032031, V007559, V008544, V007696, V001813, V008545, V047053
 
-"""@
-∏, Product, F!, RisingFactorial, ↑, FallingFactorial, ↓, MultiFactorial
-V000407, V124320, V265609, V000142, V081125, V001147
-V000165, V032031, V007559, V008544, V007696, V001813, V008545, V047053
+"""
+* ∏, Product, F!, RisingFactorial, ↑, FallingFactorial, ↓, MultiFactorial
+* V000407, V124320, V265609, V000142, V081125, V001147, V000165, V032031, V007559, V008544, V007696, V001813, V008545, V047053
 """
 const ModuleProducts = ""
 

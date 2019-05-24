@@ -11,10 +11,9 @@ export ModuleCarmichaelNumbers
 export isCarmichael, I002997, F002997, L002997
 export isweakCarmichael, I225498, F225498, L225498
 
-"""@
-isCarmichael, I002997, F002997, L002997
-
-isweakCarmichael, I225498, F225498, L225498
+"""
+* isCarmichael, I002997, F002997, L002997
+* isweakCarmichael, I225498, F225498, L225498
 """
 const ModuleCarmichaelNumbers = ""
 

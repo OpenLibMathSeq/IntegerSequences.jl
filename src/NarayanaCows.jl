@@ -10,12 +10,12 @@ module NarayanaCows
 using IterTools
 export ModuleNarayanaCows, NarayanasCows, L214551
 
-"""@
-NarayanasCows, L214551
+"""
+* NarayanasCows, L214551
 
-For background information see 
-http://recherche.ircam.fr/equipes/repmus/jim96/actes/Allouche.ps
-https://iopscience.iop.org/article/10.1088/1742-6596/574/1/012097/pdf
+For background information see
+* J.-P. Allouche, T. Johnson, [Narayana's Cows and Delayed Morphisms](http://recherche.ircam.fr/equipes/repmus/jim96/actes/Allouche.ps).
+* C.M. Wilmott, [From Fibonacci to the mathematics of cows and quantum circuitry](https://iopscience.iop.org/article/10.1088/1742-6596/574/1/012097/pdf).
 """
 const ModuleNarayanaCows = ""
 

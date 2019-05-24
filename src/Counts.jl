@@ -13,9 +13,9 @@ export A007917, A151800, A257993
 export PreviousPrime, NextPrime, PrimePiList
 export takeFirst, Nth, Count, List, HilbertHotel
 
-"""@
-L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
-PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
+"""
+* PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
+* L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
 """
 const ModuleCounts = ""
 
@@ -72,7 +72,7 @@ CountList(len::Int, isA::Function) = Accumulate(Indicators(len, isA))
 # if Nth(n) = NthPrime(n) then Count(n) = PrimePi(n) (A000720).
 
 """
-Return the numbers of integers in the range 0:n which are isA. 
+Return the numbers of integers in the range 0:n which are isA.
 ```
 julia> Count(8, isPrime)
 4
@@ -81,7 +81,7 @@ julia> Count(8, isPrime)
 Count(n::Int, isAb::Function) = Base.count((isAb(i) for i in 0:n))
 
 """
-Return the numbers of integers in the range a:b which are isA. 
+Return the numbers of integers in the range a:b which are isA.
 ```
 julia> Count(3:8, isPrime)
 3

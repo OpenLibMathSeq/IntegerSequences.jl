@@ -11,18 +11,16 @@ export CantorBoustrophedonicMachine, CantorBoustrophedonicEnumeration, CantorBou
 export RosenbergStrongBoustrophedonicMachine, RosenbergStrongBoustrophedonicEnumeration, RosenbergStrongBoustrophedonicPairing
 export V319514, L319514
 
+"""
+* Cantor-Machine, Cantor-Enumeration, Cantor-Pairing, Cantor-BoustrophedonicMachine, Cantor-BoustrophedonicEnumeration, Cantor-BoustrophedonicPairing, RosenbergStrong-BoustrophedonicMachine, RosenbergStrong-BoustrophedonicEnumeration, RosenbergStrong-BoustrophedonicPairing
+
+[Cantor's enumeration of N X N revisited](https://luschny.wordpress.com/2018/09/24/cantors-enumeration-of-n2-revisited/).
+"""
+const ModuleCantorMachines = ""
+
 # https://luschny.wordpress.com/2018/09/24/cantors-enumeration-of-n2-revisited/
 # https://luschny.wordpress.com/2018/09/25/the-cantor-jump-machine/
 # https://oeis.org/search?q=A319514&go=Search
-
-"""@
-CantorMachine, CantorEnumeration, CantorPairing
-CantorBoustrophedonicMachine, CantorBoustrophedonicEnumeration, CantorBoustrophedonicPairing
-RosenbergStrongBoustrophedonicMachine, RosenbergStrongBoustrophedonicEnumeration, RosenbergStrongBoustrophedonicPairing
-
-https://luschny.wordpress.com/2018/09/24/cantors-enumeration-of-n2-revisited/
-"""
-const ModuleCantorMachines = ""
 
 """
 The Cantor enumeration implemented as a state machine to avoid the evaluation of the square root function.
@@ -136,7 +134,7 @@ end
 """
 Return a list of pairs (x, y) given by the boustrophedonic Rosenberg-Strong enumeration.
 """
-L319514(len) = [V319514(n) for n in 0:len-1] 
+L319514(len) = [V319514(n) for n in 0:len-1]
 
 
 #START-TEST-########################################################
@@ -191,19 +189,19 @@ end
 
 function demo()
 
-    println(); 
+    println();
     println("CantorEnumeration")
     CantorEnumeration(20)
 
-    println(); println(); 
+    println(); println();
     println("CantorBoustrophedonicEnumeration")
     CantorBoustrophedonicEnumeration(20)
 
-    println(); println(); 
+    println(); println();
     println("RosenbergStrongBoustrophedonicEnumeration")
     RosenbergStrongBoustrophedonicEnumeration(20)
 
-    println(); println(); 
+    println(); println();
     println("L319514")
     L319514(42) |> println
 end

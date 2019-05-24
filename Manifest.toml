@@ -6,12 +6,6 @@ git-tree-sha1 = "56bdd9e9bb2cfdf0876d0846b337c8f395d9a4b7"
 uuid = "c3fe647b-3220-5bb0-a1ea-a7954cac585d"
 version = "0.4.6"
 
-[[AbstractTrees]]
-deps = ["Markdown", "Test"]
-git-tree-sha1 = "6621d9645702c1c4e6970cc6a3eae440c768000b"
-uuid = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
-version = "0.2.1"
-
 [[AssetRegistry]]
 deps = ["Distributed", "JSON", "Pidfile", "SHA", "Test"]
 git-tree-sha1 = "b25e88db7944f98789130d7b503276bc34bc098e"
@@ -27,14 +21,8 @@ version = "0.8.5"
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
-[[BenchmarkTools]]
-deps = ["JSON", "Printf", "Statistics", "Test"]
-git-tree-sha1 = "5d1dd8577643ba9014574cd40d9c028cd5e4b85a"
-uuid = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
-version = "0.4.2"
-
 [[BinaryProvider]]
-deps = ["Libdl", "Pkg", "SHA", "Test"]
+deps = ["Compat", "CredentialsHandler", "Libdl", "Pkg", "SHA", "TOML", "Test"]
 git-tree-sha1 = "055eb2690182ebc31087859c3dd8598371d3ef9e"
 uuid = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
 version = "0.5.3"
@@ -87,11 +75,9 @@ git-tree-sha1 = "84aa74986c5b9b898b0d1acaf3258741ee64754f"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
 version = "2.1.0"
 
-[[Conda]]
-deps = ["Compat", "JSON", "VersionParsing"]
-git-tree-sha1 = "b625d802587c2150c279a40a646fba63f9bd8187"
-uuid = "8f4d0f93-b110-5947-807f-2305c1781a2d"
-version = "1.2.0"
+[[CredentialsHandler]]
+deps = ["Base64", "HTTP", "TOML"]
+uuid = "864e158e-919d-11e8-198e-cfe890ec4681"
 
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections", "Random", "Serialization", "Test"]
@@ -135,12 +121,6 @@ git-tree-sha1 = "13a6d15102410d8e70146533b759fc48d844a1d0"
 uuid = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 version = "0.22.3"
 
-[[DocumenterTools]]
-deps = ["Base64", "DocStringExtensions", "LibGit2", "Pkg", "Test"]
-git-tree-sha1 = "f5803a9c2c23ff226e8eab2df7ac4c75e77a0d53"
-uuid = "35a29f4d-8980-5a13-9543-d66fff28ecb8"
-version = "0.1.0"
-
 [[FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
@@ -156,14 +136,8 @@ git-tree-sha1 = "04cb9cfaa6ba5311973994fe3496ddec19b6292a"
 uuid = "de31a74c-ac4f-5751-b3fd-e18cd04993ca"
 version = "0.5.0"
 
-[[Gumbo]]
-deps = ["AbstractTrees", "BinaryProvider", "Libdl", "Test"]
-git-tree-sha1 = "b16b6c5127e8c6be3084e6658c5fb5dd1f97d7fd"
-uuid = "708ec375-b3d6-5a57-a7ce-8257bf98657a"
-version = "0.5.1"
-
 [[HTTP]]
-deps = ["Base64", "Dates", "Distributed", "IniFile", "MbedTLS", "Random", "Sockets", "Test"]
+deps = ["Base64", "Dates", "Distributed", "IniFile", "JSON", "MbedTLS", "Sockets", "Test"]
 git-tree-sha1 = "25db0e3f27bd5715814ca7e4ad22025fdcf5cc6e"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 version = "0.8.0"
@@ -174,14 +148,7 @@ git-tree-sha1 = "6187bb2d5fcbb2007c39e7ac53308b0d371124bd"
 uuid = "9fb69e20-1954-56bb-a84f-559cc56a8ff7"
 version = "0.2.2"
 
-[[IJulia]]
-deps = ["Base64", "Conda", "Dates", "InteractiveUtils", "JSON", "Markdown", "MbedTLS", "Pkg", "Printf", "REPL", "Random", "SoftGlobalScope", "Test", "UUIDs", "ZMQ"]
-git-tree-sha1 = "8eb8459d806de665f1347b25e9ad9428c2609f0f"
-uuid = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
-version = "1.18.1"
-
 [[IniFile]]
-deps = ["Test"]
 git-tree-sha1 = "098e4d2c533924c921f9f9847274f2ad89e018b8"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
 version = "0.5.0"
@@ -250,7 +217,7 @@ deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
 [[MbedTLS]]
-deps = ["BinaryProvider", "Dates", "Distributed", "Libdl", "Random", "Sockets", "Test"]
+deps = ["BinaryProvider", "Dates", "Libdl", "Pkg", "Random", "Sockets"]
 git-tree-sha1 = "2d94286a9c2f52c63a16146bb86fd6cdfbf677c6"
 uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
 version = "0.6.8"
@@ -289,7 +256,7 @@ uuid = "fa939f87-e72e-5be4-a000-7fc836dbe307"
 version = "1.1.0"
 
 [[Pkg]]
-deps = ["Dates", "LibGit2", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
+deps = ["BinaryProvider", "CredentialsHandler", "Dates", "LibGit2", "Markdown", "Printf", "REPL", "Random", "SHA", "TOML", "UUIDs"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[Polynomials]]
@@ -297,12 +264,6 @@ deps = ["LinearAlgebra", "SparseArrays", "Test"]
 git-tree-sha1 = "62142bd65d3f8aeb2226ec64dd8493349147df94"
 uuid = "f27b6e38-b328-58d1-80ce-0feddd5e7a45"
 version = "0.5.2"
-
-[[Primes]]
-deps = ["Test"]
-git-tree-sha1 = "ff1a2323cb468ec5f201838fcbe3c232266b1f95"
-uuid = "27ebfcd6-29c5-5fa9-bf4b-fb8fc14df3ae"
-version = "0.4.0"
 
 [[Printf]]
 deps = ["Unicode"]
@@ -345,12 +306,6 @@ uuid = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
 [[Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 
-[[SoftGlobalScope]]
-deps = ["Test"]
-git-tree-sha1 = "012661b70364840fcd380912d878d96f7bf95ff3"
-uuid = "b85f4697-e234-5449-a836-ec8e2f98b302"
-version = "1.0.10"
-
 [[SparseArrays]]
 deps = ["LinearAlgebra", "Random"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
@@ -359,17 +314,15 @@ uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
-[[StringBuilders]]
-deps = ["Test"]
-git-tree-sha1 = "f1ca94badd76e66cf86402516079ffc792e12a98"
-uuid = "db12335b-fddc-5e1b-b0ee-42071d21ae50"
-version = "0.2.0"
-
 [[StringDistances]]
 deps = ["Distances", "IterTools", "Random", "Test"]
 git-tree-sha1 = "125d06646183f1822849e852e45177710e700686"
 uuid = "88034a9c-02f8-509d-84a9-84ec65e18404"
 version = "0.3.2"
+
+[[TOML]]
+deps = ["Dates"]
+uuid = "9d418dce-91a8-11e8-0173-7b01a971d501"
 
 [[Test]]
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
@@ -406,12 +359,6 @@ uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 [[Unicode]]
 uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
-[[VersionParsing]]
-deps = ["Compat"]
-git-tree-sha1 = "c9d5aa108588b978bd859554660c8a5c4f2f7669"
-uuid = "81def892-9a0e-5fdd-b105-ffc91e053289"
-version = "1.1.3"
-
 [[WebIO]]
 deps = ["AssetRegistry", "Base64", "Compat", "Distributed", "FunctionalCollections", "JSON", "Logging", "Observables", "Random", "Requires", "Sockets", "Test", "UUIDs", "Widgets"]
 git-tree-sha1 = "125dc746e5b36424c6a7e694889a7f3d434a160a"
@@ -429,9 +376,3 @@ deps = ["Colors", "Dates", "Observables", "OrderedCollections", "Test"]
 git-tree-sha1 = "c53befc70c6b91eaa2a9888c2f6ac2d92720a81b"
 uuid = "cc8bc4a8-27d6-5769-a93b-9d913e69aa62"
 version = "0.6.1"
-
-[[ZMQ]]
-deps = ["BinaryProvider", "FileWatching", "Libdl", "Sockets", "Test"]
-git-tree-sha1 = "34e7ac2d1d59d19d0e86bde99f1f02262bfa1613"
-uuid = "c2297ded-f4af-51ae-bb23-16f91089e4e1"
-version = "1.0.0"

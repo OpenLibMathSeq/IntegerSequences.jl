@@ -10,10 +10,10 @@ using Nemo
 export ModuleRecordSearch
 export Records
 
-"""@
+"""
 The type object to construct an iterated search for records in sequences.
 
-Records
+* Records
 """
 const ModuleRecordSearch = ""
 

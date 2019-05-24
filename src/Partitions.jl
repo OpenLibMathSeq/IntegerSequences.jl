@@ -8,21 +8,19 @@ module Partitions
 export ModulePartitions
 export Partition, V080577
 
-"""@
-Partition, V080577
-
-An alternative to Combinatorics.partitions(n).
+"""
+An alternative to Combinatorics.partitions.
 
 For n = 100 the benchmark shows:
 
 * 167.598273 seconds (15 allocations: 4.813 KiB)
-
 *  86.960344 seconds (381.14 M allocations:  48.735 GiB, 11.29% gc time)
 
 Our function takes twice as long but the Combinatorics's function takes vastly more space.
+
+* Partition, V080577
 """
 const ModulePartitions = ""
-
 
 """
 Generates the integer partitions of ``n`` in lexicographic order. Ported from Wilf/Nijenhuis "Combinatorial Algorithms". (cf. A080577).

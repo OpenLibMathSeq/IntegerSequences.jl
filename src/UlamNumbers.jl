@@ -8,13 +8,15 @@ module UlamNumbers
 export ModuleUlamNumbers
 export L002858, UlamList, isUlam
 
-"""@
-L002858, UlamList, isUlam
+"""
+An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+
+* UlamList, isUlam, L002858
 """
 const ModuleUlamNumbers = ""
 
 """
-Is ``n`` an Ulam number? 
+Is ``n`` an Ulam number?
 """
 function isUlam(u, n, h, i, r)
     ur = u[r]; ui = u[i]

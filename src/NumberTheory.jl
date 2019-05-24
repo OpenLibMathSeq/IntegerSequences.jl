@@ -14,13 +14,10 @@ export Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
 export isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
 export isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
 
-"""@
-τ, σ, σ2, ϕ, ω, Ω, ⊥, ⍊, Divisors, PrimeDivisors, Factors, Radical, mods
-V000005, V000010, V000203, V001222, V001221, V008683, V181830, V034444
-I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
-Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
-isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
-isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
+"""
+* τ, σ, σ2, ϕ, ω, Ω, ⊥, ⍊
+* Divisors, PrimeDivisors, Factors, Radical, mods, Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList, isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare, isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
+* V000005, V000010, V000203, V001222, V001221, V008683, V181830, V034444, I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
 """
 const ModuleNumberTheory = ""
 

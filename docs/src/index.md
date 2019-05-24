@@ -103,6 +103,9 @@ FallingFactorial
 GammaHyp
 ```
 ```@docs
+GaußFactorial
+```
+```@docs
 HilbertHotel
 ```
 ```@docs
@@ -199,6 +202,9 @@ ModuleNarayanaCows
 ModuleNumberTheory
 ```
 ```@docs
+ModuleOEISUtils
+```
+```@docs
 ModuleOrthoPolynomials
 ```
 ```@docs
@@ -227,6 +233,9 @@ ModuleRiordanSquares
 ```
 ```@docs
 ModuleSelfConvolutive
+```
+```@docs
+ModuleSeqUtils
 ```
 ```@docs
 ModuleSeriesExpansion

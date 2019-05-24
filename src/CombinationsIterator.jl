@@ -10,8 +10,8 @@ using IterTools
 export ModuleCombinationsIterator
 export Combinations
 
-"""@
-Combinations
+"""
+* Combinations
 """
 const ModuleCombinationsIterator = ""
 

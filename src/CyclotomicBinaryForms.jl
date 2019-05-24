@@ -20,10 +20,11 @@ export isA299930, F299930, I299930, L299930
 export isA325143, F325143, I325143, L325143
 export isA325145, F325145, I325145, L325145
 
-"""@
-Etienne Fouvry, Claude Levesque, Michel Waldschmidt, 
-Representation of integers by cyclotomic binary forms
-arXiv:1712.09019 [math.NT], 2017.
+"""
+E. Fouvry, C. Levesque, M. Waldschmidt,
+[Representation of integers by cyclotomic binary forms](https://arxiv.org/pdf/1712.09019.pdf), arXiv:1712.09019 [math.NT], 2017.
+
+* isA206864, F206864, I206864, L206864, isA206942, F206942, I206942, L206942, isA293654, F293654, I293654, L293654, isA296095, F296095, I296095, L296095, V299214, L299214, isA299498, F299498, I299498, L299498, isA299733, L299733, isA299928, F299928, I299928, L299928, isA299929, F299929, I299929, L299929, isA299930, F299930, I299930, L299930, isA325143, F325143, I325143, L325143, isA325145, F325145, I325145, L325145
 """
 const ModuleCyclotomicBinaryForms = ""
 
@@ -207,8 +208,8 @@ Is ``n`` a prime represented by a cyclotomic binary form f(x, y) with x and y od
 function isA299930(n)
     !isprime(ZZ(n)) && return false
     R, z = PolynomialRing(ZZ, "z")
-    K = floor(Int, 5.383*log(n)^1.161) 
-    M = floor(Int, 2*sqrt(n/3))  
+    K = floor(Int, 5.383*log(n)^1.161)
+    M = floor(Int, 2*sqrt(n/3))
     N = QQ(n)
     P(u) = (p for p in u:M if isprime(ZZ(p)))
     for k in 3:K
@@ -441,18 +442,18 @@ function test()
                  L299214, L296095, L293654]
             SeqTest(L, 'L')
         end
-    end    
+    end
 end
 
 function demo()
     println("\nIntegers which are A206942 and <= 32:")
-    for n in 1:32 
-        isA206942(n) && println(n) 
+    for n in 1:32
+        isA206942(n) && println(n)
     end
 
     println("\nIterate over the first 32 integers which are A206942:")
-    for i in I206942(32) 
-        print("$i, ") 
+    for i in I206942(32)
+        print("$i, ")
     end
 
     println("\n\nFilter the integers which are A206942 and <= 60:")

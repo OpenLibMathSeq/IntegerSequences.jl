@@ -17,8 +17,8 @@ export L023005, L023006, L023007, L023008, L023009, L023010, L005758, L023011
 export L023012, L023013, L023014, L023015, L023016, L023017, L023018, L023019
 export L023020, L023021, L006922, L082556, L082557, L082558, L082559
 
-"""@
-DedekindEtaPowers, RamanujanTau, RamanujanTauList, PartitionNumberList
+"""
+* DedekindEtaPowers, RamanujanTau, RamanujanTauList, PartitionNumberList
 """
 const ModuleDedekindEta = ""
 

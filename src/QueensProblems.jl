@@ -8,12 +8,12 @@ module QueensProblems
 export ModuleQueensProblems
 export L319284, Queens
 
-"""@
-L319284, Queens
+"""
+For some background see: [Backtracking with profiles](https://wp.me/paipV7-E).
+
+* Queens, L319284
 """
 const ModuleQueensProblems = ""
-
-# For some background see: https://wp.me/paipV7-E
 
 function solve!(profile, level, size, start, cols, diag4, diag1)
 

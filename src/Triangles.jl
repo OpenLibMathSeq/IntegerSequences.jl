@@ -14,9 +14,8 @@ export TriangularNumber, isTriangular, assertTriangular
 export ShowAsΔ, ShowAsMatrix, Row, RowSums
 export fromΔ, toΔ, TriangleToList
 
-"""@
-Triangle, ZTriangle, QTriangle, RecTriangle, TriangularNumber, isTriangular, assertTriangular
-ShowAsΔ, ShowAsMatrix, Row, RowSums, fromΔ, toΔ, TriangleToList
+"""
+* Triangle, ZTriangle, QTriangle, RecTriangle, TriangularNumber, isTriangular, assertTriangular, ShowAsΔ, ShowAsMatrix, Row, RowSums, fromΔ, toΔ, TriangleToList
 """
 const ModuleTriangles = ""
 
@@ -26,8 +25,8 @@ const ModuleTriangles = ""
 #    T(3,0) T(3,1) T(3,2) T(3,3)     row 3
 #    col 0  col 1  col 2  col 3
 #
-# The two dimensional index is ``(0, 0)``-based and displayed row-wise as 
-# a lower triangular array. In particular note that a `Triangle` has rows 
+# The two dimensional index is ``(0, 0)``-based and displayed row-wise as
+# a lower triangular array. In particular note that a `Triangle` has rows
 # and cols from ``0`` to dim ``-1``.
 
 
