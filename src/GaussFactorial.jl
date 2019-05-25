@@ -19,6 +19,8 @@ The Gauß factorial is ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the po
 """
 const ModuleGaussFactorial = ""
 
+# A216919
+
 """
 Return ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.
 """
