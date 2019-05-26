@@ -32,7 +32,7 @@ The rational Bernoulli numbers are defined here with ``B(1) = 1/2``. Why this is
 const ModuleBernoulliNumbers = ""
 
 """
-Return the generalized integer Bernoulli numbers ``b_{m}(n) = n \\times ``André``(m, n-1)``.
+Return the generalized integer Bernoulli numbers ``b_{m}(n) = n × ``André``(m, n-1)``.
 """
 BernoulliInt(m::Int, n::Int) = n == 0 ? ZZ(0) : n * André(m, n - 1)
 
@@ -42,12 +42,12 @@ Return the number of down-up permutations w on ``[n+1]`` such that ``w_2 = 1``.
 V065619(n::Int) = BernoulliInt(2, n)
 
 """
-Return the generalized integer Bernoulli numbers ``b_{3}(n) = n \\times ``André``_{3}(n-1)``.
+Return the generalized integer Bernoulli numbers ``b_{3}(n) = n × ``André``_{3}(n-1)``.
 """
 V281586(n::Int) = BernoulliInt(3, n)
 
 """
-Return the generalized integer Bernoulli numbers ``b_{4}(n) = n \\times `` André``_{4}(n-1)``.
+Return the generalized integer Bernoulli numbers ``b_{4}(n) = n × `` André``_{4}(n-1)``.
 """
 V281588(n::Int) = BernoulliInt(4, n)
 

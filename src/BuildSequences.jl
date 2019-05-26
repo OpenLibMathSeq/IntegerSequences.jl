@@ -394,6 +394,7 @@ function make_modules()
                 name = splitext(filename)
                 println(mod, "\n   🔶  ", '[', name[1], "](", path, ")\n" )
             else
+                n = replace(n, "\\\\" => "\\")
                 indoc && println(mod, n)
             end
         end

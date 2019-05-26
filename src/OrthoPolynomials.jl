@@ -74,12 +74,12 @@ Return the coefficients of some orthogonal polynomials related to set partitions
 T216916(dim::Int) = OrthoPoly(dim, n -> n + 1, n -> n + 1)
 
 """
-Return the triangle ``T(n,k)`` of tangent numbers, coefficient of ``x^n/n!`` in the expansion of ``(\\tan x)^k/k!``.
+Return the triangle ``T(n,k)`` of tangent numbers, coefficient of ``x^n/n!`` in the expansion of ``(tan x)^k/k!``.
 """
 T059419(dim::Int) = OrthoPoly(dim, n -> 0, n -> n * (n-1))
 
 """
-Return the expansion of ``\\exp(\\tan(x))``.
+Return the expansion of exp(tan(x)).
 """
 L006229(len::Int) = RowSums(T059419(len))
 

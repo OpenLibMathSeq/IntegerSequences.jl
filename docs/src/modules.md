@@ -25,7 +25,7 @@ Generalized André numbers count the ``m``-alternating permutations of length ``
 
 The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
 
-Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \sum_{m=1}^{n-k+1} \binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 
 The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
 
@@ -54,7 +54,7 @@ The rational Bernoulli numbers are defined here with ``B(1) = 1/2``. Why this is
 
    🔶  [BinaryInteger](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BinaryInteger.jl)
 
-For positive n, BinaryIntegerLength is ``\\lfloor(\\operatorname{log}(2, n)\\rfloor) + 1``, BinaryIntegerLength(0) = 0.
+For positive n, BinaryIntegerLength is ``⌊ log[2](n) ⌋ + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
 
@@ -70,9 +70,9 @@ Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/Binar
 
    🔶  [CantorMachines](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CantorMachines.jl)
 
-* Cantor-Machine, Cantor-Enumeration, Cantor-Pairing, Cantor-BoustrophedonicMachine, Cantor-BoustrophedonicEnumeration, Cantor-BoustrophedonicPairing, RosenbergStrong-BoustrophedonicMachine, RosenbergStrong-BoustrophedonicEnumeration, RosenbergStrong-BoustrophedonicPairing
-
 [Cantor's enumeration of N X N revisited](https://luschny.wordpress.com/2018/09/24/cantors-enumeration-of-n2-revisited/).
+
+* Cantor-Machine, Cantor-Enumeration, Cantor-Pairing, Cantor-BoustrophedonicMachine, Cantor-BoustrophedonicEnumeration, Cantor-BoustrophedonicPairing, RosenbergStrong-BoustrophedonicMachine, RosenbergStrong-BoustrophedonicEnumeration, RosenbergStrong-BoustrophedonicPairing
 
    🔶  [CarmichaelNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CarmichaelNumbers.jl)
 

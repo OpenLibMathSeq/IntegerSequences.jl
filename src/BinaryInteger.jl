@@ -10,14 +10,14 @@ export V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753
 export V295513, BinaryIntegerLength, Bil
 
 """
-For positive n, BinaryIntegerLength is ``\\lfloor(\\operatorname{log}(2, n)\\rfloor) + 1``, BinaryIntegerLength(0) = 0.
+For positive n, BinaryIntegerLength is ``⌊ log[2](n) ⌋ + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
 """
 const ModuleBinaryInteger = ""
 
 """
-Return the length of the binary extension of an integer ``n``, which is defined as ``0`` if ``n = 0`` and for ``n > 0`` as ``⌊ log _2(n) ⌋ + 1``.
+Return the length of the binary extension of an integer ``n``, which is defined as ``0`` if ``n = 0`` and for ``n > 0`` as ``⌊ log[2](n) ⌋ + 1``.
 """
 BinaryIntegerLength(n) = n == 0 ? 0 : floor(Int, log2(n)) + 1
 
@@ -62,7 +62,7 @@ Minimum total number of comparisons to find each of the values ``1`` through ``n
 V097383(n) = V295513(n+1) - div(n-1, 2)
 
 """
-Partial sums of the sequence ``⌊ \\log_2(n) ⌋``.
+Partial sums of the sequence ``⌊ log[2](n) ⌋``.
 """
 V061168(n) = V295513(n+1) - n + 1
 
