@@ -130,11 +130,11 @@ Applying Deléham's Δ-operation often gives an additional first column or an ad
 
 * PolygonalNumber, PyramidalNumber, V014107, V095794, V067998, V080956, V001477, V000217, V000290, V000326, V000384, V000566, V000567, V001106, V001107, V005564, V058373, V254749, V000292, V000330, V002411, V002412, V002413, V002414, V007584, V007585
 
-   🔶  [GaussFactorial](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/GaussFactorial.jl)
+   🔶  [GaussFactorials](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/GaussFactorials.jl)
 
 The Gauß factorial is ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.
 
-* GaußFactorial, I193338, F193338, L193338, V193338, I193339, F193339, L193339, V193339
+* GaussFactorial, I193338, F193338, L193338, V193338, I193339, F193339, L193339, V193339, V216919, V001783, V055634, V232980, V232981, V232982, V124441, V124442, V066570
 
    🔶  [GeneralizedBinomial](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/GeneralizedBinomial.jl)
 

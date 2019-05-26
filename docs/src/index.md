@@ -103,7 +103,7 @@ FallingFactorial
 GammaHyp
 ```
 ```@docs
-GaußFactorial
+GaussFactorial
 ```
 ```@docs
 HilbertHotel
@@ -178,7 +178,7 @@ ModuleFibonacci
 ModuleFigurativeNumbers
 ```
 ```@docs
-ModuleGaussFactorial
+ModuleGaussFactorials
 ```
 ```@docs
 ModuleGeneralizedBinomial
@@ -823,6 +823,9 @@ T001497
 L001710
 ```
 ```@docs
+V001783
+```
+```@docs
 V001813
 ```
 ```@docs
@@ -1381,6 +1384,9 @@ T053121
 V054248
 ```
 ```@docs
+V055634
+```
+```@docs
 T055883
 ```
 ```@docs
@@ -1430,6 +1436,9 @@ L065855
 ```
 ```@docs
 T066325
+```
+```@docs
+V066570
 ```
 ```@docs
 V067998
@@ -1615,6 +1624,12 @@ V123753
 V124320
 ```
 ```@docs
+V124441
+```
+```@docs
+V124442
+```
+```@docs
 T132062
 ```
 ```@docs
@@ -1741,6 +1756,9 @@ L214551
 T216916
 ```
 ```@docs
+V216919
+```
+```@docs
 T217537
 ```
 ```@docs
@@ -1757,6 +1775,15 @@ I225498
 ```
 ```@docs
 L225498
+```
+```@docs
+V232980
+```
+```@docs
+V232981
+```
+```@docs
+V232982
 ```
 ```@docs
 L242660

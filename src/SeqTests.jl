@@ -58,7 +58,6 @@ function SeqVTest(seq, offset=0)
     @test all(S[1:10] .== O[1:10])
 end
 
-
 function SeqBTest(seqarray)
     for seq in seqarray
         name = SeqName(seq)

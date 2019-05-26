@@ -31,7 +31,8 @@ struct Records
     index::Bool
 end
 
-Base.iterate(::Records) = (ZZ(0), (ZZ(0), ZZ(0), ZZ(1)))
+# Base.iterate(::Records) = (ZZ(0), (ZZ(0), ZZ(0), ZZ(1)))
+Base.iterate(::Records) = (ZZ(1), (ZZ(1), ZZ(0), ZZ(1)))
 
 """
 Return the value or the index of the next record.

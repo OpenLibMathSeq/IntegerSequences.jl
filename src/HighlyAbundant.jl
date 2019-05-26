@@ -118,25 +118,25 @@ end # module
 
 #=
 Iterate over the first 20 highly abundant numbers.
-0, 1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84, ...
+1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84, ...
 
 Return the first 20 highly abundant numbers as an array.
-Nemo.fmpz[0, 1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84]
+Nemo.fmpz[1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84]
 
 Iterate over the highly abundant numbers which do not exceed 20.
-0, 1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, ...
+1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, ...
 
 Return the 9-th highly abundant number.
 9 -> 12
 
 Iterate over the first 20 record values of sigma.
-0, 1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224, ...
+1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224, ...
 
 Return the first 20 record values of sigma as an array.
-Nemo.fmpz[0, 1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224]
+Nemo.fmpz[1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224]
 
 Iterate over the record values of sigma the indices of which do not exceed 20.
-0, 1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, ...
+1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, ...
 
 Return the 9-th record of sigma.
 9 -> 28
