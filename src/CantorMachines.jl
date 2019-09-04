@@ -7,12 +7,12 @@ module CantorMachines
 
 export ModuleCantorMachines
 export CantorMachine, CantorEnumeration, CantorPairing
-export CantorBoustrophedonicMachine,
-       CantorBoustrophedonicEnumeration,
-       CantorBoustrophedonicPairing
-export RosenbergStrongBoustrophedonicMachine,
-       RosenbergStrongBoustrophedonicEnumeration,
-       RosenbergStrongBoustrophedonicPairing
+export CantorBoustrophedonicMachine
+export CantorBoustrophedonicEnumeration
+export CantorBoustrophedonicPairing
+export RosenbergStrongBoustrophedonicMachine
+export RosenbergStrongBoustrophedonicEnumeration
+export RosenbergStrongBoustrophedonicPairing
 export V319514, L319514
 
 """

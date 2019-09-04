@@ -9,15 +9,8 @@ using Nemo, IterTools
 using RecordSearch, NumberTheory, Products
 
 export ModuleGaussFactorials, GaussFactorial
-export V216919,
-       V001783,
-       V055634,
-       V232980,
-       V232981,
-       V232982,
-       V124441,
-       V124442,
-       V066570
+export V216919, V001783, V055634, V232980, V232981, V232982 
+export V124441, V124442, V066570
 export I193338, F193338, L193338, V193338
 export I193339, F193339, L193339, V193339
 
