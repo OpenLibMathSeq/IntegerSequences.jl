@@ -13,6 +13,7 @@ export L047891, L062980, L082298, L082301, L082302, L105523, L107716
 export L111529, L111530, L111531, L111532, L111533, L146559, L167872
 
 """
+
 Some exactly solvable self-convolutive recurrences.
 
 * SelfConvRec, L000698, L001710, L003319, L005411, L005412, L006012, L006318
@@ -30,6 +31,7 @@ const ModuleSelfConvolutive = ""
 Convolution(A, n) = sum(A[j+1] * A[n-j+1] for j in 0:n)
 
 """
+
 An exactly solvable self-convolutive recurrence studied by R. J. Martin and M. J. Kearney.
 """
 function SelfConvRec(len, a, b, c)
@@ -37,8 +39,8 @@ function SelfConvRec(len, a, b, c)
     len == 0 && return A
     A[1] = 1
 
-    for n in 1:len - 1
-        A[n+1] = (a * (n + 1) + b) * A[n] + c * Convolution(A, n-1)
+    for n in 1:len-1
+        A[n+1] = (a * (n + 1) + b) * A[n] + c * Convolution(A, n - 1)
     end
     A
 end
@@ -73,10 +75,12 @@ end
 # L000420(len::Int) = SelfConvRec(len, 6, 1, -6)
 
 """
+
 Return the number of indecomposable perfect matchings on ``[2n]``.
 """
 L000698(len::Int) = SelfConvRec(len, 2, -3, 1)
 """
+
 Return the order of alternating group ``A_n``, or number of even permutations of ``n`` letters.
 """
 L001710(len::Int) = SelfConvRec(len, 1, 1, 0)
@@ -99,26 +103,32 @@ L001710(len::Int) = SelfConvRec(len, 1, 1, 0)
 # L001730(len::Int) = SelfConvRec(len, 1, 5, 0)
 
 """
+
 Return the number of connected permutations of ``[1..n]``. Also called indecomposable permutations.
 """
 L003319(len::Int) = SelfConvRec(len, 1, -2, 1)
 """
+
 Return the number of non-vanishing Feynman diagrams of order ``2n`` for the electron or the photon propagators in quantum electrodynamics.
 """
 L005411(len::Int) = SelfConvRec(len, 2, -4, 1)
 """
+
 Return the number of non-vanishing Feynman diagrams of order ``2n`` for the vacuum polarization in quantum electrodynamics.
 """
 L005412(len::Int) = SelfConvRec(len, 2, -2, 1)
 """
+
 Counting some sets of permutations.
 """
 L006012(len::Int) = SelfConvRec(len, -1, 2, 2)
 """
+
 Return the large Schröder numbers.
 """
 L006318(len::Int) = SelfConvRec(len, 0, 1, 1)
 """
+
 Return the number of planar rooted trees with ``n`` nodes and tricolored end nodes.
 """
 L047891(len::Int) = SelfConvRec(len, 0, 2, 1)
@@ -224,18 +234,22 @@ L047891(len::Int) = SelfConvRec(len, 0, 2, 1)
 # L053106(len::Int) = SelfConvRec(len, 7, 3, 0)
 
 """
+
 Return the number of rooted unlabeled connected triangular maps on a compact closed oriented surface with ``2n`` faces.
 """
 L062980(len::Int) = SelfConvRec(len, 6, -8, 1)
 """
+
 Return the number of lattice paths from ``(0,0)`` to ``(n+1,n+1)`` that consist of steps ``(i,0)`` and ``(0,j)`` with ``i,j≥1`` and stay strictly below the diagonal line ``y=x`` except at the endpoints.
 """
 L082298(len::Int) = SelfConvRec(len, 0, 3, 1)
 """
+
 Return the number of Schröder paths of semilength n in which the (2,0)-steps come in 4 colors.
 """
 L082301(len::Int) = SelfConvRec(len, 0, 4, 1)
 """
+
 Return the coefficients in the expansion of ``(1-5x-√(25x^2-14x+1))/(2x)``.
 """
 L082302(len::Int) = SelfConvRec(len, 0, 5, 1)
@@ -254,30 +268,37 @@ L082302(len::Int) = SelfConvRec(len, 0, 5, 1)
 # L082367(len::Int) = SelfConvRec(len, 0, 8, 1)
 
 """
+
 Return the coefficients in the expansion of ``(1+2x-√(1+4x^2))/(2x)``.
 """
 L105523(len::Int) = SelfConvRec(len, 0, -2, 1)
 """
+
 A transform the of triple factorial numbers.
 """
 L107716(len::Int) = SelfConvRec(len, 3, -4, 1)
 """
+
 A convolutory inverse of the factorial sequence.
 """
 L111529(len::Int) = SelfConvRec(len, 1, -3, 2)
 """
+
 A convolutory inverse of the factorial sequence.
 """
 L111530(len::Int) = SelfConvRec(len, 1, -4, 3)
 """
+
 A convolutory inverse of the factorial sequence.
 """
 L111531(len::Int) = SelfConvRec(len, 1, -5, 4)
 """
+
 A convolutory inverse of the factorial sequence.
 """
 L111532(len::Int) = SelfConvRec(len, 1, -6, 5)
 """
+
 A convolutory inverse of the factorial sequence.
 """
 L111533(len::Int) = SelfConvRec(len, 1, -7, 6)
@@ -290,10 +311,12 @@ L111533(len::Int) = SelfConvRec(len, 1, -7, 6)
 #L111556(len::Int) = SelfConvRec(len, 1, 1, 1)
 
 """
+
 Return the expansion of ``(1-x)/(1 - 2x + 2x^2)``.
 """
 L146559(len::Int) = SelfConvRec(len, 1, 1, -2)
 """
+
 Return half the number of Feynman diagrams of order ``2(n+1)``, for the electron self-energy in quantum electrodynamics.
 """
 L167872(len::Int) = SelfConvRec(len, 2, -3, 2)
@@ -318,9 +341,26 @@ function test()
     @testset "SelfConvRec" begin
         if is_oeis_installed()
 
-            L = [L005411, L005412, L006012, L006318, L047891, L062980, L082298,
-                L082301, L082302, L105523, L107716, L111529, L111530, L111531,
-                L111532, L111533, L146559, L167872]
+            L = [
+                L005411,
+                L005412,
+                L006012,
+                L006318,
+                L047891,
+                L062980,
+                L082298,
+                L082301,
+                L082302,
+                L105523,
+                L107716,
+                L111529,
+                L111530,
+                L111531,
+                L111532,
+                L111533,
+                L146559,
+                L167872
+            ]
             SeqTest(L, 'L')
         end
     end
@@ -328,13 +368,16 @@ end
 
 function demo()
 
-    for n in 0:6 println(n, " ↦ ", L005411(n)) end
+    for n in 0:6
+        println(n, " ↦ ", L005411(n))
+    end
 
     f(len) = SelfConvRec(len, 2, -1, -1)
     println(f(11))
 end
 
 """
+
 L005411(500) :: 0.238653 seconds (252.99 k allocations: 3.887 MB)
 """
 function perf()

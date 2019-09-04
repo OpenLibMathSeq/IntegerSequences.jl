@@ -12,12 +12,14 @@ export isCarmichael, I002997, F002997, L002997
 export isweakCarmichael, I225498, F225498, L225498
 
 """
+
 * isCarmichael, I002997, F002997, L002997
 * isweakCarmichael, I225498, F225498, L225498
 """
 const ModuleCarmichaelNumbers = ""
 
 """
+
 Is ``n`` a Carmichael/Šimerka number?
 """
 function isCarmichael(n)
@@ -29,21 +31,25 @@ function isCarmichael(n)
 end
 
 """
+
 Iterate over the first n Carmichael/Šimerka numbers.
 """
 I002997(n) = takeFirst(isCarmichael, n)
 
 """
+
 Iterate over the Carmichael/Šimerka numbers which do not exceed n.
 """
 F002997(n) = filter(isCarmichael, 1:n)
 
 """
+
 Return the first n Carmichael/Šimerka numbers in an array.
 """
 L002997(n) = collect(I002997(n))
 
 """
+
 Is ``n`` a weak Carmichael number?
 """
 function isweakCarmichael(n)
@@ -55,16 +61,19 @@ function isweakCarmichael(n)
 end
 
 """
+
 Iterate over the first n weak Carmichael numbers.
 """
 I225498(n) = takeFirst(isweakCarmichael, n)
 
 """
+
 Iterate over the weak Carmichael numbers which do not exceed n.
 """
 F225498(n) = filter(isweakCarmichael, 1:n)
 
 """
+
 Return the first n weak Carmichael numbers in an array.
 """
 L225498(n) = collect(I225498(n))
@@ -75,9 +84,9 @@ using Test, SeqTests
 
 function test()
     @testset "Carmichael" begin
-        @test ! isCarmichael(560)
+        @test !isCarmichael(560)
         @test isCarmichael(561)
-        @test ! isCarmichael(563)
+        @test !isCarmichael(563)
         @test isweakCarmichael(561)
         @test !isweakCarmichael(563)
         @test isweakCarmichael(625)
@@ -102,6 +111,7 @@ function demo()
 end
 
 """
+
 @time L = L002997(30)
 0.967192 seconds (4.01 M allocations: 248.863 MiB, 28.97% gc time)
 """

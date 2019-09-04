@@ -4,18 +4,20 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module ClausenNumbers
-using  Nemo, PrimesIterator, Products, NumberTheory
+using Nemo, PrimesIterator, Products, NumberTheory
 
 export ModuleClausenNumbers
 export ClausenNumber, ClausenNumberList
 export V002445, L002445, V027642
 
 """
+
 * ClausenNumber, ClausenNumberList, V002445, L002445, V027642
 """
 const ModuleClausenNumbers = ""
 
 """
+
 Return the Clausen number ``C_n`` which is the denominator of the Bernoulli number ``B_{2n}``.
 """
 function ClausenNumber(n::Int)
@@ -25,18 +27,20 @@ function ClausenNumber(n::Int)
 end
 
 """
+
 Return the list of length len of Clausen numbers which are the denominators of the Bernoulli numbers ``B_{2n}``.
 """
 function ClausenNumberList(len::Int)
     len ≤ 0 && return fmpz[]
 
-    A = fill(ZZ(2), len);  A[1] = 1
+    A = fill(ZZ(2), len)
+    A[1] = 1
     m = len - 1
     m == 0 && return A
 
     for p in Primes(3, 2m + 1)
         r = div(p - 1, 2)
-        for k in range(r, step=r, length=div(m, r))
+        for k in range(r, step = r, length = div(m, r))
             A[k+1] *= p
         end
     end
@@ -44,16 +48,19 @@ function ClausenNumberList(len::Int)
 end
 
 """
+
 Return the Clausen number ``C(n)`` which is the denominator of the Bernoulli number ``B_{2n}``.
 """
 V002445(n::Int) = ClausenNumber(n)
 
 """
+
 Return the list of length len of Clausen numbers which are the denominators of the Bernoulli numbers ``B_{2n}``.
 """
 L002445(len::Int) = ClausenNumberList(len)
 
 """
+
 Return the denominator of Bernoulli number ``B_n``.
 """
 function V027642(n::Int)
@@ -108,6 +115,7 @@ function demo()
 end
 
 """
+
 # ClausenNumberList is ~ 16 times faster than a list of ClausenNumbers!
 ClausenNumberList(10000) ::
     0.016498 seconds (141.08 k allocations: 2.252 MiB)
@@ -117,7 +125,9 @@ for n in 0:10000 ClausenNumber(n) end ::
 function perf()
     GC.gc()
     @time ClausenNumberList(10000)
-    @time (for n in 0:10000 ClausenNumber(n) end)
+    @time (for n in 0:10000
+        ClausenNumber(n)
+    end)
 end
 
 function main()

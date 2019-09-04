@@ -13,11 +13,13 @@ export V005564, V058373, V254749, V000292, V000330, V002411, V002412
 export V002413, V002414, V007584, V007585
 
 """
+
 * PolygonalNumber, PyramidalNumber, V014107, V095794, V067998, V080956, V001477, V000217, V000290, V000326, V000384, V000566, V000567, V001106, V001107, V005564, V058373, V254749, V000292, V000330, V002411, V002412, V002413, V002414, V007584, V007585
 """
 const ModuleFigurativeNumbers = ""
 
 """
+
 Return the polygonal number with shape k.
 """
 function PolygonalNumber(n, k)
@@ -26,6 +28,7 @@ function PolygonalNumber(n, k)
 end
 
 """
+
 Return the pyramidal number with shape k.
 """
 function PyramidalNumber(n, k)
@@ -34,67 +37,83 @@ function PyramidalNumber(n, k)
 end
 
 """
+
 Return the polygonal numbers of shape -2.
 """
 V014107(n) = PolygonalNumber(n, -2)
 """
+
 Return the polygonal numbers of shape -1.
 """
 V095794(n) = PolygonalNumber(n, -1)
 """
+
 Return the polygonal numbers of shape 0.
 """
 V067998(n) = PolygonalNumber(n, 0)
 """
+
 Return the polygonal numbers of shape 1.
 """
 V080956(n) = PolygonalNumber(n, 1)
 """
+
 Return the polygonal numbers of shape 2 (these are the natural numbers).
 """
 V001477(n) = PolygonalNumber(n, 2)
 """
+
 Return the polygonal numbers of shape 3 (the triangular numbers).
 """
 V000217(n) = PolygonalNumber(n, 3)
 """
+
 Return the polygonal numbers of shape 4 (the squares).
 """
 V000290(n) = PolygonalNumber(n, 4)
 """
+
 Return the polygonal numbers of shape 5 (the pentagonal numbers).
 """
 V000326(n) = PolygonalNumber(n, 5)
 """
+
 Return the polygonal numbers of shape 6 (the hexagonal numbers).
 """
 V000384(n) = PolygonalNumber(n, 6)
 """
+
 Return the polygonal numbers of shape 7 (the heptagonal numbers).
 """
 V000566(n) = PolygonalNumber(n, 7)
 """
+
 Return the polygonal numbers of shape 8 (the octagonal numbers).
 """
 V000567(n) = PolygonalNumber(n, 8)
 """
+
 Return the polygonal numbers of shape 9 (the nonagonal numbers).
 """
 V001106(n) = PolygonalNumber(n, 9)
 """
+
 Return the polygonal numbers of shape 10 (decagonal numbers).
 """
 V001107(n) = PolygonalNumber(n, 10)
 
 """
+
 Return the pyramidal numbers of shape -1.
 """
 V005564(n) = PyramidalNumber(n, -1)
 """
+
 Return the pyramidal numbers of shape 0.
 """
 V058373(n) = PyramidalNumber(n, 0)
 """
+
 Return the pyramidal numbers of shape 1.
 """
 V254749(n) = PyramidalNumber(n, 1)
@@ -103,34 +122,42 @@ V254749(n) = PyramidalNumber(n, 1)
 #"""
 #V000217(n) = PyramidalNumber(n, 2)
 """
+
 Return the pyramidal numbers of shape 3 (tetrahedral numbers).
 """
 V000292(n) = PyramidalNumber(n, 3)
 """
+
 Return the pyramidal numbers of shape 4 (square pyramidal numbers).
 """
 V000330(n) = PyramidalNumber(n, 4)
 """
+
 Return the pyramidal numbers of shape 5 (pentagonal pyramidal numbers).
 """
 V002411(n) = PyramidalNumber(n, 5)
 """
+
 Return the pyramidal numbers of shape 6 (hexagonal pyramidal numbers).
 """
 V002412(n) = PyramidalNumber(n, 6)
 """
+
 Return the pyramidal numbers of shape 7 (heptagonal pyramidal numbers).
 """
 V002413(n) = PyramidalNumber(n, 7)
 """
+
 Return the pyramidal numbers of shape 8 (octagonal pyramidal numbers).
 """
 V002414(n) = PyramidalNumber(n, 8)
 """
+
 Return the pyramidal numbers of shape 9 (enneagonal pyramidal numbers).
 """
 V007584(n) = PyramidalNumber(n, 9)
 """
+
 Return the pyramidal numbers of shape 10 (decagonal pyramidal numbers).
 """
 V007585(n) = PyramidalNumber(n, 10)
@@ -146,11 +173,30 @@ function test()
 
         if is_oeis_installed()
 
-            V = [V014107, V067998, V001477, V000217, V000290, V000326,
-                V000384, V000566, V000567, V001106, V001107, V000292,
-                V000330, V002411, V002412, V002413, V007584, V007585]
+            V = [
+                V014107,
+                V067998,
+                V001477,
+                V000217,
+                V000290,
+                V000326,
+                V000384,
+                V000566,
+                V000567,
+                V001106,
+                V001107,
+                V000292,
+                V000330,
+                V002411,
+                V002412,
+                V002413,
+                V007584,
+                V007585
+            ]
                 # V080956, V095794, V005564, V058373, V254749, V002414
-            for v in V  SeqTest(v, 'V') end
+            for v in V
+                SeqTest(v, 'V')
+            end
         end
     end
 end
@@ -168,9 +214,12 @@ function demo()
 end
 
 """
+
 """
 function perf()
-    @time (for n in 1:1000 V000326(n) end)
+    @time (for n in 1:1000
+        V000326(n)
+    end)
 end
 
 function main()

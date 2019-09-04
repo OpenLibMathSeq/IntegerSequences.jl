@@ -11,6 +11,7 @@ export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
 export oeis_notinstalled, oeis_path, oeis_search, oeis_readbfile
 
 """
+
 A collection of utilities for handling OEIS related tasks.
 """
 const ModuleOEISUtils = ""
@@ -21,16 +22,19 @@ ROOTDIR = dirname(srcdir)
 datadir = joinpath(ROOTDIR, "data")
 
 """
+
 Returns the path where the oeis data is expected.
 """
 oeis_path() = joinpath(datadir, "stripped")
 
 """
+
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is installed (in ../data).
 """
 oeis_isinstalled() = isfile(oeis_path())
 
 """
+
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is not installed and warns.
 """
 function oeis_notinstalled()
@@ -43,6 +47,7 @@ function oeis_notinstalled()
 end
 
 """
+
 Write a so-called b-file for submission to the OEIS. The file is saved in the 'data' directory.
 """
 function oeis_writebfile(anum::String, fun::Function, range::OrdinalRange)
@@ -62,7 +67,7 @@ function oeis_writebfile(anum::String, fun::Function, range::OrdinalRange)
     close(f)
 end
 
-function oeis_writebfile(anum, list, offset=1)
+function oeis_writebfile(anum, list, offset = 1)
 
     if !occursin(r"^A[0-9]{6}$", anum)
         @warn("Not a valid A-number!")
@@ -82,11 +87,12 @@ function oeis_writebfile(anum, list, offset=1)
 end
 
 """
+
 Read a file in the so-called b-file format of the OEIS.
 """
 function oeis_readbfile(filename)
 
-    @info("Reading "  * filename)
+    @info("Reading " * filename)
 
     file = open(filename, "r")
     lines = readlines(file)
@@ -101,6 +107,7 @@ function oeis_readbfile(filename)
 end
 
 """
+
 Make sure that the length of the data section of an OEIS entry does not exceed 260 characters.
 """
 function oeis_trimdata(fun, offset::Int)
@@ -119,6 +126,7 @@ function oeis_trimdata(fun, offset::Int)
 end
 
 """
+
 Download the sequence with A-number 'anum' from the OEIS to a file in json format. The file is saved in the 'data' directory.
 """
 function oeis_remote(anum)
@@ -134,7 +142,7 @@ function oeis_remote(anum)
     r = nothing
     for i = 1:tries
         try
-            r = HTTP.get(url; readtimeout=2)
+            r = HTTP.get(url; readtimeout = 2)
             getfield(r, :status) == 200 && break
             getfield(r, :status) == 302 && break
         catch e
@@ -157,6 +165,7 @@ function oeis_remote(anum)
 end
 
 """
+
 Get the sequence with A-number 'anum' from a local copy of the expanded 'stripped.gz' file which can be downloaded from the OEIS. 'bound' is an upper bound for the number of terms returned. The 'stripped' file is assumed to be in the '../data' directory.
 """
 function oeis_local(anum::String, bound::Int)
@@ -172,8 +181,8 @@ function oeis_local(anum::String, bound::Int)
     data = open(oeis_path())
     for ln in eachline(data)
         if startswith(ln, anum)
-            A = split(chop(chomp(ln)), ","; limit=bound + 2)
-            break;
+            A = split(chop(chomp(ln)), ","; limit = bound + 2)
+            break
         end
     end
     close(data)
@@ -182,6 +191,7 @@ function oeis_local(anum::String, bound::Int)
 end
 
 """
+
 Search for a sequence in the local OEIS database ('../data/stripped'). Input the sequence as a comma separated string. If restart = true the search is redone in the case that no match was found with the first term removed from the search string. Prints the matches.
 """
 function oeis_search(seq::String, restart::Bool)
@@ -197,7 +207,7 @@ function oeis_search(seq::String, restart::Bool)
     for line in eachline(data)
         index = findfirst(seq, line)
         index === nothing && continue
-        println("Range ", index , " in line: ", line)
+        println("Range ", index, " in line: ", line)
         found = true
     end
     close(data)
@@ -205,7 +215,7 @@ function oeis_search(seq::String, restart::Bool)
     if !found && restart
         ind = findfirst(isequal(','), seq)
         if !(ind === nothing) && (length(seq) > ind)
-            seq = seq[ind + 1:end]
+            seq = seq[ind+1:end]
             println("Restarting omitting the first term.")
             oeis_search(seq, false)
         end
@@ -239,8 +249,7 @@ function demo()
     oeis_search(seq, true)
 end
 
-function perf()
-end
+function perf() end
 
 function main()
     test()

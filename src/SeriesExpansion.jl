@@ -13,6 +13,7 @@ export G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426
 export G005043, L005043, G006318, G068875, L068875
 
 """
+
 The generating functions of various combinatorial and number-theoretic functions.
 
 * Coefficients, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
@@ -20,6 +21,7 @@ The generating functions of various combinatorial and number-theoretic functions
 const ModuleSeriesExpansion = ""
 
 """
+
 Return the list of coefficients of the power series s.
 """
 function Coefficients(s, len)
@@ -29,111 +31,133 @@ function Coefficients(s, len)
 end
 
 """
+
 The generating function of the Lucas numbers.
 """
-G000032(x) = 1 + divexact(x*(1 + 2x), 1 - x - x^2)
+G000032(x) = 1 + divexact(x * (1 + 2x), 1 - x - x^2)
 
 """
+
 Return a list of Lucas numbers.
 """
 L000032(n) = Coefficients(G000032, n)
 
 """
+
 The generating function of the Fibonacci numbers.
 """
 G000045(x) = divexact(x, 1 - x - x^2)
 
 """
+
 The generating function of the Tribonacci numbers.
 """
 G000073(x) = inv(1 - x - x^2 - x^3)
 
 """
+
 Return a list of Tribonacci numbers.
 """
 L000073(n) = Coefficients(G000073, n)
 
 """
+
 The generating function of the Catalan numbers.
 """
 G000108(x) = divexact(1 - sqrt(1 - 4x), 2x)
 
 """
+
 Return a list of Catalan numbers.
 """
 L000108(n) = Coefficients(G000108, n)
 
 """
+
 The generating function of the number of rooted bicubic maps.
 """
 G000257(x) = divexact(sqrt((1 - 8x)^3) + 8x^2 + 12x - 1, 32x^2)
 
 """
+
 Return a list of the number of rooted bicubic maps.
 """
 L000257(n) = Coefficients(G000257, n)
 
 """
+
 The generating function of the Fine numbers (with a(0) = 1).
 """
 G000957(x) = 1 + divexact(1 - sqrt(1 - 4x), 3 - sqrt(1 - 4x))
 
 """
+
 Return a list of Fine numbers.
 """
 L000957(n) = Coefficients(G000957, n)
 
 """
+
 The generating function of the little Schröder numbers.
 """
 G001003(x) = divexact(1 + x - sqrt(1 - 6x + x^2), 4x)
 
 """
+
 Return a list of little Schröder numbers.
 """
 L001003(n) = Coefficients(G001003, n)
 
 """
+
 The generating function of the Motzkin numbers.
 """
 G001006(x) = divexact(1 - x - sqrt(1 - 2x - 3x^2), 2x^2)
 
 """
+
 Return a list of Motzkin numbers.
 """
 L001006(n) = Coefficients(G001006, n)
 
 """
+
 The generating function of the Jacobsthal numbers (with a(0) = 1).
 """
-G001045(x) = divexact(2x^2 - 1, (x + 1)*(2x - 1))
+G001045(x) = divexact(2x^2 - 1, (x + 1) * (2x - 1))
 
 """
+
 Return a list of Jacobsthal numbers.
 """
 L001045(n) = Coefficients(G001045, n)
 
 """
+
 The generating function of the central trinomial.
 """
 G002426(x) = inv(sqrt(1 - 2x - 3x^2))
 
 """
+
 Return a list of the central trinomials.
 """
 L002426(n) = Coefficients(G002426, n)
 
 """
+
 The generating function of the Riordan numbers with 1 prepended.
 """
-G005043(x) = 1 + divexact(2x , 1 + x + sqrt(1 - 2x - 3x^2))
+G005043(x) = 1 + divexact(2x, 1 + x + sqrt(1 - 2x - 3x^2))
 
 """
+
 Return a list of the Riordan numbers (1 prepended).
 """
 L005043(n) = Coefficients(G005043, n)
 
 """
+
 The generating function of the large Schröder numbers.
 """
 G006318(x) = divexact(1 - x - sqrt(1 - 6x + x^2), 2x)
@@ -142,11 +166,13 @@ G006318(x) = divexact(1 - x - sqrt(1 - 6x + x^2), 2x)
 #L006318(n) = Coefficients(G006318, n)
 
 """
+
 The generating function of twice the Catalan numbers.
 """
 G068875(x) = shift_right(1 - x - sqrt(1 - 4x), 1)
 
 """
+
 Return a list of twice the Catalan numbers.
 """
 L068875(n) = Coefficients(G068875, n)
@@ -187,7 +213,7 @@ function test()
         @test all(a .== b)
 
         a = L001045(13)
-        b = [1, 1, 1, 3, 5, 11, 21, 43, 85, 171,341, 683, 1365]
+        b = [1, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365]
         @test all(a .== b)
 
         a = L002426(12)
@@ -214,6 +240,7 @@ function demo()
 end
 
 """
+
 L068875(1000)
     0.025675 seconds (1.03 k allocations: 24.813 KiB)
 """

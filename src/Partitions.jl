@@ -9,6 +9,7 @@ export ModulePartitions
 export Partition, V080577
 
 """
+
 An alternative to Combinatorics.partitions.
 
 For n = 100 the benchmark shows:
@@ -23,6 +24,7 @@ Our function takes twice as long but the Combinatorics's function takes vastly m
 const ModulePartitions = ""
 
 """
+
 Generates the integer partitions of ``n`` in lexicographic order. Ported from Wilf/Nijenhuis "Combinatorial Algorithms". (cf. A080577).
 """
 function NEXPAR(N::Int)
@@ -31,17 +33,17 @@ function NEXPAR(N::Int)
     M = Dict{Int,Int}()
     NLAST = 0
     D = 0
-@label(L10)
+    @label(L10)
     N == NLAST && @goto(L20)
     NLAST = N
-@label(L30)
+    @label(L30)
     S = N
     D = 0
-@label(L50)
+    @label(L50)
     D = D + 1
     R[D] = S
     M[D] = 1
-@label(L40)
+    @label(L40)
     MTC = M[D] ≠ N
     fill!(PAR, 0)
     K = 0
@@ -50,20 +52,20 @@ function NEXPAR(N::Int)
         PAR[K] = R[I]
     end
     VISIT(PAR)
-    ! MTC && return
+    !MTC && return
     @goto(L10)
-@label(L20)
-    ! MTC && @goto(L30)
+    @label(L20)
+    !MTC && @goto(L30)
     SUM = 1
     R[D] > 1 && @goto(L60)
     SUM = M[D] + 1
     D = D - 1
-@label(L60)
+    @label(L60)
     F = R[D] - 1
     M[D] == 1 && @goto(L70)
     M[D] = M[D] - 1
     D = D + 1
-@label(L70)
+    @label(L70)
     R[D] = F
     M[D] = 1 + div(SUM, F)
     S = SUM % F
@@ -72,6 +74,7 @@ function NEXPAR(N::Int)
 end
 
 """
+
 Prints the partitions given in the format used in function NEXPAR.
 """
 function VISIT(P)
@@ -80,11 +83,13 @@ function VISIT(P)
 end
 
 """
+
 Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
 """
 Partition(n) = NEXPAR(n)
 
 """
+
 Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
 """
 V080577(n) = NEXPAR(n)
@@ -117,20 +122,7 @@ i=100: 167.598273 seconds (15 allocations: 4.813 KiB)
 """
 
 # using Combinatorics
-function perf()
-
-    # -- first comment out println in VISIT
-    #for i in 10:10:100
-    #    print("i=", i, ": ")
-    #    @time Partition(i)
-    #end
-
-    # -- For comparison (in particular note the allocations!)
-    #for i in 10:10:100
-    #    print("$i : ")
-    #    @time (for p in Combinatorics.partitions(i) p end)
-    #end
-end
+function perf() end
 
 function main()
     test()

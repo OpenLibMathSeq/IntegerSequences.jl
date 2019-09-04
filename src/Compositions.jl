@@ -11,11 +11,13 @@ export ModuleCompositions
 export I097805, L097805, V097805, M097805
 
 """
+
 * I097805, L097805, V097805, M097805
 """
 const ModuleCompositions = ""
 
 """
+
 Recurrence for `A097805`, the compositions of ``n`` with ``k`` parts.
 """
 function R097805(n, k, prevrow::Function)
@@ -24,38 +26,43 @@ function R097805(n, k, prevrow::Function)
 end
 
 """
+
 Iterates over the first ``n`` rows of A097805.
 """
 I097805(n) = RecTriangle(n, R097805)
 
 """
+
 Lists the first ``n`` rows of A097805 by concatinating. This is the format for submissions to the OEIS.
 """
 L097805(n) = vcat(I097805(n)...)
 
 """
+
 Return the triangular array as a square matrix.
 """
 M097805(dim) = fromΔ(L097805(dim))
 
 """
+
 Return row ``n`` of A097805 based on the iteration I097805(n).
 """
-V097805(n) = nth(I097805(n+1), n+1)
+V097805(n) = nth(I097805(n + 1), n + 1)
 
 
 #START-TEST-########################################################
 
 # Return row n of A097805 based on a closed formula.
-VN097805(n) = n == 0 ? fmpz[1]   : [Nemo.binom(n-1, k-1)       for k in 0:n]
-VJ097805(n) = n == 0 ? BigInt[1] : [binomial(BigInt(n-1), k-1) for k in 0:n]
+VN097805(n) = n == 0 ? fmpz[1] : [Nemo.binom(n - 1, k - 1) for k in 0:n]
+VJ097805(n) = n == 0 ? BigInt[1] : [binomial(BigInt(n - 1), k - 1) for k in 0:n]
 
-function test()
-end
+function test() end
 
 function demo()
     println("\nIterates over the first n rows of A097805.")
-    for r in I097805(9) println(r) end
+    for r in I097805(9)
+        println(r)
+    end
 
     println("\nLists the first 9 rows of L097805 by concatinating.")
     println(L097805(9))
@@ -70,7 +77,9 @@ function demo()
     println(VN097805(8))
 
     println("\nReturns row n of A097805 based on the iteration I097805(n).")
-    for n in 0:8 println(n, ": ", V097805(n)) end
+    for n in 0:8
+        println(n, ": ", V097805(n))
+    end
 
     println("\nBenchmark the construction of the first 500 rows of A097805 based on Iteration.")
     #  0.111066 seconds (253.51 k allocations: 7.795 MiB)
@@ -94,6 +103,7 @@ function demo()
 end
 
 """
+
 L097805(500) :: 0.111066 seconds (253.51 k allocations: 7.795 MiB)
 """
 function perf()

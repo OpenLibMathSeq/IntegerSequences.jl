@@ -11,6 +11,7 @@ export ModuleFibonacci
 export I000045, F000045, L000045, V000045, R000045, is000045
 
 """
+
 * I000045, F000045, L000045, V000045, R000045, is000045
 """
 const ModuleFibonacci = ""
@@ -33,30 +34,35 @@ Base.length(f::FiboIterate) = f.length
 Base.eltype(f::FiboIterate) = Nemo.fmpz
 
 """
+
 Iterate over the first ``n`` Fibonacci numbers.
 """
 I000045(n) = FiboIterate(n)
 
 """
+
 Iterate over the Fibonacci numbers which do not exceed ``n``.
 """
-F000045(n) = IterTools.takewhile(k -> k <= n, FiboIterate(n+1))
+F000045(n) = IterTools.takewhile(k -> k <= n, FiboIterate(n + 1))
 
 """
+
 Return the first ``n`` Fibonacci numbers in an array.
 """
 L000045(n) = Base.collect(FiboIterate(n))
 
 """
+
 Return the ``n``-th Fibonacci number.
 """
 function V000045(n)
-   F = ZZ[1 1; 1 0]
-   Fn = F^n
-   Fn[2, 1]
+    F = ZZ[1 1; 1 0]
+    Fn = F^n
+    Fn[2, 1]
 end
 
 """
+
 Return the ``n``-th Fibonacci number, explicite formula by Paul Hankin.
 """
 function HankinFibonacci(n)
@@ -68,19 +74,21 @@ function HankinFibonacci(n)
 end
 
 """
+
 Fibonacci function for real values, returns a Float64.
 """
 function R000045(x::Float64)
-    (Base.MathConstants.golden^x - cos(x * Base.MathConstants.pi) *
-     Base.MathConstants.golden^(-x)) / sqrt(5)
+    (Base.MathConstants.golden^x -
+     cos(x * Base.MathConstants.pi) * Base.MathConstants.golden^(-x)) / sqrt(5)
 end
 
 """
+
 Query if ``n`` is a Fibonacci number, returns a Bool.
 """
 function is000045(n)
     d = 0
-    for f in FiboIterate(n+2)
+    for f in FiboIterate(n + 2)
         d = n - f
         d <= 0 && break
     end
@@ -121,7 +129,7 @@ function demo()
     println()
 
     println("R000045")
-    println([R000045(Float64(x / 2 + 0.5)) for x in 0:9 ])
+    println([R000045(Float64(x / 2 + 0.5)) for x in 0:9])
     println(typeof(R000045(2 + 0.5)))
 
     println("is000045")
@@ -132,6 +140,7 @@ function demo()
 end
 
 """
+
 for n in 1:1000 V000045(n) end
     0.004861 seconds (8.49 k allocations: 320.141 KiB)
 for fib in I000045(10000) end
@@ -141,8 +150,11 @@ L000045(10000)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:1000 V000045(n) end)
-    @time (for fib in I000045(10000) end)
+    @time (for n in 1:1000
+        V000045(n)
+    end)
+    @time (for fib in I000045(10000)
+    end)
     @time L000045(10000)
     # println("----")
     # @time (for n in 1:1000 HankinFibonacci(n) end)

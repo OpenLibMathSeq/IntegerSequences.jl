@@ -16,16 +16,19 @@ ROOTDIR = dirname(srcdir)
 datadir = joinpath(ROOTDIR, "data")
 
 """
+
 Returns the path where the oeis data is expected.
 """
 oeis_path() = joinpath(datadir, "stripped")
 
 """
+
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is installed (in ../data).
 """
 is_oeis_installed() = isfile(oeis_path())
 
 """
+
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is not installed and warns.
 """
 function oeis_notinstalled()
@@ -37,23 +40,34 @@ function oeis_notinstalled()
     return false
 end
 
-function SeqTest(seqarray, kind, offset=0)
-    if kind == 'V' return SeqVTest(seqarray, offset) end
-    if kind == 'B' return SeqBTest(seqarray) end
-    if kind == 'L' return SeqLTest(seqarray) end
-    if kind == 'T' return SeqTTest(seqarray) end
-    if kind == 'P' return SeqPTest(seqarray) end
+function SeqTest(seqarray, kind, offset = 0)
+    if kind == 'V'
+        return SeqVTest(seqarray, offset)
+    end
+    if kind == 'B'
+        return SeqBTest(seqarray)
+    end
+    if kind == 'L'
+        return SeqLTest(seqarray)
+    end
+    if kind == 'T'
+        return SeqTTest(seqarray)
+    end
+    if kind == 'P'
+        return SeqPTest(seqarray)
+    end
 
     error("Test function not found!")
 end
 
-function SeqVTest(seq, offset=0)
+function SeqVTest(seq, offset = 0)
     name = SeqName(seq)
     O = oeis_local(name, 10)
     S = ZArray(10, seq, offset)
     if ShowTest
         println("V --> ", name)
-        println(O); println(S)
+        println(O)
+        println(S)
     end
     @test all(S[1:10] .== O[1:10])
 end
@@ -65,8 +79,9 @@ function SeqBTest(seqarray)
         O = oeis_local(name, 12)
         S = seq(300)
         if ShowTest
-            println("B --> ", name);
-            println(O); println(S)
+            println("B --> ", name)
+            println(O)
+            println(S)
         end
         @test all(S[0:11] .== O[0:11])
     end
@@ -78,8 +93,9 @@ function SeqLTest(seqarray)
         O = oeis_local(name, 12)
         S = seq(12)
         if ShowTest
-            println("L --> ", name);
-            println(O); println(S)
+            println("L --> ", name)
+            println(O)
+            println(S)
         end
         @test all(S .== O)
     end
@@ -91,8 +107,9 @@ function SeqTTest(seqarray)
         O = oeis_local(name, 21)
         S = seq(6)
         if ShowTest
-            println("T --> ", name);
-            println(O); println(S)
+            println("T --> ", name)
+            println(O)
+            println(S)
             # ShowAsΔ(O); ShowAsΔ(S)
         end
         @test all(S .== O)
@@ -105,8 +122,9 @@ function SeqPTest(seqarray)
         O = oeis_local(name, 28)
         S = seq(7)
         if ShowTest
-            println("P --> ", name);
-            ShowAsΔ(O); ShowAsΔ(S)
+            println("P --> ", name)
+            ShowAsΔ(O)
+            ShowAsΔ(S)
         end
     end
 end

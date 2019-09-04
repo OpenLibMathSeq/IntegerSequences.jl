@@ -10,6 +10,7 @@ export V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753
 export V295513, BinaryIntegerLength, Bil
 
 """
+
 For positive n, BinaryIntegerLength is ``⌊ log[2](n) ⌋ + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
@@ -17,59 +18,70 @@ For positive n, BinaryIntegerLength is ``⌊ log[2](n) ⌋ + 1``, BinaryIntegerL
 const ModuleBinaryInteger = ""
 
 """
+
 Return the length of the binary extension of an integer ``n``, which is defined as ``0`` if ``n = 0`` and for ``n > 0`` as ``⌊ log[2](n) ⌋ + 1``.
 """
 BinaryIntegerLength(n) = n == 0 ? 0 : floor(Int, log2(n)) + 1
 
 """
+
 Alias for the function BinaryIntegerLength.
 """
 Bil(n) = BinaryIntegerLength(n)
 
 """
+
 Return ``n`` Bil``(n) - 2^{\\text{Bil}(n)}`` where Bil``(n)`` is the binary integer length of ``n``.
 """
-V295513(n) = n*Bil(n) - 2^Bil(n)
+V295513(n) = n * Bil(n) - 2^Bil(n)
 
 """
+
 Maximal number of comparisons for sorting ``n`` elements by binary insertion.
 """
 V001855(n) = V295513(n) + 1
 
 """
+
 Return the sum of lengths of binary expansions of ``0`` through ``n``.
 """
-V083652(n) = V295513(n+1) + 2
+V083652(n) = V295513(n + 1) + 2
 
 """
+
 Recurrence ``a(n) = a(n-1) + ⌊ a(n-1)/(n-1) ⌋ + 2`` for ``m ≥ 2`` and ``a(1) = 1``.
 """
 V033156(n) = V295513(n) + 2n
 
 """
+
 Binary entropy function: ``a(n) = n + `` min ``( a(k) + a(n-k) : 1 ≤ k ≤ n-1 )`` for ``n > 1,`` and ``a(1) = 0``.
 """
 V003314(n) = V295513(n) + n
 
 """
+
 Binary entropy: ``a(n) = n +`` min ``{ a(k) + a(n-k) : 1 ≤ k ≤ n-1 }.``
 """
 V054248(n) = V295513(n) + n + rem(n, 2)
 
 """
+
 Minimum total number of comparisons to find each of the values ``1`` through ``n`` using a binary search with ``3``-way comparisons.
 """
-V097383(n) = V295513(n+1) - div(n-1, 2)
+V097383(n) = V295513(n + 1) - div(n - 1, 2)
 
 """
+
 Partial sums of the sequence ``⌊ log[2](n) ⌋``.
 """
-V061168(n) = V295513(n+1) - n + 1
+V061168(n) = V295513(n + 1) - n + 1
 
 """
+
 Partial sums of the sequence of length of the binary expansion of ``2n+1``.
 """
-V123753(n) = V295513(n+1) + n + 2
+V123753(n) = V295513(n + 1) + n + 2
 
 #START-TEST-########################################################
 
@@ -85,10 +97,14 @@ function test()
 
         if is_oeis_installed()
             V = [V001855, V003314, V033156, V054248, V061168, V097383]
-            for v in V SeqTest(v , 'V', 1) end
+            for v in V
+                SeqTest(v, 'V', 1)
+            end
 
             V = [V083652, V123753]
-            for v in V SeqTest(v , 'V', 0) end
+            for v in V
+                SeqTest(v, 'V', 0)
+            end
         end
     end
 end
@@ -106,6 +122,7 @@ function demo()
 end
 
 """
+
 [V295513(k) for k in 0:100000]
     0.014412 seconds (2 allocations: 781.391 KiB)
 """

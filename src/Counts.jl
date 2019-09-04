@@ -14,12 +14,14 @@ export PreviousPrime, NextPrime, PrimePiList
 export takeFirst, Nth, Count, List, HilbertHotel
 
 """
+
 * PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
 * L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
 """
 const ModuleCounts = ""
 
 """
+
 Return a list of length len of integers ``≥ 0`` which are isA.
 """
 function List(len, isA::Function)
@@ -37,11 +39,13 @@ function List(len, isA::Function)
 end
 
 """
+
 Iverson brackets.
 """
 ι(b) = b ? 1 : 0
 
 """
+
 Inverse Iverson brackets.
 """
 ιι(n) = n == 0 ? true : false
@@ -49,13 +53,15 @@ Inverse Iverson brackets.
  # returns a non-zero value that usually can be interpreted as an error code.
 
 """
+
 Return a iterator of length n which has value 1 if isA(i) is true and otherwise 0.
 """
 function Indicators(n, isA::Function)
-    (ι(isA(i)) for i in 0:n - 1)
+    (ι(isA(i)) for i in 0:n-1)
 end
 
 """
+
 Return a list of length len which gives the numbers of integers ≤ n which are isA. Integers start at ``n=0``.
 ```
 julia> CountList(8, isPrime)
@@ -72,6 +78,7 @@ CountList(len::Int, isA::Function) = Accumulate(Indicators(len, isA))
 # if Nth(n) = NthPrime(n) then Count(n) = PrimePi(n) (A000720).
 
 """
+
 Return the numbers of integers in the range 0:n which are isA.
 ```
 julia> Count(8, isPrime)
@@ -81,6 +88,7 @@ julia> Count(8, isPrime)
 Count(n::Int, isAb::Function) = Base.count((isAb(i) for i in 0:n))
 
 """
+
 Return the numbers of integers in the range a:b which are isA.
 ```
 julia> Count(3:8, isPrime)
@@ -90,6 +98,7 @@ julia> Count(3:8, isPrime)
 Count(r, isAb::Function) = Base.count((isAb(i) for i in r))
 
 """
+
 Return a SeqArray listing the values satisfying the predicate isA for arguments ``0 ≤ x ≤ `` bound.
 ```
 julia> FindUpTo(7, isPrime)
@@ -102,11 +111,14 @@ function FindUpTo(bound, isA::Function)
 end
 
 """
+
 Return the first ``n`` numbers satisfying the predicate isA.
 """
-takeFirst(isA, n) = Iterators.take(Iterators.filter(isA, Iterators.countfrom(1)), n)
+takeFirst(isA, n) =
+    Iterators.take(Iterators.filter(isA, Iterators.countfrom(1)), n)
 
 """
+
 Return a iterator listing the values satisfying the predicate isA for arguments in ``0 ≤ n ≤ bound .``
 """
 function IterateUpTo(bound, isA::Function)
@@ -114,6 +126,7 @@ function IterateUpTo(bound, isA::Function)
 end
 
 """
+
 Returns an integer which is the highest index in `b` for the value `a`. Whenever `a` is not a member of `b` it returns -1.
 ```
 julia> L = List(10, isPrime); IndexIn(13, L)
@@ -126,6 +139,7 @@ function IndexIn(a, b::AbstractArray)
 end
 
 """
+
 Return the Nth integer which is isA. (For N ≤ 0 return 0.)
 ```
 julia> Nth(7, isPrime)
@@ -144,6 +158,7 @@ function Nth(N, isA::Function)
 end
 
 """
+
 Return the cumulative sum of an SeqArray.
 """
 function Accumulate(A)
@@ -158,6 +173,7 @@ function Accumulate(A)
 end
 
 """
+
 Return the smallest list of indicators of isA with ∑(A) = count.
 ```
 julia> IndicatorsFind(7, isPrime)
@@ -178,6 +194,7 @@ function IndicatorsFind(count, isA::Function)
 end
 
 """
+
 Return the first integer ``n ≥ 0`` such that isA(n) = true.
 ```
 julia> First(isPrime)
@@ -195,16 +212,19 @@ end
 First(A::Array{Int}) = A == [] ? nothing : first(A)
 
 """
+
 Return the element at the end of the list A if A is not empty, 0 otherwise.
 """
 Last(A) = A == [] ? "undef" : A[end]
 
 """
+
 Trick described by David Hilbert in a 1924 lecture "Über das Unendliche".
 """
 HilbertHotel(guest, hotel) = prepend!(hotel, guest)
 
 """
+
 Return largest ``0 < k < n`` such that isA(k) = true or nothing if no such ``k`` exists.
 ```
 julia> Previous(7, isPrime)
@@ -224,6 +244,7 @@ function Previous(n, isA::Function)
 end
 
 """
+
 Return least ``k > n ≥ 0`` such that isA(k) = true. NOTE: It is assumed that such a ``k`` exists! (If not, the function will run forever.)
 ```
 julia> Next(7, isPrime)
@@ -240,6 +261,7 @@ function Next(n, isA::Function)
 end
 
 """
+
 Return a list of composite numbers of length len. (Numbers which have more than one prime divisor.)
 ```
 julia> L002808(8)
@@ -249,6 +271,7 @@ julia> L002808(8)
 L002808(len) = List(len, isComposite)
 
 """
+
 Return a list of the number of composite numbers ``≤ n``.
 ```
 julia> L065855(8)
@@ -258,6 +281,7 @@ julia> L065855(8)
 L065855(len) = CountList(len, isComposite)
 
 """
+
 Return a list of squarefree numbers of length len. (Numbers which are not divisible by a square greater than 1.)
 ```
 julia> L005117(8)
@@ -267,6 +291,7 @@ julia> L005117(8)
 L005117(len) = List(len, isSquareFree)
 
 """
+
 Return a list of the number of squarefree numbers ``< n``.
 ```
 julia> L013928(8)
@@ -276,6 +301,7 @@ julia> L013928(8)
 L013928(len) = CountList(len, isSquareFree)
 
 """
+
 Return a list of powers of primes of length len. (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 0``.)
 ```
 julia> L000961(8)
@@ -285,6 +311,7 @@ julia> L000961(8)
 L000961(len) = List(len, isPowerOfPrimes)
 
 """
+
 Return the number of powers of primes ``≤ n``. (Powers of primes are numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 0``.)
 ```
 julia> L065515(8)
@@ -294,6 +321,7 @@ julia> L065515(8)
 L065515(len) = CountList(len, isPowerOfPrimes)
 
 """
+
 Return a list of prime powers of length len. (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 1``.)
 ```
 julia> L246655(8)
@@ -303,6 +331,7 @@ julia> L246655(8)
 L246655(len) = List(len, isPrimePower)
 
 """
+
 Return a list of the number of prime powers ``≤ n`` with exponents ``k ≥ 1``.
 ```
 julia> L025528(8)
@@ -312,6 +341,7 @@ julia> L025528(8)
 L025528(len) = CountList(len, isPrimePower)
 
 """
+
 Return a list of perfect powers of length len. (Numbers of the form ``p^k`` where ``p`` is a prime and ``k ≥ 2``.
 ```
 julia> L246547(8)
@@ -321,6 +351,7 @@ julia> L246547(8)
 L246547(len) = List(len, isPerfectPower)
 
 """
+
 Return a list of the number of prime powers ``≤ n`` with exponents ``k ≥ 2``.
 ```
 julia> L069637(8)
@@ -339,27 +370,32 @@ L069637(len) = CountList(len, isPerfectPower)
 # A081676 Largest perfect power <= n
 
 """
+
 Return the largest prime in ``N`` (the semiring of natural numbers including zero) less than n for ``n ≥ 0``.
  (The `prev_prime` function of Mathematica, Maple, Magma and SageMath.)
 """
 A007917(n::Int) = Previous(n, isPrime)
 
 """
+
 Return the largest prime in ``Z`` (the ring of all integers) less than ``n`` for ``n ≥ 0`` (cf. A007917).
 """
 PreviousPrime(n::Int) = n ∈ [0, 1, 2] ? -2 : Previous(n - 1, isPrime)
 
 """
+
 Return least prime ``> n``. The next_prime function of Mathematica, Maple, Magma and SageMath (cf. A151800).
 """
 NextPrime(n::Int) = Next(n, isPrime)
 
 """
+
 Return least prime ``> n``. The `next_prime` function of Mathematica, Maple, Magma and SageMath.
 """
 A151800(n::Int) = Next(n, isPrime)
 
 """
+
 Return the list of number of primes ``≤ n`` for ``n ≥ 0``.
 
 ```
@@ -371,6 +407,7 @@ julia> PrimePiList(8)
 PrimePiList(len::Int) = CountList(len, isPrime)
 
 """
+
 Return the list of number of primes ``≤ n`` for ``n ≥ 0``.
 
 ```
@@ -382,6 +419,7 @@ julia> L000720(8)
 L000720(len::Int) = PrimePiList(len)
 
 """
+
 Return the index of the least prime not dividing ``n``.
 """
 function A257993(n::Int)
@@ -420,8 +458,8 @@ function test()
         for (i, isA) in enumerate(indicators)
             # This test shows that the logic behind 'Nth' and 'Count' is OK.
             for n in 1:len
-               @test isA(n) == (Nth(Count(n, isA), isA) == n)
-               @test     n  ==  Count(Nth(n, isA), isA)
+                @test isA(n) == (Nth(Count(n, isA), isA) == n)
+                @test n == Count(Nth(n, isA), isA)
             end
         end
 
@@ -430,10 +468,7 @@ function test()
         @test all(a .== b)
 
         if is_oeis_installed()
-            L = [
-            L000961, L002808, L005117, L013928, L246547, L246655
-            # L025528, L065515, L065855, L069637, L000720
-            ]
+            L = [L000961, L002808, L005117, L013928, L246547, L246655]
             SeqTest(L, 'L')
         end
     end
@@ -441,13 +476,29 @@ end
 
 function demo()
 
-    indicators = [isNonnegative, isPositive, isEven, isComposite,
-    isSquare, isSquareFree, isPrimePower, isPowerOfPrimes,
-    isPerfectPower, isPrime
+    indicators = [
+        isNonnegative,
+        isPositive,
+        isEven,
+        isComposite,
+        isSquare,
+        isSquareFree,
+        isPrimePower,
+        isPowerOfPrimes,
+        isPerfectPower,
+        isPrime
     ]
-    indicatorNames = ["isNonnegative", "isPositive", "isEven", "isComposite",
-    "isSquare", "isSquareFree", "isPrimePower", "isPowerOfPrimes",
-    "isPerfectPower", "isPrime"
+    indicatorNames = [
+        "isNonnegative",
+        "isPositive",
+        "isEven",
+        "isComposite",
+        "isSquare",
+        "isSquareFree",
+        "isPrimePower",
+        "isPowerOfPrimes",
+        "isPerfectPower",
+        "isPrime"
     ]
 
     println()
@@ -459,7 +510,8 @@ function demo()
         println("---")
 
         println("Nth            ", [Nth(n, isA) for n in 0:len])
-        print("List           ") ; Println(List(len, isA))
+        print("List           ")
+        Println(List(len, isA))
         println("FindUpTo       ", FindUpTo(len, isA))
         println("IterateUpTo    ", [k for k in IterateUpTo(len, isA)])
         println("---")
@@ -468,13 +520,17 @@ function demo()
         println("Indicators     ", [k for k in Indicators(len, isA)])
         println("---")
 
-        println("IndexIn (list) ", [IndexIn(fmpz(n), List(len, isA)) for n in 0:len])
+        println(
+            "IndexIn (list) ",
+            [IndexIn(fmpz(n), List(len, isA)) for n in 0:len]
+        )
 
-        println("Count   (list) ", [Count(n, isA) for n in 0:len - 1])
-        print("CountList      ") ; Println(CountList(len, isA))
+        println("Count   (list) ", [Count(n, isA) for n in 0:len-1])
+        print("CountList      ")
+        Println(CountList(len, isA))
 
         println("Previous(n)    ", [Previous(n, isA) for n in 0:len])
-        println("Next(n)        ", [Next(n, isA)  for n in 0:len])
+        println("Next(n)        ", [Next(n, isA) for n in 0:len])
         println("Nth(Count(n))  ", [Nth(Count(n, isA), isA) for n in 0:len])
         println("Count(Nth(n))  ", [Count(Nth(n, isA), isA) for n in 0:len])
 
@@ -483,6 +539,7 @@ function demo()
 end
 
 """
+
 [A257993(n) for n in 1:10000]
     0.000635 seconds (9.20 k allocations: 221.859 KiB)
 PrimePiList(10000)

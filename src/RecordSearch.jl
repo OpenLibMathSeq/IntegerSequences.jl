@@ -11,6 +11,7 @@ export ModuleRecordSearch
 export Records
 
 """
+
 The type object to construct an iterated search for records in sequences.
 
 * Records
@@ -18,6 +19,7 @@ The type object to construct an iterated search for records in sequences.
 const ModuleRecordSearch = ""
 
 """
+
 The type object to construct an iterated search for records in sequences.
 """
 struct Records
@@ -35,6 +37,7 @@ end
 Base.iterate(::Records) = (ZZ(1), (ZZ(1), ZZ(0), ZZ(1)))
 
 """
+
 Return the value or the index of the next record.
 """
 function Base.iterate(R::Records, state)
