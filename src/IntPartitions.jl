@@ -325,8 +325,8 @@ function test()
 
         for n in 0:7
             pn = PartitionNumber(n)
-            @test length(collect(IntegerPartitions(n, byMaxPart))) == pn
-            @test length(collect(IntegerPartitions(n, byNumPart))) == pn
+            @test length(collect(IntegerPartitions(n, byMaxPart::PartitionOrder))) == pn
+            @test length(collect(IntegerPartitions(n, byNumPart::PartitionOrder))) == pn
         end
 
         for n in 0:7, k in 0:n
@@ -355,12 +355,12 @@ function demo()
         println("\n\n-- $n  --")
 
         println("\n-- by biggest part")
-        for p in IntegerPartitions(n, byMaxPart)
+        for p in IntegerPartitions(n, byMaxPart::PartitionOrder)
             Println(p)
         end
 
         println("\n-- by length (all)")
-        for p in IntegerPartitions(n, byNumPart)
+        for p in IntegerPartitions(n, byNumPart::PartitionOrder)
             Println(p)
         end
 
@@ -437,8 +437,8 @@ for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
 """
 function perf()
     println("\n-- performance test")
-    @time for n in 1:50, p in IntegerPartitions(n, byNumPart) p end
-    @time for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
+    @time for n in 1:50, p in IntegerPartitions(n, byNumPart::PartitionOrder) p end
+    @time for n in 1:50, p in IntegerPartitions(n, byMaxPart::PartitionOrder) p end
 end
 
 function main()
