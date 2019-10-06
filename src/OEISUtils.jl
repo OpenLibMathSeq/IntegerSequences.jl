@@ -222,6 +222,10 @@ function oeis_search(seq::String, restart::Bool)
     end
 end
 
+function oeis_search(seq::Array{Int}, restart::Bool)
+    oeis_search("$seq"[2:end-1], restart)
+end
+
 #START-TEST-########################################################
 
 function test()

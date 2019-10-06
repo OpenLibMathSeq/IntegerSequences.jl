@@ -6,6 +6,31 @@
 
 * isAbundant, is005101, I005101, F005101, L005101, V005101.
 
+   🔶  [AltPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/AltPartitions.jl)
+
+
+Two alternative implementations of integer partitions.
+The first one implements the 'visit-pattern' in Fortran style.
+Compared to the implementation in JuliaMath/Combinatorics:
+
+For n = 50 the benchmark shows:
+
+*  0.141849 seconds (     9   allocations:  1.672 KiB)  [here]
+*  0.111040 seconds (408.45 k allocations: 40.882 MiB, 21.10% gc time) [JuliaMath]
+
+For n = 100 the benchmark shows:
+
+* 167.598273 seconds (    15   allocations:  4.813 KiB) [here]
+*  86.960344 seconds (381.14 M allocations: 48.735 GiB, 11.29% gc time) [JuliaMath]
+
+Our function is slower but the Combinatorics function takes vastly more space.
+
+In the second alternative implementation the representation of the partitions
+for fixed n is a weakly increasing lists ordered lexicographicaly. It has a
+nice algorithm implemented directly (i.e. without iteration).
+
+* Partition, V080577, V026791
+
    🔶  [AndreNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/AndreNumbers.jl)
 
 
@@ -73,6 +98,15 @@ Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/Binar
 
 * L002476, L008784, L031363, L034017, L035251, L038872, L038873, L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660, L243655, L244779, L244780, L244819, L243168, L244291, L007522, L033200
 
+   🔶  [BooleanOperations](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BooleanOperations.jl)
+
+
+The 16 boolean operations "FALSE", "AND", "DIF", "PRJ1", "CNIMP", "PRJ2", "XOR", "OR", "NOR", "EQV", "NEG2", "CIMP", "NEG1", "IMP", "NAND", "TRUE" evaluated bitwise on the binary expansions of integers.
+
+The main function is BoolBits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
+
+* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, BoolBits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
+
    🔶  [CantorMachines](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CantorMachines.jl)
 
 
@@ -105,7 +139,7 @@ Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/Binar
 
 
 * PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
-* L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
+* L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, V007917, V151800, V257993
 
    🔶  [CyclotomicBinaryForms](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CyclotomicBinaryForms.jl)
 
@@ -173,6 +207,22 @@ GammaHyp: ``(a, b, c, d)`` ↦ ``Γ(a) `` Hypergeometric``1F1(b, c, d).``
 
 * GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
 
+   🔶  [IntPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/IntPartitions.jl)
+
+
+All integer partitions are listet by two orderings:
+IntegerPartitions(n, byNumPart)
+IntegerPartitions(n, byMaxPart)
+
+Or restricted to partitions of length m:
+IntegerPartitions(n, m)
+
+The partition coefficients, which are the multinomial coefficients applied to partitions, are given in both orderings (L036038, L078760).
+
+The partition numbers and the number of partitions of n into k parts are given as PartitionNumber(n) and PartitionNumber(n, k), (V000041, L072233).
+
+The sum of all partition coefficients of n is efficiently computed with L005651.
+
    🔶  [JacobiTheta](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/JacobiTheta.jl)
 
 
@@ -184,6 +234,24 @@ The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``
 
 
 * KolakoskiList, C000002, I000002, L000002
+
+   🔶  [LandauConstants](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/LandauConstants.jl)
+
+
+* V277233(n)/4^V005187(n) are the Landau constants. These constants are defined as G(n) = Sum_{j=0..n} g(j)^2 with the normalized central binomial
+
+``g(n) = (2*n)! / (2^n*n!)^2 = V001790(n)/V046161(n).``
+
+* V327495(n)/4^V327492(n) are the rationals considered here. These numbers are defined as H(n) = Sum_{j=0..n} h(j)^2 with the normalized swinging factorial
+
+``h(n) = n! / (2^n*floor(n/2)!)^2 = V163590(n)/V327493(n).``
+
+* In particular, this means that we have the pure integer representations
+
+``V277233(n) = Sum_{k=0..n}(V001790(k)*(2^(V005187(n) - V005187(k))))^2;``
+``V327495(n) = Sum_{k=0..n}(V163590(k)*(2^(V327492(n) - V327492(k))))^2.``
+
+* V000120, V102376, V011371, V120738, V060818, V124399, V056982, V001511, V046161, V001316, V163590, V327492, V005187, V001790, V277233, V327495, V327493, V327491, V007814, V001803, V327494, V006519, V000265, Bin, BitCount, EvenPart, OddPart
 
    🔶  [NarayanaCows](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NarayanaCows.jl)
 
@@ -210,20 +278,6 @@ A collection of utilities for handling OEIS related tasks.
 
 
 * OrthoPoly, InvOrthoPoly, T053121, T216916, T217537, T064189, T202327, T111062, T099174, T066325, T049310, T137338, T104562, T037027, T049218, T159834, T137286, T053120, T053117, T111593, T059419, L217924, L005773, L108624, L005425, L000085, L001464, L003723, L006229
-
-   🔶  [Partitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/Partitions.jl)
-
-
-An alternative to Combinatorics.partitions.
-
-For n = 100 the benchmark shows:
-
-* 167.598273 seconds (15 allocations: 4.813 KiB)
-*  86.960344 seconds (381.14 M allocations:  48.735 GiB, 11.29% gc time)
-
-Our function takes twice as long but the Combinatorics's function takes vastly more space.
-
-* Partition, V080577
 
    🔶  [PrimesIterator](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/PrimesIterator.jl)
 

@@ -3,47 +3,58 @@
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
-module Partitions
+module AltPartitions
 
-export ModulePartitions
-export Partition, V080577
+export ModuleVisitPartitions
+export VisitPartition, V080577, V026791
 
 """
 
-An alternative to Combinatorics.partitions.
+Two alternative implementations of integer partitions.
+The first one implements the 'visit-pattern' in Fortran style.
+Compared to the implementation in JuliaMath/Combinatorics:
+
+For n = 50 the benchmark shows:
+
+*  0.141849 seconds (     9   allocations:  1.672 KiB)  [here]
+*  0.111040 seconds (408.45 k allocations: 40.882 MiB, 21.10% gc time) [JuliaMath]
 
 For n = 100 the benchmark shows:
 
-* 167.598273 seconds (15 allocations: 4.813 KiB)
-*  86.960344 seconds (381.14 M allocations:  48.735 GiB, 11.29% gc time)
+* 167.598273 seconds (    15   allocations:  4.813 KiB) [here]
+*  86.960344 seconds (381.14 M allocations: 48.735 GiB, 11.29% gc time) [JuliaMath]
 
-Our function takes twice as long but the Combinatorics's function takes vastly more space.
+Our function is slower but the Combinatorics function takes vastly more space.
 
-* Partition, V080577
+In the second alternative implementation the representation of the partitions
+for fixed n is a weakly increasing lists ordered lexicographicaly. It has a
+nice algorithm implemented directly (i.e. without iteration).
+
+* Partition, V080577, V026791
 """
-const ModulePartitions = ""
+const ModuleVisitPartitions = ""
 
 """
 
 Generates the integer partitions of ``n`` in lexicographic order. Ported from Wilf/Nijenhuis "Combinatorial Algorithms". (cf. A080577).
 """
-function NEXPAR(N::Int)
+function NEXPAR(N::Int, Visit::Function)
     PAR = Array{Int}(undef, N)
     R = Dict{Int,Int}()
     M = Dict{Int,Int}()
     NLAST = 0
     D = 0
-    @label(L10)
+@label(L10)
     N == NLAST && @goto(L20)
     NLAST = N
-    @label(L30)
+@label(L30)
     S = N
     D = 0
-    @label(L50)
+@label(L50)
     D = D + 1
     R[D] = S
     M[D] = 1
-    @label(L40)
+@label(L40)
     MTC = M[D] ≠ N
     fill!(PAR, 0)
     K = 0
@@ -51,61 +62,99 @@ function NEXPAR(N::Int)
         K = K + 1
         PAR[K] = R[I]
     end
-    VISIT(PAR)
+    Visit(PAR)
     !MTC && return
-    @goto(L10)
-    @label(L20)
+@goto(L10)
+@label(L20)
     !MTC && @goto(L30)
     SUM = 1
     R[D] > 1 && @goto(L60)
     SUM = M[D] + 1
     D = D - 1
-    @label(L60)
+@label(L60)
     F = R[D] - 1
     M[D] == 1 && @goto(L70)
     M[D] = M[D] - 1
     D = D + 1
-    @label(L70)
+@label(L70)
     R[D] = F
     M[D] = 1 + div(SUM, F)
     S = SUM % F
     S == 0 && @goto(L40)
-    @goto(L50)
+@goto(L50)
 end
+
+"""
+
+Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
+"""
+VisitPartition(n, fun) = NEXPAR(n, fun)
+
+"""
+
+Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
+"""
+V080577(n) = NEXPAR(n, println)
+
+#################################################################
+
+function partitions(n::Int)
+    a = zeros(Int, n + 1)
+    k = 1
+    y = n - 1
+    ans = []
+    while k != 0
+        x = a[k] + 1
+        k -= 1
+        while 2x ≤ y
+            a[k+1] = x
+            y -= x
+            k += 1
+        end
+        l = k + 1
+        while x ≤ y
+            a[k+1] = x
+            a[l+1] = y
+            push!(ans, a[1:k+2])
+            x += 1
+            y -= 1
+        end
+        a[k+1] = x + y
+        y += x - 1
+        push!(ans, a[1:k+1])
+    end
+    return ans
+end
+
+V026791(n) = partitions(n)
+
+#START-TEST-########################################################
+
+using SeqUtils  # Combinatorics
 
 """
 
 Prints the partitions given in the format used in function NEXPAR.
 """
-function VISIT(P)
-    # comment out when benchmarking
-    println(P)
-end
-
-"""
-
-Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
-"""
-Partition(n) = NEXPAR(n)
-
-"""
-
-Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
-"""
-V080577(n) = NEXPAR(n)
-
-#START-TEST-########################################################
+PrintPartition(P) =  P |> println
 
 function test()
-    V080577(7)
-    println()
+    V080577(6)
 end
 
 function demo()
-    for i in 1:6
-        Partition(i)
+    for n in 1:5
+        VisitPartition(n, PrintPartition)
         println()
     end
+
+    for p in partitions(6)
+        Println(p)
+    end
+    println()
+
+    partitions(6) |> println
+    println()
 end
 
 """
@@ -121,7 +170,6 @@ i=90:   47.378861 seconds (15 allocations: 4.734 KiB)
 i=100: 167.598273 seconds (15 allocations: 4.813 KiB)
 """
 
-# using Combinatorics
 function perf() end
 
 function main()

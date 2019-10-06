@@ -9,14 +9,14 @@ using Nemo, NumberTheory
 export ModuleCounts
 export L000961, L002808, L005117, L013928, L025528, L065515
 export L065855, L069637, L246547, L246655, L000720
-export A007917, A151800, A257993
+export V007917, V151800, V257993
 export PreviousPrime, NextPrime, PrimePiList
 export takeFirst, Nth, Count, List, HilbertHotel
 
 """
 
 * PreviousPrime, NextPrime, PrimePiList, takeFirst, Nth, Count, List, HilbertHotel
-* L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, A007917, A151800, A257993
+* L000961, L002808, L005117, L013928, L025528, L065515, L065855, L069637, L246547, L246655, L000720, V007917, V151800, V257993
 """
 const ModuleCounts = ""
 
@@ -374,17 +374,17 @@ L069637(len) = CountList(len, isPerfectPower)
 Return the largest prime in ``N`` (the semiring of natural numbers including zero) less than n for ``n ≥ 0``.
  (The `prev_prime` function of Mathematica, Maple, Magma and SageMath.)
 """
-A007917(n::Int) = Previous(n, isPrime)
+V007917(n::Int) = Previous(n, isPrime)
 
 """
 
-Return the largest prime in ``Z`` (the ring of all integers) less than ``n`` for ``n ≥ 0`` (cf. A007917).
+Return the largest prime in ``Z`` (the ring of all integers) less than ``n`` for ``n ≥ 0`` (cf. V007917).
 """
 PreviousPrime(n::Int) = n ∈ [0, 1, 2] ? -2 : Previous(n - 1, isPrime)
 
 """
 
-Return least prime ``> n``. The next_prime function of Mathematica, Maple, Magma and SageMath (cf. A151800).
+Return least prime ``> n``. The next_prime function of Mathematica, Maple, Magma and SageMath (cf. V151800).
 """
 NextPrime(n::Int) = Next(n, isPrime)
 
@@ -392,7 +392,7 @@ NextPrime(n::Int) = Next(n, isPrime)
 
 Return least prime ``> n``. The `next_prime` function of Mathematica, Maple, Magma and SageMath.
 """
-A151800(n::Int) = Next(n, isPrime)
+V151800(n::Int) = Next(n, isPrime)
 
 """
 
@@ -422,7 +422,7 @@ L000720(len::Int) = PrimePiList(len)
 
 Return the index of the least prime not dividing ``n``.
 """
-function A257993(n::Int)
+function V257993(n::Int)
     c, p = 1, 2
     while n % p == 0
         p = NextPrime(p)
@@ -463,7 +463,7 @@ function test()
             end
         end
 
-        a = [A257993(n) for n in 1:10]
+        a = [V257993(n) for n in 1:10]
         b = [1, 2, 1, 2, 1, 3, 1, 2, 1, 2]
         @test all(a .== b)
 
@@ -540,13 +540,13 @@ end
 
 """
 
-[A257993(n) for n in 1:10000]
+[V257993(n) for n in 1:10000]
     0.000635 seconds (9.20 k allocations: 221.859 KiB)
 PrimePiList(10000)
     0.002290 seconds (35.82 k allocations: 637.891 KiB)
 """
 function perf()
-    @time [A257993(n) for n in 1:10000]
+    @time [V257993(n) for n in 1:10000]
     GC.gc()
     @time PrimePiList(10000)
 end
