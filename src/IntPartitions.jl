@@ -40,7 +40,7 @@ end
 
 Return an iterator over all partitions of ``n``. List the parts of the partitions according to the ``PartitionOrder`` given as second parameter. By default the partition order is 'byNumPart'.
 """
-function IntegerPartitions(n::Integer, o::PartitionOrder = byNumPart)
+function IntegerPartitions(n::Integer, o::PartitionOrder = byNumPart::PartitionOrder)
     n < 0 && throw(DomainError(n, "n >= 0 required"))
 
     o == byNumPart && return PartitionsByLength(n)
