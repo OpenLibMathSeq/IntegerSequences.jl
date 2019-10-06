@@ -31,16 +31,21 @@ const ModuleIntPartitions = ""
 
 Conventional names for orderings of integer partitions of ``n``. ``byMaxPart`` means first order by the biggest part. ``byNumPart`` means first order by the number of parts. The secondary order is in both cases colexicographic.
 """
-@enum PartitionOrder begin
+Base.Enums.@enum PartitionOrder begin
     byNumPart
     byMaxPart
 end
+
+#@enum PartitionOrder begin
+#    byNumPart
+#    byMaxPart
+#end
 
 """
 
 Return an iterator over all partitions of ``n``. List the parts of the partitions according to the ``PartitionOrder`` given as second parameter. By default the partition order is 'byNumPart'.
 """
-function IntegerPartitions(n::Integer, o::PartitionOrder = byNumPart)
+function IntegerPartitions(n::Integer, o::PartitionOrder = byNumPart::PartitionOrder)
     n < 0 && throw(DomainError(n, "n >= 0 required"))
 
     o == byNumPart && return PartitionsByLength(n)
@@ -233,7 +238,7 @@ end
 Return the partition coefficients of ``n``, first ordered by length.
 """
 PartitionCoefficientsByLength(n) = [
-    Multinomial(p) for p in IntegerPartitions(n, byNumPart)]
+    Multinomial(p) for p in IntegerPartitions(n, byNumPart::PartitionOrder)]
 
 """
 
@@ -246,7 +251,7 @@ L036038(n) = PartitionCoefficientsByLength(n)
 Return the partition coefficients of ``n``, first ordered by biggest part.
 """
 PartitionCoefficientsByBiggestPart(n) = [
-    Multinomial(p) for p in IntegerPartitions(n, byMaxPart)]
+    Multinomial(p) for p in IntegerPartitions(n, byMaxPart::PartitionOrder)]
 
 """
 
@@ -279,7 +284,7 @@ Return the number of ordered partitions of an n-set with nondecreasing block siz
 function L262071(n::Int)
     n == 0 && return [1]
     A = zeros(Int, n + 1)
-    for p in IntegerPartitions(n, byMaxPart)
+    for p in IntegerPartitions(n, byMaxPart::PartitionOrder)
         A[1+p[1]] += Multinomial(p)
     end
     return A
