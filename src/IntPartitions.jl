@@ -31,7 +31,7 @@ const ModuleIntPartitions = ""
 
 Conventional names for orderings of integer partitions of ``n``. ``byMaxPart`` means first order by the biggest part. ``byNumPart`` means first order by the number of parts. The secondary order is in both cases colexicographic.
 """
-@enum PartitionOrder begin
+@enum PartOrder begin
     byNumPart
     byMaxPart
 end
@@ -40,7 +40,7 @@ end
 
 Return an iterator over all partitions of ``n``. List the parts of the partitions according to the ``PartitionOrder`` given as second parameter. By default the partition order is 'byNumPart'.
 """
-function IntegerPartitions(n::Integer, o::PartitionOrder = byNumPart::PartitionOrder)
+function IntegerPartitions(n::Int, o::PartOrder = byNumPart)
     n < 0 && throw(DomainError(n, "n >= 0 required"))
 
     o == byNumPart && return PartitionsByLength(n)
@@ -325,8 +325,8 @@ function test()
 
         for n in 0:7
             pn = PartitionNumber(n)
-            @test length(collect(IntegerPartitions(n, byMaxPart::PartitionOrder))) == pn
-            @test length(collect(IntegerPartitions(n, byNumPart::PartitionOrder))) == pn
+            @test length(collect(IntegerPartitions(n, byMaxPart))) == pn
+            @test length(collect(IntegerPartitions(n, byNumPart))) == pn
         end
 
         for n in 0:7, k in 0:n
@@ -355,12 +355,12 @@ function demo()
         println("\n\n-- $n  --")
 
         println("\n-- by biggest part")
-        for p in IntegerPartitions(n, byMaxPart::PartitionOrder)
+        for p in IntegerPartitions(n, byMaxPart)
             Println(p)
         end
 
         println("\n-- by length (all)")
-        for p in IntegerPartitions(n, byNumPart::PartitionOrder)
+        for p in IntegerPartitions(n, byNumPart)
             Println(p)
         end
 
@@ -437,8 +437,8 @@ for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
 """
 function perf()
     println("\n-- performance test")
-    @time for n in 1:50, p in IntegerPartitions(n, byNumPart::PartitionOrder) p end
-    @time for n in 1:50, p in IntegerPartitions(n, byMaxPart::PartitionOrder) p end
+    @time for n in 1:50, p in IntegerPartitions(n, byNumPart) p end
+    @time for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
 end
 
 function main()

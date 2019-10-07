@@ -16,12 +16,12 @@ Compared to the implementation in JuliaMath/Combinatorics:
 
 For n = 50 the benchmark shows:
 
-*  0.141849 seconds (     9   allocations:  1.672 KiB)  [here]
+*  0.141849 seconds (     9   allocations:  1.672 KiB)  [NEXPAR]
 *  0.111040 seconds (408.45 k allocations: 40.882 MiB, 21.10% gc time) [JuliaMath]
 
 For n = 100 the benchmark shows:
 
-* 167.598273 seconds (    15   allocations:  4.813 KiB) [here]
+* 167.598273 seconds (    15   allocations:  4.813 KiB) [NEXPAR]
 *  86.960344 seconds (381.14 M allocations: 48.735 GiB, 11.29% gc time) [JuliaMath]
 
 Our function is slower but the Combinatorics function takes vastly more space.
@@ -86,23 +86,28 @@ end
 
 """
 
-Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
+Return the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
 """
 VisitPartition(n, fun) = NEXPAR(n, fun)
 
 """
 
-Generates the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
+Return the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
 """
 V080577(n) = NEXPAR(n, println)
 
-#################################################################
 
+"""
+Jerome Kelleher: "... developed for my PhD thesis ... We can generate integer
+partitions much more effectively [.. and much easier ..] if we encode them as
+ascending compositions rather than the conventional descending compositions."
+http://jeromekelleher.net/category/combinatorics.html
+"""
 function partitions(n::Int)
     a = zeros(Int, n + 1)
     k = 1
     y = n - 1
-    ans = []
+    ans = Array{Int,1}[]
     while k != 0
         x = a[k] + 1
         k -= 1
@@ -126,23 +131,27 @@ function partitions(n::Int)
     return ans
 end
 
+"""
+
+Return the partitions of ``n`` as a weakly increasing lists of parts in lexicographic order.
+"""
 V026791(n) = partitions(n)
 
 #START-TEST-########################################################
 
-using SeqUtils  # Combinatorics
-
-"""
-
-Prints the partitions given in the format used in function NEXPAR.
-"""
-PrintPartition(P) =  P |> println
+using Test, SeqUtils #, Combinatorics
 
 function test()
+    @testset "AltIntParts" begin
+        @test length(V026791(6)) == 11
+    end
     V080577(6)
 end
 
 function demo()
+    # Prints the partitions given in the format used in function NEXPAR.
+    PrintPartition(P) =  P |> println
+
     for n in 1:5
         VisitPartition(n, PrintPartition)
         println()
