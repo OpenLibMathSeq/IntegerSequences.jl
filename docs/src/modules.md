@@ -207,22 +207,6 @@ GammaHyp: ``(a, b, c, d)`` ↦ ``Γ(a) `` Hypergeometric``1F1(b, c, d).``
 
 * GammaHyp, V000255, V000262, V001339, V007060, V033815, V099022, V251568
 
-   🔶  [IntPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/IntPartitions.jl)
-
-
-All integer partitions are listet by two orderings:
-IntegerPartitions(n, byNumPart)
-IntegerPartitions(n, byMaxPart)
-
-Or restricted to partitions of length m:
-IntegerPartitions(n, m)
-
-The partition coefficients, which are the multinomial coefficients applied to partitions, are given in both orderings (L036038, L078760).
-
-The partition numbers and the number of partitions of n into k parts are given as PartitionNumber(n) and PartitionNumber(n, k), (V000041, L072233).
-
-The sum of all partition coefficients of n is efficiently computed with L005651.
-
    🔶  [JacobiTheta](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/JacobiTheta.jl)
 
 
