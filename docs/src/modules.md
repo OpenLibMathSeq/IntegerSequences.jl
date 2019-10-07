@@ -15,12 +15,12 @@ Compared to the implementation in JuliaMath/Combinatorics:
 
 For n = 50 the benchmark shows:
 
-*  0.141849 seconds (     9   allocations:  1.672 KiB)  [here]
+*  0.141849 seconds (     9   allocations:  1.672 KiB)  [NEXPAR]
 *  0.111040 seconds (408.45 k allocations: 40.882 MiB, 21.10% gc time) [JuliaMath]
 
 For n = 100 the benchmark shows:
 
-* 167.598273 seconds (    15   allocations:  4.813 KiB) [here]
+* 167.598273 seconds (    15   allocations:  4.813 KiB) [NEXPAR]
 *  86.960344 seconds (381.14 M allocations: 48.735 GiB, 11.29% gc time) [JuliaMath]
 
 Our function is slower but the Combinatorics function takes vastly more space.
