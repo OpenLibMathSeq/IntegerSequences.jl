@@ -354,6 +354,33 @@ The generating functions of various combinatorial and number-theoretic functions
 
 * Coefficients, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
 
+   🔶  [SetPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitions.jl)
+
+
+* SetPartitions(s::AbstractVector)
+Return an iterator over all set partitions of the elements of the array
+``s``, represented as arrays of arrays.
+
+* SetPartitions(n::Int)
+Return an iterator over all set partitions of the elements of the array
+``[1,2,...,n]``, represented as arrays of arrays.
+
+* SetPartitions(s::AbstractVector, m::Int)
+Return all set partitions of the elements of the array ``s`` into exactly
+``m`` subsets, represented as arrays of arrays.
+
+* SetPartitions(n::Int, m::Int)
+Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into
+exactly ``m`` subsets, represented as arrays of arrays.
+
+* SetNumber(n::Int)
+Return the numbers of partitions of an ``n``-set into nonempty subsets.
+
+* SetNumber(n::Int, m::Int)
+Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
+
+* SetPartitions, SetNumber
+
    🔶  [StirlingLahNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/StirlingLahNumbers.jl)
 
 

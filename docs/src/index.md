@@ -280,6 +280,9 @@ ModuleSeqUtils
 ModuleSeriesExpansion
 ```
 ```@docs
+ModuleSetPartitions
+```
+```@docs
 ModuleStirlingNumbers
 ```
 ```@docs
@@ -449,6 +452,12 @@ SeqPrint
 ```
 ```@docs
 SeqShow
+```
+```@docs
+SetNumber
+```
+```@docs
+SetPartitions
 ```
 ```@docs
 Sfactorial
