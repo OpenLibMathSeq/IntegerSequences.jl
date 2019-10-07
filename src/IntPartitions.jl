@@ -6,7 +6,8 @@
 module IntPartitions
 
 export ModuleIntPartitions
-export IntegerPartitions, PartitionNumber, PartitionOrder, Multinomial
+export IntegerPartitions, PartitionNumber, Multinomial
+export PartOrder, byNumPart, byMaxPart
 export PartitionCoefficientsByLength, PartitionCoefficientsByBiggestPart
 export V000041, I072233, L072233, L036038, L078760, L005651, L262071, L292222
 

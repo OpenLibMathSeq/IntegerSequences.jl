@@ -422,18 +422,8 @@ function test()
 
             # These triangles have an additional column 1,0,0,... on the left
             # or have different signs. But they are essentially the same.
-            P = [
-                T104556,
-                T001497,
-                T039683,
-                T203412,
-                T004747,
-                T051141,
-                T119274,
-                T000369,
-                T051142,
-                T137513
-            ]
+            P = [T104556, T001497, T039683, T203412, T004747,
+                 T051141, T119274, T000369, T051142, T137513]
             SeqTest(P, 'P')
         end
     end

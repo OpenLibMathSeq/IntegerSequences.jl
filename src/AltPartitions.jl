@@ -5,8 +5,8 @@
 
 module AltPartitions
 
-export ModuleVisitPartitions
-export VisitPartition, V080577, V026791
+export ModuleVisitPartitions, VisitPartition
+export V026791, V080577
 
 """
 
@@ -96,7 +96,6 @@ Return the integer partitions of ``n`` in graded reverse lexicographic order, th
 """
 V080577(n) = NEXPAR(n, println)
 
-
 """
 Jerome Kelleher: "... developed for my PhD thesis ... We can generate integer
 partitions much more effectively [.. and much easier ..] if we encode them as
@@ -135,7 +134,8 @@ end
 
 Return the partitions of ``n`` as a weakly increasing lists of parts in lexicographic order.
 """
-V026791(n) = partitions(n)
+V026791(n::Int) = partitions(n)
+
 
 #START-TEST-########################################################
 

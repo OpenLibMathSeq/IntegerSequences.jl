@@ -337,6 +337,9 @@ OrthoPoly
 PSfactorial
 ```
 ```@docs
+PartOrder
+```
+```@docs
 PartitionCoefficientsByBiggestPart
 ```
 ```@docs
@@ -347,9 +350,6 @@ PartitionNumber
 ```
 ```@docs
 PartitionNumberList
-```
-```@docs
-PartitionOrder
 ```
 ```@docs
 Pascal
@@ -488,6 +488,12 @@ ZTriangle
 ```
 ```@docs
 assertTriangular
+```
+```@docs
+byMaxPart
+```
+```@docs
+byNumPart
 ```
 ```@docs
 fromΔ
