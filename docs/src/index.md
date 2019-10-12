@@ -223,6 +223,9 @@ ModuleGaussFactorials
 ModuleGeneralizedBinomial
 ```
 ```@docs
+ModuleGeneralizedFibonacci
+```
+```@docs
 ModuleHighlyAbundant
 ```
 ```@docs
@@ -302,6 +305,9 @@ ModuleZumkellerNumbers
 ```
 ```@docs
 MultiFactorial
+```
+```@docs
+Multinacci
 ```
 ```@docs
 Multinomial
@@ -1168,6 +1174,9 @@ L005875
 L006012
 ```
 ```@docs
+V006053
+```
+```@docs
 L006171
 ```
 ```@docs
@@ -1912,6 +1921,9 @@ V181936
 T184962
 ```
 ```@docs
+V188021
+```
+```@docs
 L190905
 ```
 ```@docs
@@ -2000,6 +2012,9 @@ I225498
 ```
 ```@docs
 L225498
+```
+```@docs
+V231181
 ```
 ```@docs
 V232980
@@ -2174,6 +2189,9 @@ I299930
 ```
 ```@docs
 L299930
+```
+```@docs
+V309896
 ```
 ```@docs
 L319284
