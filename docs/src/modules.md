@@ -103,9 +103,9 @@ Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/Binar
 
 The 16 boolean operations "FALSE", "AND", "DIF", "PRJ1", "CNIMP", "PRJ2", "XOR", "OR", "NOR", "EQV", "NEG2", "CIMP", "NEG1", "IMP", "NAND", "TRUE" evaluated bitwise on the binary expansions of integers.
 
-The main function is BoolBits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
+The main function is Bits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
 
-* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, BoolBits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
+* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
 
    🔶  [CantorMachines](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CantorMachines.jl)
 
@@ -378,8 +378,6 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
-
-* SetPartitions, SetNumber
 
    🔶  [StirlingLahNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/StirlingLahNumbers.jl)
 

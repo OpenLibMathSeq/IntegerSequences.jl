@@ -126,9 +126,7 @@ for n in 1:100 V034885(n)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:100
-        V034885(n)
-    end)
+    @time (for n in 1:100 V034885(n) end)
 end
 
 function main()

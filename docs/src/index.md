@@ -49,7 +49,7 @@ Binomial
 BitCount
 ```
 ```@docs
-BoolBits
+Bits
 ```
 ```@docs
 BoolOps
@@ -505,6 +505,9 @@ byMaxPart
 byNumPart
 ```
 ```@docs
+divisors
+```
+```@docs
 fromΔ
 ```
 ```@docs
@@ -596,6 +599,9 @@ isTriangular
 ```
 ```@docs
 isUlam
+```
+```@docs
+isV327988
 ```
 ```@docs
 isZumkeller
@@ -1178,6 +1184,9 @@ G006318
 ```
 ```@docs
 L006318
+```
+```@docs
+V006519
 ```
 ```@docs
 V006519
@@ -1843,6 +1852,9 @@ M132393
 V132393
 ```
 ```@docs
+V135481
+```
+```@docs
 V135521
 ```
 ```@docs
@@ -2219,4 +2231,10 @@ V327494
 ```
 ```@docs
 V327495
+```
+```@docs
+V327987
+```
+```@docs
+L327988
 ```

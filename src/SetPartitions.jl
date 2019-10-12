@@ -32,8 +32,6 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
-
-* SetPartitions, SetNumber
 """
 const ModuleSetPartitions = ""
 

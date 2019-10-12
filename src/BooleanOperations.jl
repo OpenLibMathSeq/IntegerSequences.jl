@@ -4,20 +4,22 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module BooleanOperations
+using NumberTheory
 
 export Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand
-export BoolBits, BoolOps, BinDigits
+export Bits, BoolOps, BinDigits
 export V035327, V003817, V129760, V142151, V080079, V086799, V163617
 export V038712, V006257, V048724, V003188, V038554, V048735, V213370
-export V080940, V135521, V051933, V280172
+export V080940, V135521, V051933, V280172, V135481, V006519, V327987
+export isV327988, L327988
 
 """
 
 The 16 boolean operations "FALSE", "AND", "DIF", "PRJ1", "CNIMP", "PRJ2", "XOR", "OR", "NOR", "EQV", "NEG2", "CIMP", "NEG1", "IMP", "NAND", "TRUE" evaluated bitwise on the binary expansions of integers.
 
-The main function is BoolBits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
+The main function is Bits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
 
-* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, BoolBits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
+* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
 """
 const ModuleBooleanOperations = ""
 
@@ -122,7 +124,7 @@ Nand(N, K) = [1 - (N[i] & k) for (i, k) in enumerate(K)]
 
 Return the bitwise boolean operation represented by ``op`` applied to the binary expansions of the integers ``n`` and ``k``. ``op`` is an integer ``0 <= op < 16`` encoding the result of the operation in terms of the truth table.
 """
-function BoolBits(op::Int, n::Int, k::Int, algo=max)
+function Bits(op::Int, n::Int, k::Int, algo=max)
     if op < 0 || op > 15 || n < 0 || k < 0
         throw(DomainError(op, n , k), "op must 0 <= op <= 15 and n,k >= 0")
     end
@@ -161,132 +163,163 @@ const BoolOps = ["FALSE", "AND", "DIF", "PRJ1", "CNIMP", "PRJ2", "XOR", "OR", "N
 
 Return the bitwise boolean operation represented by ``op`` applied to the binary expansions of the integers ``n`` and ``k``. ``op`` is an acronym as given in the list 'BoolOps'.
 """
-function BoolBits(op::String, n::Int, k::Int, algo=max)
+function Bits(op::String, n::Int, k::Int, algo=max)
     opnum = findfirst(isequal(op), BoolOps)
-    BoolBits(opnum - 1, n, k, algo)
+    Bits(opnum - 1, n, k, algo)
 end
 
 """
 
 Return n NAND n.
 """
-V035327(n) = BoolBits("NAND", n, n)
-# also : V035327(n) = BoolBits("NEG1", n, n+1, min)
+V035327(n) = Bits("NAND", n, n)
+# also : V035327(n) = Bits("NEG1", n, n+1, min)
 
 """
 
 Return n EQV n.
 """
-V003817(n) = BoolBits("EQV", n, n)
+V003817(n) = Bits("EQV", n, n)
 # sets a(0) = 1
 
 """
 
 Return n AND n+1, using max length.
 """
-V129760(n) = BoolBits("AND", n, n+1)
+V129760(n) = Bits("AND", n, n+1)
 # with offset 0
 
 """
 
 Return n CIMP n+1, using max length.
 """
-V142151(n) = BoolBits("CIMP", n, n+1)
+V142151(n) = Bits("CIMP", n, n+1)
 
 #"""
 #Return n CNIMP n+1, using max length.
 #"""
-#V006519(n) = BoolBits("CNIMP", n, n+1)
+#V006519(n) = Bits("CNIMP", n, n+1)
 
 """
 
 Return n NEG1 n+1, using max length.
 """
-V080079(n) = BoolBits("NEG1", n, n+1)
+V080079(n) = Bits("NEG1", n, n+1)
 # with offset 0
 
 """
 
 Return n OR n+1, using max length.
 """
-V086799(n) = BoolBits("OR", n, n+1)
+V086799(n) = Bits("OR", n, n+1)
 # with offset 0
 
 """
 
 Return n OR 2n, using max length.
 """
-V163617(n) = BoolBits("OR", n, n<<1)
+V163617(n) = Bits("OR", n, n<<1)
 
 """
 
 Return n XOR n+1, using max length.
 """
-V038712(n) = BoolBits("XOR", n, n+1)
+V038712(n) = Bits("XOR", n, n+1)
 # with offset 0
 
 """
 
 Return max(1, 2n) - (n EQV n), using max length.
 """
-V006257(n) = max(1, 2n) - BoolBits("EQV", n, n)
+V006257(n) = max(1, 2n) - Bits("EQV", n, n)
 
 """
 
 Return n XOR 2n, using max length.
 """
-V048724(n) = BoolBits("XOR", n, n<<1)
+V048724(n) = Bits("XOR", n, n<<1)
 
 """
 
 Return n XOR n>>1, using max length.
 """
-V003188(n) = BoolBits("XOR", n, n>>1)
+V003188(n) = Bits("XOR", n, n>>1)
 
 """
 
 Return n XOR n>>1, using min length.
 """
-V038554(n) = BoolBits("XOR", n, n>>1, min)
+V038554(n) = Bits("XOR", n, n>>1, min)
 # with a(1) = 1
 
 """
 
 Return n AND n>>1, using min length.
 """
-V048735(n) = BoolBits("AND", n, n>>1, min)
+V048735(n) = Bits("AND", n, n>>1, min)
 
 """
 
 Return n AND n<<1, using min length.
 """
-V213370(n) = BoolBits("AND", n, n<<1, min)
+V213370(n) = Bits("AND", n, n<<1, min)
 
 """
 
 Return n CNIMP n+1, using min length.
 """
-V080940(n) = BoolBits("CNIMP", n, n+1, min)
+V080940(n) = Bits("CNIMP", n, n+1, min)
 # with a(0) = 1
 
 """
 
 Return n XOR n+1, using min length.
 """
-V135521(n) = BoolBits("XOR", n, n+1, min)
+V135521(n) = Bits("XOR", n, n+1, min)
 # prepend a(0) = 1
 
 """
 
 Return n XOR k, using max length.
 """
-V051933(n, k) = BoolBits("XOR", n, k)
+V051933(n, k) = Bits("XOR", n, k)
 
 """
 
 Return (k-1 XOR n-k) + 1, using max length.
 """
-V280172(n, k) = BoolBits("XOR", k-1, n-k) + 1
+V280172(n, k) = Bits("XOR", k-1, n-k) + 1
+
+"""
+
+Return n+1 CNIMP n, using max length.
+"""
+V135481(n) = Bits("CNIMP", n+1, n)
+
+"""
+
+Return n CNIMP n+1, using max length. (Offset is 0, shift n left if you want the OEIS offset 1.)
+"""
+V006519(n) = Bits("CNIMP", n, n+1)
+# with offset 0
+
+"""
+
+Return Sum``_{d|n} d & (n/d)``, where & is the bitwise AND operator.
+"""
+V327987(n) = sum([Bits("AND", d, div(n, d)) for d in divisors(n)])
+
+"""
+
+Is V327987(n) = Sum``_{d|n} d & (n/d)`` = 0 ?
+"""
+isV327988(n) = V327987(n) == 0
+
+"""
+
+Return a list of the zeros of V327987 below (inc.)  ``max``.
+"""
+L327988(max) = [n for n in 0:max if isV327988(n)]
 
 #START-TEST-########################################################
 
@@ -299,10 +332,10 @@ function test()
         S(R) = sum(r << (i-1)  for (i, r) in enumerate(R))
 
         for n in 0:15
-            @test n == S([BoolBits(n, A[k], B[k]) for k in 1:4])
+            @test n == S([Bits(n, A[k], B[k]) for k in 1:4])
         end
         for n in 0:15
-            @test n == S([BoolBits(BoolOps[n+1], A[k], B[k]) for k in 1:4])
+            @test n == S([Bits(BoolOps[n+1], A[k], B[k]) for k in 1:4])
         end
 
         @test BinDigits(12, 17) == ([0, 0, 1, 1, 0], [1, 0, 0, 0, 1])
@@ -324,13 +357,22 @@ function test()
         @test [V038554(n) for n in 0:8] == [0, 1, 1, 0, 2, 3, 1, 0, 4]
         @test [V048735(n) for n in 0:8] == [0, 0, 0, 1, 0, 0, 2, 3, 0]
         @test [V213370(n) for n in 0:8] == [0, 0, 0, 2, 0, 0, 4, 6, 0]
+
+        @test [V135481(n) for n in 0:8] == [0, 1, 0, 3, 0, 1, 0, 7, 0]
+        @test [V006519(n) for n in 0:8] == [1, 2, 1, 4, 1, 2, 1, 8, 1]
+
+        @test [V327987(n) for n in 0:8] == [0, 1, 0, 2, 2, 2, 4, 2, 0]
+        @test L327988(99) == [0, 2, 8, 10, 26, 32, 34, 40, 50, 58, 74, 82]
+
+        @test isV327988(121) == false
+        @test isV327988(122) == true
     end
 end
 
 function demo()
     println()
     for n in 0:15
-        seq = [BoolBits(n, k, k+1) for k in 0:12]
+        seq = [Bits(n, k, k+1) for k in 0:12]
         println(BoolOps[n+1], " ", seq)
     end
 

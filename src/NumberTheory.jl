@@ -13,6 +13,7 @@ export I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
 export Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
 export isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
 export isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
+export divisors
 
 """
 
@@ -49,8 +50,14 @@ function Divisors(m, dosort = false)
         d = reshape(d, length(d))
     end
     dosort && sort!(d)
-    d
+    return d
 end
+
+"""
+
+Return the positive integers dividing ``n``.
+"""
+divisors(m::Int) = [Int(d) for d in Divisors(m)]
 
 """
 
