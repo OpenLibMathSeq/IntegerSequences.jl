@@ -166,7 +166,7 @@ function test()
         # CantorTest
 
         println()
-        println("CantorMachine")
+        println("Running CantorMachine")
 
         x, y, state = 0, 0, false
         for n in 0:len
@@ -178,21 +178,21 @@ function test()
 
         # CantorBoustrophedonicTest
 
-        println()
-        println("CantorBoustrophedonicMachine")
+        #println()
+        println("Running CantorBoustrophedonicMachine")
 
         x, y = 0, 0
         for n in 0:len
             p = CantorBoustrophedonicPairing(x, y)
-            println("$n -> ($x, $y) -> $p")
+            #println("$n -> ($x, $y) -> $p")
             @test n == p
             x, y = CantorBoustrophedonicMachine(x, y)
         end
 
         # RosenbergStrongBoustrophedonicTest
 
-        println()
-        println("RosenbergStrongBoustrophedonicMachine")
+        #println()
+        println("Running RosenbergStrongBoustrophedonicMachine")
 
         x, y, state = 0, 0, 0
         for n in 0:len
