@@ -95,6 +95,14 @@ Println(v::AbstractVector) = print_without_type(IOContext(stdout), v)
 
 """
 
+Print the array without typeinfo.
+"""
+function Println(V::Array{Array{Nemo.fmpz,1},1})
+    for v in V  v |> Println end
+end
+
+"""
+
 Print the array with or without typeinfo.
 """
 function SeqPrint(v::AbstractVector, typeinfo = false)
@@ -168,6 +176,10 @@ function demo()
     println()
 
     A |> Println
+
+    println()
+    V = Array{Nemo.fmpz,1}[[1], [0, 1], [0, 1, 70], [0, 1, 990, 34650]]
+    for v in V  v |> Println end
 end
 
 function perf() end

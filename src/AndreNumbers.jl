@@ -36,9 +36,7 @@ function André(m::Int, n::Int)
     n ≤ 0 && return fmpz(1)
     r = range(0, step = m, stop = n - 1)
     S = sum(binom(n, k) * André(m, k) for k in r)
-    V = n % m == 0 ? -S : S
-    CacheAndré[(m, n)] = V
-    return V
+    return CacheAndré[(m, n)] = n % m == 0 ? -S : S
 end
 
 const CacheAndré = Dict{Tuple{Int,Int},fmpz}()

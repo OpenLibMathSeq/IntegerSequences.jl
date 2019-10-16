@@ -197,7 +197,7 @@ V142151(n) = Bits("CIMP", n, n+1)
 
 #"""
 # Return n CNIMP n+1, using max length.
-# (Offset is 0, shift n left if you want the OEIS offset 1.)
+# Offset is 0, shift n left if you want the OEIS offset 1.
 # Is exported from Module LandauConstants
 #"""
 #V006519(n) = Bits("CNIMP", n, n+1)

@@ -302,6 +302,14 @@ A collection of utilities for handling OEIS related tasks.
 
 * OrthoPoly, InvOrthoPoly, T053121, T216916, T217537, T064189, T202327, T111062, T099174, T066325, T049310, T137338, T104562, T037027, T049218, T159834, T137286, T053120, T053117, T111593, T059419, L217924, L005773, L108624, L005425, L000085, L001464, L003723, L006229
 
+   🔶  [Polynomials](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/Polynomials.jl)
+
+
+Some utility functions for computing with polynomials. Exemplary applied to some triangles about ordered set partitions.
+
+* CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central, P097805, L097805, TL097805, P131689, L131689, TL131689, P241171, L241171, TL241171, P278073, L278073, TL278073, P278074, L278074, TL278074, TL088218, TL210029, TL281478, TL281479, TL281480, TL094088, TL243664, TL243665, TL028296, TL002115, TL211212.
+
+
    🔶  [PrimesIterator](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/PrimesIterator.jl)
 
 

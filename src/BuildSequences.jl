@@ -76,11 +76,12 @@ function sortnames()
     # I => Iteration
     # L => List (array based)
     # M => Matrix
+    # P => Polynomial
     # R => RealFunction
     # S => Staircase (iteration)
     # T => Triangle (iteration)
-    # TA => Triangle (triangular array)
-    # TL => Triangle (flat-list array)
+    # TL => Triangle (triangular array, list of rows)
+    # TF => Triangle (flat-list array)
     # V => Value
     # is => is a (predicate), boolean
 
@@ -88,10 +89,10 @@ function sortnames()
 
         i = 0
         c = 2
-        if occursin(r"^[ACFGILMRSTV][0-9]{6},$", l)
+        if occursin(r"^[ACFGILMPRSTV][0-9]{6},$", l)
             c = 0
         end
-        if occursin(r"^is[0-9]{6},$", l) || occursin(r"^TA[0-9]{6},$", l) || occursin(r"^TL[0-9]{6},$", l)
+        if occursin(r"^is[0-9]{6},$", l) || occursin(r"^TL[0-9]{6},$", l) || occursin(r"^TF[0-9]{6},$", l)
             i = 2
             c = 0
         end
