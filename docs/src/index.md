@@ -181,6 +181,9 @@ JacobiTheta4Powers
 KolakoskiList
 ```
 ```@docs
+LF097805
+```
+```@docs
 List
 ```
 ```@docs
@@ -1817,9 +1820,6 @@ V097383
 ```
 ```@docs
 I097805
-```
-```@docs
-L097805
 ```
 ```@docs
 L097805

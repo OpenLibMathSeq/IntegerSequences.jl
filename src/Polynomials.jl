@@ -6,6 +6,7 @@
 module Polynomials
 
 using Nemo, SeqUtils
+import AbstractAlgebra.lead
 
 export ModulePolynomials
 export CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central
@@ -29,82 +30,94 @@ function P(m, n)
     R, x = PolynomialRing(ZZ, "x")
 
     function recP(m, n, x)
-        haskey(CachePoly, (m, n)) && return CachePoly[(m, n)]
         n == 0 && return R(1)
+        haskey(CachePoly, (m, n)) && return CachePoly[(m, n)]
         p = sum(binomial(m*n, m*k)*recP(m, n-k, x)*x for k in 1:n)
         CachePoly[(m, n)] = p
     end
-
-    n == 0 && return R(1)
     recP(m, n, x)
 end
 
 """
+
 Return the coefficients of the polynomial ``p``.
 """
 CoeffPoly(p) = [coeff(p, k) for k in 0:degree(p)]
 
 """
+
 Return the list of the coefficients of the first ``len`` polynomials of the sequence of polynomials ``P`` as a regular triangle.
 """
 CoeffPoly(P, len) = [[coeff(P(n), k) for k in 0:degree(P(n))] for n in 0:len-1]
 
 """
+
 Return the sum of the coefficients of the polynomial ``p``.
 """
 CoeffSum(p) = evaluate(p, 1)
 
 """
+
 Return the sequence of the sum of coefficients of the sequence of polynomials ``P``.
 """
 CoeffSum(P, len) = [CoeffSum(P(n)) for n in 0:len-1]
 
 """
+
 Return the alternating sum of the coefficients of the polynomial ``p``.
 """
 CoeffAltSum(p) = evaluate(p, -1)
 
 """
+
 Return the sequence of the alternating sums of the coefficients of the sequence of polynomials ``P``.
 """
 CoeffAltSum(P, len) = [CoeffAltSum(P(n)) for n in 0:len-1]
 
 """
+
 Return the leading coefficient of the polynomial ``p``.
 """
-CoeffLeading(p) = coeff(p, degree(p)) # AbstractAlgebra.lc(p)
+CoeffLeading(p) = lead(p) # coeff(p, degree(p))
 
 """
+
 Return the sequence of the leading coefficient of the sequence of polynomials ``P``.
 """
 Diagonal(P, len) = [CoeffLeading(P(n)) for n in 0:len-1]
 
 """
+
 Return the constant coefficient of the polynomial ``p``.
 """
 CoeffConst(p) = coeff(p, 0)
 
 """
+
 Return the sequence of the constant coefficients of the sequence of polynomials ``P``.
 """
 CoeffConst(P, len) = [CoeffConst(P(n)) for n in 0:len-1]
 
 """
+
 Return the central column of the coefficients of the sequence of polynomials ``P``.
 """
 Central(P, len) = [CoeffPoly(P(2n))[n+1] for n in 0:len-1]
 
 """
+
 Return the number of compositions of ``n`` (as a polynomial).
 """
 P097805(n) = P(0, n)
 
 """
+
 Return the number of compositions of ``n`` (as a list).
 """
 L097805(n) = CoeffPoly(P(0, n))
 
 """
+
 Return the first ``len`` rows of the triangle of compositions of ``n``.
 """
 TL097805(n, len) = CoeffPoly(n -> P(0, n), len)
@@ -115,11 +128,13 @@ Return the number of ordered set partitions of ``n`` (as a polynomial).
 P131689(n) = P(1, n)
 
 """
+
 Return the number of ordered set partitions of ``n`` (as a list).
 """
 L131689(n) = CoeffPoly(P(1, n))
 
 """
+
 Return ``len`` rows of the triangle of ordered set partitions of ``n``.
 """
 TL131689(n, len) = CoeffPoly(n -> P(1, n), len)
@@ -211,18 +226,18 @@ function demo()
     # ... given a sequence of polynomials P:
     for m in 0:4
         println("---> m ", m)
-        println("Polynomials:")
+        println("\nPolynomial:")
         Q(n) = P(m, n)
         println(Q(4))
-        println("Triangle of coefficients:")
+        println("\nTriangle of coefficients:")
         CoeffPoly(Q, 7) |> Println
-        println("Sum of coefficients:")
+        println("\nSum of coefficients:")
         CoeffSum(Q, 7) |> Println
-        println("Alternating sum of coefficients:")
+        println("\nAlternating sum of coefficients:")
         CoeffAltSum(Q, 7) |> Println
-        println("Leading coefficients:")
+        println("\nLeading coefficients:")
         Diagonal(Q, 7) |> Println
-        println("Central column of coefficient triangle:")
+        println("\nCentral column of coefficient triangle:")
         Central(Q, 7) |> Println
     end
 end

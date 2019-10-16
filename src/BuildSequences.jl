@@ -222,6 +222,7 @@ function build_seq()
 
     println(olm, "module IntegerSequences")
     println(olm, "using Nemo, IterTools, HTTP, DocStringExtensions")
+    println(olm, "import AbstractAlgebra.lead")
 
     for l in eachline(sor, keep = true)
         print(olm, l)

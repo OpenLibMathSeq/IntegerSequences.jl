@@ -8,7 +8,8 @@ module Compositions
 using Nemo, IterTools, Triangles
 
 export ModuleCompositions
-export I097805, L097805, V097805, M097805
+export I097805, LF097805, V097805, M097805
+# The module 'Polynomials' contains : P097805, L097805, TL097805,
 
 """
 
@@ -35,7 +36,7 @@ I097805(n) = RecTriangle(n, R097805)
 
 Lists the first ``n`` rows of A097805 by concatinating. This is the format for submissions to the OEIS.
 """
-L097805(n) = vcat(I097805(n)...)
+LF097805(n) = vcat(I097805(n)...)
 
 """
 
@@ -65,7 +66,7 @@ function demo()
     end
 
     println("\nLists the first 9 rows of L097805 by concatinating.")
-    println(L097805(9))
+    println(LF097805(9))
 
     #ShowAsMatrix(L097805(9))
     #println(M097805(9))
