@@ -103,7 +103,10 @@ CoeffLeading
 CoeffPoly
 ```
 ```@docs
-CoeffPolyScaled
+CoeffScaled
+```
+```@docs
+CoeffSignedScaled
 ```
 ```@docs
 CoeffSum

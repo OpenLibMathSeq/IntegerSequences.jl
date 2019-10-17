@@ -10,13 +10,13 @@ using Nemo
 
 export ModulePolynomials
 export CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal
-export Central, CoeffPolyScaled
+export Central, CoeffScaled, CoeffSignedScaled
 
 """
 
 Some utility functions for computing with polynomials. Exemplary applied to some triangles about ordered set partitions.
 
-* CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central.
+* CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central, CoeffScaled, CoeffSignedScaled.
 
 """
 const ModulePolynomials = ""
@@ -31,7 +31,13 @@ CoeffPoly(p) = [coeff(p, k) for k in 0:degree(p)]
 
 Return the coefficients of the polynomial ``p`` scaled by ``k!``.
 """
-CoeffPolyScaled(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+CoeffScaled(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+
+"""
+
+Return the coefficients of the polynomial ``p`` scaled by ``(-1)^k*k!``.
+"""
+CoeffSignedScaled(p) = [div(coeff(p, k), (-1)^k*fac(k)) for k in 0:degree(p)]
 
 """
 
@@ -99,6 +105,7 @@ Central(P, len) = [CoeffPoly(P(2n))[n+1] for n in 0:len-1]
 using Test, SeqUtils
 
 function test()
+
     @testset "Polynomials" begin
         T, x = PolynomialRing(ZZ, "x")
         p = 63063000*x^4 + 2702700*x^3 + 16510*x^2 + x
@@ -108,9 +115,8 @@ function test()
         @test CoeffConst(p) == T(0)
         @test CoeffLeading(p) == 63063000
     end
-end
 
-const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
+end
 
 function demo()
 
@@ -118,9 +124,7 @@ function demo()
         R, x = PolynomialRing(ZZ, "x")
         function recP(m, n)
             n == 0 && return R(1)
-            haskey(CacheP, (m, n)) && return CacheP[(m, n)]
-            p = sum(binomial(m*n, m*k)*recP(m, n-k)*x for k in 1:n)
-            CacheP[(m, n)] = p
+            sum(binomial(m*n, m*k)*recP(m, n-k)*x for k in 1:n)
         end
         recP(m, n)
     end
