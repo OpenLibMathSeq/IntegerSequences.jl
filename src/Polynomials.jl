@@ -99,10 +99,9 @@ Central(P, len) = [CoeffPoly(P(2n))[n+1] for n in 0:len-1]
 using Test, SeqUtils
 
 function test()
-    T, x = PolynomialRing(ZZ, "x")
-    p = 63063000*x^4 + 2702700*x^3 + 16510*x^2 + x
-
     @testset "Polynomials" begin
+        T, x = PolynomialRing(ZZ, "x")
+        p = 63063000*x^4 + 2702700*x^3 + 16510*x^2 + x
         @test CoeffPoly(p) == [0, 1, 16510, 2702700, 63063000]
         @test CoeffSum(p) == 65782211
         @test CoeffAltSum(p) == 60376809
@@ -117,13 +116,13 @@ function demo()
 
     function P(m, n)
         R, x = PolynomialRing(ZZ, "x")
-        function recP(m, n, x)
+        function recP(m, n)
             n == 0 && return R(1)
             haskey(CacheP, (m, n)) && return CacheP[(m, n)]
-            p = sum(binomial(m*n, m*k)*recP(m, n-k, x)*x for k in 1:n)
+            p = sum(binomial(m*n, m*k)*recP(m, n-k)*x for k in 1:n)
             CacheP[(m, n)] = p
         end
-        recP(m, n, x)
+        recP(m, n)
     end
 
     # ... given a polynomial p:
