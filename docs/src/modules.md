@@ -307,7 +307,7 @@ A collection of utilities for handling OEIS related tasks.
 
 Some utility functions for computing with polynomials. Exemplary applied to some triangles about ordered set partitions.
 
-* CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central, P097805, L097805, TL097805, P131689, L131689, TL131689, P241171, L241171, TL241171, P278073, L278073, TL278073, P278074, L278074, TL278074, TL088218, TL210029, TL281478, TL281479, TL281480, TL094088, TL243664, TL243665, TL028296, TL002115, TL211212.
+* CoeffPoly, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, Diagonal, Central.
 
 
    🔶  [PrimesIterator](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/PrimesIterator.jl)
