@@ -1,6 +1,18 @@
 # Library
 
 ```@docs
+AltCoeffs
+```
+```@docs
+AltExpCoeffs
+```
+```@docs
+AltExpPoly
+```
+```@docs
+AltPoly
+```
+```@docs
 And
 ```
 ```@docs
@@ -100,19 +112,13 @@ CoeffConst
 CoeffLeading
 ```
 ```@docs
-CoeffPoly
-```
-```@docs
-CoeffScaled
-```
-```@docs
-CoeffSignedScaled
-```
-```@docs
 CoeffSum
 ```
 ```@docs
 Coefficients
+```
+```@docs
+Coeffs
 ```
 ```@docs
 Combinations
@@ -149,6 +155,12 @@ EulerTransform
 ```
 ```@docs
 EvenPart
+```
+```@docs
+ExpCoeffs
+```
+```@docs
+ExpPoly
 ```
 ```@docs
 F!
@@ -397,6 +409,9 @@ PartitionNumberList
 Pascal
 ```
 ```@docs
+Poly
+```
+```@docs
 PolygonalNumber
 ```
 ```@docs
@@ -449,6 +464,9 @@ RecTriangle
 ```
 ```@docs
 Records
+```
+```@docs
+ReflectPoly
 ```
 ```@docs
 RiordanProduct

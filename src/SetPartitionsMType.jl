@@ -46,13 +46,13 @@ P097805(n) = OrdSetPart(0, n)
 
 Return the number of compositions of ``n`` (as a list).
 """
-L097805(n) = CoeffPoly(OrdSetPart(0, n))
+L097805(n) = Coeffs(OrdSetPart(0, n))
 
 """
 
 Return the first ``len`` rows of the triangle of compositions of ``n``.
 """
-TL097805(n, len) = CoeffPoly(n -> OrdSetPart(0, n), len)
+TL097805(n, len) = Coeffs(n -> OrdSetPart(0, n), len)
 
 """
 
@@ -64,13 +64,13 @@ P131689(n) = OrdSetPart(1, n)
 
 Return the number of ordered set partitions of ``n`` (as a list).
 """
-L131689(n) = CoeffPoly(OrdSetPart(1, n))
+L131689(n) = Coeffs(OrdSetPart(1, n))
 
 """
 
 Return ``len`` rows of the triangle of ordered set partitions of ``n``.
 """
-TL131689(n, len) = CoeffPoly(n -> OrdSetPart(1, n), len)
+TL131689(n, len) = Coeffs(n -> OrdSetPart(1, n), len)
 
 """
 
@@ -82,21 +82,21 @@ P241171(n) = OrdSetPart(2, n)
 
 Return the number number of ordered set partitions of ``2n`` into even sized blocks (as a list).
 """
-L241171(n) = CoeffPoly(OrdSetPart(2, n))
+L241171(n) = Coeffs(OrdSetPart(2, n))
 
 """
 
 Return ``len`` rows of the triangle ordered set partitions of ``2n`` into even sized blocks.
 """
-TL241171(n, len) = CoeffPoly(n -> OrdSetPart(2, n), len)
+TL241171(n, len) = Coeffs(n -> OrdSetPart(2, n), len)
 
 P278073(n) = OrdSetPart(3, n)
-L278073(n) = CoeffPoly(OrdSetPart(3, n))
-TL278073(n, len) = CoeffPoly(n -> OrdSetPart(3, n), len)
+L278073(n) = Coeffs(OrdSetPart(3, n))
+TL278073(n, len) = Coeffs(n -> OrdSetPart(3, n), len)
 
 P278074(n) = OrdSetPart(4, n)
-L278074(n) = CoeffPoly(OrdSetPart(4, n))
-TL278074(n, len) = CoeffPoly(n -> OrdSetPart(4, n), len)
+L278074(n) = Coeffs(OrdSetPart(4, n))
+TL278074(n, len) = Coeffs(n -> OrdSetPart(4, n), len)
 
 L088218(len) = Central(n -> OrdSetPart(0, n), len)
 L210029(len) = Central(n -> OrdSetPart(1, n), len)
@@ -117,41 +117,41 @@ L211212(len) = CoeffAltSum(n -> OrdSetPart(4, n), len)
 #"""
 # Return the Stirling numbers of 2nd kind.
 #"""
-# L048993(n) = CoeffScaled(OrdSetPart(1, n))
+# L048993(n) = CoeffExp(OrdSetPart(1, n))
 # Exported from Module StirlingLahNumbers
 
 # A000587 Rao Uppuluri-Carpenter numbers (or complementary Bell numbers): e.g.f. = exp(1 - exp(x)).
-V000587(n) = sum(CoeffSignedScaled(OrdSetPart(1, n)))
+V000587(n) = sum(AltExpCoeffs(OrdSetPart(1, n)))
 L000587(len) = [V000587(n) for n in 0:len-1]
 
 # A156289 Triangle read by rows: T(n,k) is the number of end rhyme patterns of a poem of an even number of lines (2n) with 1<=k<=n evenly rhymed sounds.
-L156289(n) = CoeffScaled(OrdSetPart(2, n))
+L156289(n) = ExpCoeffs(OrdSetPart(2, n))
 # A005046 Number of partitions of a 2n-set into even blocks.
-V005046(n) = sum(CoeffScaled(OrdSetPart(2, n)))
+V005046(n) = sum(ExpCoeffs(OrdSetPart(2, n)))
 L005046(len) = [V005046(n) for n in 0:len-1]
 #A260884 Number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
-V260884(n) = sum(CoeffSignedScaled(OrdSetPart(2, n)))
+V260884(n) = sum(AltExpCoeffs(OrdSetPart(2, n)))
 L260884(len) = [V260884(n) for n in 0:len-1]
 
 # A291451 Triangle read by rows, expansion of e.g.f. exp(x*(exp(z)/3 + 2*exp(-z/2)* cos(z*sqrt(3)/2)/3 - 1)), nonzero coefficients of z.
-L291451(n) = CoeffScaled(OrdSetPart(3, n))
+L291451(n) = ExpCoeffs(OrdSetPart(3, n))
 # A291973 a(n) = (3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
-V291973(n) = sum(CoeffScaled(OrdSetPart(3, n)))
+V291973(n) = sum(ExpCoeffs(OrdSetPart(3, n)))
 L291973(len) = [V291973(n) for n in 0:len-1]
 # A291974 a(n) = (3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
-V291974(n) = sum(CoeffSignedScaled(OrdSetPart(3, n)))
+V291974(n) = sum(AltExpCoeffs(OrdSetPart(3, n)))
 L291974(len) = [V291974(n) for n in 0:len-1]
 
 #L025035(len) = Diagonal(n -> OrdSetPart(3, n), len)
-#X025035(len) = Diagonal(n -> CoeffScaled(OrdSetPart(3, n)), len)
+#X025035(len) = Diagonal(n -> CoeffExp(OrdSetPart(3, n)), len)
 
 # A291452 Triangle read by rows, expansion of e.g.f. exp(x*(cos(z) + cosh(z) - 2)/2), nonzero coefficients of z.
-L291452(n) = CoeffScaled(OrdSetPart(4, n))
+L291452(n) = ExpCoeffs(OrdSetPart(4, n))
 # A291975 a(n) = (4*n)! * [z^(4*n)] exp((cos(z) + cosh(z))/2 - 1).
-V291975(n) = sum(CoeffScaled(OrdSetPart(4, n)))
+V291975(n) = sum(ExpCoeffs(OrdSetPart(4, n)))
 L291975(len) = [V291975(n) for n in 0:len-1]
 # A291976	a(n) = (4*n)! * [z^(4*n)] exp(1 - (cos(z) + cosh(z))/2).
-V291976(n) = sum(CoeffSignedScaled(OrdSetPart(4, n)))
+V291976(n) = sum(AltExpCoeffs(OrdSetPart(4, n)))
 L291976(len) = [V291976(n) for n in 0:len-1]
 
 
@@ -217,10 +217,10 @@ end
 
 function demo()
     for m in 1:4, n in 0:6
-        CoeffPoly(OrdSetPart(m, n)) |> Println
+        Coeffs(OrdSetPart(m, n)) |> Println
     end
     for m in 1:4, n in 0:6
-        CoeffScaled(OrdSetPart(m, n)) |> Println
+        ExpCoeffs(OrdSetPart(m, n)) |> Println
     end
 end
 
@@ -229,13 +229,11 @@ end
 
 function main()
     test()
-    #demo()
+    demo()
     perf()
 end
 
 main()
 
-#L025035(8) |> println
-#X025035(8) |> println
 
 end # module
