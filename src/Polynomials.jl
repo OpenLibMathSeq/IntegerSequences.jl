@@ -15,10 +15,9 @@ export Diagonal, Central, ExpCoeffs, AltExpCoeffs, ReflectPoly
 
 """
 
-Some utility functions for computing with polynomials. Exemplary applied to some triangles about ordered set partitions.
+Some utility functions for computing with polynomials.
 
 * Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs, Diagonal, Central, ExpCoeffs, AltExpCoeffs, Poly, AltPoly, ExpPoly, AltExpPoly, ReflectPoly.
-
 """
 const ModulePolynomials = ""
 
@@ -32,7 +31,7 @@ Coeffs(p) = [coeff(p, k) for k in 0:degree(p)]
 
 Return the coefficients of the polynomial ``p`` with alternating signs.
 """
-AltCoeffs(p) = [(-1)^k*coeff(p, k) for k in 0:degree(p)]
+AltCoeffs(p) = [(-1)^k * coeff(p, k) for k in 0:degree(p)]
 
 """
 
@@ -44,38 +43,62 @@ ExpCoeffs(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
 
 Return the coefficients of the polynomial ``p`` divided by ``(-1)^k*k!``.
 """
-AltExpCoeffs(p) = [(-1)^k*div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+AltExpCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k in 0:degree(p)]
 
+"""
+
+Return the polynomial ``p`` with the coefficients C.
+"""
 function Poly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(c*x^k for (k, c) in enumerate(C))
+    sum(c * x^k for (k, c) in enumerate(C))
 end
 
+"""
+
+Return the polynomial ``p`` with the coefficients C and alternating signs (i.e. with (-1)^k*c[k]*x^k).
+"""
 function AltPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum((-1)^k*c*x^k for (k, c) in enumerate(C))
+    sum((-1)^k * c * x^k for (k, c) in enumerate(C))
 end
 
+"""
+
+Return the polynomial ``p`` with the coefficients C in exponential form (i.e. with c[k]*x^k/k!).
+"""
 function ExpPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(div(c, fac(k))*x^k for (k, c) in enumerate(C))
+    sum(div(c, fac(k)) * x^k for (k, c) in enumerate(C))
 end
 
+"""
+
+Return the polynomial ``p`` with alternating signs attached to the coefficients .
+"""
 AltPoly(p::Nemo.fmpz_poly) = Poly(AltCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum((-1)^k*coeff(p, k)*x^k for k in 0:degree(p))
 
+"""
+
+Return the polynomial ``p`` with coefficients in exponential form (i.e. with c[k]*x^k/k!).
+"""
 ExpPoly(p::Nemo.fmpz_poly) = Poly(ExpCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum(div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
 
+"""
+
+Return the polynomial ``p`` with coefficients in exponential form and alternating signs (i.e. with (-1)^k*c[k]*x^k/k!).
+"""
 AltExpPoly(p::Nemo.fmpz_poly) = Poly(AltExpCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum((-1)^k*div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
 
 """
 
-Return the list of the coefficients of the first ``len`` polynomials of the sequence of polynomials ``P`` as a regular triangle.
+Return the list of the coefficients of the first ``len`` polynomials of the sequence of polynomials ``P`` as a triangle.
 """
 Coeffs(P, len) = [[coeff(P(n), k) for k in 0:degree(P(n))] for n in 0:len-1]
 
@@ -141,7 +164,7 @@ function ReflectPoly(p::Nemo.fmpz_poly)
     T, x = PolynomialRing(ZZ, "x")
     p(0) != 1 && throw(ValueError("Constant coefficient must be 1."))
     d = degree(p)
-    x^d + sum(coeff(p, k)*x^(d-k) for k in 1:d)
+    x^d + sum(coeff(p, k) * x^(d - k) for k in 1:d)
 end
 
 
@@ -153,7 +176,7 @@ function test()
 
     @testset "Polynomials" begin
         T, x = PolynomialRing(ZZ, "x")
-        p = 63063000*x^4 + 2702700*x^3 + 16510*x^2 + x
+        p = 63063000 * x^4 + 2702700 * x^3 + 16510 * x^2 + x
         @test Coeffs(p) == [0, 1, 16510, 2702700, 63063000]
         @test CoeffSum(p) == 65782211
         @test CoeffAltSum(p) == 60376809
@@ -174,7 +197,7 @@ function demo()
         R, x = PolynomialRing(ZZ, "x")
         function recP(m, n)
             n == 0 && return R(1)
-            sum(binomial(m*n, m*k)*recP(m, n-k)*x for k in 1:n)
+            sum(binomial(m * n, m * k) * recP(m, n - k) * x for k in 1:n)
         end
         recP(m, n)
     end
@@ -219,8 +242,7 @@ function demo()
     end
 end
 
-function perf()
-end
+function perf() end
 
 function main()
     test()

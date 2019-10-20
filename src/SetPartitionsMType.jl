@@ -25,7 +25,7 @@ export V000587, V005046
 
 const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
 
-function OrdSetPart(m, n)
+function OrderedSetPartitions(m::Int, n::Int)
     R, x = PolynomialRing(ZZ, "x")
     function recP(m, n)
         n == 0 && return R(1)
@@ -40,119 +40,181 @@ end
 
 Return the number of compositions of ``n`` (as a polynomial).
 """
-P097805(n) = OrdSetPart(0, n)
+P097805(n) = OrderedSetPartitions(0, n)
 
 """
 
 Return the number of compositions of ``n`` (as a list).
 """
-L097805(n) = Coeffs(OrdSetPart(0, n))
+L097805(n) = Coeffs(OrderedSetPartitions(0, n))
 
 """
 
 Return the first ``len`` rows of the triangle of compositions of ``n``.
 """
-TL097805(n, len) = Coeffs(n -> OrdSetPart(0, n), len)
+TL097805(n, len) = Coeffs(n -> OrderedSetPartitions(0, n), len)
 
 """
 
 Return the number of ordered set partitions of ``n`` (as a polynomial).
 """
-P131689(n) = OrdSetPart(1, n)
+P131689(n) = OrderedSetPartitions(1, n)
 
 """
 
 Return the number of ordered set partitions of ``n`` (as a list).
 """
-L131689(n) = Coeffs(OrdSetPart(1, n))
+L131689(n) = Coeffs(OrderedSetPartitions(1, n))
 
 """
 
 Return ``len`` rows of the triangle of ordered set partitions of ``n``.
 """
-TL131689(n, len) = Coeffs(n -> OrdSetPart(1, n), len)
+TL131689(n, len) = Coeffs(n -> OrderedSetPartitions(1, n), len)
 
 """
 
 Return the number number of ordered set partitions of ``2n`` into even sized blocks (as a polynomial).
 """
-P241171(n) = OrdSetPart(2, n)
+P241171(n) = OrderedSetPartitions(2, n)
 
 """
 
 Return the number number of ordered set partitions of ``2n`` into even sized blocks (as a list).
 """
-L241171(n) = Coeffs(OrdSetPart(2, n))
+L241171(n) = Coeffs(OrderedSetPartitions(2, n))
 
 """
 
 Return ``len`` rows of the triangle ordered set partitions of ``2n`` into even sized blocks.
 """
-TL241171(n, len) = Coeffs(n -> OrdSetPart(2, n), len)
+TL241171(n, len) = Coeffs(n -> OrderedSetPartitions(2, n), len)
 
-P278073(n) = OrdSetPart(3, n)
-L278073(n) = Coeffs(OrdSetPart(3, n))
-TL278073(n, len) = Coeffs(n -> OrdSetPart(3, n), len)
+P278073(n) = OrderedSetPartitions(3, n)
+L278073(n) = Coeffs(OrderedSetPartitions(3, n))
+TL278073(n, len) = Coeffs(n -> OrderedSetPartitions(3, n), len)
 
-P278074(n) = OrdSetPart(4, n)
-L278074(n) = Coeffs(OrdSetPart(4, n))
-TL278074(n, len) = Coeffs(n -> OrdSetPart(4, n), len)
+P278074(n) = OrderedSetPartitions(4, n)
+L278074(n) = Coeffs(OrderedSetPartitions(4, n))
+TL278074(n, len) = Coeffs(n -> OrderedSetPartitions(4, n), len)
 
-L088218(len) = Central(n -> OrdSetPart(0, n), len)
-L210029(len) = Central(n -> OrdSetPart(1, n), len)
-L281478(len) = Central(n -> OrdSetPart(2, n), len)
-L281479(len) = Central(n -> OrdSetPart(3, n), len)
-L281480(len) = Central(n -> OrdSetPart(4, n), len)
+L088218(len) = Central(n -> OrderedSetPartitions(0, n), len)
+L210029(len) = Central(n -> OrderedSetPartitions(1, n), len)
+L281478(len) = Central(n -> OrderedSetPartitions(2, n), len)
+L281479(len) = Central(n -> OrderedSetPartitions(3, n), len)
+L281480(len) = Central(n -> OrderedSetPartitions(4, n), len)
 
-L094088(len) = CoeffSum(n -> OrdSetPart(2, n), len)
-L243664(len) = CoeffSum(n -> OrdSetPart(3, n), len)
-L243665(len) = CoeffSum(n -> OrdSetPart(4, n), len)
+L094088(len) = CoeffSum(n -> OrderedSetPartitions(2, n), len)
+L243664(len) = CoeffSum(n -> OrderedSetPartitions(3, n), len)
+L243665(len) = CoeffSum(n -> OrderedSetPartitions(4, n), len)
 
-L028296(len) = CoeffAltSum(n -> OrdSetPart(2, n), len)
-L002115(len) = CoeffAltSum(n -> OrdSetPart(3, n), len)
-L211212(len) = CoeffAltSum(n -> OrdSetPart(4, n), len)
+L028296(len) = CoeffAltSum(n -> OrderedSetPartitions(2, n), len)
+L002115(len) = CoeffAltSum(n -> OrderedSetPartitions(3, n), len)
+L211212(len) = CoeffAltSum(n -> OrderedSetPartitions(4, n), len)
 
 # ------------------------------------------------------
 
 #"""
 # Return the Stirling numbers of 2nd kind.
 #"""
-# L048993(n) = CoeffExp(OrdSetPart(1, n))
+# L048993(n) = CoeffExp(OrderedSetPartitions(1, n))
 # Exported from Module StirlingLahNumbers
 
-# A000587 Rao Uppuluri-Carpenter numbers (or complementary Bell numbers): e.g.f. = exp(1 - exp(x)).
-V000587(n) = sum(AltExpCoeffs(OrdSetPart(1, n)))
+"""
+
+Return the complementary Bell number.
+"""
+V000587(n) = sum(AltExpCoeffs(OrderedSetPartitions(1, n)))
+
+"""
+
+Return a list of complementary Bell numbers of length ``len``.
+"""
 L000587(len) = [V000587(n) for n in 0:len-1]
 
-# A156289 Triangle read by rows: T(n,k) is the number of end rhyme patterns of a poem of an even number of lines (2n) with 1<=k<=n evenly rhymed sounds.
-L156289(n) = ExpCoeffs(OrdSetPart(2, n))
-# A005046 Number of partitions of a 2n-set into even blocks.
-V005046(n) = sum(ExpCoeffs(OrdSetPart(2, n)))
+"""
+
+Return the number of end rhyme patterns of a poem of an even number of lines.
+"""
+L156289(n) = ExpCoeffs(OrderedSetPartitions(2, n))
+
+"""
+
+Return the number of partitions of a 2n-set into even blocks.
+"""
+V005046(n) = sum(ExpCoeffs(OrderedSetPartitions(2, n)))
+
+"""
+
+Return a list of the number of partitions of even sized sets into even blocks.
+"""
 L005046(len) = [V005046(n) for n in 0:len-1]
-#A260884 Number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
-V260884(n) = sum(AltExpCoeffs(OrdSetPart(2, n)))
+
+"""
+
+Return the number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
+"""
+V260884(n) = sum(AltExpCoeffs(OrderedSetPartitions(2, n)))
+
+"""
+
+"""
 L260884(len) = [V260884(n) for n in 0:len-1]
 
-# A291451 Triangle read by rows, expansion of e.g.f. exp(x*(exp(z)/3 + 2*exp(-z/2)* cos(z*sqrt(3)/2)/3 - 1)), nonzero coefficients of z.
-L291451(n) = ExpCoeffs(OrdSetPart(3, n))
-# A291973 a(n) = (3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
-V291973(n) = sum(ExpCoeffs(OrdSetPart(3, n)))
+"""
+
+Return the number of set partitions of type 3.
+"""
+L291451(n) = ExpCoeffs(OrderedSetPartitions(3, n))
+
+
+"""
+
+ A291973 a(n) = (3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
+"""
+V291973(n) = sum(ExpCoeffs(OrderedSetPartitions(3, n)))
 L291973(len) = [V291973(n) for n in 0:len-1]
-# A291974 a(n) = (3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
-V291974(n) = sum(AltExpCoeffs(OrdSetPart(3, n)))
+
+"""
+A291974 a(n) = (3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
+"""
+V291974(n) = sum(AltExpCoeffs(OrderedSetPartitions(3, n)))
+
+"""
+
+"""
 L291974(len) = [V291974(n) for n in 0:len-1]
 
-#L025035(len) = Diagonal(n -> OrdSetPart(3, n), len)
-#X025035(len) = Diagonal(n -> CoeffExp(OrdSetPart(3, n)), len)
+"""
 
-# A291452 Triangle read by rows, expansion of e.g.f. exp(x*(cos(z) + cosh(z) - 2)/2), nonzero coefficients of z.
-L291452(n) = ExpCoeffs(OrdSetPart(4, n))
-# A291975 a(n) = (4*n)! * [z^(4*n)] exp((cos(z) + cosh(z))/2 - 1).
-V291975(n) = sum(ExpCoeffs(OrdSetPart(4, n)))
+A291452 Triangle read by rows, expansion of e.g.f. exp(x*(cos(z) + cosh(z) - 2)/2), nonzero coefficients of z.
+"""
+L291452(n) = ExpCoeffs(OrderedSetPartitions(4, n))
+
+"""
+
+A291975 a(n) = (4*n)! * [z^(4*n)] exp((cos(z) + cosh(z))/2 - 1).
+"""
+V291975(n) = sum(ExpCoeffs(OrderedSetPartitions(4, n)))
+
+"""
+
+"""
 L291975(len) = [V291975(n) for n in 0:len-1]
-# A291976	a(n) = (4*n)! * [z^(4*n)] exp(1 - (cos(z) + cosh(z))/2).
-V291976(n) = sum(AltExpCoeffs(OrdSetPart(4, n)))
+
+"""
+
+A291976	a(n) = (4*n)! * [z^(4*n)] exp(1 - (cos(z) + cosh(z))/2).
+"""
+V291976(n) = sum(AltExpCoeffs(OrderedSetPartitions(4, n)))
+
+"""
+
+"""
 L291976(len) = [V291976(n) for n in 0:len-1]
+
+#L025035(len) = Diagonal(n -> OrderedSetPartitions(3, n), len)
+#X025035(len) = Diagonal(n -> CoeffExp(OrderedSetPartitions(3, n)), len)
 
 
 #START-TEST-########################################################
@@ -161,7 +223,7 @@ using Test, SeqTests, SeqUtils
 
 function test()
 
-    @testset "OrdSetPartitionsMType" begin
+    @testset "OrderedSetPartitionsitionsMType" begin
         @test string(P097805(3)) == "x^3+2*x^2+x"
         @test L097805(3) == [0, 1, 2, 1]
         @test TL097805(3, 5) == [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 3, 3, 1]]
@@ -195,9 +257,9 @@ function test()
         @test L028296(7) == [1, -1, 5, -61, 1385, -50521, 2702765]
         @test L002115(7) == [1, -1, 19, -1513, 315523, -136085041, 105261234643]
         @test L211212(6) == [1, -1, 69, -33661, 60376809, -288294050521]
+    end
 
-        # -------------------------------------------------------------------
-
+    @testset "SetPartitionsMType" begin
         @test L156289(5) == [0, 1, 255, 2205, 3150, 945]
         @test L156289(6) == [0, 1, 1023, 21120, 65835, 51975, 10395]
         @test L291451(5) == [0, 1, 5460, 260260, 1401400, 1401400]
@@ -217,10 +279,10 @@ end
 
 function demo()
     for m in 1:4, n in 0:6
-        Coeffs(OrdSetPart(m, n)) |> Println
+        Coeffs(OrderedSetPartitions(m, n)) |> Println
     end
     for m in 1:4, n in 0:6
-        ExpCoeffs(OrdSetPart(m, n)) |> Println
+        ExpCoeffs(OrderedSetPartitions(m, n)) |> Println
     end
 end
 
