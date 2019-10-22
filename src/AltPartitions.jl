@@ -10,9 +10,7 @@ export V026791, V080577
 
 """
 
-Two alternative implementations of integer partitions.
-The first one implements the 'visit-pattern' in Fortran style.
-Compared to the implementation in JuliaMath/Combinatorics:
+Two alternative implementations of integer partitions. The first one implements the 'visit-pattern' in Fortran style. Compared to the implementation in JuliaMath/Combinatorics:
 
 For n = 50 the benchmark shows:
 
@@ -26,9 +24,7 @@ For n = 100 the benchmark shows:
 
 Our function is slower but the Combinatorics function takes vastly more space.
 
-In the second alternative implementation the representation of the partitions
-for fixed n is a weakly increasing lists ordered lexicographicaly. It has a
-nice algorithm implemented directly (i.e. without iteration).
+In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographicaly. It has a nice algorithm implemented directly (i.e. without iteration).
 
 * Partition, V080577, V026791
 """
@@ -97,9 +93,7 @@ Return the integer partitions of ``n`` in graded reverse lexicographic order, th
 V080577(n) = NEXPAR(n, println)
 
 """
-Jerome Kelleher: "... developed for my PhD thesis ... We can generate integer
-partitions much more effectively [.. and much easier ..] if we encode them as
-ascending compositions rather than the conventional descending compositions."
+Jerome Kelleher: "... developed for my PhD thesis ... We can generate integer partitions much more effectively [.. and much easier ..] if we encode them as ascending compositions rather than the conventional descending compositions."
 http://jeromekelleher.net/category/combinatorics.html
 """
 function partitions(n::Int)

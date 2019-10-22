@@ -235,7 +235,7 @@ function test()
 end
 
 function demo()
-    oeis_writebfile("A000290", n -> n * n, 0:100)
+    oeis_writebfile("A000290", n -> n * n, 0:10)
     bfilepath = joinpath(datadir, "b000290.txt")
     oeis_readbfile(bfilepath)
 

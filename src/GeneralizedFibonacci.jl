@@ -11,10 +11,8 @@ export Multinacci, V309896, V006053, V188021, V231181
 
 """
 
-The classical Fibonacci numbers are exported from the module Fibonacci.
-See I000045, F000045, L000045, V000045, R000045 and is000045.
-Fibonacci(n) is defined as the number of compositions of n with no
-part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
+* The classical Fibonacci numbers are exported from the module Fibonacci. See I000045, F000045, L000045, V000045, R000045 and is000045.
+* Fibonacci(n) is defined as the number of compositions of n with no part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
 
 [m\n] 0  1  2   3   4   5    6    7     8     9    10    11
 ----------------------------------------------------------------

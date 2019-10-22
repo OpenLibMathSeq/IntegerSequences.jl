@@ -84,8 +84,7 @@ L213384(len::Int) = JacobiTheta4Powers(len, 3)
 
 """
 
-Number of ways of writing a nonnegative integer n as a sum
-of 4 squares.
+Number of ways of writing a nonnegative integer n as a sum of 4 squares.
 """
 L000118(len::Int) = JacobiTheta3Powers(len, 4)
 
@@ -97,29 +96,25 @@ L096727(len::Int) = JacobiTheta4Powers(len, 4)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 5 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 5 squares.
 """
 L000132(len::Int) = JacobiTheta3Powers(len, 5)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 6 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 6 squares.
 """
 L000141(len::Int) = JacobiTheta3Powers(len, 6)
 
 """
 
-Return the nnumber of ways of writing a nonnegative integer n as a sum
-of 7 squares.
+Return the nnumber of ways of writing a nonnegative integer n as a sum of 7 squares.
 """
 L008451(len::Int) = JacobiTheta3Powers(len, 7)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 8 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 8 squares.
 """
 L000143(len::Int) = JacobiTheta3Powers(len, 8)
 
@@ -131,50 +126,43 @@ L035016(len::Int) = JacobiTheta4Powers(len, 8)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 9 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 9 squares.
 """
 L008452(len::Int) = JacobiTheta3Powers(len, 9)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 10 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 10 squares.
 """
 L000144(len::Int) = JacobiTheta3Powers(len, 10)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 11 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 11 squares.
 """
 L008453(len::Int) = JacobiTheta3Powers(len, 11)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 12 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 12 squares.
 """
 L000145(len::Int) = JacobiTheta3Powers(len, 12)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 13 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 13 squares.
 """
 L276285(len::Int) = JacobiTheta3Powers(len, 13)
 
 """
 
-Return the number of ways of writing a nonnegative integer n as a sum
-of 14 squares.
+Return the number of ways of writing a nonnegative integer n as a sum of 14 squares.
 """
 L276286(len::Int) = JacobiTheta3Powers(len, 14)
 
 """
 
-Return the nnumber of ways of writing a nonnegative integer n as a sum
-of 15 squares.
+Return the nnumber of ways of writing a nonnegative integer n as a sum of 15 squares.
 """
 L276287(len::Int) = JacobiTheta3Powers(len, 15)
 

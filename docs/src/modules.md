@@ -9,9 +9,7 @@
    🔶  [AltPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/AltPartitions.jl)
 
 
-Two alternative implementations of integer partitions.
-The first one implements the 'visit-pattern' in Fortran style.
-Compared to the implementation in JuliaMath/Combinatorics:
+Two alternative implementations of integer partitions. The first one implements the 'visit-pattern' in Fortran style. Compared to the implementation in JuliaMath/Combinatorics:
 
 For n = 50 the benchmark shows:
 
@@ -25,9 +23,7 @@ For n = 100 the benchmark shows:
 
 Our function is slower but the Combinatorics function takes vastly more space.
 
-In the second alternative implementation the representation of the partitions
-for fixed n is a weakly increasing lists ordered lexicographicaly. It has a
-nice algorithm implemented directly (i.e. without iteration).
+In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographicaly. It has a nice algorithm implemented directly (i.e. without iteration).
 
 * Partition, V080577, V026791
 
@@ -198,10 +194,8 @@ P. Luschny, [Generalized Binomial](http://oeis.org/wiki/User:Peter_Luschny/Exten
    🔶  [GeneralizedFibonacci](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/GeneralizedFibonacci.jl)
 
 
-The classical Fibonacci numbers are exported from the module Fibonacci.
-See I000045, F000045, L000045, V000045, R000045 and is000045.
-Fibonacci(n) is defined as the number of compositions of n with no
-part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
+* The classical Fibonacci numbers are exported from the module Fibonacci. See I000045, F000045, L000045, V000045, R000045 and is000045.
+* Fibonacci(n) is defined as the number of compositions of n with no part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
 
 [m\n] 0  1  2   3   4   5    6    7     8     9    10    11
 ----------------------------------------------------------------
@@ -396,20 +390,16 @@ The generating functions of various combinatorial and number-theoretic functions
 
 
 * SetPartitions(s::AbstractVector)
-Return an iterator over all set partitions of the elements of the array
-``s``, represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of the array ``s``, represented as arrays of arrays.
 
 * SetPartitions(n::Int)
-Return an iterator over all set partitions of the elements of the array
-``[1,2,...,n]``, represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of the array ``[1,2,...,n]``, represented as arrays of arrays.
 
 * SetPartitions(s::AbstractVector, m::Int)
-Return all set partitions of the elements of the array ``s`` into exactly
-``m`` subsets, represented as arrays of arrays.
+Return all set partitions of the elements of the array ``s`` into exactly ``m`` subsets, represented as arrays of arrays.
 
 * SetPartitions(n::Int, m::Int)
-Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into
-exactly ``m`` subsets, represented as arrays of arrays.
+Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into exactly ``m`` subsets, represented as arrays of arrays.
 
 * SetNumber(n::Int)
 Return the numbers of partitions of an ``n``-set into nonempty subsets.

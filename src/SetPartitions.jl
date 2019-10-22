@@ -12,20 +12,16 @@ export SetPartitions, SetNumber
 """
 
 * SetPartitions(s::AbstractVector)
-Return an iterator over all set partitions of the elements of the array
-``s``, represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of the array ``s``, represented as arrays of arrays.
 
 * SetPartitions(n::Int)
-Return an iterator over all set partitions of the elements of the array
-``[1,2,...,n]``, represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of the array ``[1,2,...,n]``, represented as arrays of arrays.
 
 * SetPartitions(s::AbstractVector, m::Int)
-Return all set partitions of the elements of the array ``s`` into exactly
-``m`` subsets, represented as arrays of arrays.
+Return all set partitions of the elements of the array ``s`` into exactly ``m`` subsets, represented as arrays of arrays.
 
 * SetPartitions(n::Int, m::Int)
-Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into
-exactly ``m`` subsets, represented as arrays of arrays.
+Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into exactly ``m`` subsets, represented as arrays of arrays.
 
 * SetNumber(n::Int)
 Return the numbers of partitions of an ``n``-set into nonempty subsets.
@@ -90,8 +86,7 @@ end
 
 """
 
-Return an iterator over all set partitions of the elements of an array ``s``,
-represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of an array ``s``, represented as arrays of arrays.
 """
 function SetPartitions(s::AbstractVector)
     # The only partition of the empty set is the set that contains the empty set.
@@ -101,8 +96,7 @@ end
 
 """
 
-Return an iterator over all set partitions of the elements of the array
-``[1,2,...,n]``, represented as arrays of arrays.
+Return an iterator over all set partitions of the elements of the array ``[1,2,...,n]``, represented as arrays of arrays.
 """
 function SetPartitions(n::Int)
     n < 0 && throw(DomainError(n), "n must be nonnegative")
@@ -122,8 +116,7 @@ Base.eltype(p::KSetIterator) = Vector{Vector{eltype(p.s)}}
 
 """
 
-Return all set partitions of the elements of an array ``s`` into exactly ``m``
-subsets, represented as arrays of arrays.
+Return all set partitions of the elements of an array ``s`` into exactly ``m`` subsets, represented as arrays of arrays.
 """
 function SetPartitions(s::AbstractVector, m::Int)
     # The only partition of the empty set is the set that contains the empty set.
@@ -204,8 +197,7 @@ end
 
 """
 
-Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into
-exactly ``m`` subsets, represented as arrays of arrays.
+Return all set partitions of the elements of the array ``{1,2,3,...,n}`` into exactly ``m`` subsets, represented as arrays of arrays.
 """
 function SetPartitions(n::Int, m::Int)
     if (n < 0) || (m < 0)
