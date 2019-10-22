@@ -191,6 +191,7 @@ L281480(len) = Central(n -> OrderedSetPolynomials(4, n), len)
 Return the number of the ordered set partitions of shape type ``2``.
 """
 L094088(len) = CoeffSum(n -> OrderedSetPolynomials(2, n), len)
+
 """
 
 Return the number of the ordered set partitions of shape type ``3``.
@@ -207,11 +208,13 @@ L243665(len) = CoeffSum(n -> OrderedSetPolynomials(4, n), len)
 Return the alternating row sums of the ordered set polynomials of shape type ``2``.
 """
 L028296(len) = CoeffAltSum(n -> OrderedSetPolynomials(2, n), len)
+
 """
 
 Return the alternating row sums of the ordered set polynomials of shape type ``3``.
 """
 L002115(len) = CoeffAltSum(n -> OrderedSetPolynomials(3, n), len)
+
 """
 
 Return the alternating row sums of the ordered set polynomials of shape type ``4``.
@@ -246,7 +249,7 @@ L156289(n) = EgfCoeffs(OrderedSetPolynomials(2, n))
 
 """
 
-Return the number of partitions of a 2n-set into even blocks.
+Return the number of partitions of a ``2n``-set into even blocks.
 """
 V005046(n) = sum(EgfCoeffs(OrderedSetPolynomials(2, n)))
 

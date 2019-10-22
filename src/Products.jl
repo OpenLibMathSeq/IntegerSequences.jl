@@ -70,7 +70,7 @@ Product(A) = ∏(A)
 
 """
 
-Return frac``{n!} {⌊n/2⌋!}``.
+Return ``\frac{n!}{⌊n/2⌋!}``.
 """
 V081125(n::Int) = ∏(div(n, 2) + 1, n)
 

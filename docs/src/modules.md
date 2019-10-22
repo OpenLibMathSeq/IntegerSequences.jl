@@ -97,9 +97,17 @@ Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/Binar
    🔶  [BooleanOperations](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BooleanOperations.jl)
 
 
-The 16 boolean operations "FALSE", "AND", "DIF", "PRJ1", "CNIMP", "PRJ2", "XOR", "OR", "NOR", "EQV", "NEG2", "CIMP", "NEG1", "IMP", "NAND", "TRUE" evaluated bitwise on the binary expansions of integers.
+The 16 boolean operations
 
-The main function is Bits(op::String, n::Int, k::Int, algo=max) where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
+* FALSE, AND, DIF, PRJ1, CNIMP, PRJ2, XOR, OR, NOR, EQV, NEG2, CIMP, NEG1, IMP, NAND, TRUE
+
+evaluated bitwise on the binary expansions of integers.
+
+The main function is
+
+* Bits(op::String, n::Int, k::Int, algo=max)
+
+where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
 
 * Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
 
@@ -195,19 +203,31 @@ P. Luschny, [Generalized Binomial](http://oeis.org/wiki/User:Peter_Luschny/Exten
 
 
 * The classical Fibonacci numbers are exported from the module Fibonacci. See I000045, F000045, L000045, V000045, R000045 and is000045.
+
 * Fibonacci(n) is defined as the number of compositions of n with no part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
 
 [m\n] 0  1  2   3   4   5    6    7     8     9    10    11
+
 ----------------------------------------------------------------
+
 [0]   1, 0, 0,  0,  0,  0,   0,   0,    0,    0,    0,    0, ...
+
 [1]   1, 1, 1,  1,  1,  1,   1,   1,    1,    1,    1,    1, ...
+
 [2]   1, 1, 2,  3,  5,  8,  13,  21,   34,   55,   89,  144, ...
+
 [3]   1, 1, 3,  4,  9, 14,  28,  47,   89,  155,  286,  507, ...
+
 [4]   1, 1, 4,  5, 14, 20,  48,  75,  165,  274,  571,  988, ...
+
 [5]   1, 1, 5,  6, 20, 27,  75, 110,  275,  429, 1001, 1637, ...
+
 [6]   1, 1, 6,  7, 27, 35, 110, 154,  429,  637, 1638, 2548, ...
+
 [7]   1, 1, 7,  8, 35, 44, 154, 208,  637,  910, 2548, 3808, ...
+
 [8]   1, 1, 8,  9, 44, 54, 208, 273,  910, 1260, 3808, 5508, ...
+
 [9]   1, 1, 9, 10, 54, 65, 273, 350, 1260, 1700, 5508, 7752, ...
 
 *  Multinacci, V309896, V006053, V188021, V231181
@@ -257,16 +277,16 @@ The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``
 
 * V277233(n)/4^V005187(n) are the Landau constants. These constants are defined as G(n) = Sum_{j=0..n} g(j)^2 with the normalized central binomial
 
-``g(n) = (2*n)! / (2^n*n!)^2 = V001790(n)/V046161(n).``
+``g(n) = (2n)! / (2^n n!)^2 = V001790(n)/V046161(n).``
 
 * V327495(n)/4^V327492(n) are the rationals considered here. These numbers are defined as H(n) = Sum_{j=0..n} h(j)^2 with the normalized swinging factorial
 
-``h(n) = n! / (2^n*floor(n/2)!)^2 = V163590(n)/V327493(n).``
+``h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n)/V327493(n).``
 
 * In particular, this means that we have the pure integer representations
 
-``V277233(n) = Sum_{k=0..n}(V001790(k)*(2^(V005187(n) - V005187(k))))^2;``
-``V327495(n) = Sum_{k=0..n}(V163590(k)*(2^(V327492(n) - V327492(k))))^2.``
+``V277233(n) = ∑_{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;``
+``V327495(n) = ∑_{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.``
 
 * V000120, V102376, V011371, V120738, V060818, V124399, V056982, V001511, V046161, V001316, V163590, V327492, V005187, V001790, V277233, V327495, V327493, V327491, V007814, V001803, V327494, V006519, V000265, Bin, BitCount, EvenPart, OddPart
 
@@ -406,6 +426,33 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
+
+   🔶  [SetPartitionsMType](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsMType.jl)
+
+
+## Ordered set partitions of m-type
+
+| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
+|----|-------|-------|-------|-------|-------|
+| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
+| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
+| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
+| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
+| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
+| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
+
+## Set partitions of m-type
+
+| type  | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
+|-------|-------|-------|-------|-------|-------|
+| by shape | [A000012](https://oeis.org/A000012) | [A036040](https://oeis.org/A036040) | [A257490](https://oeis.org/A257490) | [A327003](https://oeis.org/A327003) | [A327004](https://oeis.org/A327004) |
+| by length | [A008284](https://oeis.org/A008284) | [A048993](https://oeis.org/A048993) | [A156289](https://oeis.org/A156289) | [A291451](https://oeis.org/A291451) | [A291452](https://oeis.org/A291452) |
+| diagonal | [A000012](https://oeis.org/A000012) | [A000012](https://oeis.org/A000012) | [A001147](https://oeis.org/A001147) | [A025035](https://oeis.org/A025035) | [A025036](https://oeis.org/A025036) |
+| row sum | [A000041](https://oeis.org/A000041) | [A000110](https://oeis.org/A000110) | [A005046](https://oeis.org/A005046) | [A291973](https://oeis.org/A291973) | [A291975](https://oeis.org/A291975) |
+| alt row sum | [A081362](https://oeis.org/A081362) | [A000587](https://oeis.org/A000587) | [A260884](https://oeis.org/A260884) | [A291974](https://oeis.org/A291974) | [A291976](https://oeis.org/A291976) |
+| central | [A000041](https://oeis.org/A000041) | [A007820](https://oeis.org/A007820) | [A327416](https://oeis.org/A327416) | [A327417](https://oeis.org/A327417) | [A327418](https://oeis.org/A327418) |
+
+See also [A260876](https://oeis.org/A260876).
 
    🔶  [StirlingLahNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/StirlingLahNumbers.jl)
 

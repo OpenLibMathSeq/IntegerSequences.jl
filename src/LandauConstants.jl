@@ -15,16 +15,16 @@ export V006519, V000265, Bin, BitCount, EvenPart, OddPart
 
 * V277233(n)/4^V005187(n) are the Landau constants. These constants are defined as G(n) = Sum_{j=0..n} g(j)^2 with the normalized central binomial
 
-    ``g(n) = (2*n)! / (2^n*n!)^2 = V001790(n)/V046161(n).``
+    ``g(n) = (2n)! / (2^n n!)^2 = V001790(n)/V046161(n).``
 
 * V327495(n)/4^V327492(n) are the rationals considered here. These numbers are defined as H(n) = Sum_{j=0..n} h(j)^2 with the normalized swinging factorial
 
-    ``h(n) = n! / (2^n*floor(n/2)!)^2 = V163590(n)/V327493(n).``
+    ``h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n)/V327493(n).``
 
 * In particular, this means that we have the pure integer representations
 
-    ``V277233(n) = Sum_{k=0..n}(V001790(k)*(2^(V005187(n) - V005187(k))))^2;``
-    ``V327495(n) = Sum_{k=0..n}(V163590(k)*(2^(V327492(n) - V327492(k))))^2.``
+    ``V277233(n) = ∑_{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;``
+    ``V327495(n) = ∑_{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.``
 
 * V000120, V102376, V011371, V120738, V060818, V124399, V056982, V001511, V046161, V001316, V163590, V327492, V005187, V001790, V277233, V327495, V327493, V327491, V007814, V001803, V327494, V006519, V000265, Bin, BitCount, EvenPart, OddPart
 """
@@ -95,13 +95,13 @@ V327491(n::Int) = Divides(4, n) ? Bin(n) : mod(n, 2) + 1
 
 """
 
-Return ``2n -`` BitCount``(n) + mod(n, 2)``.
+Return ``2n - bc(n) + mod(n, 2)`` where bc(n) is BitCount(n).
 """
 V327492(n::Int) = 2n - BitCount(n) + mod(n, 2)
 
 """
 
-Return ``2^(2n - ``BitCount``(n) + mod(n, 2))``.
+Return ``2^{2n - bc(n) + mod(n, 2)}`` where bc(n) is BitCount(n).
 """
 V327493(n::Int) = 2^(2n - BitCount(n) + mod(n, 2))
 #V327493(n::Int) = 2^V327492(n)
@@ -163,33 +163,33 @@ V120738(n::Int) = 4n - BitCount(n)
 
 """
 
-Return ``2^(n - ``BitCount``(n))``.
+Return ``2^{n - bc(n)}`` where bc(n) is BitCount(n).
 """
 V060818(n::Int) = 2^(n - BitCount(n))
 
 """
 
-Return ``2^(2n - ``BitCount``(n))``.
+Return ``2^{2n - bc(n)}`` where bc(n) is BitCount(n).
 """
 V046161(n::Int) = 2^(2n - BitCount(n))
 # V046161(n) = 2^V005187(n)
 
 """
 
-Return ``4^(n - ``BitCount``(n))``.
+Return ``4^{n - bc(n)}`` where bc(n) is BitCount(n).
 """
 V124399(n::Int) = 4^(n - BitCount(n))
 
 """
 
-Return ``4^(2n - ``BitCount``(n))``.
+Return ``4^{2n - bc(n)}`` where bc(n) is BitCount(n).
 """
 V056982(n::Int) = 4^(2n - BitCount(n))
 # V056982(n) = 4^V005187(n)
 
 """
 
-Return the numerator of ``Sum_{j=0..n} j!/(2^j floor(j/2)!)^2``.
+Return the numerator of ``∑_{j=0..n} j!/(2^j ⌊j/2⌋!)^2``.
 """
 V327494(n) = sum(<<(V163590(k), V327492(n) - V327492(k)) for k in 0:n)
 
