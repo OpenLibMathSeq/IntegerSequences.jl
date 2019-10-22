@@ -69,19 +69,19 @@ function sortnames()
     dict = Dict{Int64,Array{String}}()
 
     # prefixes
-    # C => Channel
+    # C => Coroutine (channel)
     # F => Filter (all below n)
     # G => Generating function
     # I => Iteration
     # L => List (array based)
-    # M => Matrix
-    # P => Polynomial
-    # R => RealFunction
+    # M => Matrix (2-dim square)
+    # P => Polynomial (over ZZ or QQ)
+    # R => RealFunction (Float64)
     # S => Staircase (iteration)
     # T => Triangle (iteration)
     # TL => Triangle (triangular array, list of rows)
     # TF => Triangle (flat-list array)
-    # V => Value
+    # V => Value (single term)
     # is => is a (predicate), boolean
 
     for l in eachline(index, keep = true)

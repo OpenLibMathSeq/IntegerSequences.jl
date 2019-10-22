@@ -206,29 +206,17 @@ P. Luschny, [Generalized Binomial](http://oeis.org/wiki/User:Peter_Luschny/Exten
 
 * Fibonacci(n) is defined as the number of compositions of n with no part equal to 1. They are the special case Fibonacci(n) = Multinacci(2, n).
 
+```
 [m\n] 0  1  2   3   4   5    6    7     8     9    10    11
-
 ----------------------------------------------------------------
-
 [0]   1, 0, 0,  0,  0,  0,   0,   0,    0,    0,    0,    0, ...
-
 [1]   1, 1, 1,  1,  1,  1,   1,   1,    1,    1,    1,    1, ...
-
 [2]   1, 1, 2,  3,  5,  8,  13,  21,   34,   55,   89,  144, ...
-
 [3]   1, 1, 3,  4,  9, 14,  28,  47,   89,  155,  286,  507, ...
-
 [4]   1, 1, 4,  5, 14, 20,  48,  75,  165,  274,  571,  988, ...
-
 [5]   1, 1, 5,  6, 20, 27,  75, 110,  275,  429, 1001, 1637, ...
-
 [6]   1, 1, 6,  7, 27, 35, 110, 154,  429,  637, 1638, 2548, ...
-
-[7]   1, 1, 7,  8, 35, 44, 154, 208,  637,  910, 2548, 3808, ...
-
-[8]   1, 1, 8,  9, 44, 54, 208, 273,  910, 1260, 3808, 5508, ...
-
-[9]   1, 1, 9, 10, 54, 65, 273, 350, 1260, 1700, 5508, 7752, ...
+``` 
 
 *  Multinacci, V309896, V006053, V188021, V231181
 
@@ -275,18 +263,19 @@ The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``
    🔶  [LandauConstants](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/LandauConstants.jl)
 
 
-* V277233(n)/4^V005187(n) are the Landau constants. These constants are defined as G(n) = Sum_{j=0..n} g(j)^2 with the normalized central binomial
-
-``g(n) = (2n)! / (2^n n!)^2 = V001790(n)/V046161(n).``
-
-* V327495(n)/4^V327492(n) are the rationals considered here. These numbers are defined as H(n) = Sum_{j=0..n} h(j)^2 with the normalized swinging factorial
-
-``h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n)/V327493(n).``
-
+* V277233(n) / 4^V005187(n) are the Landau constants. These constants are defined as G(n)`` = \sum_{j=0..n} g(j)^2`` with the normalized central binomial
+```
+g(n) = (2n)! / (2^n n!)^2 = V001790(n) / V046161(n).
+```
+* V327495(n) / 4^V327492(n) are the rationals considered here. These numbers are defined as H(n)`` = \sum_{j=0..n} h(j)^2`` with the normalized swinging factorial
+```
+h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n) / V327493(n).
+```
 * In particular, this means that we have the pure integer representations
-
-``V277233(n) = ∑_{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;``
-``V327495(n) = ∑_{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.``
+```
+V277233(n) = ∑{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;
+V327495(n) = ∑{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.
+```
 
 * V000120, V102376, V011371, V120738, V060818, V124399, V056982, V001511, V046161, V001316, V163590, V327492, V005187, V001790, V277233, V327495, V327493, V327491, V007814, V001803, V327494, V006519, V000265, Bin, BitCount, EvenPart, OddPart
 
@@ -321,11 +310,13 @@ A collection of utilities for handling OEIS related tasks.
 
 Mostly convenient functions to deal with polynomials as often used in connection with ordinary and exponential generating functions. The naming scheme used is roughly described by:
 
-* Poly       <-> Coeffs
-* AltPoly    <-> Poly(AltCoeffs)
-* EgfPoly    <-> Poly(EgfCoeffs)
-* OgfPoly    <-> Poly(OgfCoeffs)
-* AltEgfPoly <-> Poly(AltEgfCoeffs)
+```
+Poly       <-> Coeffs
+AltPoly    <-> Poly(AltCoeffs)
+EgfPoly    <-> Poly(EgfCoeffs)
+OgfPoly    <-> Poly(OgfCoeffs)
+AltEgfPoly <-> Poly(AltEgfCoeffs)
+```
 
 Here 'Alt' stands for alternating, 'Egf' for exponential generating function, 'Ogf' for ordinary generating function.
 
@@ -390,9 +381,7 @@ The Riordan product is a map a, b ↦ [a, b] associating two formal power series
 
 Some exactly solvable self-convolutive recurrences.
 
-* SelfConvRec, L000698, L001710, L003319, L005411, L005412, L006012, L006318
-L047891, L062980, L082298, L082301, L082302, L105523, L107716
-L111529, L111530, L111531, L111532, L111533, L146559, L167872
+* SelfConvRec, L000698, L001710, L003319, L005411, L005412, L006012, L006318, L047891, L062980, L082298, L082301, L082302, L105523, L107716, L111529, L111530, L111531, L111532, L111533, L146559, L167872
 
    🔶  [SeqUtils](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SeqUtils.jl)
 

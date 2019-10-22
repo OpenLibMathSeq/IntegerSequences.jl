@@ -9,18 +9,19 @@ We use the following prefixes to indicate the type of the function.
 Prefix | Function Type
 ------ | -------------
 C  | Coroutine (channel)
-F  | Filter (not exceeding n)
+F  | Filter (all below n)
 G  | Generating function
-I  | Iteration (over n terms)
+I  | Iteration
 L  | List (array based)
 M  | Matrix (2-dim square)
-R  | Real function (Float64)
+P  | Polynomial (over ZZ or QQ)
+R  | RealFunction (Float64)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
-TA | Triangle (triangular array)
-TL | Triangle (flat-list array)
+TL | Triangle (triangular array, list of rows)
+TF | Triangle (flat-list array)
 V  | Value (single term)
-is | is a member (predicate query)
+is | is a (predicate), boolean
 
 These conventions can be seen as an application programming interface
 which we explain by three examples.

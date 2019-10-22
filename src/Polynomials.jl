@@ -17,11 +17,13 @@ export Diagonal, Central, EgfCoeffs, AltEgfCoeffs, ReflectPoly
 
 Mostly convenient functions to deal with polynomials as often used in connection with ordinary and exponential generating functions. The naming scheme used is roughly described by:
 
-* Poly       <-> Coeffs
-* AltPoly    <-> Poly(AltCoeffs)
-* EgfPoly    <-> Poly(EgfCoeffs)
-* OgfPoly    <-> Poly(OgfCoeffs)
-* AltEgfPoly <-> Poly(AltEgfCoeffs)
+```
+   Poly       <-> Coeffs
+   AltPoly    <-> Poly(AltCoeffs)
+   EgfPoly    <-> Poly(EgfCoeffs)
+   OgfPoly    <-> Poly(OgfCoeffs)
+   AltEgfPoly <-> Poly(AltEgfCoeffs)
+```
 
 Here 'Alt' stands for alternating, 'Egf' for exponential generating function, 'Ogf' for ordinary generating function.
 

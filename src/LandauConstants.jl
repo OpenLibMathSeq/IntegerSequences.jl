@@ -13,18 +13,19 @@ export V006519, V000265, Bin, BitCount, EvenPart, OddPart
 
 """
 
-* V277233(n)/4^V005187(n) are the Landau constants. These constants are defined as G(n) = Sum_{j=0..n} g(j)^2 with the normalized central binomial
-
-    ``g(n) = (2n)! / (2^n n!)^2 = V001790(n)/V046161(n).``
-
-* V327495(n)/4^V327492(n) are the rationals considered here. These numbers are defined as H(n) = Sum_{j=0..n} h(j)^2 with the normalized swinging factorial
-
-    ``h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n)/V327493(n).``
-
+* V277233(n) / 4^V005187(n) are the Landau constants. These constants are defined as G(n)`` = \sum_{j=0..n} g(j)^2`` with the normalized central binomial
+```
+    g(n) = (2n)! / (2^n n!)^2 = V001790(n) / V046161(n).
+```
+* V327495(n) / 4^V327492(n) are the rationals considered here. These numbers are defined as H(n)`` = \sum_{j=0..n} h(j)^2`` with the normalized swinging factorial
+```
+    h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n) / V327493(n).
+```
 * In particular, this means that we have the pure integer representations
-
-    ``V277233(n) = ∑_{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;``
-    ``V327495(n) = ∑_{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.``
+```
+    V277233(n) = ∑{k=0..n}(V001790(k) 2^{V005187(n) - V005187(k)})^2;
+    V327495(n) = ∑{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.
+```
 
 * V000120, V102376, V011371, V120738, V060818, V124399, V056982, V001511, V046161, V001316, V163590, V327492, V005187, V001790, V277233, V327495, V327493, V327491, V007814, V001803, V327494, V006519, V000265, Bin, BitCount, EvenPart, OddPart
 """

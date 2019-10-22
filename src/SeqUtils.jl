@@ -113,19 +113,19 @@ end
 
 Valid prefixes to the numerical part of the OEIS A-numbers.
 
-* C => Channel
-* F => Filter (all below n)
-* G => Generating function
-* I => Iteration
-* L => List (array based)
-* M => Matrix
-* P => Polynomial
-* R => RealFunction
-* S => Staircase (iteration)
-* T => Triangle (iteration)
+* C  => Coroutine (channel)
+* F  => Filter (all below n)
+* G  => Generating function
+* I  => Iteration
+* L  => List (array based)
+* M  => Matrix (2-dim square)
+* P  => Polynomial (over ZZ or QQ)
+* R  => RealFunction (Float64)
+* S  => Staircase (list iteration)
+* T  => Triangle (list iteration)
 * TL => Triangle (triangular array, list of rows)
 * TF => Triangle (flat-list array)
-* V => Value
+* V  => Value (single term)
 * is => is a (predicate), boolean
 """
 const ValidPrefixes = ['C', 'F', 'G', 'I', 'L', 'M', 'R', 'S', 'T', 'V']
