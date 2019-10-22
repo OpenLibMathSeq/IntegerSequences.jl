@@ -9,15 +9,23 @@ using Nemo
 # import AbstractAlgebra.lead
 
 export ModulePolynomials
-export Poly, AltPoly, ExpPoly, AltExpPoly
+export Poly, AltPoly, EgfPoly, AltEgfPoly
 export Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs
-export Diagonal, Central, ExpCoeffs, AltExpCoeffs, ReflectPoly
+export Diagonal, Central, EgfCoeffs, AltEgfCoeffs, ReflectPoly
 
 """
 
-Some utility functions for computing with polynomials.
+Mostly convenient functions to deal with polynomials as often used in connection with ordinary and exponential generating functions. The naming scheme used is roughly described by:
 
-* Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs, Diagonal, Central, ExpCoeffs, AltExpCoeffs, Poly, AltPoly, ExpPoly, AltExpPoly, ReflectPoly.
+* Poly       <-> Coeffs
+* AltPoly    <-> Poly(AltCoeffs)
+* EgfPoly    <-> Poly(EgfCoeffs)
+* OgfPoly    <-> Poly(OgfCoeffs)
+* AltEgfPoly <-> Poly(AltEgfCoeffs)
+
+Here 'Alt' stands for alternating, 'Egf' for exponential generating function, 'Ogf' for ordinary generating function.
+
+* Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs, Diagonal, Central, EgfCoeffs, AltEgfCoeffs, Poly, AltPoly, EgfPoly, AltEgfPoly, ReflectPoly.
 """
 const ModulePolynomials = ""
 
@@ -35,15 +43,21 @@ AltCoeffs(p) = [(-1)^k * coeff(p, k) for k in 0:degree(p)]
 
 """
 
-Return the coefficients of the polynomial ``p`` divided by ``k!``.
+Return the coefficients of the polynomial ``p`` multiplied by ``k!``.
 """
-ExpCoeffs(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+OgfCoeffs(p) = [fac(k)*coeff(p, k) for k in 0:degree(p)]
+
+"""
+
+Return the coefficients of the polynomial ``p`` divided by ``k!``. Note that integer division is used.
+"""
+EgfCoeffs(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``(-1)^k*k!``.
 """
-AltExpCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+AltEgfCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k in 0:degree(p)]
 
 """
 
@@ -65,11 +79,20 @@ end
 
 """
 
-Return the polynomial ``p`` with the coefficients C in exponential form (i.e. with c[k]*x^k/k!).
+Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*x^k/k!``. Note that integer division is used.
 """
-function ExpPoly(C)
+function EgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
     sum(div(c, fac(k)) * x^k for (k, c) in enumerate(C))
+end
+
+"""
+
+Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*k!*x^k``.
+"""
+function OgfPoly(C)
+    T, x = PolynomialRing(ZZ, "x")
+    sum(c * fac(k) * x^k for (k, c) in enumerate(C))
 end
 
 """
@@ -84,7 +107,7 @@ AltPoly(p::Nemo.fmpz_poly) = Poly(AltCoeffs(p))
 
 Return the polynomial ``p`` with coefficients in exponential form (i.e. with c[k]*x^k/k!).
 """
-ExpPoly(p::Nemo.fmpz_poly) = Poly(ExpCoeffs(p))
+EgfPoly(p::Nemo.fmpz_poly) = Poly(EgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum(div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
 
@@ -92,7 +115,7 @@ ExpPoly(p::Nemo.fmpz_poly) = Poly(ExpCoeffs(p))
 
 Return the polynomial ``p`` with coefficients in exponential form and alternating signs (i.e. with (-1)^k*c[k]*x^k/k!).
 """
-AltExpPoly(p::Nemo.fmpz_poly) = Poly(AltExpCoeffs(p))
+AltEgfPoly(p::Nemo.fmpz_poly) = Poly(AltEgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum((-1)^k*div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
 
@@ -210,12 +233,12 @@ function demo()
         typeof(q) |> println
         q |> println
         AltPoly(q) |> println
-        ExpPoly(q) |> println
-        AltExpPoly(q) |> println
+        EgfPoly(q) |> println
+        AltEgfPoly(q) |> println
 
-        Coeffs(q) |> println
-        ExpCoeffs(q) |> println
-        AltExpCoeffs(q) |> println
+        Coeffs(q) |> Println
+        EgfCoeffs(q) |> Println
+        AltEgfCoeffs(q) |> Println
 
         CoeffSum(q) |> println
         CoeffAltSum(q) |> println

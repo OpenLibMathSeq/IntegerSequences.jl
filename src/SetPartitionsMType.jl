@@ -23,9 +23,11 @@ export L028296, L002115, L211212, L156289, L291451, L291452
 export L000587, L005046, L260884, L291973, L291974, L291975, L291976
 export V000587, V005046
 
-const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
+"""
 
-function OrderedSetPartitions(m::Int, n::Int)
+Return the polynomial where the coefficients are the number of ordered set partitions of an ``n``-set with shape type ``m``.
+"""
+function OrderedSetPolynomials(m::Int, n::Int)
     R, x = PolynomialRing(ZZ, "x")
     function recP(m, n)
         n == 0 && return R(1)
@@ -35,96 +37,175 @@ function OrderedSetPartitions(m::Int, n::Int)
     end
     recP(m, n)
 end
+const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
 
 """
 
-Return the number of compositions of ``n`` (as a polynomial).
+Return the number of ordered set partitions of an ``n``-set with shape type ``m``.
 """
-P097805(n) = OrderedSetPartitions(0, n)
+OrderedSetPartitions(m::Int, n::Int) = Coeffs(OrderedSetPolynomials(m, n))
 
 """
 
-Return the number of compositions of ``n`` (as a list).
+Return the polynomial where the coefficients are the number of the ordered set partitions of an ``n``-set with shape type ``0``.
 """
-L097805(n) = Coeffs(OrderedSetPartitions(0, n))
+P097805(n) = OrderedSetPolynomials(0, n)
+
+"""
+
+Return the number of ordered set partitions of an ``n``-set which are of shape type ``0``.
+"""
+L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
 
 """
 
 Return the first ``len`` rows of the triangle of compositions of ``n``.
 """
-TL097805(n, len) = Coeffs(n -> OrderedSetPartitions(0, n), len)
+TL097805(n, len) = Coeffs(n -> OrderedSetPolynomials(0, n), len)
 
 """
 
-Return the number of ordered set partitions of ``n`` (as a polynomial).
+Return the polynomial where the coefficients are the number of the ordered set partitions of an ``n``-set which are of shape type ``1``.
 """
-P131689(n) = OrderedSetPartitions(1, n)
+P131689(n) = OrderedSetPolynomials(1, n)
 
 """
 
-Return the number of ordered set partitions of ``n`` (as a list).
+Return the number of ordered set partitions of an ``n``-set which are of shape type ``1``.
 """
-L131689(n) = Coeffs(OrderedSetPartitions(1, n))
+L131689(n) = Coeffs(OrderedSetPolynomials(1, n))
 
 """
 
 Return ``len`` rows of the triangle of ordered set partitions of ``n``.
 """
-TL131689(n, len) = Coeffs(n -> OrderedSetPartitions(1, n), len)
+TL131689(n, len) = Coeffs(n -> OrderedSetPolynomials(1, n), len)
 
 """
 
-Return the number number of ordered set partitions of ``2n`` into even sized blocks (as a polynomial).
+Return the n-th ordered set polynomials of shape type ``2``.
 """
-P241171(n) = OrderedSetPartitions(2, n)
-
-"""
-
-Return the number number of ordered set partitions of ``2n`` into even sized blocks (as a list).
-"""
-L241171(n) = Coeffs(OrderedSetPartitions(2, n))
+P241171(n) = OrderedSetPolynomials(2, n)
 
 """
 
-Return ``len`` rows of the triangle ordered set partitions of ``2n`` into even sized blocks.
+Return the number of ordered set partitions of a ``2n`` set into even sized blocks (as a list).
 """
-TL241171(n, len) = Coeffs(n -> OrderedSetPartitions(2, n), len)
+L241171(n) = Coeffs(OrderedSetPolynomials(2, n))
 
-P278073(n) = OrderedSetPartitions(3, n)
-L278073(n) = Coeffs(OrderedSetPartitions(3, n))
-TL278073(n, len) = Coeffs(n -> OrderedSetPartitions(3, n), len)
+"""
 
-P278074(n) = OrderedSetPartitions(4, n)
-L278074(n) = Coeffs(OrderedSetPartitions(4, n))
-TL278074(n, len) = Coeffs(n -> OrderedSetPartitions(4, n), len)
+Return ``len`` rows of the triangle ordered set partitions of a ``2n`` set into even sized blocks.
+"""
+TL241171(n, len) = Coeffs(n -> OrderedSetPolynomials(2, n), len)
 
-L088218(len) = Central(n -> OrderedSetPartitions(0, n), len)
-L210029(len) = Central(n -> OrderedSetPartitions(1, n), len)
-L281478(len) = Central(n -> OrderedSetPartitions(2, n), len)
-L281479(len) = Central(n -> OrderedSetPartitions(3, n), len)
-L281480(len) = Central(n -> OrderedSetPartitions(4, n), len)
+"""
 
-L094088(len) = CoeffSum(n -> OrderedSetPartitions(2, n), len)
-L243664(len) = CoeffSum(n -> OrderedSetPartitions(3, n), len)
-L243665(len) = CoeffSum(n -> OrderedSetPartitions(4, n), len)
+Return the n-th ordered set polynomials of shape type ``3``.
+"""
+P278073(n) = OrderedSetPolynomials(3, n)
 
-L028296(len) = CoeffAltSum(n -> OrderedSetPartitions(2, n), len)
-L002115(len) = CoeffAltSum(n -> OrderedSetPartitions(3, n), len)
-L211212(len) = CoeffAltSum(n -> OrderedSetPartitions(4, n), len)
+"""
+
+Return the number of ordered set partitions of a ``3n`` set into 3-sized blocks (as a list).
+"""
+L278073(n) = Coeffs(OrderedSetPolynomials(3, n))
+
+"""
+
+Return ``len`` rows of the triangle ordered set partitions of a ``3n`` set into 3-sized blocks.
+"""
+TL278073(n, len) = Coeffs(n -> OrderedSetPolynomials(3, n), len)
+
+"""
+
+Return the n-th ordered set polynomials of shape type ``4``.
+"""
+P278074(n) = OrderedSetPolynomials(4, n)
+
+"""
+
+Return the number of ordered set partitions of a ``4n`` set into 4-sized blocks (as a list).
+"""
+L278074(n) = Coeffs(OrderedSetPolynomials(4, n))
+
+"""
+
+Return ``len`` rows of the triangle ordered set partitions of a ``4n`` set into 4-sized blocks.
+"""
+TL278074(n, len) = Coeffs(n -> OrderedSetPolynomials(4, n), len)
+
+"""
+
+Return the central column of the triangle of the ordered set partitions of shape type ``0``.
+"""
+L088218(len) = Central(n -> OrderedSetPolynomials(0, n), len)
+"""
+
+Return the central column of the triangle of the ordered set partitions of shape type ``1``.
+"""
+L210029(len) = Central(n -> OrderedSetPolynomials(1, n), len)
+"""
+
+Return the central column of the triangle of the ordered set partitions of shape type ``2``.
+"""
+L281478(len) = Central(n -> OrderedSetPolynomials(2, n), len)
+"""
+
+Return the central column of the triangle of the ordered set partitions of shape type ``3``.
+"""
+L281479(len) = Central(n -> OrderedSetPolynomials(3, n), len)
+"""
+
+Return the central column of the triangle of the ordered set partitions of shape type ``4``.
+"""
+L281480(len) = Central(n -> OrderedSetPolynomials(4, n), len)
+
+"""
+
+Return the number of the ordered set partitions of shape type ``2``.
+"""
+L094088(len) = CoeffSum(n -> OrderedSetPolynomials(2, n), len)
+"""
+
+Return the number of the ordered set partitions of shape type ``3``.
+"""
+L243664(len) = CoeffSum(n -> OrderedSetPolynomials(3, n), len)
+"""
+
+Return the number of the ordered set partitions of shape type ``4``.
+"""
+L243665(len) = CoeffSum(n -> OrderedSetPolynomials(4, n), len)
+
+"""
+
+Return the alternating row sums of the ordered set polynomials of shape type ``2``.
+"""
+L028296(len) = CoeffAltSum(n -> OrderedSetPolynomials(2, n), len)
+"""
+
+Return the alternating row sums of the ordered set polynomials of shape type ``3``.
+"""
+L002115(len) = CoeffAltSum(n -> OrderedSetPolynomials(3, n), len)
+"""
+
+Return the alternating row sums of the ordered set polynomials of shape type ``4``.
+"""
+L211212(len) = CoeffAltSum(n -> OrderedSetPolynomials(4, n), len)
 
 # ------------------------------------------------------
 
 #"""
 # Return the Stirling numbers of 2nd kind.
-#"""
-# L048993(n) = CoeffExp(OrderedSetPartitions(1, n))
 # Exported from Module StirlingLahNumbers
+#"""
+# L048993(n) = CoeffExp(OrderedSetPolynomials(1, n))
 
 """
 
 Return the complementary Bell number.
 """
-V000587(n) = sum(AltExpCoeffs(OrderedSetPartitions(1, n)))
+V000587(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(1, n)))
 
 """
 
@@ -136,13 +217,13 @@ L000587(len) = [V000587(n) for n in 0:len-1]
 
 Return the number of end rhyme patterns of a poem of an even number of lines.
 """
-L156289(n) = ExpCoeffs(OrderedSetPartitions(2, n))
+L156289(n) = EgfCoeffs(OrderedSetPolynomials(2, n))
 
 """
 
 Return the number of partitions of a 2n-set into even blocks.
 """
-V005046(n) = sum(ExpCoeffs(OrderedSetPartitions(2, n)))
+V005046(n) = sum(EgfCoeffs(OrderedSetPolynomials(2, n)))
 
 """
 
@@ -154,10 +235,11 @@ L005046(len) = [V005046(n) for n in 0:len-1]
 
 Return the number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
 """
-V260884(n) = sum(AltExpCoeffs(OrderedSetPartitions(2, n)))
+V260884(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(2, n)))
 
 """
 
+---
 """
 L260884(len) = [V260884(n) for n in 0:len-1]
 
@@ -165,56 +247,65 @@ L260884(len) = [V260884(n) for n in 0:len-1]
 
 Return the number of set partitions of type 3.
 """
-L291451(n) = ExpCoeffs(OrderedSetPartitions(3, n))
+L291451(n) = EgfCoeffs(OrderedSetPolynomials(3, n))
 
 
 """
 
- A291973 a(n) = (3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
+(3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
 """
-V291973(n) = sum(ExpCoeffs(OrderedSetPartitions(3, n)))
+V291973(n) = sum(EgfCoeffs(OrderedSetPolynomials(3, n)))
+
+"""
+
+---
+"""
 L291973(len) = [V291973(n) for n in 0:len-1]
 
 """
-A291974 a(n) = (3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
+
+(3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
 """
-V291974(n) = sum(AltExpCoeffs(OrderedSetPartitions(3, n)))
+V291974(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(3, n)))
 
 """
 
+---
 """
 L291974(len) = [V291974(n) for n in 0:len-1]
 
 """
 
-A291452 Triangle read by rows, expansion of e.g.f. exp(x*(cos(z) + cosh(z) - 2)/2), nonzero coefficients of z.
+exp(x*(cos(z) + cosh(z) - 2)/2)
 """
-L291452(n) = ExpCoeffs(OrderedSetPartitions(4, n))
+L291452(n) = EgfCoeffs(OrderedSetPolynomials(4, n))
 
 """
 
-A291975 a(n) = (4*n)! * [z^(4*n)] exp((cos(z) + cosh(z))/2 - 1).
+Return ordered the number of set partitions of type 3.
 """
-V291975(n) = sum(ExpCoeffs(OrderedSetPartitions(4, n)))
+V291975(n) = sum(EgfCoeffs(OrderedSetPolynomials(4, n)))
 
 """
 
+---
 """
 L291975(len) = [V291975(n) for n in 0:len-1]
 
 """
 
-A291976	a(n) = (4*n)! * [z^(4*n)] exp(1 - (cos(z) + cosh(z))/2).
+Return ordered the number of set partitions of type 4.
 """
-V291976(n) = sum(AltExpCoeffs(OrderedSetPartitions(4, n)))
+V291976(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(4, n)))
 
 """
 
+---
 """
 L291976(len) = [V291976(n) for n in 0:len-1]
 
-#L025035(len) = Diagonal(n -> OrderedSetPartitions(3, n), len)
-#X025035(len) = Diagonal(n -> CoeffExp(OrderedSetPartitions(3, n)), len)
+#L025035(len) = Diagonal(n -> OrderedSetPolynomials(3, n), len)
+#X025035(len) = Diagonal(n -> CoeffExp(OrderedSetPolynomials(3, n)), len)
 
 
 #START-TEST-########################################################
@@ -223,7 +314,7 @@ using Test, SeqTests, SeqUtils
 
 function test()
 
-    @testset "OrderedSetPartitionsitionsMType" begin
+    @testset "OrderedSetPolynomialsitionsMType" begin
         @test string(P097805(3)) == "x^3+2*x^2+x"
         @test L097805(3) == [0, 1, 2, 1]
         @test TL097805(3, 5) == [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 3, 3, 1]]
@@ -279,10 +370,10 @@ end
 
 function demo()
     for m in 1:4, n in 0:6
-        Coeffs(OrderedSetPartitions(m, n)) |> Println
+        Coeffs(OrderedSetPolynomials(m, n)) |> Println
     end
     for m in 1:4, n in 0:6
-        ExpCoeffs(OrderedSetPartitions(m, n)) |> Println
+        EgfCoeffs(OrderedSetPolynomials(m, n)) |> Println
     end
 end
 

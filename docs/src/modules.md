@@ -305,9 +305,17 @@ A collection of utilities for handling OEIS related tasks.
    🔶  [Polynomials](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/Polynomials.jl)
 
 
-Some utility functions for computing with polynomials.
+Mostly convenient functions to deal with polynomials as often used in connection with ordinary and exponential generating functions. The naming scheme used is roughly described by:
 
-* Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs, Diagonal, Central, ExpCoeffs, AltExpCoeffs, Poly, AltPoly, ExpPoly, AltExpPoly, ReflectPoly.
+* Poly       <-> Coeffs
+* AltPoly    <-> Poly(AltCoeffs)
+* EgfPoly    <-> Poly(EgfCoeffs)
+* OgfPoly    <-> Poly(OgfCoeffs)
+* AltEgfPoly <-> Poly(AltEgfCoeffs)
+
+Here 'Alt' stands for alternating, 'Egf' for exponential generating function, 'Ogf' for ordinary generating function.
+
+* Coeffs, CoeffSum, CoeffAltSum, CoeffConst, CoeffLeading, AltCoeffs, Diagonal, Central, EgfCoeffs, AltEgfCoeffs, Poly, AltPoly, EgfPoly, AltEgfPoly, ReflectPoly.
 
    🔶  [PrimesIterator](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/PrimesIterator.jl)
 

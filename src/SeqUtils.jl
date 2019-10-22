@@ -119,11 +119,12 @@ Valid prefixes to the numerical part of the OEIS A-numbers.
 * I => Iteration
 * L => List (array based)
 * M => Matrix
+* P => Polynomial
 * R => RealFunction
 * S => Staircase (iteration)
 * T => Triangle (iteration)
-* TA => Triangle (triangular array)
-* TL => Triangle (flat-list array)
+* TL => Triangle (triangular array, list of rows)
+* TF => Triangle (flat-list array)
 * V => Value
 * is => is a (predicate), boolean
 """
