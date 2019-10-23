@@ -419,6 +419,7 @@ Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
    🔶  [SetPartitionsMType](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsMType.jl)
 
 
+
 ## Ordered set partitions of m-type
 
 | type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |

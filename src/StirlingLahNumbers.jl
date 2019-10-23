@@ -164,9 +164,35 @@ V008279(n) = nth(I008279(n + 1), n + 1)
 
 #START-TEST-########################################################
 
-using Test, Combinatorics
+using Test, SeqUtils
 
 function test()
+
+    # From JuliaMath/Combinatorics/numbers.jl
+    function stirlings1(n::Int, k::Int, signed::Bool=false)
+        signed == true && return (-1)^(n - k) * stirlings1(n, k)
+        if n < 0 throw(DomainError(n, "n must be nonnegative"))
+        elseif n == k == 0 return 1
+        elseif n == 0 || k == 0  return 0
+        elseif n == k return 1
+        elseif k == 1 return factorial(n-1)
+        elseif k == n - 1 return binomial(n, 2)
+        elseif k == n - 2 return div((3 * n - 1) * binomial(n, 3), 4)
+        elseif k == n - 3 return binomial(n, 2) * binomial(n, 4)
+        end
+        return (n - 1) * stirlings1(n - 1, k) + stirlings1(n - 1, k - 1)
+    end
+
+    # From JuliaMath/Combinatorics/numbers.jl
+    function stirlings2(n::Int, k::Int)
+        if n < 0 throw(DomainError(n, "n must be nonnegative"))
+        elseif n == k == 0 return 1
+        elseif n == 0 || k == 0 return 0
+        elseif k == n - 1 return binomial(n, 2)
+        elseif k == 2  return 2^(n-1) - 1
+        end
+        return k * stirlings2(n - 1, k) + stirlings2(n - 1, k - 1)
+    end
 
     @testset "Stirling1" begin
 
@@ -187,18 +213,18 @@ end # test
 
 function demo()
     for row in I132393(9)
-        println(row)
+        Println(row)
     end
     println()
 
     for n in 0:8
-        println(n, ": ", V132393(n))
+        print(n, ": "); Println(V132393(n))
     end
     println()
 
     ShowAsΔ(I132393(9), "\t")
 
-    println(L132393(9))
+    Println(L132393(9))
     println()
 
     ShowAsMatrix(I132393(9))
@@ -213,18 +239,18 @@ function demo()
     # ===================================
 
     for row in I048993(9)
-        println(row)
+        Println(row)
     end
     println()
 
     for n in 0:8
-        println(n, ": ", V048993(n))
+        print(n, ": "); Println(V048993(n))
     end
     println()
 
     ShowAsΔ(I048993(9), "\t")
 
-    println(L048993(9))
+    Println(L048993(9))
     println()
 
     ShowAsMatrix(I048993(9))
@@ -239,12 +265,12 @@ function demo()
     # ===================================
 
     for row in I008279(9)
-        println(row)
+        Println(row)
     end
     println()
 
     for n in 0:8
-        println(n, ": ", V008279(n))
+        print(n, ": "); Println(V008279(n))
     end
     println()
 

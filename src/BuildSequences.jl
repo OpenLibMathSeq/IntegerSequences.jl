@@ -253,7 +253,7 @@ function build_test()
     println(o, "module runtests")
     println(
         o,
-        "using Nemo, Test, SeqTests, IntegerSequences, IterTools, Combinatorics"
+        "using Nemo, Test, SeqTests, IntegerSequences, IterTools"
     )
 
     path = joinpath(tstdir, "runtests.jl")

@@ -9,6 +9,7 @@ using Nemo, Polynomials
 
 """
 
+
 ## Ordered set partitions of m-type
 
 | type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
@@ -52,12 +53,12 @@ function OrderedSetPolynomials(m::Int, n::Int)
     function recP(m, n)
         n == 0 && return R(1)
         haskey(CacheP, (m, n)) && return CacheP[(m, n)]
-        p = sum(binomial(m*n, m*k)*recP(m, n-k)*x for k in 1:n)
+        p = sum(binom(m * n, m * k) * recP(m, n - k) * x for k in 1:n)
         CacheP[(m, n)] = p
     end
     recP(m, n)
 end
-const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
+const CacheP = Dict{Tuple{Int,Int},Nemo.fmpz_poly}()
 
 """
 
@@ -355,18 +356,36 @@ L243665(len) = CoeffSum(n -> OrderedSetPolynomials(4, n), len)
 """
 
 Return the alternating row sums of the ordered set polynomials of shape type ``2``.
+# Examples
+```julia-repl
+julia> L028296(7)
+7-element Array{Nemo.fmpz,1}:
+[1, -1, 5, -61, 1385, -50521, 2702765]
+```
 """
 L028296(len) = CoeffAltSum(n -> OrderedSetPolynomials(2, n), len)
 
 """
 
 Return the alternating row sums of the ordered set polynomials of shape type ``3``.
+# Examples
+```julia-repl
+julia> L002115(7)
+7-element Array{Nemo.fmpz,1}:
+[1, -1, 19, -1513, 315523, -136085041, 105261234643]
+```
 """
 L002115(len) = CoeffAltSum(n -> OrderedSetPolynomials(3, n), len)
 
 """
 
 Return the alternating row sums of the ordered set polynomials of shape type ``4``.
+# Examples
+```julia-repl
+julia> L211212(6)
+6-element Array{Nemo.fmpz,1}:
+[1, -1, 69, -33661, 60376809, -288294050521]
+```
 """
 L211212(len) = CoeffAltSum(n -> OrderedSetPolynomials(4, n), len)
 
@@ -380,37 +399,71 @@ L211212(len) = CoeffAltSum(n -> OrderedSetPolynomials(4, n), len)
 
 """
 
-Return the complementary Bell number.
+Return the n-th complementary Bell number.
+# Examples
+```julia-repl
+julia> V000587(50)
+-29113173035759403920216141265491160286912
+```
 """
 V000587(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(1, n)))
 
 """
 
 Return a list of complementary Bell numbers of length ``len``.
+# Examples
+```julia-repl
+julia> L000587(10)
+10-element Array{Nemo.fmpz,1}:
+[1, -1, 0, 1, 1, -2, -9, -9, 50, 267]
+```
 """
 L000587(len) = [V000587(n) for n in 0:len-1]
 
 """
 
 Return the number of end rhyme patterns of a poem of an even number of lines.
+# Examples
+```julia-repl
+julia> L156289(6)
+7-element Array{Nemo.fmpz,1}:
+[ 0, 1, 1023, 21120, 65835, 51975, 10395]
+```
 """
 L156289(n) = EgfCoeffs(OrderedSetPolynomials(2, n))
 
 """
 
 Return the number of partitions of a ``2n``-set into even blocks.
+# Examples
+```julia-repl
+julia> V005046(30)
+5215270659830794008813481789355446576694940667184287549
+```
 """
 V005046(n) = sum(EgfCoeffs(OrderedSetPolynomials(2, n)))
 
 """
 
 Return a list of the number of partitions of even sized sets into even blocks.
+# Examples
+```julia-repl
+julia> L005046(10)
+10-element Array{Nemo.fmpz,1}:
+[ 1, 1, 4, 31, 379, 6556, 150349, 4373461, 156297964, 6698486371]
+```
 """
 L005046(len) = [V005046(n) for n in 0:len-1]
 
 """
 
 Return the number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
+# Examples
+```julia-repl
+julia> V260884(10)
+10-element Array{Nemo.fmpz,1}:
+??
+```
 """
 V260884(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(2, n)))
 
@@ -554,8 +607,7 @@ function demo()
     end
 end
 
-function perf()
-end
+function perf() end
 
 function main()
     test()
