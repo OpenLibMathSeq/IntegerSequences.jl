@@ -263,11 +263,11 @@ The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``
    🔶  [LandauConstants](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/LandauConstants.jl)
 
 
-* V277233(n) / 4^V005187(n) are the Landau constants. These constants are defined as G(n)`` = \sum_{j=0..n} g(j)^2`` with the normalized central binomial
+* V277233(n) / 4^V005187(n) are the Landau constants. These constants are defined as G(n)`` = ∑_{j=0..n} g(j)^2`` with the normalized central binomial
 ```
 g(n) = (2n)! / (2^n n!)^2 = V001790(n) / V046161(n).
 ```
-* V327495(n) / 4^V327492(n) are the rationals considered here. These numbers are defined as H(n)`` = \sum_{j=0..n} h(j)^2`` with the normalized swinging factorial
+* V327495(n) / 4^V327492(n) are the rationals considered here. These numbers are defined as H(n)`` = ∑_{j=0..n} h(j)^2`` with the normalized swinging factorial
 ```
 h(n) = n! / (2^n ⌊n/2⌋!)^2 = V163590(n) / V327493(n).
 ```

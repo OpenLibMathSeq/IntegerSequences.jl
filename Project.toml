@@ -1,5 +1,6 @@
 name = "IntegerSequences"
-version = "0.2.1"
+uuid = "b4b868b0-69a7-11e9-2db0-173b4e8e576c"
+version = "0.2.0"
 
 [deps]
 AbstractAlgebra = "c3fe647b-3220-5bb0-a1ea-a7954cac585d"

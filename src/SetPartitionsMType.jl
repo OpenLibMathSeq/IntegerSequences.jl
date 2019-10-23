@@ -35,7 +35,7 @@ See also [A260876](https://oeis.org/A260876).
 """
 const ModuleSetPartitionsMType = ""
 
-export ModuleSetPartitionsMType
+export ModuleSetPartitionsMType, OrderedSetPolynomials, OrderedSetPartitions
 export P097805, L097805, TL097805, P131689, L131689, TL131689, P241171, L241171
 export TL241171, P278073, L278073, TL278073, P278074, L278074, TL278074, L088218
 export L210029, L281478, L281479, L281480, L094088, L243664, L243665
@@ -68,6 +68,12 @@ OrderedSetPartitions(m::Int, n::Int) = Coeffs(OrderedSetPolynomials(m, n))
 """
 
 Return the polynomial where the coefficients are the number of the ordered set partitions of an ``n``-set with shape type ``0``.
+# Examples
+```julia-repl
+julia> P097805(3)
+Nemo.fmpz_poly
+x^3 + 2*x^2 + x
+```
 """
 P097805(n) = OrderedSetPolynomials(0, n)
 
@@ -76,8 +82,9 @@ P097805(n) = OrderedSetPolynomials(0, n)
 Return the number of ordered set partitions of an ``n``-set which are of shape type ``0``.
 # Examples
 ```julia-repl
-julia> bar([1, 2], [1, 2])
-1
+julia> L097805(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 2, 1]
 ```
 """
 L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
@@ -85,121 +92,263 @@ L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
 """
 
 Return the first ``len`` rows of the triangle of compositions of ``n``.
+# Examples
+```julia-repl
+julia> TL097805(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 1]
+[0, 1, 2, 1]
+[0, 1, 3, 3, 1]
+```
 """
 TL097805(n, len) = Coeffs(n -> OrderedSetPolynomials(0, n), len)
 
 """
 
 Return the polynomial where the coefficients are the number of the ordered set partitions of an ``n``-set which are of shape type ``1``.
+# Examples
+```julia-repl
+julia> P131689(3)
+6*x^3 + 6*x^2 + x
+```
 """
 P131689(n) = OrderedSetPolynomials(1, n)
 
 """
 
 Return the number of ordered set partitions of an ``n``-set which are of shape type ``1``.
+# Examples
+```julia-repl
+julia> L131689(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 6, 6]
+```
 """
 L131689(n) = Coeffs(OrderedSetPolynomials(1, n))
 
 """
 
 Return ``len`` rows of the triangle of ordered set partitions of ``n``.
+# Examples
+```julia-repl
+julia> TL131689(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 2]
+[0, 1, 6, 6]
+[0, 1, 14, 36, 24]
+```
 """
 TL131689(n, len) = Coeffs(n -> OrderedSetPolynomials(1, n), len)
 
 """
 
 Return the n-th ordered set polynomials of shape type ``2``.
+# Examples
+```julia-repl
+julia> P131689(3)
+90*x^3 + 30*x^2 + x
+```
 """
 P241171(n) = OrderedSetPolynomials(2, n)
 
 """
 
 Return the number of ordered set partitions of a ``2n`` set into even sized blocks (as a list).
+# Examples
+```julia-repl
+julia> L241171(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 30, 90]
+```
 """
 L241171(n) = Coeffs(OrderedSetPolynomials(2, n))
 
 """
 
 Return ``len`` rows of the triangle ordered set partitions of a ``2n`` set into even sized blocks.
+# Examples
+```julia-repl
+julia> TL241171(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 6]
+[0, 1, 30, 90]
+[0, 1, 126, 1260, 2520]
+```
 """
 TL241171(n, len) = Coeffs(n -> OrderedSetPolynomials(2, n), len)
 
 """
 
 Return the n-th ordered set polynomials of shape type ``3``.
+# Examples
+```julia-repl
+julia> P278073(3)
+1680*x^3 + 168*x^2 + x
+```
 """
 P278073(n) = OrderedSetPolynomials(3, n)
 
 """
 
 Return the number of ordered set partitions of a ``3n`` set into 3-sized blocks (as a list).
+# Examples
+```julia-repl
+julia> L278073(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 168, 1680]
+```
 """
 L278073(n) = Coeffs(OrderedSetPolynomials(3, n))
 
 """
 
 Return ``len`` rows of the triangle ordered set partitions of a ``3n`` set into 3-sized blocks.
+# Examples
+```julia-repl
+julia> TL278073(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 20]
+[0, 1, 168, 1680]
+[0, 1, 1364, 55440, 369600]
+```
 """
 TL278073(n, len) = Coeffs(n -> OrderedSetPolynomials(3, n), len)
 
 """
 
 Return the n-th ordered set polynomials of shape type ``4``.
+# Examples
+```julia-repl
+julia> P278074(3)
+34650*x^3 + 990*x^2 + x
+```
 """
 P278074(n) = OrderedSetPolynomials(4, n)
 
 """
 
 Return the number of ordered set partitions of a ``4n`` set into 4-sized blocks (as a list).
+# Examples
+```julia-repl
+julia> L278074(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 990, 34650]
+```
 """
 L278074(n) = Coeffs(OrderedSetPolynomials(4, n))
 
 """
 
 Return ``len`` rows of the triangle ordered set partitions of a ``4n`` set into 4-sized blocks.
+# Examples
+```julia-repl
+julia> TL278074(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 70]
+[0, 1, 990, 34650]
+[0, 1, 16510, 2702700, 63063000]
+```
 """
 TL278074(n, len) = Coeffs(n -> OrderedSetPolynomials(4, n), len)
 
 """
 
 Return the central column of the triangle of the ordered set partitions of shape type ``0``.
+# Examples
+```julia-repl
+julia> L088218(6)
+6-element Array{Nemo.fmpz,1}:
+[1, 1, 3, 10, 35, 126]
+```
 """
 L088218(len) = Central(n -> OrderedSetPolynomials(0, n), len)
 """
 
 Return the central column of the triangle of the ordered set partitions of shape type ``1``.
+# Examples
+```julia-repl
+julia> L210029(6)
+6-element Array{Nemo.fmpz,1}:
+[1, 1, 14, 540, 40824, 5103000]
+```
 """
 L210029(len) = Central(n -> OrderedSetPolynomials(1, n), len)
 """
 
 Return the central column of the triangle of the ordered set partitions of shape type ``2``.
+# Examples
+```julia-repl
+julia> L281478(6)
+6-element Array{Nemo.fmpz,1}:
+[1, 1, 126, 126720, 494053560, 5283068427000]
+```
 """
 L281478(len) = Central(n -> OrderedSetPolynomials(2, n), len)
 """
 
 Return the central column of the triangle of the ordered set partitions of shape type ``3``.
+# Examples
+```julia-repl
+julia> L281479(6)
+6-element Array{Nemo.fmpz,1}:
+[1, 1, 1364, 42771456, 10298900437056, 11287986820196486400]
+```
 """
 L281479(len) = Central(n -> OrderedSetPolynomials(3, n), len)
 """
 
 Return the central column of the triangle of the ordered set partitions of shape type ``4``.
+# Examples
+```julia-repl
+julia> L281480(5)
+5-element Array{Nemo.fmpz,1}:
+[1, 1, 16510, 17651304000, 286988816206755000]
+```
 """
 L281480(len) = Central(n -> OrderedSetPolynomials(4, n), len)
 
 """
 
 Return the number of the ordered set partitions of shape type ``2``.
+# Examples
+```julia-repl
+julia> L094088(5)
+5-element Array{Nemo.fmpz,1}:
+[1, 1, 7, 121, 3907, 202741]
+```
 """
 L094088(len) = CoeffSum(n -> OrderedSetPolynomials(2, n), len)
 
 """
 
 Return the number of the ordered set partitions of shape type ``3``.
+# Examples
+```julia-repl
+julia> L243664(5)
+5-element Array{Nemo.fmpz,1}:
+[1, 1, 21, 1849, 426405]
+```
 """
 L243664(len) = CoeffSum(n -> OrderedSetPolynomials(3, n), len)
 """
 
 Return the number of the ordered set partitions of shape type ``4``.
+# Examples
+```julia-repl
+julia> L243665(5)
+5-element Array{Nemo.fmpz,1}:
+[1, 1, 71, 35641, 65782211]
+```
 """
 L243665(len) = CoeffSum(n -> OrderedSetPolynomials(4, n), len)
 

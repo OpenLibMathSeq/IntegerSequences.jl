@@ -388,6 +388,12 @@ OddPart
 Or
 ```
 ```@docs
+OrderedSetPartitions
+```
+```@docs
+OrderedSetPolynomials
+```
+```@docs
 OrthoPoly
 ```
 ```@docs
