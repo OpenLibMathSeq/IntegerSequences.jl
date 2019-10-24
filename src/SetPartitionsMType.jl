@@ -7,6 +7,15 @@ module SetPartitionsMType
 
 using Nemo, Polynomials
 
+export ModuleSetPartitionsMType, OrderedSetPolynomials, OrderedSetPartitions
+export L000587, L002115, L005046, L028296, L088218, L094088, L097805
+export L131689, L156289, L210029, L211212, L241171, L243664, L243665
+export L260884, L278073, L278074, L281478, L281479, L281480, L291451
+export L291452, L291973, L291974, L291975, L291976, P097805, P131689
+export P241171, P278073, P278074, TL097805, TL131689, TL241171, TL278073
+export TL278074, V000587, V005046, V260884, V291973, V291974, V291975, V291976
+export L014606
+
 """
 
 
@@ -23,6 +32,18 @@ using Nemo, Polynomials
 
 ## Set partitions of m-type
 
+For example consider the case n = 4. There are five integer partitions of 4:
+
+* P = [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]. The shapes are m times the parts of the integer partitions: S(m) = [[4m], [3m, m], [2m, 2m], [2m, m, m], [m, m, m, m]].
+
+* In the case m = 1 we look at set partitions of {1, 2, 3, 4} with sizes in  [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]] which gives rise to [1, 4, 3, 6, 1] with sum 15.
+
+* In the case m = 2 we look at set partitions of {1, 2, .., 8} with sizes in [[8], [6, 2], [4, 4], [4, 2, 2], [2, 2, 2, 2]] which gives rise to [1, 28, 35, 210, 105] with sum 379.
+
+* In the case m = 0 we look at set partitions of {} with sizes in [[0], [0, 0], [0, 0], [0, 0, 0], [0, 0, 0, 0]] which gives rise to [1, 1, 1, 1, 1] with sum 5 (because the only partition of the empty set is the set that contains the empty set, thus from the definition T(0,4) = Sum_{S(0)} card({0}) = A000041(4) = 5).
+
+* If n runs through 0, 1, 2,... then the result is an irregular triangle in which the n-th row lists multinomials for partitions of [m*n] which have only parts which are multiples of m. These are the triangles A080575 (m = 1), A257490 (m = 2), A327003 (m = 3), A327004 (m = 4). In the case m = 0 the triangle is A000012 subdivided into rows of length A000041. See the  references below how this case integrates into the full picture.
+
 | type  | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
 |-------|-------|-------|-------|-------|-------|
 | by shape | [A000012](https://oeis.org/A000012) | [A036040](https://oeis.org/A036040) | [A257490](https://oeis.org/A257490) | [A327003](https://oeis.org/A327003) | [A327004](https://oeis.org/A327004) |
@@ -35,14 +56,6 @@ using Nemo, Polynomials
 See also [A260876](https://oeis.org/A260876).
 """
 const ModuleSetPartitionsMType = ""
-
-export ModuleSetPartitionsMType, OrderedSetPolynomials, OrderedSetPartitions
-export P097805, L097805, TL097805, P131689, L131689, TL131689, P241171, L241171
-export TL241171, P278073, L278073, TL278073, P278074, L278074, TL278074, L088218
-export L210029, L281478, L281479, L281480, L094088, L243664, L243665
-export L028296, L002115, L211212, L156289, L291451, L291452
-export L000587, L005046, L260884, L291973, L291974, L291975, L291976
-export V000587, V005046
 
 """
 
@@ -460,82 +473,147 @@ L005046(len) = [V005046(n) for n in 0:len-1]
 Return the number of set partitions of a 2n-set into even blocks which have even length minus the number of partitions into even blocks which have odd length.
 # Examples
 ```julia-repl
-julia> V260884(10)
-10-element Array{Nemo.fmpz,1}:
-??
+julia> V260884(19)
+5097857816569586800024019
 ```
 """
 V260884(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(2, n)))
 
 """
 
----
+Return a list of the first ``len`` terms V260884(n).
+# Examples
+```julia-repl
+julia> L260884(10)
+10-element Array{Nemo.fmpz,1}:
+[1, -1, 2, -1, -43, 254, 4157, -70981, -1310398, 40933619]
+```
 """
 L260884(len) = [V260884(n) for n in 0:len-1]
 
 """
 
 Return the number of set partitions of type 3.
+# Examples
+```julia-repl
+julia> L291451(10)
+7-element Array{Nemo.fmpz,1}:
+[0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
+```
 """
 L291451(n) = EgfCoeffs(OrderedSetPolynomials(3, n))
 
-
 """
 
-(3*n)! * [z^(3*n)] exp(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1).
+(3n)! [z^(3n)] exp(exp(z)/3 + 2exp(-z/2)cos(z sqrt(3)/2)/3 - 1).
+# Examples
+```julia-repl
+julia> V291973(9)
+31728742163212641
+```
 """
 V291973(n) = sum(EgfCoeffs(OrderedSetPolynomials(3, n)))
 
 """
 
----
+# Examples
+```julia-repl
+julia> L291973(6)
+6-element Array{Nemo.fmpz,1}:
+[1, 1, 11, 365, 25323, 3068521]
+```
 """
 L291973(len) = [V291973(n) for n in 0:len-1]
 
 """
 
-(3*n)! * [z^(3*n)] exp(-(exp(z)/3 + 2*exp(-z/2)*cos(z*sqrt(3)/2)/3 - 1)).
+(3n)! [z^(3n)] exp(-(exp(z)/3 + 2exp(-z/2) cos(z sqrt(3)/2)/3 - 1)).
+# Examples
+```julia-repl
+julia> V291974(9)
+-3166484321001
+```
 """
 V291974(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(3, n)))
 
 """
 
----
+# Examples
+```julia-repl
+julia> L291974(6)
+6-element Array{Nemo.fmpz,1}:
+[1, -1, 9, -197, 6841, -254801]
+```
 """
 L291974(len) = [V291974(n) for n in 0:len-1]
 
 """
 
-exp(x*(cos(z) + cosh(z) - 2)/2)
+exp(x (cos(z) + cosh(z) - 2)/2)
+# Examples
+```julia-repl
+L291452(6)
+7-element Array{Nemo.fmpz,1}:
+[0, 1, 2098175, 2941884000, 181262956875, 1932541986375, 4509264634875]
+```
 """
 L291452(n) = EgfCoeffs(OrderedSetPolynomials(4, n))
 
 """
 
 Return ordered the number of set partitions of type 3.
+# Examples
+```julia-repl
+julia> V291975(9)
+926848347928901638652131
+```
 """
 V291975(n) = sum(EgfCoeffs(OrderedSetPolynomials(4, n)))
 
 """
 
----
+# Examples
+```julia-repl
+L291975(5)
+5-element Array{Nemo.fmpz,1}:
+[1, 1, 36, 6271, 3086331]
+```
 """
 L291975(len) = [V291975(n) for n in 0:len-1]
 
 """
 
 Return ordered the number of set partitions of type 4.
+# Examples
+```julia-repl
+julia> V291976(7)
+-6440372006517541
+```
 """
 V291976(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(4, n)))
 
 """
 
----
+# Examples
+```julia-repl
+L291976(7)
+7-element Array{Nemo.fmpz,1}:
+[ 1, -1, 34, -5281, 2185429, -1854147586, 2755045819549]
+```
 """
 L291976(len) = [V291976(n) for n in 0:len-1]
 
-#L025035(len) = Diagonal(n -> OrderedSetPolynomials(3, n), len)
-#X025035(len) = Diagonal(n -> CoeffExp(OrderedSetPolynomials(3, n)), len)
+"""
+
+# Examples
+```julia-repl
+L014606(7)
+7-element Array{Nemo.fmpz,1}:
+[1, 1, 20, 1680, 369600, 168168000, 137225088000]
+```
+"""
+L014606(len) = Diagonal(n -> OrderedSetPolynomials(3, n), len)
+
 
 
 #START-TEST-########################################################
@@ -616,6 +694,5 @@ function main()
 end
 
 main()
-
 
 end # module

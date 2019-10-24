@@ -433,6 +433,18 @@ Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
 
 ## Set partitions of m-type
 
+For example consider the case n = 4. There are five integer partitions of 4:
+
+* P = [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]. The shapes are m times the parts of the integer partitions: S(m) = [[4m], [3m, m], [2m, 2m], [2m, m, m], [m, m, m, m]].
+
+* In the case m = 1 we look at set partitions of {1, 2, 3, 4} with sizes in  [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]] which gives rise to [1, 4, 3, 6, 1] with sum 15.
+
+* In the case m = 2 we look at set partitions of {1, 2, .., 8} with sizes in [[8], [6, 2], [4, 4], [4, 2, 2], [2, 2, 2, 2]] which gives rise to [1, 28, 35, 210, 105] with sum 379.
+
+* In the case m = 0 we look at set partitions of {} with sizes in [[0], [0, 0], [0, 0], [0, 0, 0], [0, 0, 0, 0]] which gives rise to [1, 1, 1, 1, 1] with sum 5 (because the only partition of the empty set is the set that contains the empty set, thus from the definition T(0,4) = Sum_{S(0)} card({0}) = A000041(4) = 5).
+
+* If n runs through 0, 1, 2,... then the result is an irregular triangle in which the n-th row lists multinomials for partitions of [m*n] which have only parts which are multiples of m. These are the triangles A080575 (m = 1), A257490 (m = 2), A327003 (m = 3), A327004 (m = 4). In the case m = 0 the triangle is A000012 subdivided into rows of length A000041. See the  references below how this case integrates into the full picture.
+
 | type  | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
 |-------|-------|-------|-------|-------|-------|
 | by shape | [A000012](https://oeis.org/A000012) | [A036040](https://oeis.org/A036040) | [A257490](https://oeis.org/A257490) | [A327003](https://oeis.org/A327003) | [A327004](https://oeis.org/A327004) |
