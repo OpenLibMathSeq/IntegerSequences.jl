@@ -416,13 +416,6 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
 
-   🔶  [SetPartitionsByShape](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsByShape.jl)
-
-
-general Definition
-
-* exported functions
-
    🔶  [SetPartitionsMType](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsMType.jl)
 
 

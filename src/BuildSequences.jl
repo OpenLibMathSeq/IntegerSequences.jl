@@ -35,6 +35,7 @@ docsrcdir = joinpath(docdir, "src")
 @info("The following modules are included in IntegerSequences.jl:")
 
 exclude = [
+    "SetPartitionsByShape.jl",
     "TemplateModule.jl",
     "BuildSequences.jl",
     "IntegerSequences.jl",
