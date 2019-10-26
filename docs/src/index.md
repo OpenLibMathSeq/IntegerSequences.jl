@@ -334,6 +334,9 @@ ModuleSetPartitions
 ModuleSetPartitionsMType
 ```
 ```@docs
+ModuleSetPartitionsMType
+```
+```@docs
 ModuleStirlingNumbers
 ```
 ```@docs

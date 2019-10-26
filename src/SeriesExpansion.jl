@@ -177,6 +177,7 @@ Return a list of twice the Catalan numbers.
 """
 L068875(n) = Coefficients(G068875, n)
 
+
 #START-TEST-########################################################
 
 using Test, SeqUtils
@@ -241,8 +242,7 @@ end
 
 """
 
-L068875(1000)
-    0.025675 seconds (1.03 k allocations: 24.813 KiB)
+L068875(1000) :: 0.025675 seconds (1.03 k allocations: 24.813 KiB)
 """
 function perf()
     @time L068875(1000)

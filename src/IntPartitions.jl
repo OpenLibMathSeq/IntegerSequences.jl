@@ -13,7 +13,7 @@ export V000041, I072233, L072233, L036038, L078760, L005651, L262071, L292222
 
 """
 
-All integer partitions are listet by two orderings:
+All integer partitions are listed by two orderings:
    IntegerPartitions(n, byNumPart)
    IntegerPartitions(n, byMaxPart)
 

@@ -86,11 +86,11 @@ end
 
 """
 
-0.000061 seconds (1 allocation: 624 bytes)
-0.000296 seconds (1 allocation: 1.141 KiB)
-0.001216 seconds (1 allocation: 2.125 KiB)
-0.005786 seconds (1 allocation: 4.125 KiB)
-0.018729 seconds (1 allocation: 8.125 KiB)
+  64: 0.000061 seconds (1 allocation: 624 bytes)
+ 128: 0.000296 seconds (1 allocation: 1.141 KiB)
+ 256: 0.001216 seconds (1 allocation: 2.125 KiB)
+ 512: 0.005786 seconds (1 allocation: 4.125 KiB)
+1024: 0.018729 seconds (1 allocation: 8.125 KiB)
 """
 function perf()
     GC.gc()

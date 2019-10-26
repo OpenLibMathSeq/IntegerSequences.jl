@@ -119,7 +119,7 @@ this short notations for the rising and the falling factorial powers are support
     FallingFactorial(n::Int, k::Int) = ∏(n - k + 1, n)
 ```
 
-## Muliti-dimensional sequences
+## Multi-dimensional sequences
 
 ### The concept of a sequence
 

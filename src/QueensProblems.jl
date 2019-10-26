@@ -70,6 +70,7 @@ Returns the profile of the backtrack tree for the n queens problem.
 """
 L319284(n) = Queens(n)
 
+
 #START-TEST-########################################################
 
 using Test
@@ -97,8 +98,7 @@ end
 
 """
 
-L319284(15)
-    18.731622 seconds (4 allocations: 480 bytes)
+L319284(15) :: 18.731622 seconds (4 allocations: 480 bytes)
 """
 function perf()
     @time L319284(15)

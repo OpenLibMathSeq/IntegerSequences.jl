@@ -235,7 +235,7 @@ GammaHyp: ``(a, b, c, d)`` ↦ ``Γ(a) `` Hypergeometric``1F1(b, c, d).``
    🔶  [IntPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/IntPartitions.jl)
 
 
-All integer partitions are listet by two orderings:
+All integer partitions are listed by two orderings:
 IntegerPartitions(n, byNumPart)
 IntegerPartitions(n, byMaxPart)
 
@@ -415,6 +415,13 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
+
+   🔶  [SetPartitionsByShape](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsByShape.jl)
+
+
+general Definition
+
+* exported functions
 
    🔶  [SetPartitionsMType](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsMType.jl)
 
