@@ -35,7 +35,6 @@ docsrcdir = joinpath(docdir, "src")
 @info("The following modules are included in IntegerSequences.jl:")
 
 exclude = [
-    "SetPartitionsByShape.jl",
     "TemplateModule.jl",
     "BuildSequences.jl",
     "IntegerSequences.jl",
@@ -221,7 +220,7 @@ function build_seq()
     println(olm, "__precompile__()")
 
     println(olm, "module IntegerSequences")
-    println(olm, "using Nemo, IterTools, HTTP, DocStringExtensions")
+    println(olm, "using Nemo, IterTools, DataStructures, HTTP, DocStringExtensions")
     # println(olm, "import AbstractAlgebra.lead")
 
     for l in eachline(sor, keep = true)
@@ -252,10 +251,7 @@ function build_test()
     println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
 
     println(o, "module runtests")
-    println(
-        o,
-        "using Nemo, Test, SeqTests, IntegerSequences, IterTools"
-    )
+    println(o, "using Nemo, Test, SeqTests, IntegerSequences, IterTools, DataStructures")
 
     path = joinpath(tstdir, "runtests.jl")
     i = open(path, "r")
@@ -331,7 +327,7 @@ function build_perf()
     println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
 
     println(o, "module perftests")
-    println(o, "using IntegerSequences, Dates, InteractiveUtils")
+    println(o, "using IntegerSequences, DataStructures, Dates, InteractiveUtils")
 
     println(o, "InteractiveUtils.versioninfo()")
     println(o, "start = Dates.now()")

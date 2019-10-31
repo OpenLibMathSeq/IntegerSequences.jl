@@ -5,8 +5,10 @@
 
 module IntPartitions
 
+using GeneralizedBinomial
+
 export ModuleIntPartitions
-export IntegerPartitions, PartitionNumber, Multinomial
+export IntegerPartitions, PartitionNumber
 export PartOrder, byNumPart, byMaxPart
 export PartitionCoefficientsByLength, PartitionCoefficientsByBiggestPart
 export V000041, I072233, L072233, L036038, L078760, L005651, L262071, L292222
@@ -219,19 +221,6 @@ Return a list of the number of partitions of ``n`` into ``k`` parts.
 """
 L072233(n) = collect(I072233(n))
 
-"""
-
-Return the multinomial coefficient of a list.
-"""
-function Multinomial(lst::Array{Int})
-    s = 0
-    result = 1
-    for c in lst
-        s += c
-        result *= binomial(s, c)
-    end
-    result
-end
 
 """
 

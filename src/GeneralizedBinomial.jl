@@ -7,7 +7,7 @@ module GeneralizedBinomial
 using Nemo, PrimesIterator, NumberTheory, Products, Triangles
 
 export ModuleGeneralizedBinomial
-export Binomial, Pascal, T007318
+export Binomial, Pascal, T007318, Multinomial
 
 """
 
@@ -93,6 +93,21 @@ function Binomial(n::Int, k::Int)
     n < 0 ≤ k && return binom(-n + k - 1, k) * (-1)^k
     ZZ(0)
 end
+
+"""
+
+Return the multinomial coefficient of a list.
+"""
+function Multinomial(lst::Array{Int})
+    s = 0
+    result = ZZ(1)
+    for c in lst
+        s += c
+        result *= binom(s, c)
+    end
+    result
+end
+
 
 #START-TEST-########################################################
 

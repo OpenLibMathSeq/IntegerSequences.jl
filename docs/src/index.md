@@ -88,6 +88,9 @@ CantorMachine
 CantorPairing
 ```
 ```@docs
+CardinalityOfSetPartitionsWithShape
+```
+```@docs
 Central
 ```
 ```@docs
@@ -418,6 +421,9 @@ PartitionNumberList
 Pascal
 ```
 ```@docs
+Pi
+```
+```@docs
 Poly
 ```
 ```@docs
@@ -527,6 +533,9 @@ SetPartitions
 ```
 ```@docs
 Sfactorial
+```
+```@docs
+ShapePartitions
 ```
 ```@docs
 ShowAsMatrix
@@ -713,6 +722,9 @@ toΔ
 ```
 ```@docs
 Ω
+```
+```@docs
+π
 ```
 ```@docs
 σ
@@ -938,6 +950,9 @@ L000735
 ```
 ```@docs
 L000739
+```
+```@docs
+L000796
 ```
 ```@docs
 G000957

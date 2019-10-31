@@ -2,9 +2,9 @@ module QueensAlwaysPuzzleMe
 
 using Distributed, BenchmarkTools
 
-# For some background see: https://wp.me/paipV7-E
 # There is also a simple (i.e. not distributed) version:
 # https://github.com/PeterLuschny/IntegerSequences.jl/blob/master/demos/SimpleQueens.jl
+# For some background see https://wp.me/paipV7-E and https://oeis.org/A319284
 
 function solve!(profile, level, size, start, cols, diag4, diag1)
 
