@@ -710,7 +710,7 @@ using Test, SeqTests, SeqUtils
 
 function test()
 
-    @testset "OrderedSetPolynomialsitionsMType" begin
+    @testset "OrdSetPolyMType" begin
         @test string(P097805(3)) == "x^3+2*x^2+x"
         @test L097805(3) == [0, 1, 2, 1]
         @test TL097805(3, 5) == [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 3, 3, 1]]
@@ -746,7 +746,7 @@ function test()
         @test L211212(6) == [1, -1, 69, -33661, 60376809, -288294050521]
     end
 
-    @testset "SetPartitionsMType" begin
+    @testset "SetPartMType" begin
         @test L156289(5) == [0, 1, 255, 2205, 3150, 945]
         @test L156289(6) == [0, 1, 1023, 21120, 65835, 51975, 10395]
         @test L291451(5) == [0, 1, 5460, 260260, 1401400, 1401400]
@@ -763,7 +763,7 @@ function test()
         @test L291976(6) == [1, -1, 34, -5281, 2185429, -1854147586]
     end
 
-    @testset "SetPartitionsByShape" begin
+    @testset "SetPartByShape" begin
         @test ShapePartitions(3, 4) == [0, 1, 220, 462, 9240, 15400]
     end
 end
