@@ -22,8 +22,8 @@ Return the Clausen number ``C_n`` which is the denominator of the Bernoulli numb
 """
 function ClausenNumber(n::Int)
     n == 0 && return ZZ(1)
-    m = [d + 1 for d in Divisors(2n)]
-    ∏([q for q in m if isPrime(q)])
+    m = [d + 1 for d ∈ Divisors(2n)]
+    ∏([q for q ∈ m if isPrime(q)])
 end
 
 """
@@ -38,9 +38,9 @@ function ClausenNumberList(len::Int)
     m = len - 1
     m == 0 && return A
 
-    for p in Primes(3, 2m + 1)
+    for p ∈ Primes(3, 2m + 1)
         r = div(p - 1, 2)
-        for k in range(r, step = r, length = div(m, r))
+        for k ∈ range(r, step = r, length = div(m, r))
             A[k+1] *= p
         end
     end
@@ -74,7 +74,7 @@ end
 using Test, SeqUtils, SeqTests
 
 function test()
-
+∈
     @testset "Clausen" begin
         C = ClausenNumberList(800)
         @test C[125] == 30
@@ -94,17 +94,17 @@ end
 
 function demo()
     println("\nReturn the Clausen number C(n) which is the denominator of the Bernoulli number B(2n).")
-    for n in 0:10
+    for n ∈ 0:10
         println(n, " ↦ ", V002445(n))
     end
 
     println("\nReturn the denominator of Bernoulli number B_n.")
-    for n in 0:10
+    for n ∈ 0:10
         println(n, " ↦ ", V027642(n))
     end
 
     println()
-    for n in 0:6
+    for n ∈ 0:6
         print(n, " ↦ ")
         Println(ClausenNumberList(n))
     end
@@ -119,13 +119,13 @@ end
 # ClausenNumberList is ~ 16 times faster than a list of ClausenNumbers!
 ClausenNumberList(10000) ::
     0.016498 seconds (141.08 k allocations: 2.252 MiB)
-for n in 0:10000 ClausenNumber(n) end ::
+for n ∈ 0:10000 ClausenNumber(n) end ::
     0.737140 seconds (2.40 M allocations: 66.330 MiB, 53.08% gc time)
 """
 function perf()
     GC.gc()
     @time ClausenNumberList(10000)
-    @time (for n in 0:10000
+    @time (for n ∈ 0:10000
         ClausenNumber(n)
     end)
 end

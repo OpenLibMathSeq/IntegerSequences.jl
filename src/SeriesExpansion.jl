@@ -27,7 +27,7 @@ Return the list of coefficients of the power series s.
 function Coefficients(s, len)
     R, x = PowerSeriesRing(ZZ, len + 2, "x")
     ser = s(x)
-    [coeff(ser, k) for k in 0:len-1]
+    [coeff(ser, k) for k ∈ 0:len-1]
 end
 
 """

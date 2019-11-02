@@ -30,7 +30,7 @@ const ModuleRationalTrees = ""
 """
 
 ```
-julia> for n in 1:4 Println(EuclidTree(n)) end
+julia> for n ∈ 1:4 Println(EuclidTree(n)) end
 [1//1]
 [1//2, 2//1]
 [1//3, 3//2, 2//3, 3//1]
@@ -48,8 +48,8 @@ function EuclidTree(n)
         b
     end
 
-    DF = [DijkstraFusc(k) for k in 2^(n-1):2^n]
-    [fmpq(DF[j], DF[j+1]) for j in 1:2^(n-1)]
+    DF = [DijkstraFusc(k) for k ∈ 2^(n-1):2^n]
+    [fmpq(DF[j], DF[j+1]) for j ∈ 1:2^(n-1)]
 end
 
 """
@@ -63,7 +63,7 @@ CalkinWilfTree(n) = EuclidTree(n)
 Return the Schinzel-Sierpinski encoding of the positive rational number r.
 
 ```
-julia> for n in 1:4 println([SchinzelSierpinski(l) for l in EuclidTree(n)]) end
+julia> for n ∈ 1:4 println([SchinzelSierpinski(l) for l ∈ EuclidTree(n)]) end
 [1//1]
 [2//5, 5//2]
 [3//11, 5//3, 3//5, 11//3]
@@ -92,7 +92,7 @@ using Test, SeqUtils, PrimesIterator
 
 function test()
     @testset "EuclidTree" begin
-        S = [numerator(sum(r for r in EuclidTree(n))) for n in 1:9]
+        S = [numerator(sum(r for r ∈ EuclidTree(n))) for n ∈ 1:9]
         L = Nemo.fmpz[1, 5, 11, 23, 47, 95, 191, 383, 767] # A052940
         @test all(S[1:9] .== L[1:9])
     end
@@ -100,20 +100,20 @@ end
 
 function demo()
     println("\nEuclidTree")
-    for n in 1:5
+    for n ∈ 1:5
         Println(EuclidTree(n))
     end
     println()
 
     println("\nSchinzelSierpinskiEncoding of the Euclid tree")
-    for n in 1:5
-        Println([SchinzelSierpinskiEncoding(l) for l in EuclidTree(n)])
-        # println(sum([SchinzelSierpinskiEncoding(l) for l in EuclidTree(n)]))
+    for n ∈ 1:5
+        Println([SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(n)])
+        # println(sum([SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(n)]))
     end
     println()
 
     println("\nSchinzelSierpinskiEncoding of primes")
-    Println([SchinzelSierpinskiEncoding(fmpq(p, 1)) for p in Primes(100)])
+    Println([SchinzelSierpinskiEncoding(fmpq(p, 1)) for p ∈ Primes(100)])
     println()
 end
 
@@ -121,14 +121,14 @@ end
 
 EuclidTree(100) ::
     0.000005 seconds (4 allocations: 224 bytes)
-[SchinzelSierpinskiEncoding(l) for l in EuclidTree(100)] ::
+[SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(100)] ::
     0.000007 seconds (6 allocations: 320 bytes)
 """
 function perf()
     GC.gc()
     @time EuclidTree(100)
     GC.gc()
-    @time [SchinzelSierpinskiEncoding(l) for l in EuclidTree(100)]
+    @time [SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(100)]
 end
 
 function main()

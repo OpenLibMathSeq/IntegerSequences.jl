@@ -27,8 +27,8 @@ function EulerTransform(f::Function)
     function E(n)
         haskey(CacheET, (f, n)) && return CacheET[(f, n)]
         n == 0 && return ZZ(1)
-        a(j) = ZZ(sum(d * f(Int(d)) for d in Divisors(j)))
-        b = sum(a(j) * E(n - j) for j in 1:n)
+        a(j) = ZZ(sum(d * f(Int(d)) for d ∈ Divisors(j)))
+        b = sum(a(j) * E(n - j) for j ∈ 1:n)
         r = div(b, n)
         CacheET[(f, n)] = r
         return r
@@ -47,7 +47,7 @@ V006171(n) = EulerTransform(τ)(n)
 
 Return a list of length len of the Euler transform of tau.
 """
-L006171(len) = [V006171(n) for n in 0:len-1]
+L006171(len) = [V006171(n) for n ∈ 0:len-1]
 
 """
 
@@ -59,7 +59,7 @@ V061256(n) = EulerTransform(σ)(n)
 
 Return a list of length len of the Euler transform of sigma.
 """
-L061256(len) = [V061256(n) for n in 0:len-1]
+L061256(len) = [V061256(n) for n ∈ 0:len-1]
 
 """
 
@@ -71,7 +71,7 @@ V275585(n) = EulerTransform(σ2)(n)
 
 Return a list of length len of the Euler transform of sigma_2.
 """
-L275585(len) = [V275585(n) for n in 0:len-1]
+L275585(len) = [V275585(n) for n ∈ 0:len-1]
 
 """
 
@@ -83,7 +83,7 @@ V107895(n) = EulerTransform(fac)(n)
 
 Return a list of length len of the Euler transform of the factorial.
 """
-L107895(len) = [V107895(n) for n in 0:len-1]
+L107895(len) = [V107895(n) for n ∈ 0:len-1]
 
 """
 
@@ -95,7 +95,7 @@ V190905(n) = EulerTransform(n -> div(fac(n), fac(div(n, 2))^2))(n)
 
 Return a list of length len of the Euler transform of the swinging factorial.
 """
-L190905(len) = [V190905(n) for n in 0:len-1]
+L190905(len) = [V190905(n) for n ∈ 0:len-1]
 
 """
 
@@ -107,7 +107,7 @@ V290351(n) = EulerTransform(Nemo.bell)(n)
 
 Return a list of length len of the Euler transform of the Bell numbers.
 """
-L290351(len) = [V290351(n) for n in 0:len-1]
+L290351(len) = [V290351(n) for n ∈ 0:len-1]
 
 """
 
@@ -119,7 +119,7 @@ V052847(n) = EulerTransform(k -> k - 1)(n)
 
 Return a list of length len of the Euler transform of [0, 1, 2, 3, ...].
 """
-L052847(len) = [V052847(n) for n in 0:len-1]
+L052847(len) = [V052847(n) for n ∈ 0:len-1]
 
 
 #START-TEST-########################################################
@@ -136,7 +136,7 @@ function test()
             SeqTest(L, 'L')
 
             V = [V107895, V190905, V061256, V275585, V006171]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V', 0)
             end
         end
@@ -147,13 +147,11 @@ function demo() end
 
 """
 
-for n in 0:150 V107895(n) end ::
+for n ∈ 0:150 V107895(n) end ::
     0.303605 seconds (1.01 M allocations: 32.276 MiB, 29.90% gc time)
 """
 function perf()
-    @time (for n in 0:150
-        V107895(n)
-    end)
+    @time (for n ∈ 0:150 V107895(n) end)
 end
 
 function main()

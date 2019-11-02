@@ -112,7 +112,7 @@ function test()
 
         if is_oeis_installed()
             V = [V000255, V000262, V001339, V007060, V033815, V099022, V251568]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V')
             end
         end
@@ -148,12 +148,12 @@ end
 
 """
 
-(for n in 0:150 V000262(n) end) ::
+(for n ∈ 0:150 V000262(n) end) ::
     0.010073 seconds (3.75 k allocations: 166.422 KB)
 """
 function perf()
     GC.gc()
-    @time (for n in 0:150
+    @time (for n ∈ 0:150
         V000262(n)
     end)
 end

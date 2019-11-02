@@ -84,7 +84,7 @@ function sortnames()
     # V => Value (single term)
     # is => is a (predicate), boolean
 
-    for l in eachline(index, keep = true)
+    for l ∈ eachline(index, keep = true)
 
         i = 0
         c = 2
@@ -110,15 +110,15 @@ function sortnames()
 
     # We have to avoid the final comma in the export list
     K = sort(collect(keys(dict)))
-    for key in K[1:end-1]
-        for s in dict[key]
+    for key ∈ K[1:end-1]
+        for s ∈ dict[key]
             print(sindex, s * ",")
         end
         println(sindex)
     end
 
     E = dict[K[end]]
-    for s in E[1:end-1]
+    for s ∈ E[1:end-1]
         print(sindex, s * ",")
     end
     println(sindex, E[end])
@@ -136,8 +136,8 @@ function build_seq()
 
     seq_modules = filter!(s -> occursin(r"\.jl$", s), readdir(srcdir))
 
-    for filename in seq_modules
-        filename in exclude && continue
+    for filename ∈ seq_modules
+        filename ∈ exclude && continue
         path = joinpath(srcdir, filename)
         mod = open(path, "r")
         println(" + ", filename)
@@ -145,7 +145,7 @@ function build_seq()
         doc = false
         mlcomment = false
 
-        for l in eachline(mod, keep = true)
+        for l ∈ eachline(mod, keep = true)
 
             n = lstrip(l)
             if mlcomment && startswith(n, "=#")
@@ -191,7 +191,7 @@ function build_seq()
     sor = open("_INDEX.jl", "w")
 
     s = ""
-    for l in eachline(exp, keep = true)
+    for l ∈ eachline(exp, keep = true)
         n = lstrip(l)
         if startswith(n, "export")
             n = n[7:end]
@@ -202,7 +202,7 @@ function build_seq()
     T = sort(split(R))
 
     println(sor, "export ")
-    for t in T[1:end]
+    for t ∈ T[1:end]
         println(sor, t, ",")
     end
 
@@ -223,11 +223,11 @@ function build_seq()
     println(olm, "using Nemo, IterTools, DataStructures, HTTP, DocStringExtensions")
     # println(olm, "import AbstractAlgebra.lead")
 
-    for l in eachline(sor, keep = true)
+    for l ∈ eachline(sor, keep = true)
         print(olm, l)
     end
 
-    for l in eachline(tmp, keep = true)
+    for l ∈ eachline(tmp, keep = true)
         print(olm, l)
     end
     print(olm, "end")
@@ -256,7 +256,7 @@ function build_test()
     path = joinpath(tstdir, "runtests.jl")
     i = open(path, "r")
     buff = Array{String,1}()
-    for l in eachline(i, keep = true)
+    for l ∈ eachline(i, keep = true)
         n = lstrip(l)
         startswith(n, '#') && continue
         startswith(n, "module") && continue
@@ -269,21 +269,21 @@ function build_test()
         j -= 1
     end
 
-    for k in 1:j-1
+    for k ∈ 1:j-1
         print(o, buff[k])
     end
     close(i)
 
     seq_modules = filter!(s -> occursin(r"\.jl$", s), readdir(srcdir))
-    for filename in seq_modules
-        filename in exclude && continue
+    for filename ∈ seq_modules
+        filename ∈ exclude && continue
         path = joinpath(srcdir, filename)
         i = open(path, "r")
         inside = false
         println(o, "# *** ", splitdir(path)[2], " *********")
 
         buff = Array{String,1}()
-        for l in eachline(i, keep = true)
+        for l ∈ eachline(i, keep = true)
             n = lstrip(l)
             startswith(n, '#') && continue
             b = startswith(n, "function test")
@@ -306,7 +306,7 @@ function build_test()
             j -= 1
         end
 
-        for k in 1:j-1
+        for k ∈ 1:j-1
             print(o, buff[k])
         end
         close(i)
@@ -333,8 +333,8 @@ function build_perf()
     println(o, "start = Dates.now()")
 
     seq_modules = filter!(s -> occursin(r"\.jl$", s), readdir(srcdir))
-    for filename in seq_modules
-        filename in exclude && continue
+    for filename ∈ seq_modules
+        filename ∈ exclude && continue
         path = joinpath(srcdir, filename)
         i = open(path, "r")
         inside = false
@@ -342,7 +342,7 @@ function build_perf()
 
         buff = Array{String,1}()
         s = ""
-        for l in eachline(i, keep = true)
+        for l ∈ eachline(i, keep = true)
             n = lstrip(l)
             b = startswith(n, "function perf()")
             if b
@@ -368,7 +368,7 @@ function build_perf()
             j -= 1
         end
 
-        for k in 1:j-1
+        for k ∈ 1:j-1
             print(o, buff[k])
         end
         close(i)
@@ -390,7 +390,7 @@ function make_index()
     tind = open("_SINDEX.jl", "r")
 
     first = true
-    for l in eachline(tind, keep = false)
+    for l ∈ eachline(tind, keep = false)
         if first
             first = false
             println(ind, "# Library")
@@ -398,7 +398,7 @@ function make_index()
             continue
         end
         endswith(l, ',') && (l = chop(l))
-        for f in split(l, ",")
+        for f ∈ split(l, ",")
             println(ind, "```@docs")
             println(ind, f)
             println(ind, "```")
@@ -415,13 +415,13 @@ function make_modules()
     mod = open(mdpath, "w")
     seq_modules = filter!(s -> occursin(r"\.jl$", s), readdir(srcdir))
 
-    for filename in seq_modules
-        filename in exclude && continue
+    for filename ∈ seq_modules
+        filename ∈ exclude && continue
         path = joinpath(srcdir, filename)
         src = open(path, "r")
         indoc = false
 
-        for l in eachline(src, keep = false)
+        for l ∈ eachline(src, keep = false)
             n = lstrip(l)
             if startswith(n, "\"\"\"")
                 indoc && break

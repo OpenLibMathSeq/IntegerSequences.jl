@@ -19,7 +19,7 @@ const ModuleQueensProblems = ""
 function solve!(profile, level, size, start, cols, diag4, diag1)
 
     if level > 0
-        for i in start:size
+        for i ∈ start:size
             save = cols & (1 << i) + diag1 & (1 << (i + level)) +
                    diag4 & (1 << (32 + i - level))
 
@@ -39,7 +39,7 @@ function solve!(profile, level, size, start, cols, diag4, diag1)
             end
         end
     else
-        for i in 0:size
+        for i ∈ 0:size
             save = cols & (1 << i) + diag1 & (1 << i) + diag4 & (1 << (32 + i))
             save == 0 && (profile[1] += 1)
         end
@@ -85,7 +85,7 @@ end
 function demo()
 
     up_to = 10
-    for n in 0:up_to
+    for n ∈ 0:up_to
         print("elapsed: ")
         @time profile = Queens(n)
         println("size:      ", n)

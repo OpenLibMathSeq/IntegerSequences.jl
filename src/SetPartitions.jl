@@ -269,15 +269,15 @@ function test()
         CP = collect(SetPartitions([1, 2, 3]))
         @test SP == CP
 
-        RP = reduce(vcat, [collect(SetPartitions([1, 2, 3], k)) for k in 1:3])
+        RP = reduce(vcat, [collect(SetPartitions([1, 2, 3], k)) for k ∈ 1:3])
         @test SP == RP
 
-        for n in 1:7
+        for n ∈ 1:7
             s = collect(0:n-1)
             @test length(collect(SetPartitions(s))) == SetNumber(length(s))
         end
 
-        for n in 1:7, k in 1:n
+        for n ∈ 1:7, k ∈ 1:n
             sn = SetNumber(n, k)
             @test length(collect(SetPartitions(1:n, k))) == sn
         end
@@ -293,21 +293,21 @@ function demo()
     println("The empty set has a partition, namely: ", reduce(vcat, s))
     println()
 
-    for n in 1:4
+    for n ∈ 1:4
         println("-- ", n)
-        for k in 1:n
-            for p in SetPartitions(n, k)
-            # same as: for p in SetPartitions(1:n, k)
+        for k ∈ 1:n
+            for p ∈ SetPartitions(n, k)
+            # same as: for p ∈ SetPartitions(1:n, k)
                 Println(p)
             end
         end
         println()
     end
 
-    for n in 1:4
+    for n ∈ 1:4
         println("-- ", n)
-        for k in 1:n
-            for p in SetPartitions(n, k)
+        for k ∈ 1:n
+            for p ∈ SetPartitions(n, k)
                 Println(p)
             end
         end
@@ -315,12 +315,12 @@ function demo()
     end
 
     println("The Set numbers (aka Stirling2 numbers):")
-    for n in 0:6
-        println([SetNumber(n, k) for k in 0:n])
+    for n ∈ 0:6
+        println([SetNumber(n, k) for k ∈ 0:n])
     end
     println()
     println("The Set numbers (aka Bell numbers):")
-    Println([SetNumber(n) for n in 0:9])
+    Println([SetNumber(n) for n ∈ 0:9])
 end
 
 function perf() end

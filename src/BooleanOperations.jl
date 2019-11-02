@@ -47,9 +47,9 @@ function BinDigits(n::Int, k::Int, algo=max)
     if algo == max
         maxlen = max(lenN, lenK)
         if maxlen > lenN
-            N = vcat(N, [0 for i in 1:maxlen-lenN])
+            N = vcat(N, [0 for i ∈ 1:maxlen-lenN])
         else
-            K = vcat(K, [0 for i in 1:maxlen-lenK])
+            K = vcat(K, [0 for i ∈ 1:maxlen-lenK])
         end
     else
         minlen = min(lenN, lenK)
@@ -66,67 +66,67 @@ end
 
 Return the bitwise negation of ``N``.
 """
-Not(N) = [1 - n for n in N]
+Not(N) = [1 - n for n ∈ N]
 
 """
 
 Return the bitwise conjunction of ``N`` and ``K``.
 """
-And(N, K) = [N[i] & k for (i, k) in enumerate(K)]
+And(N, K) = [N[i] & k for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise difference of ``N`` and ``K``.
 """
-Dif(N, K) = [N[i] & (1 - k) for (i, k) in enumerate(K)]
+Dif(N, K) = [N[i] & (1 - k) for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise converse nonimplication of ``N`` and ``K``.
 """
-Cnimp(N, K) = [(1 - N[i]) & k for (i, k) in enumerate(K)]
+Cnimp(N, K) = [(1 - N[i]) & k for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise exclusive disjunction of ``N`` and ``K``.
 """
-Xor(N, K) = [xor(N[i], k) for (i, k) in enumerate(K)]
+Xor(N, K) = [xor(N[i], k) for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise disjunction of ``N`` and ``K``.
 """
-Or(N, K) = [N[i] | k for (i, k) in enumerate(K)]
+Or(N, K) = [N[i] | k for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise joint denial of ``N`` and ``K``.
 """
-Nor(N, K) = [1 - (N[i] | k) for (i, k) in enumerate(K)]
+Nor(N, K) = [1 - (N[i] | k) for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise equivalence of ``N`` and ``K``.
 """
-Eqv(N, K) = [xor(1 - N[i], k) for (i, k) in enumerate(K)]
+Eqv(N, K) = [xor(1 - N[i], k) for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise converse implication of ``N`` and ``K``.
 """
-Cimp(N, K) = [N[i] | (1 - k) for (i, k) in enumerate(K)]
+Cimp(N, K) = [N[i] | (1 - k) for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise implication of ``N`` and ``K``.
 """
-Imp(N, K) = [(1 - N[i]) | k for (i, k) in enumerate(K)]
+Imp(N, K) = [(1 - N[i]) | k for (i, k) ∈ enumerate(K)]
 
 """
 
 Return the bitwise nonconjunction of ``N`` and ``K``.
 """
-Nand(N, K) = [1 - (N[i] & k) for (i, k) in enumerate(K)]
+Nand(N, K) = [1 - (N[i] & k) for (i, k) ∈ enumerate(K)]
 
 """
 
@@ -158,7 +158,7 @@ function Bits(op::Int, n::Int, k::Int, algo=max)
     elseif op == 14  R = Nand(N, K)
     end
 
-    sum(r << (i-1)  for (i, r) in enumerate(R))
+    sum(r << (i-1)  for (i, r) ∈ enumerate(R))
 end
 
 """
@@ -311,7 +311,7 @@ V135481(n) = Bits("CNIMP", n+1, n)
 
 Return Sum``_{d|n} d & (n/d)``, where & is the bitwise AND operator.
 """
-V327987(n) = sum([Bits("AND", d, div(n, d)) for d in divisors(n)])
+V327987(n) = sum([Bits("AND", d, div(n, d)) for d ∈ divisors(n)])
 
 """
 
@@ -323,7 +323,7 @@ isV327988(n) = V327987(n) == 0
 
 Return a list of the zeros of V327987 below (inc.)  ``max``.
 """
-L327988(max) = [n for n in 0:max if isV327988(n)]
+L327988(max) = [n for n ∈ 0:max if isV327988(n)]
 
 #START-TEST-########################################################
 
@@ -333,37 +333,37 @@ function test()
     @testset "BoolOps" begin
         A = [1, 1, 0, 0]
         B = [1, 0, 1, 0]
-        S(R) = sum(r << (i-1)  for (i, r) in enumerate(R))
+        S(R) = sum(r << (i-1)  for (i, r) ∈ enumerate(R))
 
-        for n in 0:15
-            @test n == S([Bits(n, A[k], B[k]) for k in 1:4])
+        for n ∈ 0:15
+            @test n == S([Bits(n, A[k], B[k]) for k ∈ 1:4])
         end
-        for n in 0:15
-            @test n == S([Bits(BoolOps[n+1], A[k], B[k]) for k in 1:4])
+        for n ∈ 0:15
+            @test n == S([Bits(BoolOps[n+1], A[k], B[k]) for k ∈ 1:4])
         end
 
         @test BinDigits(12, 17) == ([0, 0, 1, 1, 0], [1, 0, 0, 0, 1])
-        @test [V163617(n) for n in 0:8] == [0, 3, 6, 7, 12, 15, 14, 15, 24]
-        @test [V035327(n) for n in 0:8] == [1, 0, 1, 0, 3, 2, 1, 0, 7]
-        @test [V129760(n) for n in 0:8] == [0, 0, 2, 0, 4, 4, 6, 0, 8]
-        @test [V142151(n) for n in 0:8] == [0, 1, 2, 3, 6, 5, 6, 7, 14]
-        @test [V003817(n) for n in 0:8] == [1, 1, 3, 3, 7, 7, 7, 7, 15]
-        @test [V080079(n) for n in 0:8] == [1, 2, 1, 4, 3, 2, 1, 8, 7]
-        @test [V086799(n) for n in 0:8] == [1, 3, 3, 7, 5, 7, 7, 15, 9]
-        @test [V038712(n) for n in 0:8] == [1, 3, 1, 7, 1, 3, 1, 15, 1]
-        @test [V006257(n) for n in 0:8] == [0, 1, 1, 3, 1, 3, 5, 7, 1]
+        @test [V163617(n) for n ∈ 0:8] == [0, 3, 6, 7, 12, 15, 14, 15, 24]
+        @test [V035327(n) for n ∈ 0:8] == [1, 0, 1, 0, 3, 2, 1, 0, 7]
+        @test [V129760(n) for n ∈ 0:8] == [0, 0, 2, 0, 4, 4, 6, 0, 8]
+        @test [V142151(n) for n ∈ 0:8] == [0, 1, 2, 3, 6, 5, 6, 7, 14]
+        @test [V003817(n) for n ∈ 0:8] == [1, 1, 3, 3, 7, 7, 7, 7, 15]
+        @test [V080079(n) for n ∈ 0:8] == [1, 2, 1, 4, 3, 2, 1, 8, 7]
+        @test [V086799(n) for n ∈ 0:8] == [1, 3, 3, 7, 5, 7, 7, 15, 9]
+        @test [V038712(n) for n ∈ 0:8] == [1, 3, 1, 7, 1, 3, 1, 15, 1]
+        @test [V006257(n) for n ∈ 0:8] == [0, 1, 1, 3, 1, 3, 5, 7, 1]
 
-        @test [V080940(n) for n in 0:8] == [1, 0, 1, 0, 1, 2, 1, 0, 1]
-        @test [V135521(n) for n in 0:8] == [1, 1, 1, 3, 1, 3, 1, 7, 1]
+        @test [V080940(n) for n ∈ 0:8] == [1, 0, 1, 0, 1, 2, 1, 0, 1]
+        @test [V135521(n) for n ∈ 0:8] == [1, 1, 1, 3, 1, 3, 1, 7, 1]
 
-        @test [V048724(n) for n in 0:8] == [0, 3, 6, 5, 12, 15, 10, 9, 24]
-        @test [V003188(n) for n in 0:8] == [0, 1, 3, 2, 6, 7, 5, 4, 12]
-        @test [V038554(n) for n in 0:8] == [0, 1, 1, 0, 2, 3, 1, 0, 4]
-        @test [V048735(n) for n in 0:8] == [0, 0, 0, 1, 0, 0, 2, 3, 0]
-        @test [V213370(n) for n in 0:8] == [0, 0, 0, 2, 0, 0, 4, 6, 0]
+        @test [V048724(n) for n ∈ 0:8] == [0, 3, 6, 5, 12, 15, 10, 9, 24]
+        @test [V003188(n) for n ∈ 0:8] == [0, 1, 3, 2, 6, 7, 5, 4, 12]
+        @test [V038554(n) for n ∈ 0:8] == [0, 1, 1, 0, 2, 3, 1, 0, 4]
+        @test [V048735(n) for n ∈ 0:8] == [0, 0, 0, 1, 0, 0, 2, 3, 0]
+        @test [V213370(n) for n ∈ 0:8] == [0, 0, 0, 2, 0, 0, 4, 6, 0]
 
-        @test [V135481(n) for n in 0:8] == [0, 1, 0, 3, 0, 1, 0, 7, 0]
-        @test [V327987(n) for n in 0:8] == [0, 1, 0, 2, 2, 2, 4, 2, 0]
+        @test [V135481(n) for n ∈ 0:8] == [0, 1, 0, 3, 0, 1, 0, 7, 0]
+        @test [V327987(n) for n ∈ 0:8] == [0, 1, 0, 2, 2, 2, 4, 2, 0]
         @test L327988(99) == [0, 2, 8, 10, 26, 32, 34, 40, 50, 58, 74, 82]
 
         @test isV327988(121) == false
@@ -373,14 +373,14 @@ end
 
 function demo()
     println()
-    for n in 0:15
-        seq = [Bits(n, k, k+1) for k in 0:12]
+    for n ∈ 0:15
+        seq = [Bits(n, k, k+1) for k ∈ 0:12]
         println(BoolOps[n+1], " ", seq)
     end
 
     println()
-    for n in 1:8
-        [V280172(n, k) for k in 1:n] |> println
+    for n ∈ 1:8
+        [V280172(n, k) for k ∈ 1:n] |> println
     end
 end
 

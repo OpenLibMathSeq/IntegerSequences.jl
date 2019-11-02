@@ -79,7 +79,7 @@ const CacheV163590 = Dict{Int,Int}(0 => 1)
 Return the odd part of the swinging factorial of ``2n+1``.
 """
 V001803(n) = V163590(2n+1)
-#V001803(n) = sum(<<(V001790(k), V005187(n) - V005187(k)) for k in 0:n)
+#V001803(n) = sum(<<(V001790(k), V005187(n) - V005187(k)) for k ∈ 0:n)
 
 """
 
@@ -192,19 +192,19 @@ V056982(n::Int) = 4^(2n - BitCount(n))
 
 Return the numerator of ``∑_{j=0..n} j!/(2^j ⌊j/2⌋!)^2``.
 """
-V327494(n) = sum(<<(V163590(k), V327492(n) - V327492(k)) for k in 0:n)
+V327494(n) = sum(<<(V163590(k), V327492(n) - V327492(k)) for k ∈ 0:n)
 
 """
 
 Return the numerators of the Landau constants.
 """
-V277233(n) = sum(<<(V001790(k), V005187(n) - V005187(k))^2 for k in 0:n)
+V277233(n) = sum(<<(V001790(k), V005187(n) - V005187(k))^2 for k ∈ 0:n)
 
 """
 
 Return the numerators of the swinging Landau constants.
 """
-V327495(n) = sum(<<(V163590(k), V327492(n) - V327492(k))^2 for k in 0:n)
+V327495(n) = sum(<<(V163590(k), V327492(n) - V327492(k))^2 for k ∈ 0:n)
 
 
 #START-TEST-########################################################
@@ -268,19 +268,19 @@ function demo() end
 
 function perf()
     "V001511" |> println
-    @time for n in 0:100 V001511(n) end
+    @time for n ∈ 0:100 V001511(n) end
     "V163590" |> println
-    @time for n in 0:100 V163590(n) end
+    @time for n ∈ 0:100 V163590(n) end
     "V327492" |> println
-    @time for n in 0:100 V327492(n) end
+    @time for n ∈ 0:100 V327492(n) end
     "V005187" |> println
-    @time for n in 0:100 V005187(n) end
+    @time for n ∈ 0:100 V005187(n) end
     "V001790" |> println
-    @time for n in 0:100 V001790(n) end
+    @time for n ∈ 0:100 V001790(n) end
     "V277233" |> println
-    @time for n in 0:100 V277233(n) end
+    @time for n ∈ 0:100 V277233(n) end
     "V327495" |> println
-    @time for n in 0:100 V327495(n) end
+    @time for n ∈ 0:100 V327495(n) end
 end
 
 function main()

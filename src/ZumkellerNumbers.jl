@@ -27,9 +27,9 @@ function isZumkeller(n::Int)
     s = σ(n)
     ((s % 2 ≠ 0) || (s < 2n)) && return false
     S = s >> 1 - n
-    D = [d for d in Divisors(n) if d ≤ S]
+    D = [d for d ∈ Divisors(n) if d ≤ S]
     D == [] && return true
-    for c in Combinations(D)
+    for c ∈ Combinations(D)
         S == sum(c) && return true
     end
     return false
@@ -81,40 +81,40 @@ end
 
 function demo()
     println(L083207(10))
-    for a in I083207(30)
+    for a ∈ I083207(30)
         print(a, ", ")
     end
     println("...")
-    for a in F083207(30)
+    for a ∈ F083207(30)
         print(a, ", ")
     end
     println("...")
 
-    for n in 20:30
+    for n ∈ 20:30
         println(n, " ↦ ", isZumkeller(n))
     end
 
-    for (index, value) in enumerate(I083207(10))
+    for (index, value) ∈ enumerate(I083207(10))
         println("$index -> $value")
     end
 
     println(V083207(10))
 
-    for n in 1:6
+    for n ∈ 1:6
         println(n, " ↦ ", L083207(n))
     end
 end
 
 """
 
-@time (for n in 1:2000 isZumkeller(n) end) ::
+@time (for n ∈ 1:2000 isZumkeller(n) end) ::
     0.311896 seconds (1.86 M allocations: 63.875 MiB, 31.28% gc time)
 @time L083207(500) ::
     0.295718 seconds (2.21 M allocations: 75.920 MiB, 40.89% gc time)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:2000
+    @time (for n ∈ 1:2000
         isZumkeller(n)
     end)
     @time L083207(500)

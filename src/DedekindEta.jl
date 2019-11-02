@@ -33,7 +33,7 @@ function DedekindEtaPowers(len::Int, r::Int)
     len ≤ 0 && return fmpz[]
     R, x = PolynomialRing(ZZ, "x")
     e = eta_qexp(r, len, x)
-    [coeff(e, j) for j in 0:len-1]
+    [coeff(e, j) for j ∈ 0:len-1]
 end
 
 """
@@ -529,11 +529,11 @@ function test()
 end
 
 function demo()
-    for n in 0:6
+    for n ∈ 0:6
         println(n, ": ", DedekindEtaPowers(8, n))
     end
 
-    for n in 0:6
+    for n ∈ 0:6
         println(-n, ": ", DedekindEtaPowers(8, -n))
     end
 end

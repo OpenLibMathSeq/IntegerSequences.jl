@@ -64,9 +64,9 @@ function swing_oddpart(n::Int)
     sqrtn = isqrt(n)
     factors = Primes(div(n, 2) + 1, n)
     P = Primes(sqrtn + 1, div(n, 3))
-    s = [p for p in P if isodd(div(n, p))]
+    s = [p for p ∈ P if isodd(div(n, p))]
 
-    for prime in Primes(3, sqrtn)
+    for prime ∈ Primes(3, sqrtn)
         p, q = 1, n
         while true
             q = div(q, prime)
@@ -142,7 +142,7 @@ using Test, BenchmarkTools
 
 function test()
     @testset "PrimeSwingF" begin
-        for n in 0:999
+        for n ∈ 0:999
             S = PSfactorial(n)
             B = Base.factorial(BigInt(n))
             #@test S == B

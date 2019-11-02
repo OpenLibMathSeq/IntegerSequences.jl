@@ -135,7 +135,7 @@ function NextIntPartition(n, m, bs)
         # Iterate
         j = 0
         s = as[1] + as[2] - 1
-        for jj in 3:m
+        for jj ∈ 3:m
             j = jj
             as[jj] < as[1] - 1 && break
             s += as[jj]
@@ -200,7 +200,7 @@ Return the number of partitions of ``n``. Cf. A000041.
 """
 function PartitionNumber(n::Int)
     haskey(CachePartNum, (n, -1)) && return CachePartNum[(n, -1)]
-    CachePartNum[(n, -1)] = sum(PartitionNumber(n, k) for k in 0:n)
+    CachePartNum[(n, -1)] = sum(PartitionNumber(n, k) for k ∈ 0:n)
 end
 
 """
@@ -213,7 +213,7 @@ V000041(n) = PartitionNumber(n)
 
 Return an iterator over the list of partitions of ``n`` into ``k`` parts.
 """
-I072233(n) = (PartitionNumber(n, k) for k in 0:n)
+I072233(n) = (PartitionNumber(n, k) for k ∈ 0:n)
 
 """
 
@@ -227,7 +227,7 @@ L072233(n) = collect(I072233(n))
 Return the partition coefficients of ``n``, first ordered by length.
 """
 PartitionCoefficientsByLength(n) = [
-    Multinomial(p) for p in IntegerPartitions(n, byNumPart)]
+    Multinomial(p) for p ∈ IntegerPartitions(n, byNumPart)]
 
 """
 
@@ -240,7 +240,7 @@ L036038(n) = PartitionCoefficientsByLength(n)
 Return the partition coefficients of ``n``, first ordered by biggest part.
 """
 PartitionCoefficientsByBiggestPart(n) = [
-    Multinomial(p) for p in IntegerPartitions(n, byMaxPart)]
+    Multinomial(p) for p ∈ IntegerPartitions(n, byMaxPart)]
 
 """
 
@@ -264,7 +264,7 @@ end
 
 Sum of all partition coefficients of n.
 """
-L005651(len::Int) = [H(n, n) for n in 0:len-1]
+L005651(len::Int) = [H(n, n) for n ∈ 0:len-1]
 
 """
 
@@ -273,7 +273,7 @@ Return the number of ordered partitions of an n-set with nondecreasing block siz
 function L262071(n::Int)
     n == 0 && return [1]
     A = zeros(Int, n + 1)
-    for p in IntegerPartitions(n, byMaxPart)
+    for p ∈ IntegerPartitions(n, byMaxPart)
         A[1+p[1]] += Multinomial(p)
     end
     return A
@@ -284,7 +284,7 @@ end
 Return the triangle of multinomial coefficients of ``n``. [Defined as in the 'Handbook of Mathematical Functions', p. 831, as ``M1``.]
 """
 function L292222(n)
-    [sum(Multinomial(p) for p in IntegerPartitions(n, k)) for k in 1:n]
+    [sum(Multinomial(p) for p ∈ IntegerPartitions(n, k)) for k ∈ 1:n]
 end
 
 #START-TEST-########################################################
@@ -308,8 +308,8 @@ function test()
         @test collect(IntegerPartitions(2, 2)) == [[1, 1]]
         @test collect(IntegerPartitions(2, 3)) == []
 
-        @test [length(b) for b in IntegerPartitions(0)] == [0]
-        @test [length(b) for b in IntegerPartitions(1)] == [1]
+        @test [length(b) for b ∈ IntegerPartitions(0)] == [0]
+        @test [length(b) for b ∈ IntegerPartitions(1)] == [1]
         @test length(IntegerPartitions(0)) == 1
         @test length(collect(IntegerPartitions(1))) == 1
         @test_throws DomainError IntegerPartitions(-1)
@@ -317,19 +317,19 @@ function test()
         @test collect(IntegerPartitions(5)) == reverse(Any[[1, 1, 1, 1, 1],
             [2, 1, 1, 1], [2, 2, 1], [3, 1, 1], [3, 2], [4, 1], [5]])
 
-        for n in 0:7
+        for n ∈ 0:7
             pn = PartitionNumber(n)
             @test length(collect(IntegerPartitions(n, byMaxPart))) == pn
             @test length(collect(IntegerPartitions(n, byNumPart))) == pn
         end
 
-        for n in 0:7, k in 0:n
+        for n ∈ 0:7, k ∈ 0:n
             pn = PartitionNumber(n, k)
             @test length(collect(IntegerPartitions(n, k))) == pn
         end
 
         @test L005651(10) == [1, 1, 3, 10, 47, 246, 1602, 11481, 95503, 871030]
-        @test [V000041(n) for n in 0:8] == [1, 1, 2, 3, 5, 7, 11, 15, 22]
+        @test [V000041(n) for n ∈ 0:8] == [1, 1, 2, 3, 5, 7, 11, 15, 22]
         @test L072233(7) == [0, 1, 3, 4, 3, 2, 1, 1]
         @test L036038(6) == [1, 6, 15, 20, 30, 60, 90, 120, 180, 360, 720]
         @test L078760(6) == [1, 6, 15, 30, 20, 60, 120, 90, 180, 360, 720]
@@ -341,27 +341,27 @@ end
 
 function demo()
     println("\n-- all partitions of 10")
-    for p in IntegerPartitions(10)
+    for p ∈ IntegerPartitions(10)
         Println(p)
     end
 
-    for n in 0:7
+    for n ∈ 0:7
         println("\n\n-- $n  --")
 
         println("\n-- by biggest part")
-        for p in IntegerPartitions(n, byMaxPart)
+        for p ∈ IntegerPartitions(n, byMaxPart)
             Println(p)
         end
 
         println("\n-- by length (all)")
-        for p in IntegerPartitions(n, byNumPart)
+        for p ∈ IntegerPartitions(n, byNumPart)
             Println(p)
         end
 
         println("\n-- selected lengths")
-        for k in 0:2:n
+        for k ∈ 0:2:n
             P = IntegerPartitions(n, k)
-            for p in P Println(p) end
+            for p ∈ P Println(p) end
         end
     end
 
@@ -370,15 +370,15 @@ function demo()
     println("-- n>0, k=0 -> P(n, k) = []")
     println("-- n>0, k>n -> P(n, k) = []")
 
-    for n in [0,1,2,6]
+    for n ∈ [0,1,2,6]
         println("\n-- ", n)
-        for k in 0:n
+        for k ∈ 0:n
             P = collect(IntegerPartitions(n, k))
             print("collect ", (n, k), " -> "); Println(P)
             if isempty(IntegerPartitions(n, k))
                 println((n, k), " -> no partition")
             else
-                for p in IntegerPartitions(n, k)
+                for p ∈ IntegerPartitions(n, k)
                     println((n, k), " -> ", p)
                 end
             end
@@ -391,29 +391,29 @@ function demo()
         if isempty(IntegerPartitions(n, k))
             println((n, k), " -> no partition")
         else
-            for p in IntegerPartitions(n, k)
+            for p ∈ IntegerPartitions(n, k)
                 println((n, k), " -> ", p)
             end
         end
     end
 
     println("\n-- triangle of partition numbers")
-    for n in 0:7
-        println([PartitionNumber(n, k) for k in 0:n])
+    for n ∈ 0:7
+        println([PartitionNumber(n, k) for k ∈ 0:n])
     end
 
     println("\n-- number of partitions")
-    println([PartitionNumber(n) for n in 0:12])
+    println([PartitionNumber(n) for n ∈ 0:12])
     println()
 
     println("\n-- partition coefficients by biggest part")
-    for n in 0:6
+    for n ∈ 0:6
         PartitionCoefficientsByBiggestPart(n) |> println
     end
     println()
 
     println("\n-- partition coefficients by length")
-    for n in 0:6
+    for n ∈ 0:6
         PartitionCoefficientsByLength(n) |> println
     end
     println()
@@ -424,15 +424,15 @@ function demo()
 end
 
 """
-for n in 1:50, p in IntegerPartitions(n, byNumPart) p end
+for n ∈ 1:50, p ∈ IntegerPartitions(n, byNumPart) p end
     0.437520 seconds (3.89 M allocations: 329.296 MiB, 26.45% gc time)
-for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
+for n ∈ 1:50, p ∈ IntegerPartitions(n, byMaxPart) p end
     0.509802 seconds (2.59 M allocations: 249.845 MiB, 20.57% gc time)
 """
 function perf()
     println("\n-- performance test")
-    @time for n in 1:50, p in IntegerPartitions(n, byNumPart) p end
-    @time for n in 1:50, p in IntegerPartitions(n, byMaxPart) p end
+    @time for n ∈ 1:50, p ∈ IntegerPartitions(n, byNumPart) p end
+    @time for n ∈ 1:50, p ∈ IntegerPartitions(n, byMaxPart) p end
 end
 
 function main()

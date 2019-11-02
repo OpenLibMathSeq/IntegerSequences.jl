@@ -35,7 +35,7 @@ function André(m::Int, n::Int)
     haskey(CacheAndré, (m, n)) && return CacheAndré[(m, n)]
     n ≤ 0 && return fmpz(1)
     r = range(0, step = m, stop = n - 1)
-    S = sum(binom(n, k) * André(m, k) for k in r)
+    S = sum(binom(n, k) * André(m, k) for k ∈ r)
     return CacheAndré[(m, n)] = n % m == 0 ? -S : S
 end
 
@@ -91,7 +91,7 @@ C000111() =
             A = 0
             D[k+s] = 0
             s = -s
-            for j in 0:i
+            for j ∈ 0:i
                 A += D[k]
                 D[k] = A
                 k += s
@@ -117,14 +117,14 @@ function test()
 
         if is_oeis_installed()
             V = [V000111, V178963, V178964, V181936, V250283]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V')
             end
         end
 
         V = [1, 1, 1, 2, 5, 16, 61, 272, 1385, 7936, 50521]
         generator = C000111()
-        for n in 1:10
+        for n ∈ 1:10
             v = take!(generator)
             @test V[n] == v
         end
@@ -137,13 +137,13 @@ function test()
 end
 
 function demo()
-    for m in 1:8
-        Println([André(m, n) for n in 0:11])
+    for m ∈ 1:8
+        Println([André(m, n) for n ∈ 0:11])
     end
 
     println()
     generator = C000111()
-    for n in 0:10
+    for n ∈ 0:10
         v = take!(generator)
         println(n, " ↦ ", v)
     end
@@ -152,12 +152,12 @@ end
 
 """
 
-for m in 1:20, n in 0:100 André(m,n) end
+for m ∈ 1:20, n ∈ 0:100 André(m,n) end
     0.012252 seconds (66.73 k allocations: 1.341 MiB)
 """
 function perf()
     GC.gc()
-    @time (for m in 1:20, n in 0:100
+    @time (for m ∈ 1:20, n ∈ 0:100
         André(m, n)
     end)
 end
@@ -170,7 +170,7 @@ end
 
 main()
 
-for n in 0:32
+for n ∈ 0:32
     println(André(3, n))
 end
 

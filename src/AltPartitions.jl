@@ -54,7 +54,7 @@ function NEXPAR(N::Int, Visit::Function)
     MTC = M[D] ≠ N
     fill!(PAR, 0)
     K = 0
-    for I in 1:D, J in 1:M[I]
+    for I ∈ 1:D, J ∈ 1:M[I]
         K = K + 1
         PAR[K] = R[I]
     end
@@ -146,12 +146,12 @@ function demo()
     # Prints the partitions given in the format used in function NEXPAR.
     PrintPartition(P) =  P |> println
 
-    for n in 1:5
+    for n ∈ 1:5
         VisitPartition(n, PrintPartition)
         println()
     end
 
-    for p in partitions(6)
+    for p ∈ partitions(6)
         Println(p)
     end
     println()

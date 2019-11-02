@@ -32,16 +32,16 @@ with ``p_{0}(x)=1`` for some pair of seq's ``s_k`` and ``t_k``. Return the coeff
 function OrthoPoly(dim::Int, s::Function, t::Function)
     dim ≤ 0 && return fmpz[]
     T = zeros(ZZ, dim, dim)
-    for n in 1:dim
+    for n ∈ 1:dim
         T[n, n] = 1
     end
-    for n in 2:dim
-        for k in 1:n-1
+    for n ∈ 2:dim
+        for k ∈ 1:n-1
             T[n, k] = ((k > 1 ? T[n-1, k-1] : 0) + s(k - 1) * T[n-1, k] +
                        t(k) * T[n-1, k+1])
         end
     end
-    [T[n, k] for n in 1:dim for k in 1:n]
+    [T[n, k] for n ∈ 1:dim for k ∈ 1:n]
 end
 
 """
@@ -51,16 +51,16 @@ Return the inverse of the coefficients of the orthogonal polynomials generated b
 function InvOrthoPoly(dim::Int, s::Function, t::Function)
     dim ≤ 0 && return fmpz[]
     T = zeros(ZZ, dim, dim)
-    for n in 1:dim
+    for n ∈ 1:dim
         T[n, n] = 1
     end
-    for n in 1:dim-1
-        for k in 1:n+1
+    for n ∈ 1:dim-1
+        for k ∈ 1:n+1
             T[n+1, k] = ((k > 1 ? T[n, k-1] : 0) - s(n - 1) * T[n, k] -
                          (n > 1 ? t(n - 1) * T[n-1, k] : 0))
         end
     end
-    [T[n, k] for n in 1:dim for k in 1:n]
+    [T[n, k] for n ∈ 1:dim for k ∈ 1:n]
 end
 
 """
@@ -229,9 +229,9 @@ function T053120(len)
     T = ZTriangle(len)
     R, x = PolynomialRing(ZZ, "x")
     m = 1
-    for n in 0:len-1
+    for n ∈ 0:len-1
         f = chebyshev_t(n, x)
-        for k in 0:n
+        for k ∈ 0:n
             T[m] = coeff(f, k)
             m += 1
         end
@@ -247,9 +247,9 @@ function T053117(len)
     T = ZTriangle(len)
     R, x = PolynomialRing(ZZ, "x")
     m = 1
-    for n in 0:len-1
+    for n ∈ 0:len-1
         f = chebyshev_u(n, x)
-        for k in 0:n
+        for k ∈ 0:n
             T[m] = coeff(f, k)
             m += 1
         end

@@ -31,12 +31,12 @@ function RiordanProduct(a, b, dim, expo = false)
     A = Coefficients(a, dim)
     B = b == nothing ? A : Coefficients(b, dim)
     M = identity_matrix(QQ, dim)
-    for k in 1:dim
+    for k ∈ 1:dim
         M[k, 1] = A[k]
     end
 
-    for k in 2:dim, m in k+1:dim
-        M[m, k] = sum(M[j+1, k-1] * B[m-j] for j in k-2:m-2)
+    for k ∈ 2:dim, m ∈ k+1:dim
+        M[m, k] = sum(M[j+1, k-1] * B[m-j] for j ∈ k-2:m-2)
     end
     #expo ? ExponentialWeights(M) : M
     toΔ(M)

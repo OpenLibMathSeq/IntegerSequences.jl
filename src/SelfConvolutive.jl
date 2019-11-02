@@ -26,7 +26,7 @@ const ModuleSelfConvolutive = ""
 # Integral representation of certain combinatorial recurrences
 # see also http://oeis.org/A172455
 
-Convolution(A, n) = sum(A[j+1] * A[n-j+1] for j in 0:n)
+Convolution(A, n) = sum(A[j+1] * A[n-j+1] for j ∈ 0:n)
 
 """
 
@@ -37,7 +37,7 @@ function SelfConvRec(len, a, b, c)
     len == 0 && return A
     A[1] = 1
 
-    for n in 1:len-1
+    for n ∈ 1:len-1
         A[n+1] = (a * (n + 1) + b) * A[n] + c * Convolution(A, n - 1)
     end
     A
@@ -366,7 +366,7 @@ end
 
 function demo()
 
-    for n in 0:6
+    for n ∈ 0:6
         println(n, " ↦ ", L005411(n))
     end
 

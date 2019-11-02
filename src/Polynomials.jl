@@ -35,31 +35,31 @@ const ModulePolynomials = ""
 
 Return the coefficients of the polynomial ``p``.
 """
-Coeffs(p) = [coeff(p, k) for k in 0:degree(p)]
+Coeffs(p) = [coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` with alternating signs.
 """
-AltCoeffs(p) = [(-1)^k * coeff(p, k) for k in 0:degree(p)]
+AltCoeffs(p) = [(-1)^k * coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` multiplied by ``k!``.
 """
-OgfCoeffs(p) = [fac(k)*coeff(p, k) for k in 0:degree(p)]
+OgfCoeffs(p) = [fac(k)*coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``k!``. Note that integer division is used.
 """
-EgfCoeffs(p) = [div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+EgfCoeffs(p) = [div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``(-1)^k*k!``.
 """
-AltEgfCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k in 0:degree(p)]
+AltEgfCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
 """
 
@@ -67,7 +67,7 @@ Return the polynomial ``p`` with the coefficients C.
 """
 function Poly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(c * x^k for (k, c) in enumerate(C))
+    sum(c * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
@@ -76,7 +76,7 @@ Return the polynomial ``p`` with the coefficients C and alternating signs (i.e. 
 """
 function AltPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum((-1)^k * c * x^k for (k, c) in enumerate(C))
+    sum((-1)^k * c * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
@@ -85,7 +85,7 @@ Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*x^k/
 """
 function EgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(div(c, fac(k)) * x^k for (k, c) in enumerate(C))
+    sum(div(c, fac(k)) * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
@@ -94,7 +94,7 @@ Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*k!*x
 """
 function OgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(c * fac(k) * x^k for (k, c) in enumerate(C))
+    sum(c * fac(k) * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
@@ -103,7 +103,7 @@ Return the polynomial ``p`` with alternating signs attached to the coefficients 
 """
 AltPoly(p::Nemo.fmpz_poly) = Poly(AltCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
-#    sum((-1)^k*coeff(p, k)*x^k for k in 0:degree(p))
+#    sum((-1)^k*coeff(p, k)*x^k for k ∈ 0:degree(p))
 
 """
 
@@ -111,7 +111,7 @@ Return the polynomial ``p`` with coefficients in exponential form (i.e. with c[k
 """
 EgfPoly(p::Nemo.fmpz_poly) = Poly(EgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
-#    sum(div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
+#    sum(div(coeff(p, k), fac(k))*x^k for k ∈ 0:degree(p))
 
 """
 
@@ -119,13 +119,13 @@ Return the polynomial ``p`` with coefficients in exponential form and alternatin
 """
 AltEgfPoly(p::Nemo.fmpz_poly) = Poly(AltEgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
-#    sum((-1)^k*div(coeff(p, k), fac(k))*x^k for k in 0:degree(p))
+#    sum((-1)^k*div(coeff(p, k), fac(k))*x^k for k ∈ 0:degree(p))
 
 """
 
 Return the list of the coefficients of the first ``len`` polynomials of the sequence of polynomials ``P`` as a triangle.
 """
-Coeffs(P, len) = [[coeff(P(n), k) for k in 0:degree(P(n))] for n in 0:len-1]
+Coeffs(P, len) = [[coeff(P(n), k) for k ∈ 0:degree(P(n))] for n ∈ 0:len-1]
 
 """
 
@@ -137,7 +137,7 @@ CoeffSum(p) = evaluate(p, 1)
 
 Return the sequence of the sum of coefficients of the sequence of polynomials ``P``.
 """
-CoeffSum(P, len) = [CoeffSum(P(n)) for n in 0:len-1]
+CoeffSum(P, len) = [CoeffSum(P(n)) for n ∈ 0:len-1]
 
 """
 
@@ -149,7 +149,7 @@ CoeffAltSum(p) = evaluate(p, -1)
 
 Return the sequence of the alternating sums of the coefficients of the sequence of polynomials ``P``.
 """
-CoeffAltSum(P, len) = [CoeffAltSum(P(n)) for n in 0:len-1]
+CoeffAltSum(P, len) = [CoeffAltSum(P(n)) for n ∈ 0:len-1]
 
 """
 
@@ -161,7 +161,7 @@ CoeffLeading(p) = coeff(p, degree(p)) # lead(p)
 
 Return the sequence of the leading coefficient of the sequence of polynomials ``P``.
 """
-Diagonal(P, len) = [CoeffLeading(P(n)) for n in 0:len-1]
+Diagonal(P, len) = [CoeffLeading(P(n)) for n ∈ 0:len-1]
 
 """
 
@@ -173,13 +173,13 @@ CoeffConst(p) = coeff(p, 0)
 
 Return the sequence of the constant coefficients of the sequence of polynomials ``P``.
 """
-CoeffConst(P, len) = [CoeffConst(P(n)) for n in 0:len-1]
+CoeffConst(P, len) = [CoeffConst(P(n)) for n ∈ 0:len-1]
 
 """
 
 Return the central column of the coefficients of the sequence of polynomials ``P``.
 """
-Central(P, len) = [Coeffs(P(2n))[n+1] for n in 0:len-1]
+Central(P, len) = [Coeffs(P(2n))[n+1] for n ∈ 0:len-1]
 
 """
 
@@ -189,7 +189,7 @@ function ReflectPoly(p::Nemo.fmpz_poly)
     T, x = PolynomialRing(ZZ, "x")
     p(0) != 1 && throw(ValueError("Constant coefficient must be 1."))
     d = degree(p)
-    x^d + sum(coeff(p, k) * x^(d - k) for k in 1:d)
+    x^d + sum(coeff(p, k) * x^(d - k) for k ∈ 1:d)
 end
 
 
@@ -222,13 +222,13 @@ function demo()
         R, x = PolynomialRing(ZZ, "x")
         function recP(m, n)
             n == 0 && return R(1)
-            sum(binomial(m * n, m * k) * recP(m, n - k) * x for k in 1:n)
+            sum(binomial(m * n, m * k) * recP(m, n - k) * x for k ∈ 1:n)
         end
         recP(m, n)
     end
 
     # ... given a polynomial p:
-    for m in 0:4, n in 0:5
+    for m ∈ 0:4, n ∈ 0:5
         println("---> m: $m, n: $n")
         q = P(m, n)
 
@@ -249,7 +249,7 @@ function demo()
     end
 
     # ... given a sequence of polynomials P:
-    for m in 0:4
+    for m ∈ 0:4
         println("---> m ", m)
         println("\nPolynomial:")
         Q(n) = P(m, n)

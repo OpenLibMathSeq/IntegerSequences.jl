@@ -8,15 +8,12 @@ module SpigotPi
 export Pi, π, L000796
 
 """
-Computes the first n decimal digits of Pi, uses a variant of the spigot algorithm valid as long as the number of digits <= 54900.
+Computes the first n decimal digits of Pi, uses a variant of the spigot algorithm valid as long as the number of digits <= 54900. Based on ideas of A. Sale (1968). Algorithm due to D. Saada (1988) and S. Rabinowitz (1991). Proof due to [Rabinowitz and S. Wagon](https://www.maa.org/sites/default/files/pdf/pubs/amm_supplements/Monthly_Reference_12.pdf) (1995).
 
-Based on ideas of A. Sale (1968). Algorithm due to D. Saada (1988) and S. Rabinowitz (1991). Proof due to S. Rabinowitz and S. Wagon (1995).
-
-https://www.maa.org/sites/default/files/pdf/pubs/amm_supplements/Monthly_Reference_12.pdf
-
-* Pi, π, L000796
+* Pi, L000796
 """
 const ModuleSpigotPi = ""
+
 
 """
 

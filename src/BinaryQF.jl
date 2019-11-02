@@ -64,7 +64,7 @@ function binaryQF(
         d == 0 && throw(ValueError("discriminant must not be zero"))
 
         a, b, c = α, β, γ
-        (a == 0 && c == 0) && return [b * n for n in 1:div(M, abs(b))]
+        (a == 0 && c == 0) && return [b * n for n ∈ 1:div(M, abs(b))]
 
         D = isqrt(d)
     # a must be ≠ 0
@@ -78,9 +78,9 @@ function binaryQF(
         S = fmpz[]
 
     # Solvability in Z.
-        for n in 1:M
+        for n ∈ 1:M
             h = fmpz(4 * a * n)  # a <> 0 and n <> 0
-            for t in Divisors(h) # returns fmpz
+            for t ∈ Divisors(h) # returns fmpz
                 g = fmpz(div(h, t))
             # if divides(k, g - t) && divides(m, g * u - t * v)
                 if rem(g - t, k) == 0 && rem(g * u - t * v, m) == 0
@@ -99,7 +99,7 @@ function binaryQF(
                 end
             end
         end
-        sort([s for s in Set(S)])
+        sort([s for s ∈ Set(S)])
     end
 
     function imag_prime(M)
@@ -124,14 +124,14 @@ function binaryQF(
         d = c - div(b * b, 4 * a)
         A = []
 
-        for y in 0:isqrt(div(M, d))
+        for y ∈ 0:isqrt(div(M, d))
             r = y * b / (2 * a)
             s = sqrt((M - d * y * y) / a)
-            for x in Int(round(ceil(-s - r))):Int(round(floor(s - r)))
+            for x ∈ Int(round(ceil(-s - r))):Int(round(floor(s - r)))
                 isPrimeTo(x, y) && push!(A, a * x^2 + b * x * y + c * y^2)
             end
         end
-        sort([s for s in Set(A)])
+        sort([s for s ∈ Set(A)])
     end
 
     function imag_positive(M)
@@ -141,7 +141,7 @@ function binaryQF(
 #   L = [2*ZZ(α), ZZ(β), ZZ(β), 2*ZZ(γ)]
 #   G = Matrix(ZZ, 2, 2, L)
 #   A = pari('qfrep')(G, M, 1)
-#   [k+1 for k in 0:M-1 if A[k] > 0]
+#   [k+1 for k ∈ 0:M-1 if A[k] > 0]
     end
 
     function primitive_reps(a, h, b, M, S)
@@ -184,7 +184,7 @@ function binaryQF(
 
         if !primitively
             X = fmpz[]
-            for p in S
+            for p ∈ S
                 q = t = 1
                 while q ≤ bound
                     push!(X, q)
@@ -195,7 +195,7 @@ function binaryQF(
             S = X
         end
 
-        sort([s for s in Set(S)])
+        sort([s for s ∈ Set(S)])
     end
 
     function reduce_real()
@@ -298,7 +298,7 @@ function binaryQF(
         end # for efficiency
         pp = sqr_disc(bound, primitively)
         if prime
-            pp = [m for m in pp if isPrime(m)]
+            pp = [m for m ∈ pp if isPrime(m)]
         end
 
     else
@@ -323,7 +323,7 @@ function binaryQF(
             end # for efficiency
             pp = positive_primitives(bound, primitively)
             if prime
-                pp = [m for m in pp if isPrime(m)]
+                pp = [m for m ∈ pp if isPrime(m)]
             end
         end
     end
@@ -632,7 +632,7 @@ function test()
 
     @testset "BinaryQF" begin
 
-        for seq in L
+        for seq ∈ L
             S = seq(300)
             anum = SeqNum(seq)
             data = Data[anum]

@@ -88,7 +88,7 @@ Query if ``n`` is a Fibonacci number, returns a Bool.
 """
 function is000045(n)
     d = 0
-    for f in FiboIterate(n + 2)
+    for f ∈ FiboIterate(n + 2)
         d = n - f
         d <= 0 && break
     end
@@ -107,19 +107,19 @@ end
 
 function demo()
     println("V000045")
-    for n in 0:12
+    for n ∈ 0:12
         print(V000045(n), ", ")
     end
     println()
 
     println("I000045")
-    for f in I000045(20)
+    for f ∈ I000045(20)
         print(f, ", ")
     end
     println()
 
     println("F000045")
-    for f in F000045(20)
+    for f ∈ F000045(20)
         print(f, ", ")
     end
     println()
@@ -129,11 +129,11 @@ function demo()
     println()
 
     println("R000045")
-    println([R000045(Float64(x / 2 + 0.5)) for x in 0:9])
+    println([R000045(Float64(x / 2 + 0.5)) for x ∈ 0:9])
     println(typeof(R000045(2 + 0.5)))
 
     println("is000045")
-    for n in 0:150
+    for n ∈ 0:150
         is000045(n) && print(n, " ")
     end
     println()
@@ -141,23 +141,23 @@ end
 
 """
 
-for n in 1:1000 V000045(n) end
+for n ∈ 1:1000 V000045(n) end
     0.004861 seconds (8.49 k allocations: 320.141 KiB)
-for fib in I000045(10000) end
+for fib ∈ I000045(10000) end
     0.006211 seconds (40.00 k allocations: 937.547 KiB)
 L000045(10000)
     0.006533 seconds (49.49 k allocations: 1.137 MiB)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:1000
+    @time (for n ∈ 1:1000
         V000045(n)
     end)
-    @time (for fib in I000045(10000)
+    @time (for fib ∈ I000045(10000)
     end)
     @time L000045(10000)
     # println("----")
-    # @time (for n in 1:1000 HankinFibonacci(n) end)
+    # @time (for n ∈ 1:1000 HankinFibonacci(n) end)
 end
 
 function main()
@@ -197,14 +197,14 @@ using ResumableFunctions
 
 @resumable function fibonnaci(n::Int) :: Int
   a, b = 0, 1
-  for i in 1:n-1
+  for i ∈ 1:n-1
     @yield a
     a, b = b, a + b
   end
   a
 end
 
-for fib in fibonnaci(10)
+for fib ∈ fibonnaci(10)
     println(fib)
 end
 

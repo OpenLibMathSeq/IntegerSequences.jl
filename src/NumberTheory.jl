@@ -45,8 +45,8 @@ function Divisors(m, dosort = false)
     n == ZZ(0) && return fmpz[]
     Nemo.isprime(n) && return [ZZ(1), n]
     d = [ZZ(1)]
-    for (p, e) in Nemo.factor(n)
-        d *= permutedims([p^i for i in 0:e])
+    for (p, e) ∈ Nemo.factor(n)
+        d *= permutedims([p^i for i ∈ 0:e])
         d = reshape(d, length(d))
     end
     dosort && sort!(d)
@@ -57,7 +57,7 @@ end
 
 Return the positive integers dividing ``n``.
 """
-divisors(m::Int) = [Int(d) for d in Divisors(m)]
+divisors(m::Int) = [Int(d) for d ∈ Divisors(m)]
 
 """
 
@@ -67,7 +67,7 @@ function PrimeDivisors(n)
     n == 0 && return []
     isPrime(n) && return [fmpz(n)]
     f = Factors(n)
-    sort!([p for (p, e) in f])
+    sort!([p for (p, e) ∈ f])
 end
 
 """
@@ -84,7 +84,7 @@ function Ω(n)
     n == fmpz(0) && return 0
     isPrime(n) && return fmpz(1)
     f = Factors(n)
-    sum([e for (p, e) in f])
+    sum([e for (p, e) ∈ f])
 end
 
 """
@@ -141,7 +141,7 @@ Return ``σ2(n)`` (a.k.a. ``σ_2(n)``), the sum of squares of the divisors of ``
 """
 σ2(n) = Nemo.sigma(fmpz(n), 2)
 
-# σ2(n) = sum(d^2 for d in Divisors(n))
+# σ2(n) = sum(d^2 for d ∈ Divisors(n))
 
 """
 
@@ -204,7 +204,7 @@ Query if ``m`` is strong prime to ``n``. ``m`` is strong prime to ``n`` iff ``m`
 ⍊(m, n) = isStrongPrimeTo(m, n)
 
 function NumbersStronglyPrimeTo(n::Int)
-    P = fmpz[m for m in 1:n if ⊥(m, n)]
+    P = fmpz[m for m ∈ 1:n if ⊥(m, n)]
     D = Divisors(n - 1)
     return setdiff(P, D)
 end
@@ -367,10 +367,10 @@ V002110(n) = ∏(PrimeList(n))
 
 # Further indicators, less suited for computations.
 
-# isA008578(n::Int) = all(⊥(k, n)     for k in 1:n-1)
-# isA002182(n::Int) = all(τ(k) < τ(n) for k in 1:n-1)
-# isA002110(n::Int) = all(ω(k) < ω(n) for k in 1:n-1)
-# isA131577(n::Int) = all(Ω(k) < Ω(n) for k in 1:n-1)
+# isA008578(n::Int) = all(⊥(k, n)     for k ∈ 1:n-1)
+# isA002182(n::Int) = all(τ(k) < τ(n) for k ∈ 1:n-1)
+# isA002110(n::Int) = all(ω(k) < ω(n) for k ∈ 1:n-1)
+# isA131577(n::Int) = all(Ω(k) < Ω(n) for k ∈ 1:n-1)
 
 #START-TEST-########################################################
 
@@ -416,19 +416,19 @@ function test()
         @test Radical(58564) == 22
         @test Radical(58565) == 58565
 
-        FB(n::Int) = (r = 1; for k in 1:n
+        FB(n::Int) = (r = 1; for k ∈ 1:n
             ⊥(n, k) && (r = mods(r * k, n))
         end; r)
-        FA(n::Int) = mods(∏([j for j in 1:n if ⊥(j, n)]), n)
+        FA(n::Int) = mods(∏([j for j ∈ 1:n if ⊥(j, n)]), n)
 
-        for n in 1:20
+        for n ∈ 1:20
             @test FA(n) == FB(n)
         end
 
         if is_oeis_installed()
             V = [V061142, V000005, V000010, V000203, V001222, V001221, V008683]
             W = [V034386, V002110, V181830, V034444]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V', 1)
             end
 
@@ -439,14 +439,14 @@ function test()
 
     composita = [false, false, false, false, true, false, true, false]
     @testset "Queries" begin
-        for n in 0:7
+        for n ∈ 0:7
             @test isComposite(n) == composita[n+1]
         end
     end
 end
 
 function demo()
-    for n in 390:400
+    for n ∈ 390:400
         println(n, " ---")
         println(Factors(n))
         println(Divisors(n))
@@ -456,22 +456,22 @@ function demo()
     end
 
     println()
-    println([n for n in 1:200 if isCyclic(n)])
-    println([n for n in 1:200 if isStrongCyclic(n)])
+    println([n for n ∈ 1:200 if isCyclic(n)])
+    println([n for n ∈ 1:200 if isStrongCyclic(n)])
     println(L050384(24))
 
 end
 
 """
 
-[Divisors(n) for n in 1:10000]
+[Divisors(n) for n ∈ 1:10000]
     0.278807 seconds (1.32 M allocations: 39.099 MiB, 46.04% gc time)
-[Radical(n)  for n in 1:10000]
+[Radical(n)  for n ∈ 1:10000]
     0.070448 seconds (257.87 k allocations: 16.681 MiB)
 """
 function perf()
-    @time [Divisors(n) for n in 1:10000]
-    @time [Radical(n) for n in 1:10000]
+    @time [Divisors(n) for n ∈ 1:10000]
+    @time [Radical(n) for n ∈ 1:10000]
 end
 
 function main()

@@ -60,7 +60,7 @@ Return the next row of the triangle.
 """
 function Base.iterate(T::Triangle, n)
     n >= T.dim && return nothing
-    row = [T.gen(n, k) for k in 0:n]
+    row = [T.gen(n, k) for k ∈ 0:n]
     (row, n + 1)
 end
 
@@ -105,8 +105,8 @@ function Base.iterate(T::RecTriangle, n)
     @inline prevrow(A, n) = (k) -> (k < 0 || k > n) ? ZZ(0) : A[k+1]
     n == T.dim && return nothing
     F(n, k) = T.gen(n, k, prevrow(T.A, n))
-    row = [F(n, k) for k in 0:n]
-    for k in 1:n+1
+    row = [F(n, k) for k ∈ 0:n]
+    for k ∈ 1:n+1
         T.A[k] = row[k]
     end
     (row, n + 1)
@@ -155,13 +155,13 @@ QTriangle(dim::Int) = zeros(QQ, TriangularNumber(dim))
 
 Return the triangle as a list of rows.
 """
-TriangularArray(T::AbstractTriangle) = [row for row in T]
+TriangularArray(T::AbstractTriangle) = [row for row ∈ T]
 
 """
 
 Return the triangle as a list of integers.
 """
-TriangleToList(T::AbstractTriangle) = [k for row in T for k in row]
+TriangleToList(T::AbstractTriangle) = [k for row ∈ T for k ∈ row]
 
 """
 
@@ -176,7 +176,7 @@ function Row(T, n, reversed = false)
     s < t && error("This row is not in the matrix.")
     R = reversed ? range(t, step = -1, stop = t - n) :
         range(t - n, step = 1, stop = t)
-    return [T[k] for k in R]
+    return [T[k] for k ∈ R]
 end
 
 """
@@ -193,9 +193,9 @@ function RowSums(T, alternate = false)
 
     while hi < n
         if alternate
-            s = sum((-1)^k * T[lo + k + 1] for k in 0:hi-lo)
+            s = sum((-1)^k * T[lo + k + 1] for k ∈ 0:hi-lo)
         else
-            s = sum(T[k+1] for k in lo:hi)
+            s = sum(T[k+1] for k ∈ lo:hi)
         end
         step += 1
         S[step] = s
@@ -210,8 +210,8 @@ end
 Display a lower triangular matrix.
 """
 function ShowAsΔ(T::AbstractTriangle, separator = ", ")
-    for row in T
-        for k in row
+    for row ∈ T
+        for k ∈ row
             print(k, separator)
         end
         println()
@@ -224,20 +224,20 @@ Display an array as a lower triangular matrix.
 """
 function ShowAsΔ(T::AbstractArray, separator = ", ")
     if typeof(T) == Array{Array{fmpz,1},1}
-        for row in T
-            for k in row
+        for row ∈ T
+            for k ∈ row
                 print(k, separator)
             end
             println()
         end
     elseif typeof(T) == Array{fmpz,2}
-        for row in 1:size(T, 1)
+        for row ∈ 1:size(T, 1)
             T[row, :]' |> Println
         end
     elseif typeof(T) == Array{fmpz,1}
         dim = assertTriangular(length(T))
         low = high = 1
-        for r in 2:dim+1
+        for r ∈ 2:dim+1
             [T[j] for j = low:high] |> Println
             low, high = high + 1, high + r
         end
@@ -256,7 +256,7 @@ function fromΔ(T::AbstractTriangle)
 
     A = fill(ZZ(0), dim, dim)
     k = 1
-    for r in 1:dim
+    for r ∈ 1:dim
         for j = 1:r
             A[r, j] = L[k]
             k += 1
@@ -275,12 +275,12 @@ function toΔ(M)
     k = 1
 
     if typeof(M[1, 1]) == Nemo.fmpq
-        for r in 1:dim, j = 1:r
+        for r ∈ 1:dim, j = 1:r
             T[k] = numerator(M[r, j])
             k += 1
         end
     else
-        for r in 1:dim, j = 1:r
+        for r ∈ 1:dim, j = 1:r
             T[k] = M[r, j]
             k += 1
         end
@@ -299,14 +299,14 @@ ShowAsMatrix(T) = println(fromΔ(T))
 using Test
 
 function test()
-    BinTri(n) = [binomial(k, j) for k in 0:n-1 for j in 0:k]
+    BinTri(n) = [binomial(k, j) for k ∈ 0:n-1 for j ∈ 0:k]
 
     X(n, k) =
         ((k > n || k < 0) && return 0;
         (n == 0 && k == 0) && return 1;
         4 * X(n - 1, k - 1) + (4 * n - 1) * X(n - 1, k))
 
-    T(n) = [X(j, k) for j in 0:n for k in 0:j]
+    T(n) = [X(j, k) for j ∈ 0:n for k ∈ 0:j]
 
     @testset "Triangles" begin
         t = T(6)
@@ -343,7 +343,7 @@ function demo()
     ShowAsΔ(TriangleToList(TX(6)))
 
     TL = TriangleToList(TX(6))
-    for k in 0:5
+    for k ∈ 0:5
         Println(Row(TL, k))
     end
 
@@ -360,7 +360,7 @@ function demo()
     end
 
     I225478(dim) = RecTriangle(dim, r225478)
-    for row in I225478(6)
+    for row ∈ I225478(6)
         Println(row)
     end
 

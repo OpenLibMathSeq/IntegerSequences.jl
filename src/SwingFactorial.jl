@@ -49,7 +49,7 @@ function Sfactorial(n::Int)::fmpz
     function oddProduct(m::Int, len::Int)
         if len < 24
             p = fmpz(m)
-            for k in 2:2:2(len - 1)
+            for k ∈ 2:2:2(len - 1)
                 p *= (m - k)
             end
             return p
@@ -87,7 +87,7 @@ using Test
 
 function test()
     @testset "SwingFactorial" begin
-        for n in 0:999
+        for n ∈ 0:999
             S = Sfactorial(n)
             B = Base.factorial(BigInt(n))
             @test S == B

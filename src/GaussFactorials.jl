@@ -9,7 +9,7 @@ using Nemo, IterTools
 using RecordSearch, NumberTheory, Products
 
 export ModuleGaussFactorials, GaussFactorial
-export V216919, V001783, V055634, V232980, V232981, V232982 
+export V216919, V001783, V055634, V232980, V232981, V232982
 export V124441, V124442, V066570
 export I193338, F193338, L193338, V193338
 export I193339, F193339, L193339, V193339
@@ -26,7 +26,7 @@ const ModuleGaussFactorials = ""
 
 Return ``∏_{1 ≤ j ≤ N, j ⊥ n} j``, the product of the positive integers which are ``≤ N`` and are prime to ``n``.
 """
-GaussFactorial(N, n) = ∏([j for j in 1:Int(N) if ⊥(j, n)])
+GaussFactorial(N, n) = ∏([j for j ∈ 1:Int(N) if ⊥(j, n)])
 
 """
 
@@ -157,12 +157,12 @@ function test()
         if is_oeis_installed()
 
             V = [V001783, V124441, V124442, V066570]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V', 1)
             end
 
             W = [V055634, V232980, V232981, V232982]
-            for w in W
+            for w ∈ W
                 SeqTest(w, 'V', 0)
             end
         end
@@ -171,13 +171,13 @@ end
 
 function demo()
     println("\n Iterate over the indices of the first 10 record values of the Gauß factorial.")
-    for r in I193339(10)
+    for r ∈ I193339(10)
         print(r, ", ")
     end
     println("...")
 
     println("\n Iterate over indices of the record values of the Gauß factorial which do not exceed 10.")
-    for r in F193339(10)
+    for r ∈ F193339(10)
         print(r, ", ")
     end
     println("...")
@@ -189,13 +189,13 @@ function demo()
     println("9 -> ", V193339(9))
 
     println("\n Iterate over the first 10 record values of the Gauß factorial.")
-    for r in I193338(10)
+    for r ∈ I193338(10)
         print(r, ", ")
     end
     println("...")
 
     println("\n Iterate over the record values of Gauß factorial which do not exceed 10.")
-    for r in F193338(10)
+    for r ∈ F193338(10)
         print(r, ", ")
     end
     println("...")

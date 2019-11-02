@@ -97,12 +97,12 @@ function test()
 
         if is_oeis_installed()
             V = [V001855, V003314, V033156, V054248, V061168, V097383]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V', 1)
             end
 
             V = [V083652, V123753]
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V', 0)
             end
         end
@@ -110,24 +110,24 @@ function test()
 end
 
 function demo()
-    println([V295513(n) for n in 0:12])
-    println([V123753(n) for n in 0:12])
-    println([V001855(n) for n in 1:12])
-    println([V083652(n) for n in 1:12])
-    println([V033156(n) for n in 1:12])
-    println([V003314(n) for n in 1:12])
-    println([V054248(n) for n in 1:12])
-    println([V097383(n) for n in 1:12])
-    println([V061168(n) for n in 1:12])
+    println([V295513(n) for n ∈ 0:12])
+    println([V123753(n) for n ∈ 0:12])
+    println([V001855(n) for n ∈ 1:12])
+    println([V083652(n) for n ∈ 1:12])
+    println([V033156(n) for n ∈ 1:12])
+    println([V003314(n) for n ∈ 1:12])
+    println([V054248(n) for n ∈ 1:12])
+    println([V097383(n) for n ∈ 1:12])
+    println([V061168(n) for n ∈ 1:12])
 end
 
 """
 
-[V295513(k) for k in 0:100000]
+[V295513(k) for k ∈ 0:100000]
     0.014412 seconds (2 allocations: 781.391 KiB)
 """
 function perf()
-    @time [V295513(k) for k in 0:100000]
+    @time [V295513(k) for k ∈ 0:100000]
 end
 
 function main()

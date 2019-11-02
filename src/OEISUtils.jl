@@ -61,7 +61,7 @@ function oeis_writebfile(anum::String, fun::Function, range::OrdinalRange)
     @info("Writing " * anum * " to " * filename)
 
     f = open(filename, "w")
-    for n in range
+    for n ∈ range
         println(f, n, " ", fun(n))
     end
     close(f)
@@ -79,7 +79,7 @@ function oeis_writebfile(anum, list, offset = 1)
 
     n = offset
     f = open(filename, "w")
-    for l in list
+    for l ∈ list
         println(f, n, " ", list[n])
         n += 1
     end
@@ -97,7 +97,7 @@ function oeis_readbfile(filename)
     file = open(filename, "r")
     lines = readlines(file)
 
-    for l in lines
+    for l ∈ lines
         s = split(l, ' ')
         i = parse(Int, s[1])
         v = parse(Int, s[2])
@@ -179,7 +179,7 @@ function oeis_local(anum::String, bound::Int)
 
     A = Array{String}
     data = open(oeis_path())
-    for ln in eachline(data)
+    for ln ∈ eachline(data)
         if startswith(ln, anum)
             A = split(chop(chomp(ln)), ","; limit = bound + 2)
             break
@@ -187,7 +187,7 @@ function oeis_local(anum::String, bound::Int)
     end
     close(data)
 
-    [convert(fmpz, parse(BigInt, n)) for n in A[2:min(bound + 1, end)]]
+    [convert(fmpz, parse(BigInt, n)) for n ∈ A[2:min(bound + 1, end)]]
 end
 
 """
@@ -204,7 +204,7 @@ function oeis_search(seq::String, restart::Bool)
     println(seq)
 
     data = open(oeis_path())
-    for line in eachline(data)
+    for line ∈ eachline(data)
         index = findfirst(seq, line)
         index === nothing && continue
         println("Range ", index, " in line: ", line)

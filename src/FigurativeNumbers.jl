@@ -194,7 +194,7 @@ function test()
                 V007585
             ]
                 # V080956, V095794, V005564, V058373, V254749, V002414
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V')
             end
         end
@@ -202,13 +202,13 @@ function test()
 end
 
 function demo()
-    for k in -2:10
-        V = [PolygonalNumber(n, k) for n in 0:9]
+    for k ∈ -2:10
+        V = [PolygonalNumber(n, k) for n ∈ 0:9]
         println(k, " ", V)
     end
 
-    for k in -2:10
-        V = [PyramidalNumber(n, k) for n in 0:9]
+    for k ∈ -2:10
+        V = [PyramidalNumber(n, k) for n ∈ 0:9]
         println(k, " ", V)
     end
 end
@@ -217,7 +217,7 @@ end
 
 """
 function perf()
-    @time (for n in 1:1000
+    @time (for n ∈ 1:1000
         V000326(n)
     end)
 end

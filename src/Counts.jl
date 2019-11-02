@@ -57,7 +57,7 @@ Inverse Iverson brackets.
 Return a iterator of length n which has value 1 if isA(i) is true and otherwise 0.
 """
 function Indicators(n, isA::Function)
-    (ι(isA(i)) for i in 0:n-1)
+    (ι(isA(i)) for i ∈ 0:n-1)
 end
 
 """
@@ -85,7 +85,7 @@ julia> Count(8, isPrime)
 4
 ```
 """
-Count(n::Int, isAb::Function) = Base.count((isAb(i) for i in 0:n))
+Count(n::Int, isAb::Function) = Base.count((isAb(i) for i ∈ 0:n))
 
 """
 
@@ -95,7 +95,7 @@ julia> Count(3:8, isPrime)
 3
 ```
 """
-Count(r, isAb::Function) = Base.count((isAb(i) for i in r))
+Count(r, isAb::Function) = Base.count((isAb(i) for i ∈ r))
 
 """
 
@@ -122,7 +122,7 @@ takeFirst(isA, n) =
 Return a iterator listing the values satisfying the predicate isA for arguments in ``0 ≤ n ≤ bound .``
 """
 function IterateUpTo(bound, isA::Function)
-    (i for i in 0:bound if isA(i))
+    (i for i ∈ 0:bound if isA(i))
 end
 
 """
@@ -164,7 +164,7 @@ Return the cumulative sum of an SeqArray.
 function Accumulate(A)
     R = fill(ZZ(0), length(A))
     i, acu = 1, 0
-    for a in A
+    for a ∈ A
         acu += a
         R[i] = acu
         i += 1
@@ -455,15 +455,15 @@ function test()
         @test List(24, isPrime)[end] == 89
         @test List(25, isPrime)[end] == 97
 
-        for (i, isA) in enumerate(indicators)
+        for (i, isA) ∈ enumerate(indicators)
             # This test shows that the logic behind 'Nth' and 'Count' is OK.
-            for n in 1:len
+            for n ∈ 1:len
                 @test isA(n) == (Nth(Count(n, isA), isA) == n)
                 @test n == Count(Nth(n, isA), isA)
             end
         end
 
-        a = [V257993(n) for n in 1:10]
+        a = [V257993(n) for n ∈ 1:10]
         b = [1, 2, 1, 2, 1, 3, 1, 2, 1, 2]
         @test all(a .== b)
 
@@ -503,36 +503,36 @@ function demo()
 
     println()
     len = 14
-    for (i, isA) in enumerate(indicators)
+    for (i, isA) ∈ enumerate(indicators)
 
         println("Predicate      ", indicatorNames[i])
         println("First          ", First(isA))
         println("---")
 
-        println("Nth            ", [Nth(n, isA) for n in 0:len])
+        println("Nth            ", [Nth(n, isA) for n ∈ 0:len])
         print("List           ")
         Println(List(len, isA))
         println("FindUpTo       ", FindUpTo(len, isA))
-        println("IterateUpTo    ", [k for k in IterateUpTo(len, isA)])
+        println("IterateUpTo    ", [k for k ∈ IterateUpTo(len, isA)])
         println("---")
 
         println("IndicatorsFind ", IndicatorsFind(len, isA))
-        println("Indicators     ", [k for k in Indicators(len, isA)])
+        println("Indicators     ", [k for k ∈ Indicators(len, isA)])
         println("---")
 
         println(
             "IndexIn (list) ",
-            [IndexIn(fmpz(n), List(len, isA)) for n in 0:len]
+            [IndexIn(fmpz(n), List(len, isA)) for n ∈ 0:len]
         )
 
-        println("Count   (list) ", [Count(n, isA) for n in 0:len-1])
+        println("Count   (list) ", [Count(n, isA) for n ∈ 0:len-1])
         print("CountList      ")
         Println(CountList(len, isA))
 
-        println("Previous(n)    ", [Previous(n, isA) for n in 0:len])
-        println("Next(n)        ", [Next(n, isA) for n in 0:len])
-        println("Nth(Count(n))  ", [Nth(Count(n, isA), isA) for n in 0:len])
-        println("Count(Nth(n))  ", [Count(Nth(n, isA), isA) for n in 0:len])
+        println("Previous(n)    ", [Previous(n, isA) for n ∈ 0:len])
+        println("Next(n)        ", [Next(n, isA) for n ∈ 0:len])
+        println("Nth(Count(n))  ", [Nth(Count(n, isA), isA) for n ∈ 0:len])
+        println("Count(Nth(n))  ", [Count(Nth(n, isA), isA) for n ∈ 0:len])
 
         println('='^66)
     end
@@ -540,13 +540,13 @@ end
 
 """
 
-[V257993(n) for n in 1:10000]
+[V257993(n) for n ∈ 1:10000]
     0.000635 seconds (9.20 k allocations: 221.859 KiB)
 PrimePiList(10000)
     0.002290 seconds (35.82 k allocations: 637.891 KiB)
 """
 function perf()
-    @time [V257993(n) for n in 1:10000]
+    @time [V257993(n) for n ∈ 1:10000]
     GC.gc()
     @time PrimePiList(10000)
 end

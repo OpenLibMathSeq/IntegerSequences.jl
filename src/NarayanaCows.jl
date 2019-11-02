@@ -67,7 +67,7 @@ function test()
 end
 
 function demo()
-    for cow in NarayanasCows(20)
+    for cow ∈ NarayanasCows(20)
         print(cow, ", ")
     end
     println()
@@ -79,7 +79,7 @@ function demo()
 end
 
 function perf()
-    @time (for cow in NarayanasCows(10000)
+    @time (for cow ∈ NarayanasCows(10000)
     end)
 end
 

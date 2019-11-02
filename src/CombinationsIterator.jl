@@ -22,17 +22,17 @@ struct combinations
     t::Int
 end
 
-function Base.iterate(c::combinations, s = [min(c.t - 1, i) for i in 1:c.t])
+function Base.iterate(c::combinations, s = [min(c.t - 1, i) for i ∈ 1:c.t])
     if c.t == 0 # special case to generate 1 result for t==0
         isempty(s) && return (s, [1])
         return
     end
-    for i in c.t:-1:1
+    for i ∈ c.t:-1:1
         s[i] += 1
         if s[i] > (c.n - (c.t - i))
             continue
         end
-        for j in i+1:c.t
+        for j ∈ i+1:c.t
             s[j] = s[j-1] + 1
         end
         break
@@ -54,8 +54,8 @@ function Combinations(a, t::Integer)
         # generate 0 Combinations for negative argument
         t = length(a) + 1
     end
-    reorder(c) = [a[ci] for ci in c]
-    (reorder(c) for c in combinations(length(a), t))
+    reorder(c) = [a[ci] for ci ∈ c]
+    (reorder(c) for c ∈ combinations(length(a), t))
 end
 
 """
@@ -79,7 +79,7 @@ function demo()
     Println([Combinations("abcd", 3)...])
 
     D = [2, 3, 4, 5]
-    for c in Combinations(D)
+    for c ∈ Combinations(D)
         println(c)
     end
 

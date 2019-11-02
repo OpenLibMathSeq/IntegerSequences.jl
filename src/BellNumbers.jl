@@ -39,9 +39,9 @@ function BellNumberList(m::Int)
 
     A = ZArray(m)
     A[1] = fmpz(1)
-    for n in 2:m-1
+    for n ∈ 2:m-1
         A[n] = A[1]
-        for k in n:-1:2
+        for k ∈ n:-1:2
             A[k-1] += A[k]
         end
         R[n+1] = A[1]
@@ -108,7 +108,7 @@ function BellTrans(n::Int, k::Int, X::Array)
         return s
     end
 
-    for m in 1:n-k+1
+    for m ∈ 1:n-k+1
         s += a * BellTrans(n - m, k - 1, X) * X[m]
         a = div(a * (n - m), m)
     end
@@ -137,7 +137,7 @@ function BellTrans(n::Int, k::Int, F::Function)
         return s
     end
 
-    for m in 1:n-k+1
+    for m ∈ 1:n-k+1
         s += a * BellTrans(n - m, k - 1, F) * F(m - 1)
         a = div(a * (n - m), m)
     end
@@ -167,7 +167,7 @@ function BellTriangle(n::Int, seq)
     M = ZTriangle(n)
     i = 1
 
-    for j in 0:n-1, k in 0:j
+    for j ∈ 0:n-1, k ∈ 0:j
         M[i] = BellTrans(j, k, seq)
         i += 1
     end
@@ -400,7 +400,7 @@ function test()
 
     @testset "Bell" begin
         seq = fmpz[1, 1, 2, 5, 15, 52]
-        a = [BellTrans(6, k, seq) for k in 0:5]
+        a = [BellTrans(6, k, seq) for k ∈ 0:5]
         b = [0, 52, 205, 210, 85, 15]
         @test all(a .== b)
 
@@ -410,7 +410,7 @@ function test()
         @test all(a[1:5] .== b[1:5])
 
         a = fmpz[1, 1, 2, 5, 15, 52, 203]
-        b = [BellNumber(n) for n in 0:6]
+        b = [BellNumber(n) for n ∈ 0:6]
         @test all(a .== b)
 
         if is_oeis_installed()
@@ -433,14 +433,14 @@ function demo()
     seq = [1, 1, 2, 5, 15, 52]
     len = size(seq)[1]
 
-    for n in 0:len
-        println([BellTrans(n, k, seq) for k in 0:n])
+    for n ∈ 0:len
+        println([BellTrans(n, k, seq) for k ∈ 0:n])
     end
 
     M = BellTriangle(len, seq)
     ShowAsΔ(M)
 
-    for n in 0:6
+    for n ∈ 0:6
         println(n, " -> ", BellNumberList(n))
     end
 
@@ -451,13 +451,13 @@ end
 """
 
 BellNumberList(1000) :: 0.539088 seconds (855.00 k allocations: 13.062 MiB)
-BellTriangle(100, [1 for _ in 1:100]) :: 0.576952 seconds (1.22 M allocations: 24.571 MB, 14.23% gc time)
+BellTriangle(100, [1 for _ ∈ 1:100]) :: 0.576952 seconds (1.22 M allocations: 24.571 MB, 14.23% gc time)
 """
 function perf()
     GC.gc()
     BellNumberList(5)
     @time BellNumberList(1000)
-    @time BellTriangle(100, [1 for _ in 1:100])
+    @time BellTriangle(100, [1 for _ ∈ 1:100])
 end
 
 function main()

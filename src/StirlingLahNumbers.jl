@@ -196,28 +196,28 @@ function test()
 
     @testset "Stirling1" begin
 
-        for (n, S1) in enumerate(I132393(10))
-            SC = [stirlings1(n - 1, k) for k in 0:n-1]
+        for (n, S1) ∈ enumerate(I132393(10))
+            SC = [stirlings1(n - 1, k) for k ∈ 0:n-1]
             @test S1 == SC
         end
     end
 
     @testset "Stirling2" begin
 
-        for (n, S2) in enumerate(I048993(10))
-            SC = [stirlings2(n - 1, k) for k in 0:n-1]
+        for (n, S2) ∈ enumerate(I048993(10))
+            SC = [stirlings2(n - 1, k) for k ∈ 0:n-1]
             @test S2 == SC
         end
     end
 end # test
 
 function demo()
-    for row in I132393(9)
+    for row ∈ I132393(9)
         Println(row)
     end
     println()
 
-    for n in 0:8
+    for n ∈ 0:8
         print(n, ": "); Println(V132393(n))
     end
     println()
@@ -238,12 +238,12 @@ function demo()
 
     # ===================================
 
-    for row in I048993(9)
+    for row ∈ I048993(9)
         Println(row)
     end
     println()
 
-    for n in 0:8
+    for n ∈ 0:8
         print(n, ": "); Println(V048993(n))
     end
     println()
@@ -264,12 +264,12 @@ function demo()
 
     # ===================================
 
-    for row in I008279(9)
+    for row ∈ I008279(9)
         Println(row)
     end
     println()
 
-    for n in 0:8
+    for n ∈ 0:8
         print(n, ": "); Println(V008279(n))
     end
     println()
@@ -291,18 +291,18 @@ end
 
 """
 
-(for row in I132393(500) end)
+(for row ∈ I132393(500) end)
     0.246288 seconds (379.25 k allocations: 8.748 MiB)
 """
 function perf()
     GC.gc()
-    @time (for row in I132393(500)
+    @time (for row ∈ I132393(500)
     end)
     GC.gc()
-    @time (for row in I048993(500)
+    @time (for row ∈ I048993(500)
     end)
     GC.gc()
-    @time (for row in I271703(500)
+    @time (for row ∈ I271703(500)
     end)
 end
 

@@ -17,6 +17,8 @@ export L291452, L291973, L291974, L291975, L291976, P097805, P131689
 export P241171, P278073, P278074, TL097805, TL131689, TL241171, TL278073
 export TL278074, V000587, V005046, V260884, V291973, V291974, V291975, V291976
 export L014606
+export L036040, L257490, L327003, L327004
+
 
 """
 
@@ -38,13 +40,13 @@ For example consider the case n = 4. There are five integer partitions of 4:
 
 * P = [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]. The shapes are m times the parts of the integer partitions: S(m) = [[4m], [3m, m], [2m, 2m], [2m, m, m], [m, m, m, m]].
 
-* In the case m = 1 we look at set partitions of {1, 2, 3, 4} with sizes in  [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]] which gives rise to [1, 4, 3, 6, 1] with sum 15.
+* In the case m = 1 we look at set partitions of {1, 2, 3, 4} with sizes ∈  [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]] which gives rise to [1, 4, 3, 6, 1] with sum 15.
 
-* In the case m = 2 we look at set partitions of {1, 2, .., 8} with sizes in [[8], [6, 2], [4, 4], [4, 2, 2], [2, 2, 2, 2]] which gives rise to [1, 28, 35, 210, 105] with sum 379.
+* In the case m = 2 we look at set partitions of {1, 2, .., 8} with sizes ∈ [[8], [6, 2], [4, 4], [4, 2, 2], [2, 2, 2, 2]] which gives rise to [1, 28, 35, 210, 105] with sum 379.
 
-* In the case m = 0 we look at set partitions of {} with sizes in [[0], [0, 0], [0, 0], [0, 0, 0], [0, 0, 0, 0]] which gives rise to [1, 1, 1, 1, 1] with sum 5 (because the only partition of the empty set is the set that contains the empty set, thus from the definition T(0,4) = Sum_{S(0)} card({0}) = A000041(4) = 5).
+* In the case m = 0 we look at set partitions of {} with sizes ∈ [[0], [0, 0], [0, 0], [0, 0, 0], [0, 0, 0, 0]] which gives rise to [1, 1, 1, 1, 1] with sum 5 (because the only partition of the empty set is the set that contains the empty set, thus from the definition T(0,4) = Sum_{S(0)} card({0}) = A000041(4) = 5).
 
-* If n runs through 0, 1, 2,... then the result is an irregular triangle in which the n-th row lists multinomials for partitions of [m*n] which have only parts which are multiples of m. These are the triangles A080575 (m = 1), A257490 (m = 2), A327003 (m = 3), A327004 (m = 4). In the case m = 0 the triangle is A000012 subdivided into rows of length A000041. See the  references below how this case integrates into the full picture.
+* If n runs through 0, 1, 2,... then the result is an irregular triangle ∈ which the n-th row lists multinomials for partitions of [m*n] which have only parts which are multiples of m. These are the triangles A080575 (m = 1), A257490 (m = 2), A327003 (m = 3), A327004 (m = 4). In the case m = 0 the triangle is A000012 subdivided into rows of length A000041. See the  references below how this case integrates into the full picture.
 
 | type  | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
 |-------|-------|-------|-------|-------|-------|
@@ -68,7 +70,7 @@ function OrderedSetPolynomials(m::Int, n::Int)
     function recP(m, n)
         n == 0 && return R(1)
         haskey(CacheP, (m, n)) && return CacheP[(m, n)]
-        p = sum(binom(m * n, m * k) * recP(m, n - k) * x for k in 1:n)
+        p = sum(binom(m * n, m * k) * recP(m, n - k) * x for k ∈ 1:n)
         CacheP[(m, n)] = p
     end
     recP(m, n)
@@ -433,7 +435,7 @@ julia> L000587(10)
 [1, -1, 0, 1, 1, -2, -9, -9, 50, 267]
 ```
 """
-L000587(len) = [V000587(n) for n in 0:len-1]
+L000587(len) = [V000587(n) for n ∈ 0:len-1]
 
 """
 
@@ -468,7 +470,7 @@ julia> L005046(10)
 [ 1, 1, 4, 31, 379, 6556, 150349, 4373461, 156297964, 6698486371]
 ```
 """
-L005046(len) = [V005046(n) for n in 0:len-1]
+L005046(len) = [V005046(n) for n ∈ 0:len-1]
 
 """
 
@@ -491,7 +493,7 @@ julia> L260884(10)
 [1, -1, 2, -1, -43, 254, 4157, -70981, -1310398, 40933619]
 ```
 """
-L260884(len) = [V260884(n) for n in 0:len-1]
+L260884(len) = [V260884(n) for n ∈ 0:len-1]
 
 """
 
@@ -525,7 +527,7 @@ julia> L291973(6)
 [1, 1, 11, 365, 25323, 3068521]
 ```
 """
-L291973(len) = [V291973(n) for n in 0:len-1]
+L291973(len) = [V291973(n) for n ∈ 0:len-1]
 
 """
 
@@ -547,7 +549,7 @@ julia> L291974(6)
 [1, -1, 9, -197, 6841, -254801]
 ```
 """
-L291974(len) = [V291974(n) for n in 0:len-1]
+L291974(len) = [V291974(n) for n ∈ 0:len-1]
 
 """
 
@@ -581,7 +583,7 @@ L291975(5)
 [1, 1, 36, 6271, 3086331]
 ```
 """
-L291975(len) = [V291975(n) for n in 0:len-1]
+L291975(len) = [V291975(n) for n ∈ 0:len-1]
 
 """
 
@@ -603,7 +605,7 @@ L291976(7)
 [ 1, -1, 34, -5281, 2185429, -1854147586, 2755045819549]
 ```
 """
-L291976(len) = [V291976(n) for n in 0:len-1]
+L291976(len) = [V291976(n) for n ∈ 0:len-1]
 
 """
 
@@ -631,7 +633,7 @@ function CardinalityOfSetPartitionsWithShape(Shape)
     Shape == [] && return ZZ(1)
     M = Multinomial(Shape)
     R = values(counter(Shape))
-    P =  ∏([F!(s) for s in R])
+    P =  ∏([F!(s) for s ∈ R])
     div(M, P)
 end
 
@@ -640,9 +642,9 @@ end
 --
 """
 function ShapePartitions(m, n, k)
-    shapes = (map(x -> x*m, p) for p in IntegerPartitions(n, k))
+    shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
     isempty(shapes) && return [fmpz(0)]
-    return [CardinalityOfSetPartitionsWithShape(s) for s in shapes]
+    return [CardinalityOfSetPartitionsWithShape(s) for s ∈ shapes]
 end
 
 """
@@ -650,8 +652,56 @@ end
 --
 """
 function ShapePartitions(m, n)
-    reduce(vcat, [ShapePartitions(m, n, k) for k in 0:n])
+    reduce(vcat, [ShapePartitions(m, n, k) for k ∈ 0:n])
 end
+
+function CardinalityOfOrderedSetPartitionsWithShape(Shape)
+    Shape == [] && return ZZ(1)
+    M = Multinomial(Shape)*F!(length(Shape))
+    R = values(counter(Shape))
+    P = ∏([F!(s) for s ∈ R])
+    div(M, P)
+end
+
+function ShapeOrderedPartitions(m, n, k)
+    shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
+    isempty(shapes) && return [fmpz(0)]
+    return [CardinalityOfOrderedSetPartitionsWithShape(s) for s ∈ shapes]
+end
+
+function ShapeOrderedPartitions(m, n)
+    reduce(vcat, [ShapeOrderedPartitions(m, n, k) for k ∈ 0:n])
+end
+
+#"""
+#A000012 subdivided into rows of length A000041.
+#"""
+#L000012(n) = ShapePartitions(0, n)
+
+"""
+
+Triangle of multinomial coefficients
+"""
+L036040(n) = ShapePartitions(1, n)
+
+"""
+
+---
+"""
+L257490(n) = ShapePartitions(2, n)
+
+"""
+
+---
+"""
+L327003(n) = ShapePartitions(3, n)
+
+"""
+
+---
+"""
+L327004(n) = ShapePartitions(4, n)
+
 
 
 #START-TEST-########################################################
@@ -719,22 +769,31 @@ function test()
 end
 
 function demo()
-    for m in 1:4, n in 0:6
+    for m ∈ 1:4, n ∈ 0:6
         Coeffs(OrderedSetPolynomials(m, n)) |> Println
     end
-    for m in 1:4, n in 0:6
+    for m ∈ 1:4, n ∈ 0:6
         EgfCoeffs(OrderedSetPolynomials(m, n)) |> Println
     end
 
     CardinalityOfSetPartitionsWithShape([3, 3, 3, 2, 2]) |> println
-    for n in 0:4
-        [ShapePartitions(3, n, k) for k in 0:n] |> println
+    for n ∈ 0:4
+        [ShapePartitions(3, n, k) for k ∈ 0:n] |> println
     end
 
-    for n in 0:4
-        ShapePartitions(3, n) |> Println
+    for m ∈ 0:4
+        println("\nUnordered m = $m")
+        for n ∈ 0:6
+            ShapePartitions(m, n) |> Println
+        end
     end
 
+    for m ∈ 0:4
+        println("\nOrdered m = $m")
+        for n ∈ 0:6
+            ShapeOrderedPartitions(m, n) |> Println
+        end
+    end
 end
 
 function perf() end
@@ -803,7 +862,7 @@ by Length   A048993
 [5] [0, 1, 15, 25, 10, 1]
 [6] [0, 1, 31, 90, 65, 15, 1]
 
-by Reccur/k!
+by Recur/k!
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 1]
@@ -812,7 +871,7 @@ by Reccur/k!
 [5] [0, 1, 15, 25, 10, 1]
 [6] [0, 1, 31, 90, 65, 15, 1]
 
-by Reccurrence
+by Recurrence
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 2]
@@ -851,7 +910,7 @@ by Length   A156289
 [5] [0, 1, 255, 2205, 3150, 945]
 [6] [0, 1, 1023, 21120, 65835, 51975, 10395]
 
-by Reccur/k!
+by Recur/k!
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 3]
@@ -860,7 +919,7 @@ by Reccur/k!
 [5] [0, 1, 255, 2205, 3150, 945]
 [6] [0, 1, 1023, 21120, 65835, 51975, 10395]
 
-by Reccurrence
+by Recurrence
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 6]
@@ -899,7 +958,7 @@ by Length   A291451
 [5] [0, 1, 5460, 260260, 1401400, 1401400]
 [6] [0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
 
-by Reccur/k!
+by Recur/k!
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 10]
@@ -908,7 +967,7 @@ by Reccur/k!
 [5] [0, 1, 5460, 260260, 1401400, 1401400]
 [6] [0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
 
-by Reccurrence
+by Recurrence
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 20]
@@ -947,7 +1006,7 @@ by Length   A291452
 [5] [0, 1, 130815, 35586525, 727476750, 2546168625]
 [6] [0, 1, 2098175, 2941884000, 181262956875, 1932541986375, 4509264634875]
 
-by Reccur/k!
+by Recur/k!
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 35]
@@ -956,7 +1015,7 @@ by Reccur/k!
 [5] [0, 1, 130815, 35586525, 727476750, 2546168625]
 [6] [0, 1, 2098175, 2941884000, 181262956875, 1932541986375, 4509264634875]
 
-by Reccurrence
+by Recurrence
 [0] [1]
 [1] [0, 1]
 [2] [0, 1, 70]

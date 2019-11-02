@@ -42,9 +42,9 @@ function isA206942(n)
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))        # Fouvry & Levesque & Waldschmidt
-    for k in 3:K
+    for k ∈ 3:K
         c = cyclotomic(k, x)
-        for m in 2:M
+        for m ∈ 2:M
             n == subst(c, m) && return true
         end
     end
@@ -82,7 +82,7 @@ isA206864(n) = isPrime(n) && isA206942(n)
 
 Filter the integers which are A206864 and <= ``n``.
 """
-F206864(n) = (j for j in 1:n if isA206864(j))
+F206864(n) = (j for j ∈ 1:n if isA206864(j))
 
 """
 
@@ -109,10 +109,10 @@ function isA299498(n)
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 1:M, j in m+1:M
+        for m ∈ 1:M, j ∈ m+1:M
             if isPrimeTo(m, j)
                 N == m^e * subst(c, QQ(j, m)) && return true
             end
@@ -125,7 +125,7 @@ end
 
 Filter the integers which are A299498 and <= ``n``.
 """
-F299498(n) = (j for j in 1:n if isA299498(j))
+F299498(n) = (j for j ∈ 1:n if isA299498(j))
 
 """
 
@@ -154,10 +154,10 @@ function countA299498(n)
     N = QQ(n)
     count = 0
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 1:M, j in m+1:M
+        for m ∈ 1:M, j ∈ m+1:M
             if isPrimeTo(m, j)
                 N == m^e * subst(c, QQ(j, m)) && (count += 1)
             end
@@ -165,7 +165,7 @@ function countA299498(n)
     end
     count
 end
-# [countA299498(n) for n in 1:100] |> println
+# [countA299498(n) for n ∈ 1:100] |> println
 
 #A299928########################################################################
 
@@ -178,11 +178,11 @@ function isA299928(n)
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
-    P(u) = (p for p in u:M if isprime(ZZ(p)))
-    for k in 3:K
+    P(u) = (p for p ∈ u:M if isprime(ZZ(p)))
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, z)
-        for y in P(2), x in P(y + 1)
+        for y ∈ P(2), x ∈ P(y + 1)
             N == y^e * subst(c, QQ(x, y)) && return true
         end
     end
@@ -193,7 +193,7 @@ end
 
 Filter the integers which are A299928 and <= ``n``.
 """
-F299928(n) = (j for j in 1:n if isA299928(j))
+F299928(n) = (j for j ∈ 1:n if isA299928(j))
 
 """
 
@@ -219,7 +219,7 @@ isA299929(n) = isPrime(n) && isA299928(n)
 
 Filter the integers which are A299929 and <= ``n``.
 """
-F299929(n) = (j for j in 1:n if isA299929(j))
+F299929(n) = (j for j ∈ 1:n if isA299929(j))
 
 """
 
@@ -245,11 +245,11 @@ function isA299930(n)
     K = floor(Int, 5.383 * log(n)^1.161)
     M = floor(Int, 2 * sqrt(n / 3))
     N = QQ(n)
-    P(u) = (p for p in u:M if isprime(ZZ(p)))
-    for k in 3:K
+    P(u) = (p for p ∈ u:M if isprime(ZZ(p)))
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, z)
-        for y in P(3), x in P(y + 2)
+        for y ∈ P(3), x ∈ P(y + 2)
             N == y^e * subst(c, QQ(x, y)) && return true
         end
     end
@@ -260,7 +260,7 @@ end
 
 Filter the integers which are A299930 and <= ``n``.
 """
-F299930(n) = (j for j in 1:n if isA299930(j))
+F299930(n) = (j for j ∈ 1:n if isA299930(j))
 
 """
 
@@ -296,7 +296,7 @@ function isA296095(n)
             K = ceil(Int, 4.864 * logn)
             M = ceil(Int, 2 * (n / 11)^(1 / 4))
         end
-        for y in 2:M, x in 1:y
+        for y ∈ 2:M, x ∈ 1:y
             N == y^e * subst(c, QQ(x, y)) && return true
         end
         k += 1
@@ -309,7 +309,7 @@ end
 
 Filter the integers which are A296095 and <= ``n``.
 """
-F296095(n) = (j for j in 1:n if isA296095(j))
+F296095(n) = (j for j ∈ 1:n if isA296095(j))
 
 """
 
@@ -339,10 +339,10 @@ function isA293654(n)
     N = QQ(n)
     count = 0
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 1:M, j in 0:M
+        for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
                 N == m^e * subst(c, QQ(j, m)) && return false
             end
@@ -355,7 +355,7 @@ end
 
 Filter the integers which are A293654 and <= ``n``.
 """
-F293654(n) = (j for j in 1:n if isA293654(j))
+F293654(n) = (j for j ∈ 1:n if isA293654(j))
 
 """
 
@@ -382,10 +382,10 @@ function isA325143(n)
     M = floor(Int, 2 * sqrt(n / 3)) # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 1:M, j in 0:M
+        for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
                 N == m^e * subst(c, QQ(j, m)) && return true
             end
@@ -398,7 +398,7 @@ end
 
 Filter the integers which are A325143 and <= ``n``.
 """
-F325143(n) = (j for j in 1:n if isA325143(j))
+F325143(n) = (j for j ∈ 1:n if isA325143(j))
 
 """
 
@@ -424,7 +424,7 @@ isA325145(n) = isprime(ZZ(n)) && !isA325143(n)
 
 Filter the integers which are A325145 and <= ``n``.
 """
-F325145(n) = (j for j in 1:n if isA325145(j))
+F325145(n) = (j for j ∈ 1:n if isA325145(j))
 
 """
 
@@ -454,10 +454,10 @@ function V299214(n)
     N = QQ(n)
     count = 0
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 1:M, j in 0:M
+        for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
                 N == m^e * subst(c, QQ(j, m)) && (count += 1)
             end
@@ -470,7 +470,7 @@ end
 
 Return the initial list of V299214 of length len .
 """
-L299214(len) = [V299214(i) for i in 1:len]
+L299214(len) = [V299214(i) for i ∈ 1:len]
 
 ################################################################################
 
@@ -488,12 +488,12 @@ function isA299733(n)
     N = QQ(n)
     multi = 0
 
-    for k in 3:K
+    for k ∈ 3:K
         e = Int(eulerphi(ZZ(k)))
         c = cyclotomic(k, x)
-        for m in 2:M
+        for m ∈ 2:M
             if isprime(ZZ(m))
-                for j in m:M
+                for j ∈ m:M
                     if isprime(ZZ(j))
                         if N == m^e * subst(c, QQ(j, m))
                             multi += 1
@@ -510,7 +510,7 @@ end
 
 Return the list of the first ``n`` integers which are A299733.
 """
-L299733(n) = [i for i in 1:n if isA299733(i)]
+L299733(n) = [i for i ∈ 1:n if isA299733(i)]
 
 # L299733(1000) |> println
 
@@ -540,12 +540,12 @@ end
 
 function demo()
     println("\nIntegers which are A206942 and <= 32:")
-    for n in 1:32
+    for n ∈ 1:32
         isA206942(n) && println(n)
     end
 
     println("\nIterate over the first 32 integers which are A206942:")
-    for i in I206942(32)
+    for i ∈ I206942(32)
         print("$i, ")
     end
 

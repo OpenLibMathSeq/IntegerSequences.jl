@@ -24,7 +24,7 @@ Is ``n`` a Carmichael/Šimerka number?
 """
 function isCarmichael(n)
     (n == 1 || isEven(n) || isPrime(n)) && return false
-    for f in Factors(n)
+    for f ∈ Factors(n)
         (f[2] > 1 || (n - 1) % (f[1] - 1) != 0) && return false
     end
     return true
@@ -54,7 +54,7 @@ Is ``n`` a weak Carmichael number?
 """
 function isweakCarmichael(n)
     (n == 1 || isEven(n) || isPrime(n)) && return false
-    for f in Factors(n)
+    for f ∈ Factors(n)
         (n - 1) % (f[1] - 1) != 0 && return false
     end
     return true
@@ -100,12 +100,12 @@ function test()
 end
 
 function demo()
-    for n in 1:30000
+    for n ∈ 1:30000
         isCarmichael(n) && println(n)
     end
 
     println()
-    for v in I225498(10)
+    for v ∈ I225498(10)
         println(v)
     end
 end

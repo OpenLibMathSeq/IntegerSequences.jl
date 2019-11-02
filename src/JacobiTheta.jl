@@ -32,7 +32,7 @@ function JacobiTheta3Powers(len::Int, r::Int)
     len ≤ 0 && return fmpz[]
     R, x = PolynomialRing(ZZ, "x")
     e = theta_qexp(r, len, x)
-    [fmpz(coeff(e, j)) for j in 0:len-1]
+    [fmpz(coeff(e, j)) for j ∈ 0:len-1]
 end
 
 """
@@ -43,7 +43,7 @@ function JacobiTheta4Powers(len::Int, r::Int)
     len ≤ 0 && return fmpz[]
     R, x = PolynomialRing(ZZ, "x")
     e = theta_qexp(r, len, -x)
-    [fmpz(coeff(e, j)) for j in 0:len-1]
+    [fmpz(coeff(e, j)) for j ∈ 0:len-1]
 end
 
 """
@@ -394,10 +394,10 @@ function test()
 end
 
 function demo()
-    for n in 1:6
+    for n ∈ 1:6
         println(n, ": ", JacobiTheta3Powers(8, n))
     end
-    for n in 0:6
+    for n ∈ 0:6
         println(-n, ": ", JacobiTheta3Powers(8, -n))
     end
     println(L000143(10))

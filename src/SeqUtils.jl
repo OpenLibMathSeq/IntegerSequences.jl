@@ -36,7 +36,7 @@ Return an array of type fmpz and of size ``n`` filled by the values of the funct
 """
 function ZArray(n::Int, f::Function, offset = 1)
     n ≤ 0 && return fmpz[]
-    fmpz[f(k) for k in offset:offset+n-1] # !
+    fmpz[f(k) for k ∈ offset:offset+n-1] # !
 end
 
 """
@@ -56,7 +56,7 @@ SeqRange(A) = 1:SeqSize(A)
 Print the array ``A`` in the format ``n ↦ A[n]`` for n in the given range.
 """
 function SeqShow(A::Array, R::AbstractRange, offset = 0)
-    for k in R
+    for k ∈ R
         if isassigned(A, k)
             println(k + offset, " ↦ ", A[k])
         else
@@ -80,7 +80,7 @@ SeqShow(A::Array, offset = 0) = SeqShow(A, 1:length(A), offset - 1)
 
 function print_without_type(io, v::AbstractVector)
     print(io, "[")
-    for (i, el) in enumerate(v)
+    for (i, el) ∈ enumerate(v)
         i > 1 && print(io, ", ")
         print(io, el)
     end
@@ -98,7 +98,7 @@ Println(v::AbstractVector) = print_without_type(IOContext(stdout), v)
 Print the array without typeinfo.
 """
 function Println(V::Array{Array{Nemo.fmpz,1},1})
-    for v in V  v |> Println end
+    for v ∈ V  v |> Println end
 end
 
 """
@@ -136,7 +136,7 @@ Return the name of a OEIS sequence given a similar named function as a string.
 """
 function SeqName(fun)
     aname = string(fun)
-    for X in ValidPrefixes
+    for X ∈ ValidPrefixes
         aname = replace(aname, X => 'A')
     end
 
@@ -180,7 +180,7 @@ function demo()
 
     println()
     V = Array{Nemo.fmpz,1}[[1], [0, 1], [0, 1, 70], [0, 1, 990, 34650]]
-    for v in V  v |> Println end
+    for v ∈ V  v |> Println end
 end
 
 function perf() end

@@ -33,7 +33,7 @@ function Pascal(n::Int, k::Int)
     rootN = isqrt(n)
 
     # Make use of Kummer's theorem.
-    for prime in Primes(2, n)
+    for prime ∈ Primes(2, n)
 
         if prime > nk
             push!(factors, prime)
@@ -71,7 +71,7 @@ Pascal's triangle.
 function T007318(n::Int)
     T = zeros(QQ, div(n * (n + 1), 2))
     j = 1
-    for m in 0:n-1, k in 0:m
+    for m ∈ 0:n-1, k ∈ 0:m
         T[j] = binom(m, k)
         j += 1
     end
@@ -101,7 +101,7 @@ Return the multinomial coefficient of a list.
 function Multinomial(lst::Array{Int})
     s = 0
     result = ZZ(1)
-    for c in lst
+    for c ∈ lst
         s += c
         result *= binom(s, c)
     end
@@ -115,7 +115,7 @@ using Test
 function test()
 
     @testset "Binomial" begin
-        for n in 0:10, k in 0:n
+        for n ∈ 0:10, k ∈ 0:n
             @test Binomial(n, k) == div(fac(n), (fac(n - k) * fac(k)))
             @test Binomial(n, k) == Pascal(n, k)
         end
@@ -126,28 +126,28 @@ function demo()
     ShowAsΔ(T007318(8))
     println()
 
-    for n in -10:10
-        println([Binomial(n, k) for k in -10:10])
+    for n ∈ -10:10
+        println([Binomial(n, k) for k ∈ -10:10])
     end
 end
 
 """
 
-for n in 0:10000 Binomial(2*n,n) end
+for n ∈ 0:10000 Binomial(2*n,n) end
     0.504729 seconds (10.00 k allocations: 156.266 KiB)
-for n in -100:100, k in -100:100 Binomial(n,k) end
+for n ∈ -100:100, k ∈ -100:100 Binomial(n,k) end
     0.008669 seconds (55.55 k allocations: 867.984 KiB)
-for k in -10000:10000 Binomial(-5,k) end
+for k ∈ -10000:10000 Binomial(-5,k) end
     0.005378 seconds (40.00 k allocations: 624.969 KiB)
 """
 function perf()
-    @time (for n in 0:10000
+    @time (for n ∈ 0:10000
         Binomial(2n, n)
     end)
-    @time (for n in -100:100, k in -100:100
+    @time (for n ∈ -100:100, k ∈ -100:100
         Binomial(n, k)
     end)
-    @time (for k in -10000:10000
+    @time (for k ∈ -10000:10000
         Binomial(-5, k)
     end)
 end

@@ -73,7 +73,7 @@ function SeqVTest(seq, offset = 0)
 end
 
 function SeqBTest(seqarray)
-    for seq in seqarray
+    for seq ∈ seqarray
         name = SeqName(seq)
         # the parameter is not 'length' but 'search bound'.
         O = oeis_local(name, 12)
@@ -88,7 +88,7 @@ function SeqBTest(seqarray)
 end
 
 function SeqLTest(seqarray)
-    for seq in seqarray
+    for seq ∈ seqarray
         name = SeqName(seq)
         O = oeis_local(name, 12)
         S = seq(12)
@@ -102,7 +102,7 @@ function SeqLTest(seqarray)
 end
 
 function SeqTTest(seqarray)
-    for seq in seqarray
+    for seq ∈ seqarray
         name = SeqName(seq)
         O = oeis_local(name, 21)
         S = seq(6)
@@ -117,7 +117,7 @@ function SeqTTest(seqarray)
 end
 
 function SeqPTest(seqarray)
-    for seq in seqarray
+    for seq ∈ seqarray
         name = SeqName(seq)
         O = oeis_local(name, 28)
         S = seq(7)

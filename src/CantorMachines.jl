@@ -44,7 +44,7 @@ The  Cantor enumeration of N X N where N = {0, 1, 2, ...}. If (x, y) and (x', y'
 """
 function CantorEnumeration(len)
     x, y, state = 0, 0, false
-    for n in 0:len
+    for n ∈ 0:len
         #println("$n -> ($x, $y)")
         print("$x, $y, ")
         x, y, state = CantorMachine(x, y, state)
@@ -78,7 +78,7 @@ end
 """
 function CantorBoustrophedonicEnumeration(len)
     x, y = 0, 0
-    for n in 0:len
+    for n ∈ 0:len
         # println("$n -> ($x, $y)")
         print("$x, $y, ")
         x, y = CantorBoustrophedonicMachine(x, y)
@@ -117,7 +117,7 @@ The boustrophedonic Rosenberg-Strong enumeration of N X N where N = {0, 1, 2, ..
 """
 function RosenbergStrongBoustrophedonicEnumeration(len)
     x, y, state = 0, 0, 0
-    for n in 0:len
+    for n ∈ 0:len
         #println("$n -> ($x, $y)")
         print("$x, $y, ")
         x, y, state = RosenbergStrongBoustrophedonicMachine(x, y, state)
@@ -150,7 +150,7 @@ end
 
 Return a list of pairs (x, y) given by the boustrophedonic Rosenberg-Strong enumeration.
 """
-L319514(len) = [V319514(n) for n in 0:len-1]
+L319514(len) = [V319514(n) for n ∈ 0:len-1]
 
 
 #START-TEST-########################################################
@@ -169,7 +169,7 @@ function test()
         println("Running CantorMachine")
 
         x, y, state = 0, 0, false
-        for n in 0:len
+        for n ∈ 0:len
             p = CantorPairing(x, y)
             #println("$n -> ($x, $y) -> $p")
             @test n == p
@@ -182,7 +182,7 @@ function test()
         println("Running CantorBoustrophedonicMachine")
 
         x, y = 0, 0
-        for n in 0:len
+        for n ∈ 0:len
             p = CantorBoustrophedonicPairing(x, y)
             #println("$n -> ($x, $y) -> $p")
             @test n == p
@@ -195,7 +195,7 @@ function test()
         println("Running RosenbergStrongBoustrophedonicMachine")
 
         x, y, state = 0, 0, 0
-        for n in 0:len
+        for n ∈ 0:len
             p = RosenbergStrongBoustrophedonicPairing(x, y)
             #println("$n -> ($x, $y) -> $p")
             @test n == p

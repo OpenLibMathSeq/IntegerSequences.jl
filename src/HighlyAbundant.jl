@@ -79,7 +79,7 @@ function demo()
     # 1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, ...
 
     println("\n Iterate over the first 20 highly abundant numbers.")
-    for r in I002093(20)
+    for r ∈ I002093(20)
         print(r, ", ")
     end
     println("...")
@@ -88,7 +88,7 @@ function demo()
     println(L002093(20))
 
     println("\n Iterate over the highly abundant numbers which do not exceed 20.")
-    for r in F002093(20)
+    for r ∈ F002093(20)
         print(r, ", ")
     end
     println("...")
@@ -100,7 +100,7 @@ function demo()
     # 1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, ...
 
     println("\n Iterate over the first 20 record values of sigma.")
-    for r in I034885(20)
+    for r ∈ I034885(20)
         print(r, ", ")
     end
     println("...")
@@ -109,7 +109,7 @@ function demo()
     println(L034885(20))
 
     println("\n Iterate over the record values of sigma the indices of which do not exceed 20.")
-    for r in F034885(20)
+    for r ∈ F034885(20)
         print(r, ", ")
     end
     println("...")
@@ -121,12 +121,12 @@ end
 
 """
 
-for n in 1:100 V034885(n)
+for n ∈ 1:100 V034885(n)
     0.433958 seconds (802.79 k allocations: 12.632 MiB)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:100 V034885(n) end)
+    @time (for n ∈ 1:100 V034885(n) end)
 end
 
 function main()

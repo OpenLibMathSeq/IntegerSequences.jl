@@ -31,17 +31,17 @@ Return the product of two integer sequences introduced by Philippe Deléham in A
 function DeléhamΔ(n::Int, S::Function, T::Function)
     n ≤ 0 && return fmpz[]
     R, x = PolynomialRing(ZZ, "x")
-    A = [R(S(k) + x * T(k)) for k in 0:n-2]
-    C = [R(1) for i in 0:n]
+    A = [R(S(k) + x * T(k)) for k ∈ 0:n-2]
+    C = [R(1) for i ∈ 0:n]
     C[1] = R(0)
     M = ZTriangle(n)
     m = 1
 
-    for k in 0:n-1
-        for j in k + 1:-1:2
+    for k ∈ 0:n-1
+        for j ∈ k + 1:-1:2
             C[j] = C[j-1] + C[j+1] * A[j-1]
         end
-        for j in 0:k
+        for j ∈ 0:k
             M[m] = coeff(C[2], j)
             m += 1
         end
@@ -161,7 +161,7 @@ function test()
     @testset "Deléham" begin
 
         n = 7
-        B = [bell(n) * binomial(n, j) for j in 0:n]
+        B = [bell(n) * binomial(n, j) for j ∈ 0:n]
         R = Row(T055883(n + 1), n)
         @test all(B .== R)
 
@@ -182,7 +182,7 @@ function test()
             T088969
         ]
 
-        for seq in Seq
+        for seq ∈ Seq
             S = seq(20)
             anum = SeqNum(seq)
             data = Data[anum]
@@ -193,7 +193,7 @@ end
 
 function demo()
     dim = 5
-    for n in 0:dim
+    for n ∈ 0:dim
         println(T055883(n))
     end
 

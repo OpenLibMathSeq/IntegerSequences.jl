@@ -25,7 +25,7 @@ export Multinacci, V309896, V006053, V188021, V231181
 [4]   1, 1, 4,  5, 14, 20,  48,  75,  165,  274,  571,  988, ...
 [5]   1, 1, 5,  6, 20, 27,  75, 110,  275,  429, 1001, 1637, ...
 [6]   1, 1, 6,  7, 27, 35, 110, 154,  429,  637, 1638, 2548, ...
-``` 
+```
 
 *  Multinacci, V309896, V006053, V188021, V231181
 """
@@ -38,8 +38,8 @@ Return the ``n``-th term of the ``m``-th Multinacci sequence.
 function Multinacci(m::Int, n::Int)::fmpz
     haskey(CacheMultinacci, (m, n)) && return CacheMultinacci[(m, n)]
     n <  0 && return ZZ(0); n == 0 && return ZZ(1); m == 0 && return ZZ(m^n)
-    a = sum((-1)^j*binom(m-1-j, j  )*Multinacci(m, n-1-2*j) for j in 0:div(m-1,2))
-    b = sum((-1)^j*binom(m-1-j, j+1)*Multinacci(m, n-2-2*j) for j in 0:div(m-2,2))
+    a = sum((-1)^j*binom(m-1-j, j  )*Multinacci(m, n-1-2*j) for j ∈ 0:div(m-1,2))
+    b = sum((-1)^j*binom(m-1-j, j+1)*Multinacci(m, n-2-2*j) for j ∈ 0:div(m-2,2))
     r = a + b
     CacheMultinacci[(m, n)] = r
 end
@@ -77,25 +77,25 @@ using Test
 function test()
     @testset "Multinacci" begin
         @test Multinacci(0, 0) == 1
-        @test [Multinacci(2, n) for n in 0:9] == [1, 1, 2, 3, 5,  8, 13, 21, 34,  55]
-        @test [V006053(n) for n in 0:9] == [1, 1, 3, 4, 9, 14, 28, 47, 89, 155]
-        @test [V188021(n) for n in 0:9] == [1, 1, 4, 5, 14, 20, 48, 75, 165, 274]
-        @test [V231181(n) for n in 0:9] == [1, 1, 5, 6, 20, 27, 75, 110, 275,429]
-        @test [Multinacci(6, n) for n in 0:9] == [1, 1, 6, 7, 27, 35, 110, 154,429,637]
-        @test [Multinacci(7, n) for n in 0:9] == [1, 1, 7, 8, 35, 44, 154, 208,637,910]
-        @test [Multinacci(8, n) for n in 0:9] == [1, 1, 8, 9, 44, 54,208,273,910, 1260]
+        @test [Multinacci(2, n) for n ∈ 0:9] == [1, 1, 2, 3, 5,  8, 13, 21, 34,  55]
+        @test [V006053(n) for n ∈ 0:9] == [1, 1, 3, 4, 9, 14, 28, 47, 89, 155]
+        @test [V188021(n) for n ∈ 0:9] == [1, 1, 4, 5, 14, 20, 48, 75, 165, 274]
+        @test [V231181(n) for n ∈ 0:9] == [1, 1, 5, 6, 20, 27, 75, 110, 275,429]
+        @test [Multinacci(6, n) for n ∈ 0:9] == [1, 1, 6, 7, 27, 35, 110, 154,429,637]
+        @test [Multinacci(7, n) for n ∈ 0:9] == [1, 1, 7, 8, 35, 44, 154, 208,637,910]
+        @test [Multinacci(8, n) for n ∈ 0:9] == [1, 1, 8, 9, 44, 54,208,273,910, 1260]
     end
 end
 
 function demo()
-    for n in 0:9
+    for n ∈ 0:9
         print("$n ")
-        [Multinacci(n, k) for k in 0:9] |> Println
+        [Multinacci(n, k) for k ∈ 0:9] |> Println
     end
 end
 
 function perf()
-    @time (for n in 0:1000 Multinacci(3, n) end)
+    @time (for n ∈ 0:1000 Multinacci(3, n) end)
 end
 
 function main()

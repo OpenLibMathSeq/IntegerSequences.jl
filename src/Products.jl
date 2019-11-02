@@ -20,13 +20,13 @@ const ModuleProducts = ""
 
 """
 
-If ``a ≤ b`` then return the product of ``i`` in ``a:b`` else return ``1``.
+If ``a ≤ b`` then return the product of ``i`` ∈ ``a:b`` else return ``1``.
 """
 function ∏(a, b)
     n = b - a
     if n < 24
         p = ZZ(1)
-        for k in a:b
+        for k ∈ a:b
             p *= k
         end
         return ZZ(p)
@@ -37,7 +37,7 @@ end
 
 """
 
-If ``a ≤ b`` then return the product of ``i`` in ``a:b`` else return ``1``.
+If ``a ≤ b`` then return the product of ``i`` ∈ ``a:b`` else return ``1``.
 """
 Product(a, b) = ∏(a, b)
 
@@ -50,7 +50,7 @@ function ∏(A)
         n = b - a
         if n < 24
             p = ZZ(1)
-            for k in a:b
+            for k ∈ a:b
                 p *= A[k]
             end
             return ZZ(p)
@@ -76,19 +76,19 @@ V081125(n::Int) = ∏(div(n, 2) + 1, n)
 
 """
 
-Return the rising factorial which is the product of ``i`` in ``n:(n + k - 1)``.
+Return the rising factorial which is the product of ``i`` ∈ ``n:(n + k - 1)``.
 """
 RisingFactorial(n::Int, k::Int) = ∏(n, n + k - 1)
 
 """
 
-Return the rising factorial which is the product of ``i`` in ``n:(n + k - 1)``. A convenient infix syntax for the rising factorial is n ↑ k.
+Return the rising factorial which is the product of ``i`` ∈ ``n:(n + k - 1)``. A convenient infix syntax for the rising factorial is n ↑ k.
 """
 ↑(n, k) = RisingFactorial(n, k)
 
 """
 
-Return the rising factorial i.e. the product of ``i`` in ``n:(n + k - 1)``.
+Return the rising factorial i.e. the product of ``i`` ∈ ``n:(n + k - 1)``.
 """
 V265609(n::Int, k::Int) = RisingFactorial(n, k)
 
@@ -102,13 +102,13 @@ V265609(n::Int, k::Int) = RisingFactorial(n, k)
 
 """
 
-Return the falling factorial which is the product of ``i`` in ``(n - k + 1):n``.
+Return the falling factorial which is the product of ``i`` ∈ ``(n - k + 1):n``.
 """
 FallingFactorial(n::Int, k::Int) = ∏(n - k + 1, n)
 
 """
 
-Return the falling factorial which is the product of ``i`` in ``(n - k + 1):n``. A convenient infix syntax for the falling factorial is n ↓ k.
+Return the falling factorial which is the product of ``i`` ∈ ``(n - k + 1):n``. A convenient infix syntax for the falling factorial is n ↓ k.
 """
 ↓(n, k) = FallingFactorial(n, k)
 
@@ -141,7 +141,7 @@ V124320(n::Int, k::Int) = (n < 0 || k > n) ? 0 : ∏(n, n + k - 1)
 
 Return the multi-factorial which is the function ``n → ∏(a + b, a(n-1) + b)``
 """
-MultiFactorial(a::Int, b::Int) = n -> ∏([a * k + b for k in 0:(n-1)])
+MultiFactorial(a::Int, b::Int) = n -> ∏([a * k + b for k ∈ 0:(n-1)])
 
 """
 
@@ -231,7 +231,7 @@ function test()
         @test RisingFactorial(111, 0) == 1
     end
     @testset "MultiFact" begin
-        a = [MultiFactorial(2, 1)(n) for n in 0:6]
+        a = [MultiFactorial(2, 1)(n) for n ∈ 0:6]
         b = [1, 1, 3, 15, 105, 945, 10395]
         @test all(a .== b)
     end
@@ -253,7 +253,7 @@ function test()
         ]
 
         @testset "Products" begin
-            for v in V
+            for v ∈ V
                 SeqTest(v, 'V')
             end
         end
@@ -261,18 +261,18 @@ function test()
 end
 
 function demo()
-    for n in 0:6
-        println([RisingFactorial(n, k) for k in 0:7])
+    for n ∈ 0:6
+        println([RisingFactorial(n, k) for k ∈ 0:7])
     end
 
-    for n in 0:6
-        println([FallingFactorial(n, k) for k in 0:7])
+    for n ∈ 0:6
+        println([FallingFactorial(n, k) for k ∈ 0:7])
     end
 
-    println(∏([FallingFactorial(n, n) for n in 0:12]))
-    println(Product([FallingFactorial(n, n) for n in 0:12]))
+    println(∏([FallingFactorial(n, n) for n ∈ 0:12]))
+    println(Product([FallingFactorial(n, n) for n ∈ 0:12]))
 
-    for n in 0:4, k in 0:4
+    for n ∈ 0:4, k ∈ 0:4
         println(n, k, " → ", n↑k, " ", n↓k)
     end
     println()
@@ -280,24 +280,24 @@ end
 
 """
 
-for n in 1:10000 F!(n) end
+for n ∈ 1:10000 F!(n) end
     1.480517 seconds (10.00 k allocations: 156.250 KiB)
-for n in 1:1000 A000407(n) end
+for n ∈ 1:1000 A000407(n) end
     0.177942 seconds (997.77 k allocations: 15.225 MiB)
-for n in 1:200, k in 1:200 Pochhammer(n, k) end
+for n ∈ 1:200, k ∈ 1:200 Pochhammer(n, k) end
     1.784024 seconds (4.43 M allocations: 67.596 MiB, 33.35% gc time)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:10000
+    @time (for n ∈ 1:10000
         F!(n)
     end)
     GC.gc()
-    @time (for n in 1:1000
+    @time (for n ∈ 1:1000
         V000407(n)
     end)
     GC.gc()
-    @time (for n in 1:200, k in 1:200
+    @time (for n ∈ 1:200, k ∈ 1:200
         RisingFactorial(n, k)
     end)
 end

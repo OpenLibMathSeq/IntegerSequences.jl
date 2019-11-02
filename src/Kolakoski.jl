@@ -71,7 +71,7 @@ Return the list of the first ``n`` terms of the Kolakoski sequence.
 function KolakoskiList(len::Int)
     len ≤ 0 && return []
     generator = C000002()
-    L = [take!(generator) for _ in 1:len]
+    L = [take!(generator) for _ ∈ 1:len]
     close(generator)
     return L
 end
@@ -95,7 +95,7 @@ function test()
         @test K[72] == 2
 
         generator = C000002()
-        for n in [1, 33, 72]
+        for n ∈ [1, 33, 72]
             k = take!(generator)
             @test K[n] == k
         end
@@ -108,14 +108,14 @@ function demo()
 
     generator = C000002()
     o = e = 0
-    for n in 1:80
+    for n ∈ 1:80
         take!(generator) == 1 ? o += 1 : e += 1
         print(o - e, " ")
     end
     println()
     close(generator)
 
-    for f in I000002(20)
+    for f ∈ I000002(20)
         print(f, ", ")
     end
     println()

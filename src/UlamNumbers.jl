@@ -94,7 +94,7 @@ end
 """
 function perf()
     GC.gc()
-    for n in 6:10
+    for n ∈ 6:10
         @time UlamList(2^n)
     end
 end

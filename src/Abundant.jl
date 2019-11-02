@@ -73,23 +73,23 @@ function demo()
     println(V005101(15))
     println(L005101(15))
 
-    for a in I005101(15)
+    for a ∈ I005101(15)
         print(a, ", ")
     end
     println("...")
-    for a in F005101(40)
+    for a ∈ F005101(40)
         print(a, ", ")
     end
     println("...")
 
-    for n in 40:50
+    for n ∈ 40:50
         println(n, " ↦ ", isAbundant(n))
     end
-    for n in 1:6
+    for n ∈ 1:6
         println(n, " ↦ ", L005101(n))
     end
 
-    for a in I005101(1000)
+    for a ∈ I005101(1000)
         isodd(a) && print(a, " ")
     end
     println()
