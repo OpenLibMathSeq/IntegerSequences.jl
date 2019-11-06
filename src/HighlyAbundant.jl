@@ -24,13 +24,13 @@ const ModuleHighlyAbundant = ""
 
 Iterate over the first ``n`` highly abundant numbers.
 """
-I002093(n) = Records(σ, n, true, true)
+I002093(n) = Records(σ, n, true, true, Dict())
 
 """
 
 Iterate over the highly abundant numbers which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F002093(n) = Records(σ, n, false, true)
+F002093(n) = Records(σ, n, false, true, Dict())
 
 """
 
@@ -42,7 +42,8 @@ L002093(n) = collect(I002093(n))
 
 Return the ``n``-th highly abundant number.
 """
-V002093(n) = nth(I002093(n), n)
+V002093(n) = nth(I002093(n+1), n+1)
+
 
 # -----------------------------------------------------------------
 # Values!
@@ -51,13 +52,13 @@ V002093(n) = nth(I002093(n), n)
 
 Iterate over the first ``n`` record values of sigma.
 """
-I034885(n) = Records(σ, n, true, false)
+I034885(n) = Records(σ, n, true, false, Dict())
 
 """
 
 Iterate over the record values of sigma the indices of which do not exceed ``n`` (``1 ≤ r ≤ n``).
 """
-F034885(n) = Records(σ, n, false, false)
+F034885(n) = Records(σ, n, false, false, Dict())
 
 """
 
@@ -69,7 +70,7 @@ L034885(n) = collect(I034885(n))
 
 Return the ``n``-th record of sigma.
 """
-V034885(n) = nth(I034885(n), n)
+V034885(n) = nth(I034885(n+1), n+1)
 
 #START-TEST-########################################################
 
@@ -140,29 +141,26 @@ main()
 end # module
 
 #=
-Iterate over the first 20 highly abundant numbers.
-1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84, ...
-
-Return the first 20 highly abundant numbers as an array.
-Nemo.fmpz[1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84]
-
-Iterate over the highly abundant numbers which do not exceed 20.
+1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84, 90, ...
+ Return the first 20 highly abundant numbers as an array.
+Nemo.fmpz[1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, 24, 30, 36, 42, 48, 60, 72, 84, 90]
+ Iterate over the highly abundant numbers which do not exceed 20.
 1, 2, 3, 4, 6, 8, 10, 12, 16, 18, 20, ...
 
-Return the 9-th highly abundant number.
-9 -> 12
+ Return the 9-th highly abundant number.
+9 -> 18
 
-Iterate over the first 20 record values of sigma.
-1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224, ...
+ Iterate over the first 20 record values of sigma.
+1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224, 234, ...
+ Return the first 20 record values of sigma as an array.
+Nemo.fmpz[1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224, 234]
 
-Return the first 20 record values of sigma as an array.
-Nemo.fmpz[1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, 60, 72, 91, 96, 124, 168, 195, 224]
-
-Iterate over the record values of sigma the indices of which do not exceed 20.
+ Iterate over the record values of sigma the indices of which do not
+exceed 20.
 1, 3, 4, 7, 12, 15, 18, 28, 31, 39, 42, ...
 
-Return the 9-th record of sigma.
-9 -> 28
+ Return the 9-th record of sigma.
+9 -> 39
 
-  0.405295 seconds (802.79 k allocations: 12.632 MiB)
+  0.438483 seconds (887.29 k allocations: 13.927 MiB)
  =#

@@ -69,7 +69,7 @@ L002858(len) = UlamList(len)
 
 using Test
 
-function test(oeis_isinstalled = false)
+function test(data_installed = false)
     @testset "UlamNumbers" begin
         @test UlamList(6)[end] == 8
     end

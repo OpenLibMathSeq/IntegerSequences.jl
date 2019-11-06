@@ -1,95 +1,6 @@
 # This file is part of IntegerSequences.
 # Copyright Peter Luschny. License is MIT.
 
-#=
-Unfortunately their is a bug in NEMO/flint2/libgmp (at least in the Windows version).
-gmp: overflow in mpz type
-The bug has been reported several times.
-
- # --------------------
-
-Please submit a bug report with steps to reproduce this fault, and any error messages that follow (in their entirety). Thanks.
-Exception: EXCEPTION_ACCESS_VIOLATION at 0x18ecbc76 -- __gmpn_mul_1_x86_64 at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libgmp-10.dll (unknown line)
-in expression starting at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:258
-__gmpn_mul_1_x86_64 at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libgmp-10.dll (unknown line)
-jl_makecontext at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libjulia.dll (unknown line)
-unknown function (ip: 000000000000001D)
-Allocations: 97879032 (Pool: 97864154; Big: 14878); GC: 115
-
- # --------------------
-
-Welcome to Nemo version 0.15.1
-
-Nemo comes with absolutely no warranty whatsoever
-
-gmp: overflow in mpz type
-
-signal (22): SIGABRT
-in expression starting at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:270
-crt_sig_handler at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\signals-win.c:91
-raise at C:\WINDOWS\System32\msvcrt.dll (unknown line)
-abort at C:\WINDOWS\System32\msvcrt.dll (unknown line)
-__gmp_default_alloc_overflow at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libgmp-10.dll (unknown line)
-.text at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libgmp-10.dll (unknown line)
-.text at C:\Users\Home\AppData\Local\Julia-1.3.0-rc4\bin\libgmp-10.dll (unknown line)
-flint_mpz_mul_si at /workspace/srcdir/flint2/fmpz/workspace/srcdir/flint2\gmpcompat.h:117 [inlined]
-fmpz_mul_si at /workspace/srcdir/flint2/fmpz\mul_si.c:43
-* at C:\Users\Home\.julia\packages\Nemo\qzx0m\src\flint\fmpz.jl:365
-* at C:\Users\Home\.julia\packages\Nemo\qzx0m\src\flint\fmpz.jl:370 [inlined]
-BernoulliInt at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:49 [inlined]
-macro expansion at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:185 [inlined]
-macro expansion at C:\cygwin\home\Administrator\buildbot\worker\package_win64\build\usr\share\julia\stdlib\v1.3\Test\src\Test.jl:1107 [inlined]
-test at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:184
-main at C:\Users\Home\JuliaProjects\IntegerSequences.jl\src\BernoulliNumbers.jl:265
-unknown function (ip: 0000000017BB4B03)
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2136 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-jl_apply at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\julia.h:1631 [inlined]
-do_call at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\interpreter.c:328
-eval_value at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\interpreter.c:417
-eval_stmt_value at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\interpreter.c:368 [inlined]
-eval_body at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\interpreter.c:764
-jl_interpret_toplevel_thunk_callback at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\interpreter.c:888
-unknown function (ip: FFFFFFFFFFFFFFFE)
-unknown function (ip: 0000000012CCDE8F)
-unknown function (ip: FFFFFFFFFFFFFFFF)
-jl_toplevel_eval_flex at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\toplevel.c:814
-jl_eval_module_expr at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\toplevel.c:181
-jl_toplevel_eval_flex at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\toplevel.c:640
-jl_parse_eval_all at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\ast.c:873
-include_string at .\loading.jl:1075
-#139 at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:138
-withpath at C:\Users\Home\.julia\packages\CodeTools\xGemk\src\utils.jl:30
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2136 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-withpath at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:47
-#138 at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:135 [inlined]
-with_logstate at .\logging.jl:395
-with_logger at .\logging.jl:491 [inlined]
-#137 at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:134 [inlined]
-hideprompt at C:\Users\Home\.julia\packages\Atom\lBERI\src\repl.jl:85
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2136 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-macro expansion at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:133 [inlined]
-macro expansion at C:\Users\Home\.julia\packages\Media\ItEPc\src\dynamic.jl:24 [inlined]
-#136 at C:\Users\Home\.julia\packages\Atom\lBERI\src\eval.jl:122
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2136 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-handlemsg at C:\Users\Home\.julia\packages\Atom\lBERI\src\comm.jl:164
-unknown function (ip: 0000000017B73432)
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2130 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-jl_apply at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\julia.h:1631 [inlined]
-jl_f__apply at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\builtins.c:627
-#19 at .\task.jl:333
-unknown function (ip: 0000000017B6FCAE)
-_jl_invoke at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2130 [inlined]
-jl_apply_generic at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\gf.c:2300
-jl_apply at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\julia.h:1631 [inlined]
-start_task at /home/Administrator/buildbot/worker/package_win64/build/src/home/Administrator/buildbot/worker/package_win64/build/src\task.c:659
-Allocations: 32613597 (Pool: 32606222; Big: 7375); GC: 36
-=#
-
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module BernoulliNumbers
@@ -284,7 +195,7 @@ function test()
         l = fmpz[0, 1, 2, 3, 8, 25, 96, 427, 2176]
         @test all(L065619(9) .== l)
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V195441, V281586, V281588, V027641]
             for v ∈ V SeqTest(v, 'V') end
         end

@@ -7,7 +7,7 @@ module OEISUtils
 using HTTP, Nemo
 
 export ModuleOEISUtils
-export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, oeis_isinstalled
+export oeis_writebfile, oeis_trimdata, oeis_remote, oeis_local, is_oeis_installed
 export oeis_notinstalled, oeis_path, oeis_search, oeis_readbfile
 
 """
@@ -31,14 +31,14 @@ oeis_path() = joinpath(datadir, "stripped")
 
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is installed (in ../data).
 """
-oeis_isinstalled() = isfile(oeis_path())
+is_oeis_installed() = isfile(oeis_path())
 
 """
 
 Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is not installed and warns.
 """
 function oeis_notinstalled()
-    if !oeis_isinstalled()
+    if !is_oeis_installed()
         @warn("OEIS data not installed! Download stripped.gz from oeis.org,")
         @warn("expand it and put it in the directory ../data.")
         return true
@@ -229,7 +229,7 @@ end
 #START-TEST-########################################################
 
 function test()
-    if oeis_isinstalled()
+    if is_oeis_installed()
         @info("OEIS data is installed as: " * oeis_path())
     end
 end

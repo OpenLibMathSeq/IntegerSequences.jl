@@ -8,12 +8,12 @@ module Compositions
 using Nemo, IterTools, Triangles
 
 export ModuleCompositions
-export I097805, LF097805, V097805, M097805
+export T097805, LF097805, V097805, M097805
 # The module SetPartitionsMType contains : P097805, L097805, TL097805,
 
 """
 
-* I097805, L097805, V097805, M097805
+* T097805, L097805, V097805, M097805
 """
 const ModuleCompositions = ""
 
@@ -30,25 +30,25 @@ end
 
 Iterates over the first ``n`` rows of A097805.
 """
-I097805(n) = RecTriangle(n, R097805)
+T097805(n) = RecTriangle(n, R097805)
 
 """
 
 Lists the first ``n`` rows of A097805 by concatinating. This is the format for submissions to the OEIS.
 """
-LF097805(n) = vcat(I097805(n)...)
+LF097805(n) = vcat(T097805(n)...)
 
 """
 
 Return the triangular array as a square matrix.
 """
-M097805(dim) = fromΔ(L097805(dim))
+M097805(dim) = fromΔ(T097805(dim))
 
 """
 
-Return row ``n`` of A097805 based on the iteration I097805(n).
+Return row ``n`` of A097805 based on the iteration T097805(n).
 """
-V097805(n) = nth(I097805(n + 1), n + 1)
+V097805(n) = nth(T097805(n + 1), n + 1)
 
 
 #START-TEST-########################################################
@@ -61,7 +61,7 @@ function test() end
 
 function demo()
     println("\nIterates over the first n rows of A097805.")
-    for r ∈ I097805(9)
+    for r ∈ T097805(9)
         println(r)
     end
 
@@ -71,13 +71,13 @@ function demo()
     #ShowAsMatrix(L097805(9))
     #println(M097805(9))
 
-    println("\nReturns row 8 of A097805 based on the iteration I097805(8).")
+    println("\nReturns row 8 of A097805 based on the iteration T097805(8).")
     println(V097805(8))
 
     println("\nReturns row 8 of A097805 based on a closed formula.")
     println(VN097805(8))
 
-    println("\nReturns row n of A097805 based on the iteration I097805(n).")
+    println("\nReturns row n of A097805 based on the iteration T097805(n).")
     for n ∈ 0:8
         println(n, ": ", V097805(n))
     end

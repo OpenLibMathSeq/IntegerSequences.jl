@@ -115,7 +115,7 @@ function test()
         @test V178963(30) == ZZ(2716778010767155313771539)
         @test V178964(40) == ZZ(11289082167259099068433198467575829)
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V000111, V178963, V178964, V181936, V250283]
             for v ∈ V
                 SeqTest(v, 'V')

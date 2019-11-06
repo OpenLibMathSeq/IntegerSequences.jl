@@ -92,7 +92,7 @@ A quadratic form ``q(x, y)`` represents an integer ``n`` if there exist integers
 
 Ported from [BinaryQuadraticForms](http://oeis.org/wiki/User:Peter_Luschny/BinaryQuadraticForms) where you can find much more information on this subject.
 
-* L002476, L008784, L031363, L034017, L035251, L038872, L038873, L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660, L243655, L244779, L244780, L244819, L243168, L244291, L007522, L033200
+* L002476, L008784, L031363, L034017, L035251, L038872, L038873, L042965, L057126, L057127, L068228, L084916, L089270, L141158, L242660, L243655, L244779, L244780, L244819, L243168, L244291, L007522
 
    🔶  [BooleanOperations](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BooleanOperations.jl)
 
@@ -109,7 +109,7 @@ The main function is
 
 where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
 
-* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
+* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521,  , V280172.
 
    🔶  [CantorMachines](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/CantorMachines.jl)
 
@@ -137,7 +137,7 @@ where op are the above acronyms. If the lengths of the binary expansions of ``n`
    🔶  [Compositions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/Compositions.jl)
 
 
-* I097805, L097805, V097805, M097805
+* T097805, L097805, V097805, M097805
 
    🔶  [Counts](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/Counts.jl)
 
@@ -151,7 +151,7 @@ where op are the above acronyms. If the lengths of the binary expansions of ``n`
 E. Fouvry, C. Levesque, M. Waldschmidt,
 [Representation of integers by cyclotomic binary forms](https://arxiv.org/pdf/1712.09019.pdf), arXiv:1712.09019 [math.NT], 2017.
 
-* isA206864, F206864, I206864, L206864, isA206942, F206942, I206942, L206942, isA293654, F293654, I293654, L293654, isA296095, F296095, I296095, L296095, V299214, L299214, isA299498, F299498, I299498, L299498, isA299733, L299733, isA299928, F299928, I299928, L299928, isA299929, F299929, I299929, L299929, isA299930, F299930, I299930, L299930, isA325143, F325143, I325143, L325143, isA325145, F325145, I325145, L325145
+* is206864, F206864, I206864, L206864, is206942, F206942, I206942, L206942, is293654, F293654, I293654, L293654, is296095, F296095, I296095, L296095, V299214, L299214, is299498, F299498, I299498, L299498, is299733, L299733, is299928, F299928, I299928, L299928, is299929, F299929, I299929, L299929, is299930, F299930, I299930, L299930, is325143, F325143, I325143, L325143, is325145, F325145, I325145, L325145
 
    🔶  [DedekindEta](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/DedekindEta.jl)
 
@@ -383,6 +383,11 @@ Some exactly solvable self-convolutive recurrences.
 
 * SelfConvRec, L000698, L001710, L003319, L005411, L005412, L006012, L006318, L047891, L062980, L082298, L082301, L082302, L105523, L107716, L111529, L111530, L111531, L111532, L111533, L146559, L167872
 
+   🔶  [SeqTests](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SeqTests.jl)
+
+
+Alias for is_oeis_installed.
+
    🔶  [SeqUtils](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SeqUtils.jl)
 
 
@@ -460,12 +465,12 @@ See also [A260876](https://oeis.org/A260876).
 
 Computes the first n decimal digits of Pi, uses a variant of the spigot algorithm valid as long as the number of digits <= 54900. Based on ideas of A. Sale (1968). Algorithm due to D. Saada (1988) and S. Rabinowitz (1991). Proof due to [Rabinowitz and S. Wagon](https://www.maa.org/sites/default/files/pdf/pubs/amm_supplements/Monthly_Reference_12.pdf) (1995).
 
-* Pi, π, L000796
+* Pi, V000796
 
    🔶  [StirlingLahNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/StirlingLahNumbers.jl)
 
 
-* I132393, L132393, V132393, M132393, I048993, L048993, V048993, M048993, I271703, L271703, V271703, M271703, I094587, L094587, V094587, M094587, I008279, L008279, V008279, M008279
+* T132393, L132393, V132393, M132393, T048993, L048993, V048993, M048993, T271703, L271703, V271703, M271703, T094587, L094587, V094587, M094587, T008279, L008279, V008279, M008279
 
    🔶  [SwingFactorial](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SwingFactorial.jl)
 

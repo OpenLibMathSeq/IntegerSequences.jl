@@ -110,7 +110,7 @@ function test()
         @test V099022(10) == ZZ(3984884716852972800)
         @test V251568(10) == ZZ(123320412181)
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V000255, V000262, V001339, V007060, V033815, V099022, V251568]
             for v ∈ V
                 SeqTest(v, 'V')

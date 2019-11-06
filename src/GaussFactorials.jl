@@ -98,13 +98,13 @@ V066570(n) = div(GaussFactorial(n, 1), GaussFactorial(n, n))
 
 Iterate over the indices of the first ``n`` record values of the Gauß factorial.
 """
-I193339(n) = Records(GaussFactorial, n, true, true)
+I193339(n) = Records(GaussFactorial, n, true, true, Dict())
 
 """
 
 Iterate over indices of the record values of the Gauß factorial which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F193339(n) = Records(GaussFactorial, n, false, true)
+F193339(n) = Records(GaussFactorial, n, false, true, Dict())
 
 """
 
@@ -116,7 +116,7 @@ L193339(n) = collect(I193339(n))
 
 Return the index of the ``n``-th record value of the Gauß factorial.
 """
-V193339(n) = nth(I193339(n), n)
+V193339(n) = nth(I193339(n+1), n+1)
 
 # -----------------------------------------------------------------
 # Values!
@@ -125,13 +125,13 @@ V193339(n) = nth(I193339(n), n)
 
 Iterate over the first ``n`` record values of the Gauß factorial (``1 ≤ r``).
 """
-I193338(n) = Records(GaussFactorial, n, true, false)
+I193338(n) = Records(GaussFactorial, n, true, false, Dict())
 
 """
 
 Iterate over the record values of the Gauß factorial which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F193338(n) = Records(GaussFactorial, n, false, false)
+F193338(n) = Records(GaussFactorial, n, false, false, Dict())
 
 """
 
@@ -143,7 +143,7 @@ L193338(n) = collect(I193338(n))
 
 Return the (value of the) ``n``-th record of the Gauß factorial.
 """
-V193338(n) = nth(I193338(n), n)
+V193338(n) = nth(I193338(n+1), n+1)
 
 #START-TEST-########################################################
 
@@ -154,7 +154,7 @@ function test()
     @testset "GaussFactorial" begin
 
         #@test
-        if is_oeis_installed()
+        if data_installed()
 
             V = [V001783, V124441, V124442, V066570]
             for v ∈ V

@@ -337,7 +337,7 @@ using Test, SeqTests
 
 function test()
     @testset "SelfConvRec" begin
-        if is_oeis_installed()
+        if data_installed()
 
             L = [
                 L005411,

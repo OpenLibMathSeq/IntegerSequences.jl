@@ -58,7 +58,7 @@ function ∏(A)
         m = div(a + b, 2)
         prod(a, m) * prod(m + 1, b)
     end
-    A == [] && return 1
+    A == [] && return ZZ(1)
     prod(1, length(A))
 end
 
@@ -236,7 +236,7 @@ function test()
         @test all(a .== b)
     end
 
-    if is_oeis_installed()
+    if data_installed()
         V = [
             V000142,
             V000165,

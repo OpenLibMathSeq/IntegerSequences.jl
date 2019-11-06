@@ -90,7 +90,7 @@ VisitPartition(n, fun) = NEXPAR(n, fun)
 
 Return the integer partitions of ``n`` in graded reverse lexicographic order, the canonical ordering of partitions.
 """
-V080577(n) = NEXPAR(n, println)
+V080577(n) = n==0 ? [] : NEXPAR(n, println)
 
 """
 Jerome Kelleher: "... developed for my PhD thesis ... We can generate integer partitions much more effectively [.. and much easier ..] if we encode them as ascending compositions rather than the conventional descending compositions."

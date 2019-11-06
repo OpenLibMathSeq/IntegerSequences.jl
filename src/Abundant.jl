@@ -51,7 +51,7 @@ L005101(n) = collect(I005101(n))
 
 Return the value of the ``n``-th abundant number.
 """
-V005101(n) = nth(I005101(n), n)
+V005101(n) = nth(I005101(n+1), n+1)
 
 #START-TEST-########################################################
 
@@ -63,7 +63,7 @@ function test()
         @test isAbundant(2402400) == true
         @test isAbundant(49008960) == true
 
-        if is_oeis_installed()
+        if data_installed()
             SeqTest([L005101], 'L')
         end
     end

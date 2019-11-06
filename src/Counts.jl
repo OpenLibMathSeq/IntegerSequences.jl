@@ -420,9 +420,10 @@ L000720(len::Int) = PrimePiList(len)
 
 """
 
-Return the index of the least prime not dividing ``n``.
+Return the index of the least prime not dividing ``n``. a(0)=1 by convention.
 """
 function V257993(n::Int)
+    n == 0 && return 1
     c, p = 1, 2
     while n % p == 0
         p = NextPrime(p)
@@ -467,7 +468,7 @@ function test()
         b = [1, 2, 1, 2, 1, 3, 1, 2, 1, 2]
         @test all(a .== b)
 
-        if is_oeis_installed()
+        if data_installed()
             L = [L000961, L002808, L005117, L013928, L246547, L246655]
             SeqTest(L, 'L')
         end

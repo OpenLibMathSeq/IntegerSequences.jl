@@ -413,7 +413,7 @@ function test()
         b = [BellNumber(n) for n ∈ 0:6]
         @test all(a .== b)
 
-        if is_oeis_installed()
+        if data_installed()
             SeqTest(V000110, 'V')
             SeqTest([L000110], 'L')
 

@@ -91,7 +91,7 @@ function test()
         @test !isweakCarmichael(563)
         @test isweakCarmichael(625)
 
-        if is_oeis_installed()
+        if data_installed()
             L = [L002997, L225498]
             SeqTest(L, 'L')
         end

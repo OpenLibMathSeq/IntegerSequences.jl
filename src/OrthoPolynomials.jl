@@ -269,7 +269,7 @@ function test()
         @test isa(InvOrthoPoly(10, n -> 1, n -> n + 1)[end], fmpz)
         @test RowSums(T217537(8)) == L217924(8)
 
-        if is_oeis_installed()
+        if data_installed()
 
             T = [
                 T066325,

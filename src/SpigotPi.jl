@@ -5,12 +5,12 @@
 
 module SpigotPi
 
-export Pi, π, L000796
+export Pi, π, V000796
 
 """
 Computes the first n decimal digits of Pi, uses a variant of the spigot algorithm valid as long as the number of digits <= 54900. Based on ideas of A. Sale (1968). Algorithm due to D. Saada (1988) and S. Rabinowitz (1991). Proof due to [Rabinowitz and S. Wagon](https://www.maa.org/sites/default/files/pdf/pubs/amm_supplements/Monthly_Reference_12.pdf) (1995).
 
-* Pi, L000796
+* Pi, V000796
 """
 const ModuleSpigotPi = ""
 
@@ -68,7 +68,7 @@ julia π(100)[100]
 
 Return the decimal expansion of π up to ``n`` digits as a string. (Note what the docstring of 'Pi'' says about the number of digits in the output.)
 """
-L000796(digits) = Pi(digits)
+V000796(digits) = Pi(digits)
 
 #START-TEST-########################################################
 

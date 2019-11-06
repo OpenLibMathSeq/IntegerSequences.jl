@@ -85,7 +85,7 @@ V123753(n) = V295513(n + 1) + n + 2
 
 #START-TEST-########################################################
 
-using Test, SeqTests
+using Test, SeqTests, OEISUtils
 
 function test()
     @testset "BinaryInteger" begin
@@ -95,7 +95,7 @@ function test()
         @test V295513(2) == 0
         @test V295513(3) == 2
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V001855, V003314, V033156, V054248, V061168, V097383]
             for v ∈ V
                 SeqTest(v, 'V', 1)

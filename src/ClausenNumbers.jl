@@ -85,7 +85,7 @@ function test()
         @test isa(ClausenNumber(10), Nemo.fmpz)
     end
 
-    if is_oeis_installed()
+    if data_installed()
         SeqTest([L002445], 'L')
         SeqTest(V002445, 'V', 0)
         SeqTest(V027642, 'V', 0)

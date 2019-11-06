@@ -455,7 +455,7 @@ function test()
         P1 = PartitionNumberList(14)
         @test all(P0 .== P1)
 
-        if is_oeis_installed()
+        if data_installed()
 
             L = [
                 L010815,

@@ -337,7 +337,7 @@ function test()
         @test L035016(999 + 1)[end] == ZZ(-16565884160)
         @test L035016(1000 + 1)[end] == ZZ(18365675328)
 
-        if is_oeis_installed()
+        if data_installed()
 
             L = [
                 L000122,

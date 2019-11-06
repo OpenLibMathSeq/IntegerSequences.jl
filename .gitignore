@@ -2,5 +2,6 @@ Manifest.toml
 local/*
 docs/build/*
 .vscode/*
+integersequences.code-workspace
 data/A123456.json
 data/b000290.txt

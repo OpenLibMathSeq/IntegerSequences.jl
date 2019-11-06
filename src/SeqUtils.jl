@@ -194,3 +194,6 @@ end
 main()
 
 end # module
+
+# a(f) = applicable(f, 1) ? f(1) : f(1,2)
+# m(f) = first(methods(h)).nargs == 1 ? f(1) : f(1,2)

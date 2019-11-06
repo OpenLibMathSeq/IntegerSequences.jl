@@ -6,39 +6,15 @@
 module SeqTests
 
 using Test, OEISUtils, SeqUtils
-export SeqTest, is_oeis_installed
+export SeqTest, GenerateAllTest, data_installed
 
 const ShowTest = false
 
-# Directory of oeis local data.
-srcdir = realpath(joinpath(dirname(@__FILE__)))
-ROOTDIR = dirname(srcdir)
-datadir = joinpath(ROOTDIR, "data")
-
 """
 
-Returns the path where the oeis data is expected.
+Alias for is_oeis_installed.
 """
-oeis_path() = joinpath(datadir, "stripped")
-
-"""
-
-Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is installed (in ../data).
-"""
-is_oeis_installed() = isfile(oeis_path())
-
-"""
-
-Indicates if the local copy of the OEIS data (the so-called 'stripped' file) is not installed and warns.
-"""
-function oeis_notinstalled()
-    if !is_oeis_installed()
-        @warn("OEIS data not installed! Download stripped.gz from oeis.org,")
-        @warn("expand it and put it in the directory ../data.")
-        return true
-    end
-    return false
-end
+data_installed() = is_oeis_installed()
 
 function SeqTest(seqarray, kind, offset = 0)
     if kind == 'V'
@@ -128,5 +104,88 @@ function SeqPTest(seqarray)
         end
     end
 end
+
+function GenerateAllTest(A::Array{Function,1})
+    err = String[]
+    for a ∈ A
+        stra = string(a)
+        stra * " " |> print
+        try
+            if startswith(stra, 'L')
+                a(10) |> println
+            elseif startswith(stra, "TL")
+                if applicable(a, 1)
+                    for k ∈ 0:4 a(k) |> println end
+                else
+                    for k ∈ 0:4 a(0, k) |> println end
+                    for k ∈ 0:4 a(2, k) |> println end
+                end
+            elseif startswith(stra, 'T')
+                reduce(vcat, [row for row in a(5)]) |> println
+            elseif startswith(stra, "is")
+                [a(k) for k ∈ 0:12] |> println
+                [k for k ∈ 0:12 if a(k)] |> println
+            elseif startswith(stra, 'I')
+                collect(a(6)) |> println
+            elseif startswith(stra, 'F')
+                # This is not equivalent!
+                # collect(a(20)) |> println
+                w = fmpz[]
+                for r ∈ a(20) push!(w, r) end
+                println(w)
+            elseif startswith(stra, 'P')
+                for k ∈ 0:4 a(k) |> println end
+            elseif startswith(stra, 'R')
+                [a(Float64(k)) for k ∈ 0:4] |> println
+            elseif startswith(stra, 'G')
+                Coefficients(a, 6) |> println
+            elseif startswith(stra, 'M')
+                a(6) |> println
+            elseif startswith(stra, 'V')
+                if applicable(a, 1)
+                    [a(k) for k ∈ 0:6] |> println
+                else
+                    [a(0, k) for k ∈ 0:6] |> println
+                    [a(2, k) for k ∈ 0:6] |> println
+                end
+            else
+                "??? \n" |> print
+            end
+        catch
+            "ERROR!" |> println
+            push!(err, stra)
+        end
+    end
+    numerr = length(err)
+    if numerr > 0
+        @warn(numerr, " errors found:\n", err)
+    end
+    return numerr
+end
+
+#START-TEST-########################################################
+
+using Test
+
+function test()
+    @testset "GenerateAll" begin
+        global SEQUENCES
+        @test GenerateAllTest(SEQUENCES) == 0
+    end
+end
+
+function demo()
+end
+
+function perf()
+end
+
+function main()
+    #test()
+    #demo()
+    #perf()
+end
+
+main()
 
 end # module

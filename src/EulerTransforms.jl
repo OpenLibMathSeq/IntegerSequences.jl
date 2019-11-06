@@ -130,7 +130,7 @@ function test()
 
     @testset "EulerTransform" begin
 
-        if is_oeis_installed()
+        if data_installed()
 
             L = [L107895, L190905, L061256, L275585, L006171, L290351, L052847]
             SeqTest(L, 'L')

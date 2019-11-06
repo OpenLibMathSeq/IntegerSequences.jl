@@ -171,7 +171,7 @@ function test()
     @testset "Figurative" begin
         @test V002411(1000) == 500500000
 
-        if is_oeis_installed()
+        if data_installed()
 
             V = [
                 V014107,

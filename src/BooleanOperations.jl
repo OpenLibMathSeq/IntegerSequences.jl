@@ -10,8 +10,8 @@ export Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand
 export Bits, BoolOps, BinDigits
 export V035327, V003817, V129760, V142151, V080079, V086799, V163617
 export V038712, V006257, V048724, V003188, V038554, V048735, V213370
-export V080940, V135521, V051933, V280172, V135481, V327987
-export isV327988, L327988
+export V080940, V135521, V051933, V135481, V327987
+export is327988, L327988, L280172
 
 """
 
@@ -27,7 +27,7 @@ The main function is
 
 where op are the above acronyms. If the lengths of the binary expansions of ``n`` and ``k`` are different, the parameter 'algo=min' offers the choice to reduce the range of comparison to the smaller range or to the larger range, 'algo=max', which will first pad the representation of the smaller operand with 0's up to the length of the larger operand.
 
-* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521, V051933, V280172.
+* Not, And, Dif, Cnimp, Xor, Or, Nor, Eqv, Cimp, Imp, Nand, BinDigits, BoolOps, Bits, V035327, V003817, V129760, V142151, V080079, V086799, V038712, V163617, V006257, V048724, V003188, V038554, V048735, V213370, V080940, V135521,  , V280172.
 """
 const ModuleBooleanOperations = ""
 
@@ -134,7 +134,8 @@ Return the bitwise boolean operation represented by ``op`` applied to the binary
 """
 function Bits(op::Int, n::Int, k::Int, algo=max)
     if op < 0 || op > 15 || n < 0 || k < 0
-        throw(DomainError(op, n , k), "op must 0 <= op <= 15 and n,k >= 0")
+        @error("op must be 0 <= op <= 15 and n,k >= 0. op=$op, n=$n, k=$k.")
+        throw(DomainError(-1))
     end
 
     op == 0  && return 0
@@ -209,7 +210,6 @@ V142151(n) = Bits("CIMP", n, n+1)
 # Is exported from Module LandauConstants
 #"""
 #V006519(n) = Bits("CNIMP", n, n+1)
-
 
 """
 
@@ -299,7 +299,7 @@ V051933(n, k) = Bits("XOR", n, k)
 
 Return (k-1 XOR n-k) + 1, using max length.
 """
-V280172(n, k) = Bits("XOR", k-1, n-k) + 1
+L280172(n) = [Bits("XOR", k-1, n-k) + 1 for k in 1:n]
 
 """
 
@@ -317,13 +317,13 @@ V327987(n) = sum([Bits("AND", d, div(n, d)) for d ∈ divisors(n)])
 
 Is V327987(n) = ``∑_{d|n} d & (n/d)`` = 0 ?
 """
-isV327988(n) = V327987(n) == 0
+is327988(n) = V327987(n) == 0
 
 """
 
 Return a list of the zeros of V327987 below (inc.)  ``max``.
 """
-L327988(max) = [n for n ∈ 0:max if isV327988(n)]
+L327988(max) = [n for n ∈ 0:max if is327988(n)]
 
 #START-TEST-########################################################
 
@@ -366,8 +366,8 @@ function test()
         @test [V327987(n) for n ∈ 0:8] == [0, 1, 0, 2, 2, 2, 4, 2, 0]
         @test L327988(99) == [0, 2, 8, 10, 26, 32, 34, 40, 50, 58, 74, 82]
 
-        @test isV327988(121) == false
-        @test isV327988(122) == true
+        @test is327988(121) == false
+        @test is327988(122) == true
     end
 end
 
@@ -380,7 +380,7 @@ function demo()
 
     println()
     for n ∈ 1:8
-        [V280172(n, k) for k ∈ 1:n] |> println
+        L280172(n) |> println
     end
 end
 

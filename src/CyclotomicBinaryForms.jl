@@ -7,25 +7,25 @@ module CyclotomicBinaryForms
 using Nemo, Counts, NumberTheory
 
 export ModuleCyclotomicBinaryForms
-export isA206864, F206864, I206864, L206864
-export isA206942, F206942, I206942, L206942
-export isA293654, F293654, I293654, L293654
-export isA296095, F296095, I296095, L296095
+export is206864, F206864, I206864, L206864
+export is206942, F206942, I206942, L206942
+export is293654, F293654, I293654, L293654
+export is296095, F296095, I296095, L296095
 export V299214, L299214
-export isA299498, F299498, I299498, L299498
-export isA299733, L299733
-export isA299928, F299928, I299928, L299928
-export isA299929, F299929, I299929, L299929
-export isA299930, F299930, I299930, L299930
-export isA325143, F325143, I325143, L325143
-export isA325145, F325145, I325145, L325145
+export is299498, F299498, I299498, L299498
+export is299733, L299733
+export is299928, F299928, I299928, L299928
+export is299929, F299929, I299929, L299929
+export is299930, F299930, I299930, L299930
+export is325143, F325143, I325143, L325143
+export is325145, F325145, I325145, L325145
 
 """
 
 E. Fouvry, C. Levesque, M. Waldschmidt,
 [Representation of integers by cyclotomic binary forms](https://arxiv.org/pdf/1712.09019.pdf), arXiv:1712.09019 [math.NT], 2017.
 
-* isA206864, F206864, I206864, L206864, isA206942, F206942, I206942, L206942, isA293654, F293654, I293654, L293654, isA296095, F296095, I296095, L296095, V299214, L299214, isA299498, F299498, I299498, L299498, isA299733, L299733, isA299928, F299928, I299928, L299928, isA299929, F299929, I299929, L299929, isA299930, F299930, I299930, L299930, isA325143, F325143, I325143, L325143, isA325145, F325145, I325145, L325145
+* is206864, F206864, I206864, L206864, is206942, F206942, I206942, L206942, is293654, F293654, I293654, L293654, is296095, F296095, I296095, L296095, V299214, L299214, is299498, F299498, I299498, L299498, is299733, L299733, is299928, F299928, I299928, L299928, is299929, F299929, I299929, L299929, is299930, F299930, I299930, L299930, is325143, F325143, I325143, L325143, is325145, F325145, I325145, L325145
 """
 const ModuleCyclotomicBinaryForms = ""
 
@@ -35,7 +35,7 @@ const ModuleCyclotomicBinaryForms = ""
 Is ``n`` a numbers of the form ``Phi_k(m)`` with ``k > 2`` and ``|m| > 1``
 where ``Phi_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
 """
-function isA206942(n)
+function is206942(n)
     if n < 3
         return false
     end
@@ -55,13 +55,13 @@ end
 
 Filter the integers which are A206942 and <= ``n``.
 """
-F206942(n) = filter(isA206942, 1:n)
+F206942(n) = filter(is206942, 1:n)
 
 """
 
 Iterate over the first ``n`` integers which are A206942.
 """
-I206942(n) = takeFirst(isA206942, n)
+I206942(n) = takeFirst(is206942, n)
 
 """
 
@@ -76,19 +76,19 @@ L206942(n) = collect(I206942(n))
 Is ``n`` a prime of the form ``Phi_k(m)`` with ``k > 2`` and ``|m| > 1``
 where ``Phi_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
 """
-isA206864(n) = isPrime(n) && isA206942(n)
+is206864(n) = isPrime(n) && is206942(n)
 
 """
 
 Filter the integers which are A206864 and <= ``n``.
 """
-F206864(n) = (j for j ∈ 1:n if isA206864(j))
+F206864(n) = (j for j ∈ 1:n if is206864(j))
 
 """
 
 Iterate over the first ``n`` integers which are A206864.
 """
-I206864(n) = takeFirst(isA206864, n)
+I206864(n) = takeFirst(is206864, n)
 
 """
 
@@ -102,7 +102,8 @@ L206864(n) = collect(I206864(n))
 
 Is ``n`` primitively represented by a cyclotomic binary forms?
 """
-function isA299498(n)
+function is299498(n)
+    n == 0 && return false
     isPrimeTo(n, k) = gcd(ZZ(n), ZZ(k)) == ZZ(1)
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
@@ -125,13 +126,13 @@ end
 
 Filter the integers which are A299498 and <= ``n``.
 """
-F299498(n) = (j for j ∈ 1:n if isA299498(j))
+F299498(n) = (j for j ∈ 1:n if is299498(j))
 
 """
 
 Iterate over the first ``n`` integers which are A299498.
 """
-I299498(n) = takeFirst(isA299498, n)
+I299498(n) = takeFirst(is299498, n)
 
 """
 
@@ -173,7 +174,8 @@ end
 
 Is ``n`` represented by a cyclotomic binary form f(x, y) where x and y are prime numbers and 0 < y < x?
 """
-function isA299928(n)
+function is299928(n)
+    n == 0 && return false
     R, z = PolynomialRing(ZZ, "z")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
@@ -193,13 +195,13 @@ end
 
 Filter the integers which are A299928 and <= ``n``.
 """
-F299928(n) = (j for j ∈ 1:n if isA299928(j))
+F299928(n) = (j for j ∈ 1:n if is299928(j))
 
 """
 
 Iterate over the first ``n`` integers which are A299928.
 """
-I299928(n) = takeFirst(isA299928, n)
+I299928(n) = takeFirst(is299928, n)
 
 """
 
@@ -213,19 +215,19 @@ L299928(n) = collect(I299928(n))
 
 Is ``n`` a prime represented by a cyclotomic binary form f(x, y) where x and y are prime numbers and 0 < y < x?
 """
-isA299929(n) = isPrime(n) && isA299928(n)
+is299929(n) = isPrime(n) && is299928(n)
 
 """
 
 Filter the integers which are A299929 and <= ``n``.
 """
-F299929(n) = (j for j ∈ 1:n if isA299929(j))
+F299929(n) = (j for j ∈ 1:n if is299929(j))
 
 """
 
 Iterate over the first ``n`` integers which are A299929.
 """
-I299929(n) = takeFirst(isA299929, n)
+I299929(n) = takeFirst(is299929, n)
 
 """
 
@@ -239,7 +241,7 @@ L299929(n) = collect(I299929(n))
 
 Is ``n`` a prime represented by a cyclotomic binary form f(x, y) with x and y odd prime numbers and x > y.
 """
-function isA299930(n)
+function is299930(n)
     !isprime(ZZ(n)) && return false
     R, z = PolynomialRing(ZZ, "z")
     K = floor(Int, 5.383 * log(n)^1.161)
@@ -260,13 +262,13 @@ end
 
 Filter the integers which are A299930 and <= ``n``.
 """
-F299930(n) = (j for j ∈ 1:n if isA299930(j))
+F299930(n) = (j for j ∈ 1:n if is299930(j))
 
 """
 
 Iterate over the first ``n`` integers which are A299930.
 """
-I299930(n) = takeFirst(isA299930, n)
+I299930(n) = takeFirst(is299930, n)
 
 """
 
@@ -280,7 +282,7 @@ L299930(n) = collect(I299930(n))
 
 Is ``n`` represented by a cyclotomic binary form?
 """
-function isA296095(n)
+function is296095(n)
     n < 3 && return false
     R, z = PolynomialRing(ZZ, "z")
     N = QQ(n)
@@ -309,13 +311,13 @@ end
 
 Filter the integers which are A296095 and <= ``n``.
 """
-F296095(n) = (j for j ∈ 1:n if isA296095(j))
+F296095(n) = (j for j ∈ 1:n if is296095(j))
 
 """
 
 Iterate over the first ``n`` integers which are A296095.
 """
-I296095(n) = takeFirst(isA296095, n)
+I296095(n) = takeFirst(is296095, n)
 
 """
 
@@ -329,7 +331,7 @@ L296095(n) = collect(I296095(n))
 
 Is ``n`` unrepresentable by a cyclotomic binary forms?
 """
-function isA293654(n)
+function is293654(n)
     if n < 3
         return true
     end
@@ -355,13 +357,13 @@ end
 
 Filter the integers which are A293654 and <= ``n``.
 """
-F293654(n) = (j for j ∈ 1:n if isA293654(j))
+F293654(n) = (j for j ∈ 1:n if is293654(j))
 
 """
 
 Iterate over the first ``n`` integers which are A293654.
 """
-I293654(n) = takeFirst(isA293654, n)
+I293654(n) = takeFirst(is293654, n)
 
 """
 
@@ -375,7 +377,7 @@ L293654(n) = collect(I293654(n))
 
 Is ``n`` a prime represented by a cyclotomic binary form?
 """
-function isA325143(n)
+function is325143(n)
     (n < 3 || !isprime(ZZ(n))) && return false
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
@@ -398,13 +400,13 @@ end
 
 Filter the integers which are A325143 and <= ``n``.
 """
-F325143(n) = (j for j ∈ 1:n if isA325143(j))
+F325143(n) = (j for j ∈ 1:n if is325143(j))
 
 """
 
 Iterate over the first ``n`` integers which are A325143.
 """
-I325143(n) = takeFirst(isA325143, n)
+I325143(n) = takeFirst(is325143, n)
 
 """
 
@@ -418,19 +420,19 @@ L325143(n) = collect(I325143(n))
 
 Is ``n`` a prime unrepresentable by a cyclotomic binary form?
 """
-isA325145(n) = isprime(ZZ(n)) && !isA325143(n)
+is325145(n) = isprime(ZZ(n)) && !is325143(n)
 
 """
 
 Filter the integers which are A325145 and <= ``n``.
 """
-F325145(n) = (j for j ∈ 1:n if isA325145(j))
+F325145(n) = (j for j ∈ 1:n if is325145(j))
 
 """
 
 Iterate over the first ``n`` integers which are A325145.
 """
-I325145(n) = takeFirst(isA325145, n)
+I325145(n) = takeFirst(is325145, n)
 
 """
 
@@ -478,7 +480,7 @@ L299214(len) = [V299214(i) for i ∈ 1:len]
 
 Is n a prime represented in more than one way by cyclotomic binary forms f(x,y) with x and y prime numbers and y < x?
 """
-function isA299733(n)
+function is299733(n)
     if n < 3 || !isprime(ZZ(n))
         return false
     end
@@ -510,7 +512,7 @@ end
 
 Return the list of the first ``n`` integers which are A299733.
 """
-L299733(n) = [i for i ∈ 1:n if isA299733(i)]
+L299733(n) = [i for i ∈ 1:n if is299733(i)]
 
 # L299733(1000) |> println
 
@@ -520,7 +522,7 @@ using Test, SeqTests
 
 function test()
     @testset "CyclotomicForms" begin
-        if is_oeis_installed()
+        if data_installed()
 
             L = [
                 L206942,
@@ -541,7 +543,7 @@ end
 function demo()
     println("\nIntegers which are A206942 and <= 32:")
     for n ∈ 1:32
-        isA206942(n) && println(n)
+        is206942(n) && println(n)
     end
 
     println("\nIterate over the first 32 integers which are A206942:")

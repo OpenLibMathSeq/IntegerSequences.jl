@@ -4,13 +4,13 @@
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
 module NumberTheory
-using Nemo, Products
+using Nemo, Products, PrimesIterator
 
 export ModuleNumberTheory
 export τ, σ, σ2, ϕ, ω, Ω, ⊥, ⍊, Divisors, PrimeDivisors, Factors, Radical, mods
 export V000005, V000010, V000203, V001222, V001221, V008683, V181830, V034444
 export I003277, L003277, V061142, V034386, V002110, I050384, L050384, V001157
-export Divides, isPrime, isCyclic, isStrongCyclic, isOdd, PrimeList
+export Divides, isPrime, isCyclic, isStrongCyclic, isOdd
 export isPrimeTo, isStrongPrimeTo, isNonnegative, isPositive, isEven, isSquare
 export isComposite, isSquareFree, isPrimePower, isPowerOfPrimes, isPerfectPower
 export divisors
@@ -347,16 +347,16 @@ V034386(n) = Nemo.primorial(n)
 
 """
 
-Return a list of the first ``n`` primes.
+Return an iterator over of the first ``n`` primes. For a list of the first ``n`` primes use collect(PrimeListIterator(n)). For the primes up to ``n`` use Primes(n).
 """
-PrimeList(len::Int) =
-    Iterators.take(Iterators.filter(isPrime, Iterators.countfrom(1)), len)
+PrimeListIterator(len::Int) =
+    Iterators.take(Iterators.filter(isPrime, Iterators.countfrom(0)), len)
 
 """
 
 Return the product of first ``n`` primes.
 """
-V002110(n) = ∏(PrimeList(n))
+V002110(n) = ∏(collect(PrimeListIterator(n)))
 
 # In the module GaussFactorial are the definitions of
 # HasPrimitiveRoot
@@ -425,7 +425,7 @@ function test()
             @test FA(n) == FB(n)
         end
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V061142, V000005, V000010, V000203, V001222, V001221, V008683]
             W = [V034386, V002110, V181830, V034444]
             for v ∈ V
@@ -460,6 +460,15 @@ function demo()
     println([n for n ∈ 1:200 if isStrongCyclic(n)])
     println(L050384(24))
 
+    # Product of first n primes. Sometimes written primorial(n).
+    # 1, 2, 6, 30, 210, 2310, 30030, 510510, 9699690,
+    println()
+    N = 6
+    Primes(N) |> println
+    collect(PrimeListIterator(N)) |> println
+    V002110(N) |> println
+    [V002110(k) for k ∈ 0:(N-1)] |> println
+
 end
 
 """
@@ -471,7 +480,7 @@ end
 """
 function perf()
     @time [Divisors(n) for n ∈ 1:10000]
-    @time [Radical(n) for n ∈ 1:10000]
+    @time [Radical(n)  for n ∈ 1:10000]
 end
 
 function main()
