@@ -205,9 +205,6 @@ JacobiTheta4Powers
 KolakoskiList
 ```
 ```@docs
-LF097805
-```
-```@docs
 List
 ```
 ```@docs
@@ -481,6 +478,9 @@ RecTriangle
 Records
 ```
 ```@docs
+RecordsCached
+```
+```@docs
 ReflectPoly
 ```
 ```@docs
@@ -692,9 +692,6 @@ toΔ
 ```
 ```@docs
 Ω
-```
-```@docs
-π
 ```
 ```@docs
 σ

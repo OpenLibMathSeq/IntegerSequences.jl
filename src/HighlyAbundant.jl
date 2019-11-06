@@ -24,13 +24,13 @@ const ModuleHighlyAbundant = ""
 
 Iterate over the first ``n`` highly abundant numbers.
 """
-I002093(n) = Records(σ, n, true, true, Dict())
+I002093(n) = Records(σ, n, true, true)
 
 """
 
 Iterate over the highly abundant numbers which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F002093(n) = Records(σ, n, false, true, Dict())
+F002093(n) = Records(σ, n, false, true)
 
 """
 
@@ -52,13 +52,13 @@ V002093(n) = nth(I002093(n+1), n+1)
 
 Iterate over the first ``n`` record values of sigma.
 """
-I034885(n) = Records(σ, n, true, false, Dict())
+I034885(n) = Records(σ, n, true, false)
 
 """
 
 Iterate over the record values of sigma the indices of which do not exceed ``n`` (``1 ≤ r ≤ n``).
 """
-F034885(n) = Records(σ, n, false, false, Dict())
+F034885(n) = Records(σ, n, false, false)
 
 """
 

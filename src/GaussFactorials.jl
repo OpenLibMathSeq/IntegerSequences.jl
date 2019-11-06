@@ -98,13 +98,13 @@ V066570(n) = div(GaussFactorial(n, 1), GaussFactorial(n, n))
 
 Iterate over the indices of the first ``n`` record values of the Gauß factorial.
 """
-I193339(n) = Records(GaussFactorial, n, true, true, Dict())
+I193339(n) = Records(GaussFactorial, n, true, true)
 
 """
 
 Iterate over indices of the record values of the Gauß factorial which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F193339(n) = Records(GaussFactorial, n, false, true, Dict())
+F193339(n) = Records(GaussFactorial, n, false, true)
 
 """
 
@@ -125,13 +125,13 @@ V193339(n) = nth(I193339(n+1), n+1)
 
 Iterate over the first ``n`` record values of the Gauß factorial (``1 ≤ r``).
 """
-I193338(n) = Records(GaussFactorial, n, true, false, Dict())
+I193338(n) = Records(GaussFactorial, n, true, false)
 
 """
 
 Iterate over the record values of the Gauß factorial which do not exceed ``n`` (``1 ≤ i ≤ n``).
 """
-F193338(n) = Records(GaussFactorial, n, false, false, Dict())
+F193338(n) = Records(GaussFactorial, n, false, false)
 
 """
 

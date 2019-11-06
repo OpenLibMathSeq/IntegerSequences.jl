@@ -10,7 +10,7 @@ using Setpartitions, IntPartitions
 
 export ModuleSetPartitionsMType, OrderedSetPolynomials, OrderedSetPartitions
 export ShapePartitions, CardinalityOfSetPartitionsWithShape
-export L000587, L002115, L005046, L028296, L088218, L094088, L097805
+export L000587, L002115, L005046, L028296, L088218, L094088
 export L131689, L156289, L210029, L211212, L241171, L243664, L243665
 export L260884, L278073, L278074, L281478, L281479, L281480, L291451
 export L291452, L291973, L291974, L291975, L291976, P097805, P131689
@@ -100,12 +100,12 @@ P097805(n) = OrderedSetPolynomials(0, n)
 Return the number of ordered set partitions of an ``n``-set which are of shape type ``0``.
 # Examples
 ```julia-repl
-julia> L097805(3)
+julia> TL097805(3)
 4-element Array{Nemo.fmpz,1}:
 [0, 1, 2, 1]
 ```
 """
-L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
+TL097805(n) = Coeffs(OrderedSetPolynomials(0, n))
 
 """
 
@@ -712,7 +712,7 @@ function test()
 
     @testset "OrdSetPolyMType" begin
         @test string(P097805(3)) == "x^3+2*x^2+x"
-        @test L097805(3) == [0, 1, 2, 1]
+        @test TL097805(3) == [0, 1, 2, 1]
         @test TL097805(3, 5) == [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 3, 3, 1]]
 
         @test string(P131689(4)) == "24*x^4+36*x^3+14*x^2+x"

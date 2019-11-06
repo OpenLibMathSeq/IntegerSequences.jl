@@ -8,7 +8,7 @@ module Compositions
 using Nemo, IterTools, Triangles
 
 export ModuleCompositions
-export T097805, LF097805, V097805, M097805
+export T097805, L097805, V097805, M097805
 # The module SetPartitionsMType contains : P097805, L097805, TL097805,
 
 """
@@ -36,7 +36,7 @@ T097805(n) = RecTriangle(n, R097805)
 
 Lists the first ``n`` rows of A097805 by concatinating. This is the format for submissions to the OEIS.
 """
-LF097805(n) = vcat(T097805(n)...)
+L097805(n) = vcat(T097805(n)...)
 
 """
 
@@ -66,7 +66,7 @@ function demo()
     end
 
     println("\nLists the first 9 rows of L097805 by concatinating.")
-    println(LF097805(9))
+    println(L097805(9))
 
     #ShowAsMatrix(L097805(9))
     #println(M097805(9))
@@ -85,7 +85,7 @@ function demo()
     println("\nBenchmark the construction of the first 500 rows of A097805 based on Iteration.\n")
     #  0.111066 seconds (253.51 k allocations: 7.795 MiB)
     GC.gc()
-    @time LF097805(500)
+    @time L097805(500)
 
     println("\nBenchmark the construction of the first 500 rows of A097805 based on closed formula.")
     # Result: 0.479466 seconds (1.72 M allocations: 21.592 MiB)
@@ -109,7 +109,7 @@ L097805(500) :: 0.111066 seconds (253.51 k allocations: 7.795 MiB)
 """
 function perf()
     GC.gc()
-    @time LF097805(500)
+    @time L097805(500)
 end
 
 function main()

@@ -16,6 +16,10 @@ Alias for is_oeis_installed.
 """
 data_installed() = is_oeis_installed()
 
+"""
+
+Perform tests for an array of sequences of given type assuming the given offset.
+"""
 function SeqTest(seqarray, kind, offset = 0)
     if kind == 'V'
         return SeqVTest(seqarray, offset)
@@ -105,6 +109,10 @@ function SeqPTest(seqarray)
     end
 end
 
+"""
+
+Test to generate sequences from a given list of sequences.
+"""
 function GenerateAllTest(A::Array{Function,1})
     err = String[]
     for a ∈ A
@@ -128,11 +136,7 @@ function GenerateAllTest(A::Array{Function,1})
             elseif startswith(stra, 'I')
                 collect(a(6)) |> println
             elseif startswith(stra, 'F')
-                # This is not equivalent!
-                # collect(a(20)) |> println
-                w = fmpz[]
-                for r ∈ a(20) push!(w, r) end
-                println(w)
+                collect(IterTools.takewhile(k -> k <= 20, a(21))) |> println
             elseif startswith(stra, 'P')
                 for k ∈ 0:4 a(k) |> println end
             elseif startswith(stra, 'R')
@@ -149,7 +153,12 @@ function GenerateAllTest(A::Array{Function,1})
                     [a(2, k) for k ∈ 0:6] |> println
                 end
             else
-                "??? \n" |> print
+                if applicable(a, 1)
+                    [a(k) for k ∈ 0:6] |> println
+                else
+                    [a(0, k) for k ∈ 0:6] |> println
+                    [a(2, k) for k ∈ 0:6] |> println
+                end
             end
         catch
             "ERROR!" |> println
@@ -158,7 +167,8 @@ function GenerateAllTest(A::Array{Function,1})
     end
     numerr = length(err)
     if numerr > 0
-        @warn(numerr, " errors found:\n", err)
+        @warn(numerr, " errors found:")
+        for e ∈ err println(e) end
     end
     return numerr
 end
@@ -182,8 +192,8 @@ end
 
 function main()
     #test()
-    #demo()
-    #perf()
+    demo()
+    perf()
 end
 
 main()
