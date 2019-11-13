@@ -13,26 +13,13 @@ export ShapePartitions, CardinalityOfSetPartitionsWithShape
 export L000587, L002115, L005046, L028296, L088218, L094088
 export L131689, L156289, L210029, L211212, L241171, L243664, L243665
 export L260884, L278073, L278074, L281478, L281479, L281480, L291451
-export L291452, L291973, L291974, L291975, L291976, P097805, P131689
-export P241171, P278073, P278074, TL097805, TL131689, TL241171, TL278073
-export TL278074, V000587, V005046, V260884, V291973, V291974, V291975, V291976
-export L014606
-export L036040, L257490, L327003, L327004
-
+export L291452, L291973, L291974, L291975, L291976
+export P097805, P131689, P241171, P278073, P278074
+export TL097805, TL131689, TL241171, TL278073, TL278074
+export V000587, V005046, V260884, V291973, V291974, V291975, V291976
+export L014606, L036040, L257490, L327003, L327004
 
 """
-
-
-## Ordered set partitions of m-type
-
-| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
-|----|-------|-------|-------|-------|-------|
-| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
-| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
-| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
-| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
-| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
-| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
 
 ## Set partitions of m-type
 
@@ -58,6 +45,17 @@ For example consider the case n = 4. There are five integer partitions of 4:
 | central | [A000041](https://oeis.org/A000041) | [A007820](https://oeis.org/A007820) | [A327416](https://oeis.org/A327416) | [A327417](https://oeis.org/A327417) | [A327418](https://oeis.org/A327418) |
 
 See also [A260876](https://oeis.org/A260876).
+
+## Ordered set partitions of m-type
+
+| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
+|------|-------|-------|-------|-------|-------|
+| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
+| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
+| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
+| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
+| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
+| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
 """
 const ModuleSetPartitionsMType = ""
 
@@ -655,6 +653,10 @@ function ShapePartitions(m, n)
     reduce(vcat, [ShapePartitions(m, n, k) for k ∈ 0:n])
 end
 
+"""
+
+--
+"""
 function CardinalityOfOrderedSetPartitionsWithShape(Shape)
     Shape == [] && return ZZ(1)
     M = Multinomial(Shape)*F!(length(Shape))
@@ -663,12 +665,20 @@ function CardinalityOfOrderedSetPartitionsWithShape(Shape)
     div(M, P)
 end
 
+"""
+
+--
+"""
 function ShapeOrderedPartitions(m, n, k)
     shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
     isempty(shapes) && return [fmpz(0)]
     return [CardinalityOfOrderedSetPartitionsWithShape(s) for s ∈ shapes]
 end
 
+"""
+
+--
+"""
 function ShapeOrderedPartitions(m, n)
     reduce(vcat, [ShapeOrderedPartitions(m, n, k) for k ∈ 0:n])
 end

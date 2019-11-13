@@ -5,13 +5,18 @@
 
 module IntPartitions
 
-using GeneralizedBinomial
+using GeneralizedBinomial, DataStructures
 
 export ModuleIntPartitions
 export IntegerPartitions, PartitionNumber
 export PartOrder, byNumPart, byMaxPart
 export PartitionCoefficientsByLength, PartitionCoefficientsByBiggestPart
 export V000041, I072233, L072233, L036038, L078760, L005651, L262071, L292222
+export L115621, L328917, V088887
+
+#=
+a(n) is the sum of the parts of the partition having Heinz number n. We define the Heinz number of a partition p = [p_1, p_2, ..., p_r] as Product_{j=1..r} (p_j-th prime) (concept used by Alois P. Heinz in A215366 as an "encoding" of a partition). For example, for the partition [1, 1, 2, 4, 10] we get 2*2*3*7*29 = 2436. Example: a(33) = 7 because the partition with Heinz number 33 = 3 * 11 is [2,5]. - Emeric Deutsch, May 19 2015
+=#
 
 """
 
@@ -27,6 +32,8 @@ The partition coefficients, which are the multinomial coefficients applied to pa
 The partition numbers and the number of partitions of n into k parts are given as PartitionNumber(n) and PartitionNumber(n, k), (V000041, L072233).
 
 The sum of all partition coefficients of n is efficiently computed with L005651.
+
+* V000041, V088887, I072233, L072233, L036038, L078760, L005651, L262071, L292222, L115621, L328917
 """
 const ModuleIntPartitions = ""
 
@@ -287,6 +294,32 @@ function L292222(n)
     [sum(Multinomial(p) for p ∈ IntegerPartitions(n, k)) for k ∈ 1:n]
 end
 
+"""
+Return the signature of partitions in Hindenburg order.
+"""
+function L115621(n)
+    h(p) = sort(collect(values(counter(p))))
+    [h(p) for p ∈ IntegerPartitions(n)]
+end
+
+"""
+Return the types of signatures of partitions of n, ordered firstly by decreasing greatest parts, then decreasing sum of parts, then by increasing number of parts.
+"""
+function L328917(n)
+    n == 0 && return [[0]]
+    h(p) = sort(collect(values(counter(p))), rev=true)
+    sort(unique([h(p) for p ∈ IntegerPartitions(n)]), rev=true)
+end
+
+"""
+Return the number of types of signatures of partitions of n.
+"""
+function V088887(n)
+    h(p) = sort(collect(values(counter(p))), rev=true)
+    length(unique([h(p) for p ∈ IntegerPartitions(n)]))
+end
+
+
 #START-TEST-########################################################
 
 using Test, SeqUtils
@@ -420,6 +453,17 @@ function demo()
 
     println("\n-- Sum of all partition coefficients of n")
     L005651(10) |> println
+    println()
+
+    println("\n-- Signature of partitions in Hindenburg order.")
+    for n ∈ 1:6
+        L115621(n) |> Println
+    end
+
+    println("\n-- Types of partitions (counted by V088887).")
+    for n ∈ 0:6
+        print(n, " : "); Println(L328917(n))
+    end
     println()
 end
 

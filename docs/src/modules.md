@@ -248,6 +248,8 @@ The partition numbers and the number of partitions of n into k parts are given a
 
 The sum of all partition coefficients of n is efficiently computed with L005651.
 
+* V000041, V088887, I072233, L072233, L036038, L078760, L005651, L262071, L292222, L115621, L328917
+
    🔶  [JacobiTheta](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/JacobiTheta.jl)
 
 
@@ -287,6 +289,12 @@ V327495(n) = ∑{k=0..n}(V163590(k) 2^{V327492(n) - V327492(k)})^2.
 For background information see
 * J.-P. Allouche, T. Johnson, [Narayana's Cows and Delayed Morphisms](http://recherche.ircam.fr/equipes/repmus/jim96/actes/Allouche.ps).
 * C.M. Wilmott, [From Fibonacci to the mathematics of cows and quantum circuitry](https://iopscience.iop.org/article/10.1088/1742-6596/574/1/012097/pdf).
+
+   🔶  [NodesAndEdges](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NodesAndEdges.jl)
+
+Rooted trees and similar topics.
+
+* V000055, V000081, V000106, V209397, V217420, V095350, V002494, V055542, V055543, V055544, V000088, L087803, L036039
 
    🔶  [NumberTheory](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/NumberTheory.jl)
 
@@ -424,18 +432,6 @@ Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
    🔶  [SetPartitionsMType](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsMType.jl)
 
 
-
-## Ordered set partitions of m-type
-
-| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
-|----|-------|-------|-------|-------|-------|
-| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
-| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
-| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
-| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
-| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
-| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
-
 ## Set partitions of m-type
 
 For example consider the case n = 4. There are five integer partitions of 4:
@@ -460,6 +456,17 @@ For example consider the case n = 4. There are five integer partitions of 4:
 | central | [A000041](https://oeis.org/A000041) | [A007820](https://oeis.org/A007820) | [A327416](https://oeis.org/A327416) | [A327417](https://oeis.org/A327417) | [A327418](https://oeis.org/A327418) |
 
 See also [A260876](https://oeis.org/A260876).
+
+## Ordered set partitions of m-type
+
+| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
+|------|-------|-------|-------|-------|-------|
+| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
+| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
+| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
+| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
+| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
+| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
 
    🔶  [SpigotPi](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SpigotPi.jl)
 
