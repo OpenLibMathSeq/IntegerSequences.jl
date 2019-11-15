@@ -538,6 +538,9 @@ SetPartitions
 Sfactorial
 ```
 ```@docs
+ShapeOrderedPartitions
+```
+```@docs
 ShapePartitions
 ```
 ```@docs

@@ -9,7 +9,7 @@ using Nemo, Polynomials, GeneralizedBinomial, DataStructures, Products
 using Setpartitions, IntPartitions
 
 export ModuleSetPartitionsMType, OrderedSetPolynomials, OrderedSetPartitions
-export ShapePartitions, CardinalityOfSetPartitionsWithShape
+export ShapePartitions, ShapeOrderedPartitions, CardinalityOfSetPartitionsWithShape
 export L000587, L002115, L005046, L028296, L088218, L094088
 export L131689, L156289, L210029, L211212, L241171, L243664, L243665
 export L260884, L278073, L278074, L281478, L281479, L281480, L291451
@@ -637,7 +637,7 @@ end
 
 """
 
---
+
 """
 function ShapePartitions(m, n, k)
     shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
@@ -647,7 +647,7 @@ end
 
 """
 
---
+
 """
 function ShapePartitions(m, n)
     reduce(vcat, [ShapePartitions(m, n, k) for k ∈ 0:n])
@@ -655,7 +655,7 @@ end
 
 """
 
---
+
 """
 function CardinalityOfOrderedSetPartitionsWithShape(Shape)
     Shape == [] && return ZZ(1)
@@ -667,7 +667,7 @@ end
 
 """
 
---
+
 """
 function ShapeOrderedPartitions(m, n, k)
     shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
@@ -677,41 +677,174 @@ end
 
 """
 
---
+
 """
 function ShapeOrderedPartitions(m, n)
     reduce(vcat, [ShapeOrderedPartitions(m, n, k) for k ∈ 0:n])
 end
 
-#"""
-#A000012 subdivided into rows of length A000041.
-#"""
-#L000012(n) = ShapePartitions(0, n)
+"""
+Return
+# Examples
+```julia-repl
+for n in 0:5 ShapePartitions(0, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 0]
+[0, 1, 0, 0]
+[0, 1, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0]
+[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+```
+"""
+Lnix(n) = ShapePartitions(0, n)
 
 """
 
-Triangle of multinomial coefficients
+Return the number of set partitions of ``n`` with block sizes given by the ``k``-th integer partition of ``n`` when the integer partitions are sorted in Hindenburg order. This is row ``n`` of the triangle of multinomial coefficients.
+# Examples
+```julia-repl
+for n in 0:5 ShapePartitions(1, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 1]
+[0, 1, 3, 1]
+[0, 1, 4, 3, 6, 1]
+[0, 1, 5, 10, 10, 15, 10, 1]
+```
 """
 L036040(n) = ShapePartitions(1, n)
 
 """
 
----
+Return the number of set partitions of ``2n`` with block sizes given by the even parts of integer partition of ``2n`` when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapePartitions(2, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 3]
+[0, 1, 15, 15]
+[0, 1, 28, 35, 210, 105]
+[0, 1, 45, 210, 630, 1575, 3150, 945]
+```
 """
 L257490(n) = ShapePartitions(2, n)
 
 """
 
----
+Return the number of set partitions of ``3n`` with block sizes given by the parts of integer partition of ``3n`` which are multiples of 3 and when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapePartitions(3, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 10]
+[0, 1, 84, 280]
+[0, 1, 220, 462, 9240, 15400]
+[0, 1, 455, 5005, 50050, 210210, 1401400, 1401400]
+```
 """
 L327003(n) = ShapePartitions(3, n)
 
 """
 
----
+Return the number of set partitions of ``4n`` with block sizes given by the parts of integer partition of ``4n`` which are multiples of 4 and when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapePartitions(4, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 35]
+[0, 1, 495, 5775]
+[0, 1, 1820, 6435, 450450, 2627625]
+[0, 1, 4845, 125970, 4408950, 31177575, 727476750, 2546168625]
+```
 """
 L327004(n) = ShapePartitions(4, n)
 
+####################################################
+####################################################
+
+"""
+# Examples
+```julia-repl
+for n in 0:5 ShapeOrderedPartitions(0, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 1]
+[0, 1, 1, 1]
+[0, 1, 1, 1, 1, 1]
+[0, 1, 1, 1, 1, 1, 1, 1]
+```
+"""
+A123110(n) = ShapeOrderedPartitions(0, n)
+
+
+"""
+
+Return the number of set partitions of ``n`` with block sizes given by the ``k``-th integer partition of ``n`` when the integer partitions are sorted in Hindenburg order. This is row ``n`` of the triangle of multinomial coefficients.
+# Examples
+```julia-repl
+for n in 0:5 ShapeOrderedPartitions(1, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 2]
+[0, 1, 6, 6]
+[0, 1, 8, 6, 36, 24]
+[0, 1, 10, 20, 60, 90, 240, 120]
+```
+"""
+L049019(n) = ShapeOrderedPartitions(1, n)
+
+"""
+
+Return the number of set partitions of ``2n`` with block sizes given by the even parts of integer partition of ``2n`` when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapeOrderedPartitions(2, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 6]
+[0, 1, 30, 90]
+[0, 1, 56, 70, 1260, 2520]
+[0, 1, 90, 420, 3780, 9450, 75600, 113400]
+```
+"""
+L327022(n) = ShapeOrderedPartitions(2, n)
+
+"""
+
+Return the number of set partitions of ``3n`` with block sizes given by the parts of integer partition of ``3n`` which are multiples of 3 and when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapeOrderedPartitions(3, n) |> Println end
+[1]
+[0, 1]
+[0, 1, 20]
+[0, 1, 168, 1680]
+[0, 1, 440, 924, 55440, 369600]
+[0, 1, 910, 10010, 300300, 1261260, 33633600, 168168000]
+```
+"""
+L327023(n) = ShapeOrderedPartitions(3, n)
+
+"""
+
+Return the number of set partitions of ``4n`` with block sizes given by the parts of integer partition of ``4n`` which are multiples of 4 and when the integer partitions are sorted in Hindenburg order.
+# Examples
+```julia-repl
+for n in 0:5 ShapeOrderedPartitions(4, n) |> Println end
+8-element Array{Nemo.fmpz,1}:
+[1]
+[0, 1]
+[0, 1, 70]
+[0, 1, 990, 34650]
+[0, 1, 3640, 12870, 2702700, 63063000]
+[0, 1, 9690, 251940, 26453700, 187065450, 17459442000, 305540235000]
+```
+"""
+L327024(n) = ShapeOrderedPartitions(4, n)
 
 
 #START-TEST-########################################################
@@ -815,6 +948,9 @@ function main()
 end
 
 main()
+
+#ShapePartitions(1, 5) |> println
+#ShapeOrderedPartitions(1, 5) |> Println
 
 end # module
 

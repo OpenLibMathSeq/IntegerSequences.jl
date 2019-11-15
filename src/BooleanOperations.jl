@@ -33,9 +33,13 @@ const ModuleBooleanOperations = ""
 
 """
 Return the binary expansions of nonnegative ``n`` and ``k``. If algo=max then pad the resulting int arrays with 0 to make them equally long. For example
+
     BinDigits``(12, 17, max) = ([0, 0, 1, 1, 0], [1, 0, 0, 0, 1])``.
+
 If algo=min then the arrays are truncated to the length of the smaller operand.
+
     BinDigits``(12, 17, min) = ([0, 0, 1, 1], [1, 0, 0, 0])``.
+
 These are the lists which are itemwise compared by the logical operators.
 """
 function BinDigits(n::Int, k::Int, algo=max)
@@ -179,28 +183,28 @@ end
 
 """
 
-Return n NAND n.
+Return ``n`` NAND ``n``.
 """
 V035327(n) = Bits("NAND", n, n)
 # also : V035327(n) = Bits("NEG1", n, n+1, min)
 
 """
 
-Return n EQV n.
+Return ``n`` EQV ``n``.
 """
 V003817(n) = Bits("EQV", n, n)
 # sets a(0) = 1
 
 """
 
-Return n AND n+1, using max length.
+Return ``n`` AND ``n+1``, using max length.
 """
 V129760(n) = Bits("AND", n, n+1)
 # with offset 0
 
 """
 
-Return n CIMP n+1, using max length.
+Return ``n`` CIMP ``n+1``, using max length.
 """
 V142151(n) = Bits("CIMP", n, n+1)
 
@@ -213,109 +217,109 @@ V142151(n) = Bits("CIMP", n, n+1)
 
 """
 
-Return n NEG1 n+1, using max length.
+Return ``n`` NEG1 ``n+1``, using max length.
 """
 V080079(n) = Bits("NEG1", n, n+1)
 # with offset 0
 
 """
 
-Return n OR n+1, using max length.
+Return ``n`` OR ``n+1``, using max length.
 """
 V086799(n) = Bits("OR", n, n+1)
 # with offset 0
 
 """
 
-Return n OR 2n, using max length.
+Return ``n`` OR ``2n``, using max length.
 """
 V163617(n) = Bits("OR", n, n<<1)
 
 """
 
-Return n XOR n+1, using max length.
+Return ``n`` XOR ``n+1``, using max length.
 """
 V038712(n) = Bits("XOR", n, n+1)
 # with offset 0
 
 """
 
-Return max(1, 2n) - (n EQV n), using max length.
+Return max``(1, 2n) - (n`` EQV ``n)``, using max length.
 """
 V006257(n) = max(1, 2n) - Bits("EQV", n, n)
 
 """
 
-Return n XOR 2n, using max length.
+Return ``n`` XOR ``2n``, using max length.
 """
 V048724(n) = Bits("XOR", n, n<<1)
 
 """
 
-Return n XOR n>>1, using max length.
+Return ``n`` XOR ``n>>1``, using max length.
 """
 V003188(n) = Bits("XOR", n, n>>1)
 
 """
 
-Return n XOR n>>1, using min length.
+Return ``n`` XOR ``n>>1``, using min length.
 """
 V038554(n) = Bits("XOR", n, n>>1, min)
 # with a(1) = 1
 
 """
 
-Return n AND n>>1, using min length.
+Return ``n`` AND ``n>>1``, using min length.
 """
 V048735(n) = Bits("AND", n, n>>1, min)
 
 """
 
-Return n AND n<<1, using min length.
+Return ``n`` AND ``n<<1``, using min length.
 """
 V213370(n) = Bits("AND", n, n<<1, min)
 
 """
 
-Return n CNIMP n+1, using min length.
+Return ``n`` CNIMP ``n+1``, using min length.
 """
 V080940(n) = Bits("CNIMP", n, n+1, min)
 # with a(0) = 1
 
 """
 
-Return n XOR n+1, using min length.
+Return ``n`` XOR ``n+1``, using min length.
 """
 V135521(n) = Bits("XOR", n, n+1, min)
 # prepend a(0) = 1
 
 """
 
-Return n XOR k, using max length.
+Return ``n`` XOR ``k``, using max length.
 """
 V051933(n, k) = Bits("XOR", n, k)
 
 """
 
-Return (k-1 XOR n-k) + 1, using max length.
+Return ``(k-1`` XOR ``n-k) + 1``, using max length.
 """
 L280172(n) = [Bits("XOR", k-1, n-k) + 1 for k in 1:n]
 
 """
 
-Return n+1 CNIMP n, using max length.
+Return ``n+1`` CNIMP ``n``, using max length.
 """
 V135481(n) = Bits("CNIMP", n+1, n)
 
 """
 
-Return Sum``_{d|n} d & (n/d)``, where & is the bitwise AND operator.
+Return ∑``_{d|n} d & (n/d)``, where & is the bitwise AND operator.
 """
 V327987(n) = sum([Bits("AND", d, div(n, d)) for d ∈ divisors(n)])
 
 """
 
-Is V327987(n) = ``∑_{d|n} d & (n/d)`` = 0 ?
+Is V327987(n) = ``∑_{d|n} d & (n/d) = 0`` ?
 """
 is327988(n) = V327987(n) == 0
 

@@ -32,8 +32,8 @@ const ModuleCyclotomicBinaryForms = ""
 #A206942########################################################################
 """
 
-Is ``n`` a numbers of the form ``Phi_k(m)`` with ``k > 2`` and ``|m| > 1``
-where ``Phi_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
+Is ``n`` a numbers of the form ``𝚽_k(m)`` with ``k > 2`` and ``|m| > 1``
+where ``𝚽_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
 """
 function is206942(n)
     if n < 3

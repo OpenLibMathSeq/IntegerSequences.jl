@@ -474,6 +474,29 @@ function addsig(srcfile, docfile)
     end
 end
 
+
+#  Version information
+version() = v"0.3.0-dev"
+
+function versioninfo()
+  print("IntegerSequences version $(version())\n")
+  isrepo = dirname(dirname(@__FILE__))
+
+  print("IntegerSequences: ")
+  prepo = Base.LibGit2.GitRepo(isrepo)
+  Base.LibGit2.with(LibGit2.head(prepo)) do phead
+    print("commit: ")
+    print(string(LibGit2.Oid(phead))[1:8])
+    print(" date: ")
+    commit = Base.LibGit2.get(Base.LibGit2.GitCommit, prepo, LibGit2.Oid(phead))
+    print(Base.Dates.unix2datetime(Base.LibGit2.author(commit).time))
+    print(")\n")
+  end
+
+  finalize(prepo)
+  return nothing
+end
+
 function build_all()
 
     build_seq()

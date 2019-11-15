@@ -57,7 +57,7 @@ EgfCoeffs(p) = [div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
 """
 
-Return the coefficients of the polynomial ``p`` divided by ``(-1)^k*k!``.
+Return the coefficients of the polynomial ``p`` divided by ``(-1)^k k!``.
 """
 AltEgfCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
@@ -72,7 +72,7 @@ end
 
 """
 
-Return the polynomial ``p`` with the coefficients C and alternating signs (i.e. with (-1)^k*c[k]*x^k).
+Return the polynomial ``p`` with the coefficients C and alternating signs (i.e. with ``(-1)^k c[k] x^k)``.
 """
 function AltPoly(C)
     T, x = PolynomialRing(ZZ, "x")

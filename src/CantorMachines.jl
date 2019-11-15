@@ -40,7 +40,7 @@ end
 
 """
 
-The  Cantor enumeration of N X N where N = {0, 1, 2, ...}. If (x, y) and (x', y') are adjacent points on the trajectory of the map then max(|x - x'|, |y - y'|) can become arbitrarily large. In this sense Cantor's enumeration is not continous.
+The  Cantor enumeration of ℕ X ℕ where ℕ ``= {0, 1, 2, ...}``. If ``(x, y)`` and ``(x', y')`` are adjacent points on the trajectory of the map then max``(|x - x'|, |y - y'|)`` can become arbitrarily large. In this sense Cantor's enumeration is not continous.
 """
 function CantorEnumeration(len)
     x, y, state = 0, 0, false
@@ -53,7 +53,7 @@ end
 
 """
 
-The inverse function of the Cantor enumeration (the pairing function), computes n for given (x, y) and returns (x + y)*(x + y + 1)/2 + p where p = x if x - y is odd and y otherwise.
+The inverse function of the Cantor enumeration (the pairing function), computes n for given ``(x, y)`` and returns ``(x + y)(x + y + 1)/2 + p`` where ``p = x`` if ``x - y`` is odd and ``y`` otherwise.
 """
 function CantorPairing(x, y)
     p = isodd(x - y) ? x : y
@@ -74,7 +74,7 @@ end
 
 """
 
-# The boustrophedonic Cantor enumeration of N X N where N = {0, 1, 2, ...}. If (x, y) and (x', y') are adjacent points on the trajectory of the map then max(|x - x'|, |y - y'|) is always 1 whereas for the Cantor enumeration this quantity can become arbitrarily large. In this sense the boustrophedonic variant is continuous whereas Cantor's realization is not.
+The boustrophedonic Cantor enumeration of ℕ X ℕ where ``ℕ = {0, 1, 2, ...}``. If ``(x, y)`` and ``(x', y')`` are adjacent points on the trajectory of the map then max``(|x - x'|, |y - y'|)`` is always 1 whereas for the Cantor enumeration this quantity can become arbitrarily large. In this sense the boustrophedonic variant is continuous whereas Cantor's realization is not.
 """
 function CantorBoustrophedonicEnumeration(len)
     x, y = 0, 0
@@ -87,7 +87,7 @@ end
 
 """
 
-The inverse function of the boustrophedonic Cantor enumeration (the pairing function), computes n for given (x, y) and returns (x + y)*(x + y + 1)/2 + m where m = abs(x - y) - (x > y ? 1 : 0).
+The inverse function of the boustrophedonic Cantor enumeration (the pairing function), computes n for given ``(x, y)`` and returns ``(x + y)(x + y + 1)/2 + m`` where ``m = abs(x - y) - (x > y ? 1 : 0)``.
 """
 function CantorBoustrophedonicPairing(x, y)
     m = abs(x - y) - (x > y ? 1 : 0)
@@ -113,7 +113,7 @@ end
 
 """
 
-The boustrophedonic Rosenberg-Strong enumeration of N X N where N = {0, 1, 2, ...}. If (x, y) and (x', y') are adjacent points on the trajectory of the map then max(|x - x'|, |y - y'|) is always 1 whereas the Rosenberg-Strong realization is not.
+The boustrophedonic Rosenberg-Strong enumeration of ℕ X ℕ where ℕ ``= {0, 1, 2, ...}``. If ``(x, y)`` and ``(x', y')`` are adjacent points on the trajectory of the map then max``(|x - x'|, |y - y'|)`` is always 1 whereas the Rosenberg-Strong realization is not.
 """
 function RosenbergStrongBoustrophedonicEnumeration(len)
     x, y, state = 0, 0, 0
@@ -126,7 +126,7 @@ end
 
 """
 
-The inverse function of the boustrophedonic Rosenberg-Strong enumeration (the pairing function), computes n for given (x, y).
+The inverse function of the boustrophedonic Rosenberg-Strong enumeration (the pairing function), computes ``n`` for given ``(x, y)``.
 """
 function RosenbergStrongBoustrophedonicPairing(x::Int, y::Int)
     m = max(x, y)
@@ -136,7 +136,7 @@ end
 
 """
 
-Return the pair (x, y) for given n as given by the boustrophedonic Rosenberg-Strong enumeration.
+Return the pair ``(x, y)`` for given n as given by the boustrophedonic Rosenberg-Strong enumeration.
 """
 function V319514(n)
     k, r = divrem(n, 2)
@@ -148,7 +148,7 @@ end
 
 """
 
-Return a list of pairs (x, y) given by the boustrophedonic Rosenberg-Strong enumeration.
+Return a list of pairs ``(x, y)`` given by the boustrophedonic Rosenberg-Strong enumeration.
 """
 L319514(len) = [V319514(n) for n ∈ 0:len-1]
 

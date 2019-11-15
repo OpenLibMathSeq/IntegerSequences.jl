@@ -3,7 +3,7 @@
 
 (@__DIR__) ∉ LOAD_PATH && push!(LOAD_PATH, (@__DIR__))
 
-module KamtschatkaNumbers
+module KamchatkaNumbers
 
 using Base
 export Kamchatka
