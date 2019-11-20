@@ -260,7 +260,7 @@ Return the least absolute remainder. mods uses the symmetric representation for 
 function mods(b, a)
     b == 0 && return a
     h = a >> 1
-    (q, r) = divrem(b, a)
+    (q, r) = Nemo.divrem(b, a)
     if h < r
         r -= a
     end
