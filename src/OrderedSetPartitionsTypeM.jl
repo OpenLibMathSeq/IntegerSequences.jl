@@ -11,7 +11,7 @@ using Setpartitions, IntPartitions
 export ModuleOrderedSetPartitionsTypeM, OrderedSetPolynomials, OrderedSetPartitions
 export ShapePartitions, OrderedShapePartitions, CardinalityOfShapePartitions
 export P097805, P131689, P241171, P278073, P278074
-export L278073, L278074, L241171, L088218, T131689, L097805, T097805
+export L278073, L278074, L241171, L088218, T131689
 
 # by shape
 export A178803, A133314, A327022, A327023, A327024
@@ -40,6 +40,7 @@ export A053529, L210029, L281478, L281479, L281480
 """
 const ModuleOrderedSetPartitionsTypeM = ""
 
+#const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
 """
 
 Return the polynomial where the coefficients are the number of ordered set partitions of an ``n``-set with shape type ``m``.
@@ -74,34 +75,6 @@ x^3 + 2*x^2 + x
 ```
 """
 P097805(n) = OrderedSetPolynomials(0, n)
-
-"""
-
-Return the number of ordered set partitions of an ``n``-set which are of shape type ``0``.
-# Examples
-```julia-repl
-julia> L097805(3)
-4-element Array{Nemo.fmpz,1}:
-[0, 1, 2, 1]
-```
-"""
-L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
-
-"""
-
-Return the first ``len`` rows of the triangle of compositions of ``n``.
-# Examples
-```julia-repl
-julia> T097805(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
-[1]
-[0, 1]
-[0, 1, 1]
-[0, 1, 2, 1]
-[0, 1, 3, 3, 1]
-```
-"""
-T097805(n, len) = Coeffs(n -> OrderedSetPolynomials(0, n), len)
 
 """
 
@@ -403,7 +376,7 @@ function CardinalityOfShapePartitions(Shape)
     Shape == [] && return ZZ(1)
     M = Multinomial(Shape)
     R = values(counter(Shape))
-    P =  ∏([F!(s) for s ∈ R])
+    P =  ∏([fac(s) for s ∈ R])
     div(M, P)
 end
 
@@ -544,8 +517,6 @@ function test()
 
     @testset "OrdSetPolyMType" begin
         @test string(P097805(3)) == "x^3+2*x^2+x"
-        @test L097805(3) == [0, 1, 2, 1]
-        @test T097805(3, 5) == [[1], [0, 1], [0, 1, 1], [0, 1, 2, 1], [0, 1, 3, 3, 1]]
 
         @test string(P131689(4)) == "24*x^4+36*x^3+14*x^2+x"
         @test L131689(4) == [0, 1, 14, 36, 24]
@@ -626,6 +597,37 @@ end
 main()
 
 end # module
+
+#=
+"""
+
+Return the number of ordered set partitions of an ``n``-set which are of shape type ``0``.
+# Examples
+```julia-repl
+julia> L097805(3)
+4-element Array{Nemo.fmpz,1}:
+[0, 1, 2, 1]
+```
+"""
+L097805(n) = Coeffs(OrderedSetPolynomials(0, n))
+
+"""
+
+Return the first ``len`` rows of the triangle of compositions of ``n``.
+# Examples
+```julia-repl
+julia> T097805(3, 5)
+5-element Array{Array{Nemo.fmpz,1},1}:
+[1]
+[0, 1]
+[0, 1, 1]
+[0, 1, 2, 1]
+[0, 1, 3, 3, 1]
+```
+"""
+T097805(n, len) = Coeffs(n -> OrderedSetPolynomials(0, n), len)
+
+=#
 
 #=
 

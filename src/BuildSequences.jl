@@ -36,6 +36,7 @@ docsrcdir = joinpath(docdir, "src")
 
 exclude = [
     "BuildSequences.jl",
+    "ForcePrecompil.jl",
     "IntegerSequences.jl",
     "TemplateModule.jl",
     "_EXPORT.jl",

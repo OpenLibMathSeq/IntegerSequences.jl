@@ -9,12 +9,11 @@ using Nemo, IntPartitions, OrderedSetPartitionsTypeM, GeneralizedBinomial
 using DataStructures, Products, Polynomials
 
 export ModuleSetPartitionsOfTypeM
-export ShapePartitionsOfTypeM, CardinalityOfShapePartitions, SetPartitionsOfTypeM
-
+export ShapePartitionsOfTypeM, SetPartitionsOfTypeM
 # by shape
 export          L036040, L257490, L327003, L327004
 # by length
-export X008284, L048993, L156289, L291451, L291452
+export X008284,          L156289, L291451, L291452
 # diagonal
 export                   L001147, L025035, L025036
 # row sum
@@ -54,24 +53,7 @@ See also [A260876](https://oeis.org/A260876).
 const ModuleSetPartitionsTypeM = ""
 
 """
-
-Return the number of set partitions with a given shape.
-# Examples
-```julia-repl
-julia> CardinalityOfShapePartitions([3, 3, 3, 2, 2])
-600600
-```
-"""
-function CardinalityOfShapePartitions(Shape)
-    Shape == [] && return ZZ(1)
-    M = Multinomial(Shape)
-    R = values(counter(Shape))
-    P =  ∏([fac(s) for s ∈ R])
-    div(M, P)
-end
-
-"""
-
+--
 """
 function ShapePartitionsOfTypeM(m, n, k)
     shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
@@ -179,18 +161,6 @@ L008284(n) = SetPartitionsOfTypeM(0, n)
 
 """
 
-Return the number of set partitions of type 1.
-# Examples
-```julia-repl
-julia> LA048993(10)
-7-element Array{Nemo.fmpz,1}:
-[0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
-```
-"""
-L048993(n) = SetPartitionsOfTypeM(1, n)
-
-"""
-
 Return the number of end rhyme patterns of a poem of an even number of lines.
 # Examples
 ```julia-repl
@@ -258,12 +228,6 @@ julia> V291973(9)
 ```
 """
 V291973(n) = sum(SetPartitionsOfTypeM(3, n))
-
-#"""
-# Return the Stirling numbers of 2nd kind.
-# Exported from Module StirlingLahNumbers
-#"""
-# L048993(n) = CoeffExp(OrderedSetPolynomials(1, n))
 
 """
 
@@ -348,7 +312,6 @@ julia> V291975(9)
 926848347928901638652131
 ```
 """
-# V291975(n) = sum(EgfCoeffs(OrderedSetPolynomials(4, n)))
 V291975(n) = sum(SetPartitionsOfTypeM(4, n))
 
 """
@@ -552,7 +515,7 @@ function test()
 end
 
 function demo()
-    CardinalityOfShapePartitions([3, 3, 3, 2, 2]) |> println
+
     for n ∈ 0:4
         [ShapePartitionsOfTypeM(3, n, k) for k ∈ 0:n] |> println
     end
@@ -585,6 +548,28 @@ main()
 
 
 end # module
+
+#=
+"""
+ Return the Stirling numbers of 2nd kind.
+ Exported from Module StirlingLahNumbers
+"""
+L048993(n) = CoeffExp(OrderedSetPolynomials(1, n))
+=#
+
+#=
+"""
+
+Return the number of set partitions of type 1.
+# Examples
+```julia-repl
+julia> LA048993(10)
+7-element Array{Nemo.fmpz,1}:
+[0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
+```
+"""
+L048993(n) = SetPartitionsOfTypeM(1, n)
+=#
 
 #=
 

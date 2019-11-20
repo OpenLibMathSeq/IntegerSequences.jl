@@ -91,9 +91,6 @@ CantorPairing
 CardinalityOfShapePartitions
 ```
 ```@docs
-CardinalityOfShapePartitions
-```
-```@docs
 Central
 ```
 ```@docs
@@ -1660,9 +1657,6 @@ V048735
 L048993
 ```
 ```@docs
-L048993
-```
-```@docs
 M048993
 ```
 ```@docs
@@ -1933,16 +1927,10 @@ V097383
 L097805
 ```
 ```@docs
-L097805
-```
-```@docs
 M097805
 ```
 ```@docs
 P097805
-```
-```@docs
-T097805
 ```
 ```@docs
 T097805
