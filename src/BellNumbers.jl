@@ -95,18 +95,11 @@ The Bell transform transforms an integer sequence into an integer triangle; also
 Let ``X`` be an integer sequence, then ``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, X::Array)
-    if haskey(CacheBellA, (n, k, X))
-        return CacheBellA[(n, k, X)]
-    end
-    a = fmpz(1)
-    s = fmpz(0)
+    haskey(CacheBellA, (n, k, X)) && return CacheBellA[(n, k, X)]
 
-    if (n == 0) && (k == 0)
-        return a
-    end
-    if (n == 0) || (k == 0)
-        return s
-    end
+    a, s = fmpz(1), fmpz(0)
+    ((n == 0) && (k == 0)) && return a
+    ((n == 0) || (k == 0)) && return s
 
     for m ∈ 1:n-k+1
         s += a * BellTrans(n - m, k - 1, X) * X[m]
@@ -114,7 +107,6 @@ function BellTrans(n::Int, k::Int, X::Array)
     end
 
     CacheBellA[(n, k, X)] = s
-    return s
 end
 
 const CacheBellA = Dict{Tuple{Int,Int,Array},fmpz}()
@@ -127,15 +119,10 @@ Let ``F`` be an integer sequence generating function, then ``B_{n,k}(F) = \\sum_
 """
 function BellTrans(n::Int, k::Int, F::Function)
     haskey(CacheBellF, (n, k, F)) && return CacheBellF[(n, k, F)]
-    a = fmpz(1)
-    s = fmpz(0)
 
-    if (n == 0) && (k == 0)
-        return a
-    end
-    if (n == 0) || (k == 0)
-        return s
-    end
+    a, s = fmpz(1), fmpz(0) 
+    ((n == 0) && (k == 0)) && return a
+    ((n == 0) || (k == 0)) && return s
 
     for m ∈ 1:n-k+1
         s += a * BellTrans(n - m, k - 1, F) * F(m - 1)
@@ -143,7 +130,6 @@ function BellTrans(n::Int, k::Int, F::Function)
     end
 
     CacheBellF[(n, k, F)] = s
-    return s
 end
 
 const CacheBellF = Dict{Tuple{Int,Int,Function},fmpz}()

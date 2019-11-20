@@ -38,7 +38,6 @@ function André(m::Int, n::Int)
     S = sum(binom(n, k) * André(m, k) for k ∈ r)
     return CacheAndré[(m, n)] = n % m == 0 ? -S : S
 end
-
 const CacheAndré = Dict{Tuple{Int,Int},fmpz}()
 
 """

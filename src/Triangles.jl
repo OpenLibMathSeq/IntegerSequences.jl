@@ -294,6 +294,12 @@ Print the triangle in matrix form.
 """
 ShowAsMatrix(T) = println(fromΔ(T))
 
+#"""
+#
+#Return the central column of a triangle.
+#"""
+#Central(C::Array{Array{Nemo.fmpz,1},1}, len) = [C(2n)[n+1] for n ∈ 0:len-1]
+
 #START-TEST-########################################################
 
 using Test

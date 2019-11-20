@@ -34,7 +34,6 @@ function EulerTransform(f::Function)
         return r
     end
 end
-
 const CacheET = Dict{Tuple{Function,Int},fmpz}()
 
 """

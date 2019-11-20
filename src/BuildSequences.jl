@@ -76,11 +76,13 @@ function sortnames()
     # P => Polynomial (over ZZ or QQ)
     # R => RealFunction (Float64)
     # S => Staircase (iteration)
-    # T => Triangle (iteration)
-    # TL => Triangle (triangular array, list of rows)
-    # TF => Triangle (flat-list array)
+    # T => Triangle
     # V => Value (single term)
     # is => is a (predicate), boolean
+
+    # deprecated:
+    # TL => Triangle (triangular array, list of rows)
+    # TF => Triangle (flat-list array)
 
     for l ∈ eachline(index, keep = true)
 
@@ -427,7 +429,7 @@ function make_modules()
                 indoc = true
                 path = joinpath(cloudpath, filename)
                 name = splitext(filename)
-                println(mod, "\n   🔶  ", '[', name[1], "](", path, ")\n")
+                println(mod, "\n##   🔶  ", '[', name[1], "](", path, ")\n")
             else
                 n = replace(n, "\\\\" => "\\")
                 indoc && println(mod, n)
@@ -473,7 +475,6 @@ function addsig(srcfile, docfile)
         end
     end
 end
-
 
 #  Version information
 version() = v"0.3.0-dev"

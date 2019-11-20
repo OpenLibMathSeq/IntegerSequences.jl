@@ -8,7 +8,7 @@ module SeqTests
 using Test, OEISUtils, SeqUtils
 export SeqTest, GenerateAllTest, data_installed
 
-const ShowTest = false
+const ShowTest = true
 
 """
 
@@ -179,8 +179,9 @@ using Test
 
 function test()
     @testset "GenerateAll" begin
-        global SEQUENCES
-        @test GenerateAllTest(SEQUENCES) == 0
+        #global SEQUENCES
+        #@test GenerateAllTest(SEQUENCES) == 0
+        #GenerateAllTest(SEQUENCES)
     end
 end
 

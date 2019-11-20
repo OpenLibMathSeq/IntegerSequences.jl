@@ -25,8 +25,6 @@ R  | Real function (Float64)
 P  | Polynomial (univariate over ZZ)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
-TL | Triangle (triangular array, list of rows)
-TF | Triangle (flat-list array)
 V  | Value (single term)
 is | is a member (predicate query)
 

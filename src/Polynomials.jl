@@ -35,31 +35,31 @@ const ModulePolynomials = ""
 
 Return the coefficients of the polynomial ``p``.
 """
-Coeffs(p) = [coeff(p, k) for k ∈ 0:degree(p)]
+Coeffs(p::Nemo.fmpz_poly) = [coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` with alternating signs.
 """
-AltCoeffs(p) = [(-1)^k * coeff(p, k) for k ∈ 0:degree(p)]
+AltCoeffs(p::Nemo.fmpz_poly) = [(-1)^k * coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` multiplied by ``k!``.
 """
-OgfCoeffs(p) = [fac(k)*coeff(p, k) for k ∈ 0:degree(p)]
+OgfCoeffs(p::Nemo.fmpz_poly) = [fac(k)*coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``k!``. Note that integer division is used.
 """
-EgfCoeffs(p) = [div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
+EgfCoeffs(p::Nemo.fmpz_poly) = [div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``(-1)^k k!``.
 """
-AltEgfCoeffs(p) = [(-1)^k * div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
+AltEgfCoeffs(p::Nemo.fmpz_poly) = [(-1)^k * div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
 
 """
 
