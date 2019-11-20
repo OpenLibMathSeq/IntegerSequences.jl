@@ -91,12 +91,12 @@ function sortnames()
         if occursin(r"^[ACFGILMPRSTV][0-9]{6},$", l)
             c = 0
         end
-        #if occursin(r"^is[0-9]{6},$", l)
-            #|| occursin(r"^TL[0-9]{6},$", l) 
+        if occursin(r"^is[0-9]{6},$", l)
+            #|| occursin(r"^TL[0-9]{6},$", l)
             #|| occursin(r"^TF[0-9]{6},$", l)
-        #    i = 2
-        #    c = 0
-        #end
+            i = 2
+            c = 0
+        end
 
         c == 2 && (print(sindex, l); continue)
 
