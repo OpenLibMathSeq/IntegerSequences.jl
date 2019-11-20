@@ -139,7 +139,7 @@ end
 Return the pair ``(x, y)`` for given n as given by the boustrophedonic Rosenberg-Strong enumeration.
 """
 function V319514(n)
-    k, r = divrem(n, 2)
+    k, r = Base.divrem(n, 2)
     m = x = isqrt(k)
     y = k - x^2
     x <= y && ((x, y) = (2x - y, x))

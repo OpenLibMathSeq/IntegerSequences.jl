@@ -26,7 +26,7 @@ const wheel_indices = [
 ]
 
 @inline function wheel_index(n)
-    d, r = divrem(n - 1, 30)
+    d, r = Base.divrem(n - 1, 30)
     return 8d + wheel_indices[r+2]
 end
 
