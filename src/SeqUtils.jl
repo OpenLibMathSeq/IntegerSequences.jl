@@ -123,8 +123,6 @@ Valid prefixes to the numerical part of the OEIS A-numbers.
 * R  => RealFunction (Float64)
 * S  => Staircase (list iteration)
 * T  => Triangle (list iteration)
-* TL => Triangle (triangular array, list of rows)
-* TF => Triangle (flat-list array)
 * V  => Value (single term)
 * is => is a (predicate), boolean
 """
