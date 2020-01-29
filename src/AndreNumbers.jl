@@ -33,9 +33,9 @@ Return the generalized André numbers which are the ``m``-alternating permutatio
 """
 function André(m::Int, n::Int)
     haskey(CacheAndré, (m, n)) && return CacheAndré[(m, n)]
-    n ≤ 0 && return fmpz(1)
+    n ≤ 0 && return ZZ(1)
     r = range(0, step = m, stop = n - 1)
-    S = sum(binom(n, k) * André(m, k) for k ∈ r)
+    S = sum(binomial(ZZ(n), ZZ(k)) * André(m, k) for k ∈ r)
     return CacheAndré[(m, n)] = n % m == 0 ? -S : S
 end
 const CacheAndré = Dict{Tuple{Int,Int},fmpz}()
@@ -107,12 +107,12 @@ using Test, SeqTests, SeqUtils
 function test()
     @testset "André" begin
 
-        @test isa(André(2, 10), Nemo.fmpz)
+        @test isa(André(2, 10), fmpz)
 
-        @test André(2, 10) == ZZ(-50521)
-        @test André(2, 50) == ZZ(-6053285248188621896314383785111649088103498225146815121)
-        @test V178963(30) == ZZ(2716778010767155313771539)
-        @test V178964(40) == ZZ(11289082167259099068433198467575829)
+        @test André(2, 10) == fmpz(-50521)
+        @test André(2, 50) == fmpz(-6053285248188621896314383785111649088103498225146815121)
+        @test V178963(30) == fmpz(2716778010767155313771539)
+        @test V178964(40) == fmpz(11289082167259099068433198467575829)
 
         if data_installed()
             V = [V000111, V178963, V178964, V181936, V250283]

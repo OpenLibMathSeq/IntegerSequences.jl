@@ -27,7 +27,7 @@ Return a list of length len of integers ``≥ 0`` which are isA.
 function List(len, isA::Function)
     len ≤ 0 && return fmpz[]
     j, c = Int(0), Int(1)
-    A = fill(ZZ(0), len)
+    A = fill(fmpz(0), len)
     while c <= len
         if isA(j)
             A[c] = fmpz(j)
@@ -162,7 +162,7 @@ end
 Return the cumulative sum of an SeqArray.
 """
 function Accumulate(A)
-    R = fill(ZZ(0), length(A))
+    R = fill(fmpz(0), length(A))
     i, acu = 1, 0
     for a ∈ A
         acu += a
@@ -232,7 +232,7 @@ julia> Previous(7, isPrime)
 ```
 """
 function Previous(n, isA::Function)
-    n == nothing && return First(isA)
+    n === nothing && return First(isA)
     while true
         n -= 1
         isA(n) && break
@@ -252,7 +252,7 @@ julia> Next(7, isPrime)
 ```
 """
 function Next(n, isA::Function)
-    ((n ≤ 0) || (n == nothing)) && return First(isA)
+    ((n ≤ 0) || (n === nothing)) && return First(isA)
     while true
         n += 1
         isA(n) && break

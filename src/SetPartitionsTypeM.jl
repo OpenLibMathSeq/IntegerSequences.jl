@@ -57,7 +57,7 @@ const ModuleSetPartitionsTypeM = ""
 """
 function ShapePartitionsOfTypeM(m, n, k)
     shapes = (map(x -> x*m, p) for p ∈ IntegerPartitions(n, k))
-    isempty(shapes) && return [ZZ(0)]
+    isempty(shapes) && return [fmpz(0)]
     return [CardinalityOfShapePartitions(s) for s ∈ shapes]
 end
 
@@ -79,7 +79,6 @@ function ShapePartitionsOfTypeM(m, n)
     reduce(vcat, [ShapePartitionsOfTypeM(m, n, k) for k ∈ 0:n])
 end
 
-
 """
 Return the list of the number of set partitions of a ``m n`` set into k parts which are m-sized.
 """
@@ -88,18 +87,14 @@ function SetPartitionsOfTypeM(m, n)
     EgfCoeffs(OrderedSetPolynomials(m, n))
 end
 
-
 """
 
 Return the number of partitions of ``{1, 2, ..., mn}`` into sets of size ``m``.
 """
 SetPartitionsOfSizeTypeM(m, len) = [SetPartitionsOfTypeM(m, n)[n+1] for n in 0:len-1]
-# //This unnatural `n+1` (instead of the correct n) is due to the terrible birth defect that//
-# //Messrs Bezanson, Edelman and Karpinski choosed to put Julia in the cradle.//
 
 # A060540 T(n,k) = (n*k)!/(k!^n*n!), (n>=1, k>=1).
 # the number of ways of dividing nk labeled items into n unlabeled boxes with k items in each box.
-
 
 """
 
@@ -107,7 +102,7 @@ Return the number of partitions of ``{1, 2, ..., 2n}`` into sets of size ``2``.
 # Examples
 ```julia-repl
 julia> L001147(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, 1, 3, 15, 105, 945, 10395]
 ```
 """
@@ -119,7 +114,7 @@ Return the number of partitions of ``{1, 2, ..., 3n}`` into sets of size ``3``.
 # Examples
 ```julia-repl
 julia> L025035(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, 1, 10, 280, 15400, 1401400, 190590400]
 ```
 """
@@ -131,7 +126,7 @@ Return the number of partitions of ``{1, 2, ..., 4n}`` into sets of size ``4``.
 # Examples
 ```julia-repl
 julia> L025036(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, 1, 35, 5775, 2627625, 2546168625, 4509264634875]
 ```
 """
@@ -143,9 +138,6 @@ L025036(len) = SetPartitionsOfSizeTypeM(4, len)
 Return the number of set partitions of a ``m n`` set into k parts which are m-sized.
 """
 SetPartitionsOfTypeM(m, n, k) = SetPartitionsOfTypeM(m, n)[k+1]
-# //This unnatural `k+1` (instead of the correct k) is due to the terrible birth defect that//
-# //Messrs Bezanson, Edelman and Karpinski choosed to put Julia in the cradle.//
-
 
 """
 
@@ -153,7 +145,7 @@ Return the number of set partitions of ``n`` of type 0 ordered by length .
 # Examples
 ```julia-repl
 julia> L008284(10)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
 ```
 """
@@ -165,7 +157,7 @@ Return the number of end rhyme patterns of a poem of an even number of lines.
 # Examples
 ```julia-repl
 julia> L156289(6)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [ 0, 1, 1023, 21120, 65835, 51975, 10395]
 ```
 """
@@ -177,7 +169,7 @@ Return the number of set partitions of type 3.
 # Examples
 ```julia-repl
 julia> L291451(10)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
 ```
 """
@@ -189,7 +181,7 @@ exp(x (cos(z) + cosh(z) - 2)/2)
 # Examples
 ```julia-repl
 L291452(6)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [0, 1, 2098175, 2941884000, 181262956875, 1932541986375, 4509264634875]
 ```
 """
@@ -212,7 +204,7 @@ Return a list of the number of partitions of even sized sets into even blocks.
 # Examples
 ```julia-repl
 julia> L005046(10)
-10-element Array{Nemo.fmpz,1}:
+10-element Array{fmpz,1}:
 [ 1, 1, 4, 31, 379, 6556, 150349, 4373461, 156297964, 6698486371]
 ```
 """
@@ -250,7 +242,7 @@ Return a list of complementary Bell numbers of length ``len``.
 # Examples
 ```julia-repl
 julia> L000587(10)
-10-element Array{Nemo.fmpz,1}:
+10-element Array{fmpz,1}:
 [1, -1, 0, 1, 1, -2, -9, -9, 50, 267]
 ```
 """
@@ -274,7 +266,7 @@ Return a list of the first ``len`` terms V260884(n).
 # Examples
 ```julia-repl
 julia> L260884(10)
-10-element Array{Nemo.fmpz,1}:
+10-element Array{fmpz,1}:
 [1, -1, 2, -1, -43, 254, 4157, -70981, -1310398, 40933619]
 ```
 """
@@ -296,7 +288,7 @@ V291974(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(3, n)))
 # Examples
 ```julia-repl
 julia> L291974(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, -1, 9, -197, 6841, -254801]
 ```
 """
@@ -319,7 +311,7 @@ V291975(n) = sum(SetPartitionsOfTypeM(4, n))
 # Examples
 ```julia-repl
 L291975(5)
-5-element Array{Nemo.fmpz,1}:
+5-element Array{fmpz,1}:
 [1, 1, 36, 6271, 3086331]
 ```
 """
@@ -341,7 +333,7 @@ V291976(n) = sum(AltEgfCoeffs(OrderedSetPolynomials(4, n)))
 # Examples
 ```julia-repl
 L291976(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [ 1, -1, 34, -5281, 2185429, -1854147586, 2755045819549]
 ```
 """
@@ -352,7 +344,7 @@ L291976(len) = [V291976(n) for n ∈ 0:len-1]
 # Examples
 ```julia-repl
 L014606(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, 1, 20, 1680, 369600, 168168000, 137225088000]
 ```
 """
@@ -364,7 +356,7 @@ L014606(len) = Diagonal(n -> OrderedSetPolynomials(3, n), len)
 # Examples
 ```julia-repl
 julia> L291973(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, 1, 11, 365, 25323, 3068521]
 ```
 """
@@ -564,7 +556,7 @@ Return the number of set partitions of type 1.
 # Examples
 ```julia-repl
 julia> LA048993(10)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [0, 1, 43690, 7128576, 99379280, 285885600, 190590400]
 ```
 """

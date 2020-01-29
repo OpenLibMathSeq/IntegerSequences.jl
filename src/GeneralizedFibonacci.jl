@@ -37,9 +37,9 @@ Return the ``n``-th term of the ``m``-th Multinacci sequence.
 """
 function Multinacci(m::Int, n::Int)::fmpz
     haskey(CacheMultinacci, (m, n)) && return CacheMultinacci[(m, n)]
-    n <  0 && return ZZ(0); n == 0 && return ZZ(1); m == 0 && return ZZ(m^n)
-    a = sum((-1)^j*binom(m-1-j, j  )*Multinacci(m, n-1-2*j) for j ∈ 0:div(m-1,2))
-    b = sum((-1)^j*binom(m-1-j, j+1)*Multinacci(m, n-2-2*j) for j ∈ 0:div(m-2,2))
+    n <  0 && return fmpz(0); n == 0 && return fmpz(1); m == 0 && return fmpz(m^n)
+    a = sum((-1)^j*binomial(ZZ(m-1-j), ZZ(j ) )*Multinacci(m, n-1-2*j) for j ∈ 0:div(m-1,2))
+    b = sum((-1)^j*binomial(ZZ(m-1-j), ZZ(j+1))*Multinacci(m, n-2-2*j) for j ∈ 0:div(m-2,2))
     r = a + b
     CacheMultinacci[(m, n)] = r
 end

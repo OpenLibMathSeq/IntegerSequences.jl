@@ -22,7 +22,7 @@ const ModuleCompositions = ""
 Recurrence for `A097805`, the compositions of ``n`` with ``k`` parts.
 """
 function R097805(n, k, prevrow::Function)
-    k == 0 && return ZZ(k^n)
+    k == 0 && return fmpz(k^n)
     prevrow(k - 1) + prevrow(k)
 end
 
@@ -54,7 +54,7 @@ V097805(n) = nth(T097805(n + 1), n + 1)
 #START-TEST-########################################################
 
 # Return row n of A097805 based on a closed formula.
-VN097805(n) = n == 0 ? fmpz[1] : [Nemo.binom(n - 1, k - 1) for k ∈ 0:n]
+VN097805(n) = n == 0 ? fmpz[1] : [Nemo.binomial(ZZ(n - 1), ZZ(k - 1)) for k ∈ 0:n]
 VJ097805(n) = n == 0 ? BigInt[1] : [binomial(BigInt(n - 1), k - 1) for k ∈ 0:n]
 
 function test() end

@@ -72,7 +72,7 @@ function T007318(n::Int)
     T = zeros(QQ, div(n * (n + 1), 2))
     j = 1
     for m ∈ 0:n-1, k ∈ 0:m
-        T[j] = binom(m, k)
+        T[j] = binomial(ZZ(m), ZZ(k))
         j += 1
     end
     T
@@ -88,9 +88,9 @@ Return the extended binomial coefficients defined for all ``n ∈ Z`` and ``k �
 
 """
 function Binomial(n::Int, k::Int)
-    0 ≤ k ≤ n && return binom(n, k)
-    k ≤ n < 0 && return binom(-k - 1, n - k) * (-1)^(n - k)
-    n < 0 ≤ k && return binom(-n + k - 1, k) * (-1)^k
+    0 ≤ k ≤ n && return binomial(ZZ(n), ZZ(k))
+    k ≤ n < 0 && return binomial(ZZ(-k - 1), ZZ(n - k)) * (-1)^(n - k)
+    n < 0 ≤ k && return binomial(ZZ(-n + k - 1), ZZ(k)) * (-1)^k
     ZZ(0)
 end
 
@@ -100,10 +100,10 @@ Return the multinomial coefficient of a list.
 """
 function Multinomial(lst::Array{Int})
     s = 0
-    result = ZZ(1)
+    result = fmpz(1)
     for c ∈ lst
         s += c
-        result *= binom(s, c)
+        result *= binomial(ZZ(s), ZZ(c))
     end
     result
 end
@@ -116,7 +116,7 @@ function test()
 
     @testset "Binomial" begin
         for n ∈ 0:10, k ∈ 0:n
-            @test Binomial(n, k) == div(fac(n), (fac(n - k) * fac(k)))
+            @test Binomial(n, k) == div(factorial(n), (factorial(n - k) * factorial(k)))
             @test Binomial(n, k) == Pascal(n, k)
         end
     end

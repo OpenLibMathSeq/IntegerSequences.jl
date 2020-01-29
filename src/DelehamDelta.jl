@@ -136,7 +136,7 @@ using Test
 
 function test()
 
-    Data = Dict{Int,Array{fmpz}}(
+    Data = Dict{Int, Array{fmpz}}(
         084938 => [1, 0, 1, 0, 1, 1, 0, 2, 2, 1],
         060693 => [1, 1, 1, 2, 3, 1, 5, 10, 6, 1],
         106566 => [1, 0, 1, 0, 1, 1, 0, 2, 2, 1],

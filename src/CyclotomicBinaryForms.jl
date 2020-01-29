@@ -104,14 +104,14 @@ Is ``n`` primitively represented by a cyclotomic binary forms?
 """
 function is299498(n)
     n == 0 && return false
-    isPrimeTo(n, k) = gcd(ZZ(n), ZZ(k)) == ZZ(1)
+    isPrimeTo(n, k) = gcd(fmpz(n), fmpz(k)) == fmpz(1)
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 1:M, j ∈ m+1:M
             if isPrimeTo(m, j)
@@ -148,7 +148,7 @@ function countA299498(n)
     if n < 3
         return 0
     end
-    isPrimeTo(n, k) = gcd(ZZ(n), ZZ(k)) == ZZ(1)
+    isPrimeTo(n, k) = gcd(fmpz(n), fmpz(k)) == fmpz(1)
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
@@ -156,7 +156,7 @@ function countA299498(n)
     count = 0
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 1:M, j ∈ m+1:M
             if isPrimeTo(m, j)
@@ -180,9 +180,9 @@ function is299928(n)
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3))  # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
-    P(u) = (p for p ∈ u:M if isprime(ZZ(p)))
+    P(u) = (p for p ∈ u:M if isprime(fmpz(p)))
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, z)
         for y ∈ P(2), x ∈ P(y + 1)
             N == y^e * subst(c, QQ(x, y)) && return true
@@ -242,14 +242,14 @@ L299929(n) = collect(I299929(n))
 Is ``n`` a prime represented by a cyclotomic binary form f(x, y) with x and y odd prime numbers and x > y.
 """
 function is299930(n)
-    !isprime(ZZ(n)) && return false
+    !isprime(fmpz(n)) && return false
     R, z = PolynomialRing(ZZ, "z")
     K = floor(Int, 5.383 * log(n)^1.161)
     M = floor(Int, 2 * sqrt(n / 3))
     N = QQ(n)
-    P(u) = (p for p ∈ u:M if isprime(ZZ(p)))
+    P(u) = (p for p ∈ u:M if isprime(fmpz(p)))
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, z)
         for y ∈ P(3), x ∈ P(y + 2)
             N == y^e * subst(c, QQ(x, y)) && return true
@@ -293,7 +293,7 @@ function is296095(n)
     k = 3
     while true
         c = cyclotomic(k, z)
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         if k == 7
             K = ceil(Int, 4.864 * logn)
             M = ceil(Int, 2 * (n / 11)^(1 / 4))
@@ -342,7 +342,7 @@ function is293654(n)
     count = 0
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
@@ -378,14 +378,14 @@ L293654(n) = collect(I293654(n))
 Is ``n`` a prime represented by a cyclotomic binary form?
 """
 function is325143(n)
-    (n < 3 || !isprime(ZZ(n))) && return false
+    (n < 3 || !isprime(fmpz(n))) && return false
     R, x = PolynomialRing(ZZ, "x")
     K = floor(Int, 5.383 * log(n)^1.161) # Bounds from
     M = floor(Int, 2 * sqrt(n / 3)) # Fouvry & Levesque & Waldschmidt
     N = QQ(n)
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
@@ -420,7 +420,7 @@ L325143(n) = collect(I325143(n))
 
 Is ``n`` a prime unrepresentable by a cyclotomic binary form?
 """
-is325145(n) = isprime(ZZ(n)) && !is325143(n)
+is325145(n) = isprime(fmpz(n)) && !is325143(n)
 
 """
 
@@ -457,7 +457,7 @@ function V299214(n)
     count = 0
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 1:M, j ∈ 0:M
             if max(j, m) > 1
@@ -481,7 +481,7 @@ L299214(len) = [V299214(i) for i ∈ 1:len]
 Is n a prime represented in more than one way by cyclotomic binary forms f(x,y) with x and y prime numbers and y < x?
 """
 function is299733(n)
-    if n < 3 || !isprime(ZZ(n))
+    if n < 3 || !isprime(fmpz(n))
         return false
     end
     R, x = PolynomialRing(ZZ, "x")
@@ -491,12 +491,12 @@ function is299733(n)
     multi = 0
 
     for k ∈ 3:K
-        e = Int(eulerphi(ZZ(k)))
+        e = Int(euler_phi(fmpz(k)))
         c = cyclotomic(k, x)
         for m ∈ 2:M
-            if isprime(ZZ(m))
+            if isprime(fmpz(m))
                 for j ∈ m:M
-                    if isprime(ZZ(j))
+                    if isprime(fmpz(j))
                         if N == m^e * subst(c, QQ(j, m))
                             multi += 1
                         end

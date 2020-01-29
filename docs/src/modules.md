@@ -49,7 +49,7 @@ Generalized André numbers count the ``m``-alternating permutations of length ``
 
 The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
 
-Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \sum_{m=1}^{n-k+1} \binom{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \sum_{m=1}^{n-k+1} \binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 
 The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
 
@@ -262,6 +262,19 @@ The ``q``-expansion of the Jacobi theta functions 3 and 4 raised to the power ``
 
 * KolakoskiList, C000002, I000002, L000002
 
+##   🔶  [LahNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/LahNumbers.jl)
+
+
+* Posets: Partially ordered sets (posets) on n elements that consist entirely of k chains (nonempty, linearly ordered subsets).
+
+* Set partitions: Number of ways to split {1,..,n} into an ordered collection of n+1-k nonempty sets that are noncrossing).
+
+* Dyck paths: Dyck n-paths with n+1-k peaks labeled 1,2,..n+1-k in some order.
+
+See [Lah numbers] (http://olms.onl/Lah/)
+
+* Lah, LahTriangle
+
 ##   🔶  [LandauConstants](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/LandauConstants.jl)
 
 
@@ -418,7 +431,7 @@ Nemo is a library designed, developed and maintained by William Hart with the he
 
 The generating functions of various combinatorial and number-theoretic functions.
 
-* Coefficients, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
+* Coefficients, EgfExpansion, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
 
 ##   🔶  [SetPartitions](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitions.jl)
 

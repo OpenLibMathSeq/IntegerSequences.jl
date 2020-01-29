@@ -35,31 +35,31 @@ const ModulePolynomials = ""
 
 Return the coefficients of the polynomial ``p``.
 """
-Coeffs(p::Nemo.fmpz_poly) = [coeff(p, k) for k ∈ 0:degree(p)]
+Coeffs(p::fmpz_poly) = [coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` with alternating signs.
 """
-AltCoeffs(p::Nemo.fmpz_poly) = [(-1)^k * coeff(p, k) for k ∈ 0:degree(p)]
+AltCoeffs(p::fmpz_poly) = [(-1)^k * coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` multiplied by ``k!``.
 """
-OgfCoeffs(p::Nemo.fmpz_poly) = [fac(k)*coeff(p, k) for k ∈ 0:degree(p)]
+OgfCoeffs(p::fmpz_poly) = [factorial(k)*coeff(p, k) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``k!``. Note that integer division is used.
 """
-EgfCoeffs(p::Nemo.fmpz_poly) = [div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
+EgfCoeffs(p::fmpz_poly) = [div(coeff(p, k), factorial(k)) for k ∈ 0:degree(p)]
 
 """
 
 Return the coefficients of the polynomial ``p`` divided by ``(-1)^k k!``.
 """
-AltEgfCoeffs(p::Nemo.fmpz_poly) = [(-1)^k * div(coeff(p, k), fac(k)) for k ∈ 0:degree(p)]
+AltEgfCoeffs(p::fmpz_poly) = [(-1)^k * div(coeff(p, k), factorial(k)) for k ∈ 0:degree(p)]
 
 """
 
@@ -85,7 +85,7 @@ Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*x^k/
 """
 function EgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(div(c, fac(k)) * x^k for (k, c) ∈ enumerate(C))
+    sum(div(c, factorial(k)) * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
@@ -94,14 +94,14 @@ Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*k!*x
 """
 function OgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
-    sum(c * fac(k) * x^k for (k, c) ∈ enumerate(C))
+    sum(c * factorial(k) * x^k for (k, c) ∈ enumerate(C))
 end
 
 """
 
 Return the polynomial ``p`` with alternating signs attached to the coefficients .
 """
-AltPoly(p::Nemo.fmpz_poly) = Poly(AltCoeffs(p))
+AltPoly(p::fmpz_poly) = Poly(AltCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
 #    sum((-1)^k*coeff(p, k)*x^k for k ∈ 0:degree(p))
 
@@ -109,17 +109,17 @@ AltPoly(p::Nemo.fmpz_poly) = Poly(AltCoeffs(p))
 
 Return the polynomial ``p`` with coefficients in exponential form (i.e. with c[k]*x^k/k!).
 """
-EgfPoly(p::Nemo.fmpz_poly) = Poly(EgfCoeffs(p))
+EgfPoly(p::fmpz_poly) = Poly(EgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
-#    sum(div(coeff(p, k), fac(k))*x^k for k ∈ 0:degree(p))
+#    sum(div(coeff(p, k), factorial(k))*x^k for k ∈ 0:degree(p))
 
 """
 
 Return the polynomial ``p`` with coefficients in exponential form and alternating signs (i.e. with (-1)^k*c[k]*x^k/k!).
 """
-AltEgfPoly(p::Nemo.fmpz_poly) = Poly(AltEgfCoeffs(p))
+AltEgfPoly(p::fmpz_poly) = Poly(AltEgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
-#    sum((-1)^k*div(coeff(p, k), fac(k))*x^k for k ∈ 0:degree(p))
+#    sum((-1)^k*div(coeff(p, k), factorial(k))*x^k for k ∈ 0:degree(p))
 
 """
 
@@ -185,7 +185,7 @@ Central(P, len) = [Coeffs(P(2n))[n+1] for n ∈ 0:len-1]
 
 Return the reflected polynomial of ``p``.
 """
-function ReflectPoly(p::Nemo.fmpz_poly)
+function ReflectPoly(p::fmpz_poly)
     T, x = PolynomialRing(ZZ, "x")
     p(0) != 1 && throw(ValueError("Constant coefficient must be 1."))
     d = degree(p)

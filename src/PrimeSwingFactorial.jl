@@ -59,7 +59,7 @@ const SwingOddpart = [
 Computes the odd part of the swinging factorial ``n≀`` (cf. A163590).
 """
 function swing_oddpart(n::Int)
-    n < 33 && return ZZ(SwingOddpart[n+1])
+    n < 33 && return fmpz(SwingOddpart[n+1])
 
     sqrtn = isqrt(n)
     factors = Primes(div(n, 2) + 1, n)
@@ -122,7 +122,7 @@ const FactorialOddPart = [
 Return the largest odd divisor of ``n!``. Cf. A049606.
 """
 function factorial_oddpart(n::Int)
-    n < length(FactorialOddPart) && return ZZ(FactorialOddPart[n+1])
+    n < length(FactorialOddPart) && return fmpz(FactorialOddPart[n+1])
     swing_oddpart(n) * (factorial_oddpart(div(n, 2))^2)
 end
 

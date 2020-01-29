@@ -26,7 +26,7 @@ const ModuleStirlingNumbers = ""
 Recurrence for A132393, StirlingCycle numbers.
 """
 function R132393(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
+    (k == 0 && n == 0) && return fmpz(1)
     (n - 1) * prevrow(k) + prevrow(k - 1)
 end
 """
@@ -34,7 +34,7 @@ end
 Recurrence for A048993, StirlingSet numbers.
 """
 function R048993(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
+    (k == 0 && n == 0) && return fmpz(1)
     k * prevrow(k) + prevrow(k - 1)
 end
 """
@@ -42,23 +42,23 @@ end
 Recurrence for A271703, Lah numbers.
 """
 function R271703(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
+    (k == 0 && n == 0) && return fmpz(1)
     (k - 1 + n) * prevrow(k) + prevrow(k - 1)
 end
 """
 
-Recurrence for A094587.
+Recurrence for A094587, (Rising factorials).
 """
 function R094587(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
+    (k == 0 && n == 0) && return fmpz(1)
     (n - k) * prevrow(k) + prevrow(k - 1)
 end
 """
 
-Recurrence for A008279. Number of permutations of n things k at a time.
+Recurrence for A008279. Number of permutations of n things k at a time. (Falling factorials)
 """
 function R008279(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
+    (k == 0 && n == 0) && return fmpz(1)
     prevrow(k) + k * prevrow(k - 1)
 end
 """

@@ -8,7 +8,7 @@ module Fibonacci
 using Nemo, IterTools
 
 export ModuleFibonacci
-export I000045, F000045, L000045, V000045, R000045, is000045
+export I000045, F000045, L000045, V000045, R000045, is000045, L039834
 
 """
 
@@ -22,7 +22,7 @@ end
 
 function Base.iterate(I::FiboIterate)
     I.length == 0 && return nothing
-    state = (ZZ(0), (ZZ(0), ZZ(1), ZZ(1)))
+    state = (fmpz(0), (fmpz(0), fmpz(1), fmpz(1)))
 end
 
 function Base.iterate(I::FiboIterate, (a, b, c))
@@ -31,7 +31,7 @@ function Base.iterate(I::FiboIterate, (a, b, c))
 end
 
 Base.length(f::FiboIterate) = f.length
-Base.eltype(f::FiboIterate) = Nemo.fmpz
+Base.eltype(f::FiboIterate) = fmpz
 
 """
 
@@ -56,7 +56,7 @@ L000045(n) = Base.collect(FiboIterate(n))
 Return the ``n``-th Fibonacci number.
 """
 function V000045(n)
-    F = ZZ[1 1; 1 0]
+    F = fmpz[1 1; 1 0]
     Fn = F^n
     Fn[2, 1]
 end
@@ -67,9 +67,9 @@ Return the ``n``-th Fibonacci number, explicite formula by Paul Hankin.
 """
 function HankinFibonacci(n)
     n < 2 && return n
-    a = <<(ZZ(4), (n - 1) * (n + 2))
-    b = <<(ZZ(4), 2 * (n - 1))
-    c = <<(ZZ(2), n - 1)
+    a = <<(fmpz(4), (n - 1) * (n + 2))
+    b = <<(fmpz(4), 2 * (n - 1))
+    c = <<(fmpz(2), n - 1)
     div(a, b - c - 1) & (c - 1)
 end
 
@@ -95,13 +95,27 @@ function is000045(n)
     d == 0
 end
 
+"""
+
+Return the signed Fibonacci numbers, dubbed negaFibonacci numbers.
+"""
+function L039834(n)
+    L = Array{fmpz,1}(undef, n)
+    x, y = 1, 1
+    for n in 1:n
+        L[n] = x
+        x, y = y, x - y
+    end
+    L
+end
+
 #START-TEST-########################################################
 
 using Test
 
 function test()
     @testset "Fibonacci" begin
-        @test isa(V000045(30), Nemo.fmpz)
+        @test isa(V000045(30), fmpz)
     end
 end
 
@@ -166,7 +180,8 @@ function main()
     perf()
 end
 
-main()
+#main()
+L039834(12) |> println
 
 end # module
 
@@ -178,7 +193,7 @@ Fibonacci     |    1      1
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144,
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181,
 
-Nemo.fmpz[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+fmpz[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
 
 [0.568864, 1.0, 0.920442, 1.0, 1.48931, 2.0, 2.40975, 3.0, 3.89906, 5.0]
 

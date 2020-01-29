@@ -41,10 +41,10 @@ Factors(n) = n == 0 ? [] : Nemo.factor(fmpz(n))
 Return the positive integers dividing ``n``.
 """
 function Divisors(m, dosort = false)
-    n = ZZ(m)
-    n == ZZ(0) && return fmpz[]
-    Nemo.isprime(n) && return [ZZ(1), n]
-    d = [ZZ(1)]
+    n = fmpz(m)
+    n == fmpz(0) && return fmpz[]
+    Nemo.isprime(n) && return [fmpz(1), n]
+    d = [fmpz(1)]
     for (p, e) ∈ Nemo.factor(n)
         d *= permutedims([p^i for i ∈ 0:e])
         d = reshape(d, length(d))
@@ -121,7 +121,7 @@ V034444(n::Int) = 1 << Int(ω(n))
 
 Return ``τ(n)`` (a.k.a. ``σ_0(n)``), the number of divisors of ``n`` (cf A000005).
 """
-τ(n) = Nemo.sigma(fmpz(n), 0)
+τ(n) = n == 0 ? 0 : Nemo.divisor_sigma(fmpz(n), 0)
 
 """
 
@@ -133,13 +133,13 @@ V000005(n) = τ(n)
 
 Return ``σ(n)`` (a.k.a. ``σ_1(n)``), the sum of the divisors of ``n`` (cf. A000203).
 """
-σ(n) = Nemo.sigma(fmpz(n), 1)
+σ(n) = n == 0 ? 0 : Nemo.divisor_sigma(fmpz(n), 1)
 
 """
 
 Return ``σ2(n)`` (a.k.a. ``σ_2(n)``), the sum of squares of the divisors of ``n`` (cf. A001157).
 """
-σ2(n) = Nemo.sigma(fmpz(n), 2)
+σ2(n) = n == 0 ? 0 : Nemo.divisor_sigma(fmpz(n), 2)
 
 # σ2(n) = sum(d^2 for d ∈ Divisors(n))
 
@@ -153,7 +153,7 @@ V001157(n) = σ2(n)
 
 Return the Euler totient ``ϕ(n)``, numbers which are ``≤ n`` and prime to ``n``.
 """
-ϕ(n) = Nemo.eulerphi(fmpz(n))
+ϕ(n) = n == 0 ? 0 : Nemo.euler_phi(fmpz(n))
 
 """
 
@@ -165,7 +165,7 @@ V000010(n) = ϕ(n)
 
 Return the value of the Möbius function ``μ(n)`` which is the sum of the primitive n-th roots of unity.
 """
-μ(n) = Nemo.moebiusmu(fmpz(n))
+μ(n) = n == 0 ? 0 : Nemo.moebius_mu(fmpz(n))
 
 """
 
@@ -498,69 +498,69 @@ end # module
 
 390 ---
 1 * 5 * 13 * 2 * 3
-Nemo.fmpz[1, 5, 13, 65, 2, 10, 26, 130, 3, 15, 39, 195, 6, 30, 78, 390]
+fmpz[1, 5, 13, 65, 2, 10, 26, 130, 3, 15, 39, 195, 6, 30, 78, 390]
 16, 1008
-Nemo.fmpz[2, 3, 5, 13]
+fmpz[2, 3, 5, 13]
 390
 391 ---
 1 * 17 * 23
-Nemo.fmpz[1, 17, 23, 391]
+fmpz[1, 17, 23, 391]
 4, 432
-Nemo.fmpz[17, 23]
+fmpz[17, 23]
 391
 392 ---
 1 * 7^2 * 2^3
-Nemo.fmpz[1, 7, 49, 2, 14, 98, 4, 28, 196, 8, 56, 392]
+fmpz[1, 7, 49, 2, 14, 98, 4, 28, 196, 8, 56, 392]
 12, 855
-Nemo.fmpz[2, 7]
+fmpz[2, 7]
 14
 393 ---
 1 * 131 * 3
-Nemo.fmpz[1, 131, 3, 393]
+fmpz[1, 131, 3, 393]
 4, 528
-Nemo.fmpz[3, 131]
+fmpz[3, 131]
 393
 394 ---
 1 * 197 * 2
-Nemo.fmpz[1, 197, 2, 394]
+fmpz[1, 197, 2, 394]
 4, 594
-Nemo.fmpz[2, 197]
+fmpz[2, 197]
 394
 395 ---
 1 * 5 * 79
-Nemo.fmpz[1, 5, 79, 395]
+fmpz[1, 5, 79, 395]
 4, 480
-Nemo.fmpz[5, 79]
+fmpz[5, 79]
 395
 396 ---
 1 * 2^2 * 11 * 3^2
-Nemo.fmpz[1, 2, 4, 11, 22, 44, 3, 6, 12, 33, 66, 132, 9, 18, 36, 99, 198, 396]
+fmpz[1, 2, 4, 11, 22, 44, 3, 6, 12, 33, 66, 132, 9, 18, 36, 99, 198, 396]
 18, 1092
-Nemo.fmpz[2, 3, 11]
+fmpz[2, 3, 11]
 66
 397 ---
 1 * 397
-Nemo.fmpz[1, 397]
+fmpz[1, 397]
 2, 398
-Nemo.fmpz[397]
+fmpz[397]
 397
 398 ---
 1 * 2 * 199
-Nemo.fmpz[1, 2, 199, 398]
+fmpz[1, 2, 199, 398]
 4, 600
-Nemo.fmpz[2, 199]
+fmpz[2, 199]
 398
 399 ---
 1 * 7 * 3 * 19
-Nemo.fmpz[1, 7, 3, 21, 19, 133, 57, 399]
+fmpz[1, 7, 3, 21, 19, 133, 57, 399]
 8, 640
-Nemo.fmpz[3, 7, 19]
+fmpz[3, 7, 19]
 399
 400 ---
 1 * 5^2 * 2^4
-Nemo.fmpz[1, 5, 25, 2, 10, 50, 4, 20, 100, 8, 40, 200, 16, 80, 400]
+fmpz[1, 5, 25, 2, 10, 50, 4, 20, 100, 8, 40, 200, 16, 80, 400]
 15, 961
-Nemo.fmpz[2, 5]
+fmpz[2, 5]
 10
 
 [1, 2, 3, 5, 7, 11, 13, 15, 17, 19, 23, 29, 31, 33, 35, 37, 41, 43,

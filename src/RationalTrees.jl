@@ -93,7 +93,7 @@ using Test, SeqUtils, PrimesIterator
 function test()
     @testset "EuclidTree" begin
         S = [numerator(sum(r for r ∈ EuclidTree(n))) for n ∈ 1:9]
-        L = Nemo.fmpz[1, 5, 11, 23, 47, 95, 191, 383, 767] # A052940
+        L = fmpz[1, 5, 11, 23, 47, 95, 191, 383, 767] # A052940
         @test all(S[1:9] .== L[1:9])
     end
 end

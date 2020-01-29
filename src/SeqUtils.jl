@@ -8,7 +8,7 @@ module SeqUtils
 using Nemo
 
 export ModuleSeqUtils
-export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray, Nemofmpz
+export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray
 
 """
 
@@ -18,17 +18,17 @@ const ModuleSeqUtils = ""
 
 """
 
-The basic integer type of our project is 'Nemo.fmpz'. Think of a 'Nemo.fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl' (zahl=integer). The mathematical symbol for the ring of integers is the blackboard (double-struck) Z, also written ZZ. In reference to this ZZ(n) defines the integer n as a fmpz.
+The basic integer type of our project is 'fmpz'. Think of a 'fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl' (zahl=integer). The mathematical symbol for the ring of integers is the blackboard (double-struck) Z, also written fmpz. In reference to this fmpz(n) defines the integer n as a fmpz.
 """
 function Nemofmpz(n::Int)
-    return ZZ(n)
+    return fmpz(n)
 end
 
 """
 
 Return an array of type `fmpz` of length ``n`` preset with ``0``.
 """
-ZArray(len::Int) = zeros(ZZ, len)
+ZArray(len::Int) = fill(fmpz(0), len)
 
 """
 
@@ -97,7 +97,7 @@ Println(v::AbstractVector) = print_without_type(IOContext(stdout), v)
 
 Print the array without typeinfo.
 """
-function Println(V::Array{Array{Nemo.fmpz,1},1})
+function Println(V::Array{Array{fmpz,1},1})
     for v ∈ V  v |> Println end
 end
 
@@ -119,7 +119,7 @@ Valid prefixes to the numerical part of the OEIS A-numbers.
 * I  => Iteration
 * L  => List (array based)
 * M  => Matrix (2-dim square)
-* P  => Polynomial (over ZZ or QQ)
+* P  => Polynomial (over fmpz or QQ)
 * R  => RealFunction (Float64)
 * S  => Staircase (list iteration)
 * T  => Triangle (list iteration)
@@ -177,7 +177,7 @@ function demo()
     A |> Println
 
     println()
-    V = Array{Nemo.fmpz,1}[[1], [0, 1], [0, 1, 70], [0, 1, 990, 34650]]
+    V = Array{fmpz,1}[[1], [0, 1], [0, 1, 70], [0, 1, 990, 34650]]
     for v ∈ V  v |> Println end
 end
 

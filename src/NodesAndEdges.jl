@@ -22,6 +22,7 @@ const ModuleNodesAndEdges = ""
 Return the number of unlabeled rooted trees with ``n`` nodes.
 """
 function V000081(n::Int)
+    global CacheV000081
     n <= 1 && return BigInt(n)
     haskey(CacheV000081, n) && return CacheV000081[n]
     S = sum(V209397(j)*V000081(n-j) for j in 1:n-1)
@@ -35,6 +36,7 @@ const CacheV000081 = Dict{Int, BigInt}()
 Return ``∑_{d|n}`` d V000081(d).
 """
 function V209397(n::Int)
+    global CacheV209397
     haskey(CacheV209397, n) && return CacheV209397[n]
     S = sum(d*V000081(d) for d in divisors(n))
     return CacheV209397[n] = BigInt(S)

@@ -75,7 +75,7 @@ in a final step.
 ## Integer type and unicode use
 
 All terms of all sequences have the same type. Currently this is the
-type fmpz as provided by the Nemo library.
+type ℤ as provided by the Nemo library.
 
 IntegerSequences supports the use of notation using unicode characters, especially the traditional notation used in number theory. For example we define
 ```
@@ -91,7 +91,7 @@ Patashnik in Concrete Mathematics:
 ```
 where `isPrimeTo` is defined as:
 ```
-    isPrimeTo(n, k) = Nemo.gcd(fmpz(n), fmpz(k)) == fmpz(1)
+    isPrimeTo(n, k) = Nemo.gcd(ℤ(n), ℤ(k)) == ℤ(1)
 ```
 
 For example ``⊥(n, ϕ(n))`` indicates if there is just one group of order ``n``.

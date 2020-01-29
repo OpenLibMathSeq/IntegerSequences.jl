@@ -192,38 +192,57 @@ end
 
 """
 
-Search for a sequence in the local OEIS database ('../data/stripped'). Input the sequence as a comma separated string. If restart = true the search is redone in the case that no match was found with the first term removed from the search string. Prints the matches.
+Search for a sequence in the local OEIS database ('../data/stripped'). Input the sequence as a comma separated string. The search is redone 'restarts' times in the case that no match was found with the first remaining term removed from the search string. Prints the matches.
 """
-function oeis_search(seq::String, restart::Bool)
+function oeis_search(seq::String, restarts::Int, verbose=false)
 
     oeis_notinstalled() && return []
 
     found = false
     seq = replace(seq, ' ' => "")
-    println("Searching for:")
-    println(seq)
+    verbose && println("Searching for:")
+    verbose && println(seq)
 
     data = open(oeis_path())
+    foundMAX = 4  # bound the search (sequences with many '0' make trouble).
     for line ∈ eachline(data)
         index = findfirst(seq, line)
         index === nothing && continue
-        println("Range ", index, " in line: ", line)
+        println("Searched for $seq")
+        println("$line in range ", index)
         found = true
+        foundMAX -= 1
+        if foundMAX <= 0
+            @warn("Truncating the search! There might be too many others sequences!")
+            break
+        end
     end
     close(data)
 
-    if !found && restart
+    if !found && restarts > 0
         ind = findfirst(isequal(','), seq)
         if !(ind === nothing) && (length(seq) > ind)
             seq = seq[ind+1:end]
-            println("Restarting omitting the first term.")
-            oeis_search(seq, false)
+            verbose && println("Restarting with fewer terms.")
+            oeis_search(seq, restarts-1, verbose)
         end
     end
 end
 
-function oeis_search(seq::Array{Int}, restart::Bool)
-    oeis_search("$seq"[2:end-1], restart)
+"""
+
+Search for a sequence in the local OEIS database starting from the second term.
+"""
+function oeis_search(seq::Array{fmpz,1}, restarts::Int, verbose=false)
+    oeis_search("$seq"[2:end-1], restarts, verbose)
+end
+
+function oeis_search(seq::Array{Int,1}, restarts::Int, verbose=false)
+    oeis_search("$seq"[2:end-1], restarts, verbose)
+end
+
+function oeis_search(seq::Array{BigInt,1}, restarts::Int, verbose=false)
+    oeis_search("$seq"[2:end-1], restarts, verbose)
 end
 
 #START-TEST-########################################################
@@ -246,11 +265,9 @@ function demo()
     println(oeis_local("A123456", 12))
     println(oeis_local("A015108", 11))
 
-    # A015108 ,1,1,-10,-1231,1636130,23957879562,-3858392581773300,-6835385537899011365535,
-    # 133202313157282627679850238250,28553099061411464607955930776882965774,
-
     seq = "0, 1, 2, 3, 6, 9, 14, 22, 32, 46, 66, 93, 128, 176, 238, 319"
-    oeis_search(seq, true)
+    oeis_search(seq, 2)
+    oeis_search([0, 1, 2, 3, 6, 9, 14, 22, 32, 46, 66, 93, 128, 176], 2)
 end
 
 function perf() end

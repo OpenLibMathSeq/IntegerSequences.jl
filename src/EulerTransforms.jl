@@ -26,8 +26,8 @@ Return the Euler transform of f.
 function EulerTransform(f::Function)
     function E(n)
         haskey(CacheET, (f, n)) && return CacheET[(f, n)]
-        n == 0 && return ZZ(1)
-        a(j) = ZZ(sum(d * f(Int(d)) for d ∈ Divisors(j)))
+        n == 0 && return fmpz(1)
+        a(j) = fmpz(sum(d * f(Int(d)) for d ∈ Divisors(j)))
         b = sum(a(j) * E(n - j) for j ∈ 1:n)
         r = div(b, n)
         CacheET[(f, n)] = r
@@ -76,7 +76,7 @@ L275585(len) = [V275585(n) for n ∈ 0:len-1]
 
 Return the Euler transform of the factorial.
 """
-V107895(n) = EulerTransform(fac)(n)
+V107895(n) = EulerTransform(factorial)(n)
 
 """
 
@@ -88,7 +88,7 @@ L107895(len) = [V107895(n) for n ∈ 0:len-1]
 
 Return the Euler transform of the swinging factorial (A056040).
 """
-V190905(n) = EulerTransform(n -> div(fac(n), fac(div(n, 2))^2))(n)
+V190905(n) = EulerTransform(n -> div(factorial(n), factorial(div(n, 2))^2))(n)
 
 """
 

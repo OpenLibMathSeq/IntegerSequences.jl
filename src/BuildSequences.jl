@@ -36,7 +36,7 @@ docsrcdir = joinpath(docdir, "src")
 
 exclude = [
     "BuildSequences.jl",
-    "ForcePrecompile.jl",
+    "TestSetPartitions.jl",
     "IntegerSequences.jl",
     "TemplateModule.jl",
     "_EXPORT.jl",
@@ -74,7 +74,7 @@ function sortnames()
     # I => Iteration
     # L => List (array based)
     # M => Matrix (2-dim square)
-    # P => Polynomial (over ZZ or QQ)
+    # P => Polynomial (over fmpz or QQ)
     # R => RealFunction (Float64)
     # S => Staircase (iteration)
     # T => Triangle
@@ -247,15 +247,14 @@ function build_test()
     path = joinpath(tstdir, "runtests.jl")
     o = open(path, "w")
     header(o)
-
+    println(o, "module runtests")
+    println(o, "using Nemo, Test, IntegerSequences, IterTools, DataStructures")
     println(o, "tstdir = realpath(joinpath(dirname(@__FILE__)))")
     println(o, "srcdir = joinpath(dirname(tstdir), \"src\")")
     println(o, "tstdir ∉ LOAD_PATH && push!(LOAD_PATH, tstdir)")
     println(o, "srcdir ∉ LOAD_PATH && push!(LOAD_PATH, srcdir)")
-
-    println(o, "module runtests")
-    println(o, "using Nemo, Test, IntegerSequences, IterTools, DataStructures")
-    println(o, "include(\"TESTINDEX.jl\")")
+    println(o, "tstidx = joinpath(tstdir, \"TESTINDEX.jl\")")
+    println(o, "include(tstidx)")
 
     path = joinpath(tstdir, "runtests.jl")
     i = open(path, "r")
@@ -452,26 +451,26 @@ function addsig(srcfile, docfile)
 
     while true
 
-        n == nothing && return
+        n === nothing && return
         while !startswith(n, "\"\"\"")
             println(docfile, n)
             n = nextline(srcfile)
-            n == nothing && return
+            n === nothing && return
         end
 
         if startswith(n, "\"\"\"")
             println(docfile, n)
             n = nextline(srcfile)
-            n == nothing && return
+            n === nothing && return
             while !startswith(n, "\"\"\"")
                 println(docfile, n)
                 n = nextline(srcfile)
-                n == nothing && return
+                n === nothing && return
             end
 
             nn = nextline(srcfile)
             if !startswith(nn, "const Module")
-                println(docfile, "\$(SIGNATURES)")
+                println(docfile, "\$(SIGNATURES)") # ▶️ 🔹
             end
             println(docfile, n)
             n = nn

@@ -51,12 +51,12 @@ function binaryQF(
     isreduced() = (-α < β ≤ α < γ) || (fmpz(0) ≤ β ≤ α == γ)
 
     function roots(a::Int, b::Int, c::Int, n::Int, y::Int)
-#################################
+        #################################
         throw(ErrorException("not yet implemented"))
-################################
-#    x = var('x')
-#    eq = a * x * x + b * x * y + c * y * y
-#    (eq - n).roots(multiplicities = false, ring = ZZ)
+        ################################
+        #    x = var('x')
+        #    eq = a * x * x + b * x * y + c * y * y
+        #    (eq - n).roots(multiplicities = false, ring = fmpz)
     end
 
     function sqr_disc(M, primitively = false)
@@ -104,19 +104,19 @@ function binaryQF(
     end
 
     function imag_prime(M)
-#################################
+        #################################
         throw(ErrorException("not yet implemented"))
-################################
-#    solve = pari('qfbsolve')
-#    Q = pari('Qfb')(α, β, γ)
-#    p = 1
-#    R = []
-#    while true
-#        p = next_prime(p)
-#        p > M && break
-#        solve(Q, p) && push!(R,p)
-#    end
-#    R
+        ################################
+        #    solve = pari('qfbsolve')
+        #    Q = pari('Qfb')(α, β, γ)
+        #    p = 1
+        #    R = []
+        #    while true
+        #        p = next_prime(p)
+        #        p > M && break
+        #        solve(Q, p) && push!(R,p)
+        #    end
+        #    R
     end
 
     function imag_primitively(M)
@@ -129,20 +129,20 @@ function binaryQF(
             r = y * b / (2 * a)
             s = sqrt((M - d * y * y) / a)
             for x ∈ Int(round(ceil(-s - r))):Int(round(floor(s - r)))
-                isPrimeTo(x, y) && push!(A, a * x^2 + b * x * y + c * y^2)
+                isPrimeTo(x, y) && push!(A, a*x^2 + b*x*y + c*y^2)
             end
         end
         sort([s for s ∈ Set(A)])
     end
 
     function imag_positive(M)
-#################################
+        #################################
         throw(ErrorException("not yet implemented"))
-################################
-#   L = [2*ZZ(α), ZZ(β), ZZ(β), 2*ZZ(γ)]
-#   G = Matrix(ZZ, 2, 2, L)
-#   A = pari('qfrep')(G, M, 1)
-#   [k+1 for k ∈ 0:M-1 if A[k] > 0]
+        ################################
+        #   L = [2*fmpz(α), fmpz(β), fmpz(β), 2*fmpz(γ)]
+        #   G = Matrix(fmpz, 2, 2, L)
+        #   A = pari('qfrep')(G, M, 1)
+        #   [k+1 for k ∈ 0:M-1 if A[k] > 0]
     end
 
     function primitive_reps(a, h, b, M, S)
@@ -152,10 +152,8 @@ function binaryQF(
             if b ≤ M
                 push!(S, b)
                 if a ≤ (M - b) && h ≤ (M - a - b)
-                    a ≤ (M - a -
-                         h) && primitive_reps(a, h + 2 * a, a + b + h, M, S)
-                    b ≤ (M - b -
-                         h) && primitive_reps(a + b + h, h + 2 * b, b, M, S)
+                    (a ≤ (M - a - h)) && primitive_reps(a, h + 2 * a, a + b + h, M, S)
+                    (b ≤ (M - b - h)) && primitive_reps(a + b + h, h + 2 * b, b, M, S)
                 end
             end
         end
@@ -213,7 +211,7 @@ function binaryQF(
                 cAbs *= -1
             end
 
-        # cAbs = 0 will not happen for a non square form
+            # cAbs = 0 will not happen for a non square form
             delta = div(b + droot, 2 * cAbs)
             if c < 0
                 delta *= -1
@@ -257,7 +255,7 @@ function binaryQF(
         return [a, b, c]
     end
 
-# Return the unique reduced form equivalent to BQF(a,b,c)
+    # Return the unique reduced form equivalent to BQF(a,b,c)
     function reduced_form()
 
         isreduced() && return [α, β, γ]
@@ -269,10 +267,10 @@ function binaryQF(
         end
     end
 
-   ### --- eval part of function starts here --- ###
+    ### --- eval part of function starts here --- ###
 
-    prime = false || subset == "prime"
-    primitively = false || subset == "primitively"
+    prime = subset == "prime"
+    primitively = subset == "primitively"
 
     d = discriminant()
     d == 0 && throw(ValueError("discriminant must not be 0"))
@@ -281,12 +279,9 @@ function binaryQF(
     if verbose
         println(
             "Original form [",
-            a,
-            ", ",
-            b,
-            ", ",
-            c,
-            "] with discriminant ",
+            a, ", ",
+            b, ", ",
+            c, "] with discriminant ",
             d
         )
     end

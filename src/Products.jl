@@ -25,11 +25,11 @@ If ``a ≤ b`` then return the product of ``i`` ∈ ``a:b`` else return ``1``.
 function ∏(a, b)
     n = b - a
     if n < 24
-        p = ZZ(1)
+        p = fmpz(1)
         for k ∈ a:b
             p *= k
         end
-        return ZZ(p)
+        return fmpz(p)
     end
     m = div(a + b, 2)
     ∏(a, m) * ∏(m + 1, b)
@@ -49,16 +49,16 @@ function ∏(A)
     function prod(a, b)
         n = b - a
         if n < 24
-            p = ZZ(1)
+            p = fmpz(1)
             for k ∈ a:b
                 p *= A[k]
             end
-            return ZZ(p)
+            return fmpz(p)
         end
         m = div(a + b, 2)
         prod(a, m) * prod(m + 1, b)
     end
-    A == [] && return ZZ(1)
+    A == [] && return fmpz(1)
     prod(1, length(A))
 end
 
@@ -116,13 +116,13 @@ Return the falling factorial which is the product of ``i`` ∈ ``(n - k + 1):n``
 
 Return the number of permutations of n letters, ``n! = ∏(1, n)``, the factorial of ``n``. (The notation is a shortcut breaking Julia conventions.)
 """
-F!(n::Int) = Nemo.fac(n)
+F!(n) = Nemo.factorial(ZZ(n))
 
 """
 
 Return the factorial numbers.
 """
-V000142(n::Int) = Nemo.fac(n)
+V000142(n::Int) = F!(n)
 
 """
 
@@ -321,20 +321,20 @@ RisingFact    |    4      4
 Test Summary: | Pass  Total
 MultiFact     |    1      1
 
-Nemo.fmpz[1, 0, 0, 0, 0, 0, 0, 0]
-Nemo.fmpz[1, 1, 2, 6, 24, 120, 720, 5040]
-Nemo.fmpz[1, 2, 6, 24, 120, 720, 5040, 40320]
-Nemo.fmpz[1, 3, 12, 60, 360, 2520, 20160, 181440]
-Nemo.fmpz[1, 4, 20, 120, 840, 6720, 60480, 604800]
-Nemo.fmpz[1, 5, 30, 210, 1680, 15120, 151200, 1663200]
-Nemo.fmpz[1, 6, 42, 336, 3024, 30240, 332640, 3991680]
-Nemo.fmpz[1, 0, 0, 0, 0, 0, 0, 0]
-Nemo.fmpz[1, 1, 0, 0, 0, 0, 0, 0]
-Nemo.fmpz[1, 2, 2, 0, 0, 0, 0, 0]
-Nemo.fmpz[1, 3, 6, 6, 0, 0, 0, 0]
-Nemo.fmpz[1, 4, 12, 24, 24, 0, 0, 0]
-Nemo.fmpz[1, 5, 20, 60, 120, 120, 0, 0]
-Nemo.fmpz[1, 6, 30, 120, 360, 720, 720, 0]
+fmpz[1, 0, 0, 0, 0, 0, 0, 0]
+fmpz[1, 1, 2, 6, 24, 120, 720, 5040]
+fmpz[1, 2, 6, 24, 120, 720, 5040, 40320]
+fmpz[1, 3, 12, 60, 360, 2520, 20160, 181440]
+fmpz[1, 4, 20, 120, 840, 6720, 60480, 604800]
+fmpz[1, 5, 30, 210, 1680, 15120, 151200, 1663200]
+fmpz[1, 6, 42, 336, 3024, 30240, 332640, 3991680]
+fmpz[1, 0, 0, 0, 0, 0, 0, 0]
+fmpz[1, 1, 0, 0, 0, 0, 0, 0]
+fmpz[1, 2, 2, 0, 0, 0, 0, 0]
+fmpz[1, 3, 6, 6, 0, 0, 0, 0]
+fmpz[1, 4, 12, 24, 24, 0, 0, 0]
+fmpz[1, 5, 20, 60, 120, 120, 0, 0]
+fmpz[1, 6, 30, 120, 360, 720, 720, 0]
 
 127313963299399416749559771247411200000000000
 127313963299399416749559771247411200000000000

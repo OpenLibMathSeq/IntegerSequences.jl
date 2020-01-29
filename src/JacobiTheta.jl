@@ -334,8 +334,8 @@ function test()
         @test isa(JacobiTheta3Powers(30, 1)[end], fmpz)
         @test isa(JacobiTheta4Powers(30, 1)[end], fmpz)
 
-        @test L035016(999 + 1)[end] == ZZ(-16565884160)
-        @test L035016(1000 + 1)[end] == ZZ(18365675328)
+        @test L035016(999 + 1)[end] == fmpz(-16565884160)
+        @test L035016(1000 + 1)[end] == fmpz(18365675328)
 
         if data_installed()
 

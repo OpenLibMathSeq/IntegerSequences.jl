@@ -40,20 +40,20 @@ export A053529, L210029, L281478, L281479, L281480
 """
 const ModuleOrderedSetPartitionsTypeM = ""
 
-#const CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
+const CacheP = Dict{Tuple{Int,Int}, fmpz_poly}()
 """
 
 Return the polynomial where the coefficients are the number of ordered set partitions of an ``n``-set with shape type ``m``.
 """
 function OrderedSetPolynomials(m::Int, n::Int)
-    CacheP = Dict{Tuple{Int,Int}, Nemo.fmpz_poly}()
+    global CacheP
     R, x = PolynomialRing(ZZ, "x")
     function recP(m, n)
         n == 0 && return R(1)
         haskey(CacheP, (m, n)) && return CacheP[(m, n)]
-        p = sum(binom(m * n, m * k) * recP(m, n - k) * x for k ∈ 1:n)
+        p = sum(binomial(ZZ(m * n), ZZ(m * k)) * recP(m, n - k) * x for k ∈ 1:n)
         CacheP[(m, n)] = p
-        sum(binom(m * n, m * k) * recP(m, n - k) * x for k ∈ 1:n)
+        sum(binomial(ZZ(m * n), ZZ(m * k)) * recP(m, n - k) * x for k ∈ 1:n)
     end
     recP(m, n)
 end
@@ -70,7 +70,7 @@ Return the polynomial where the coefficients are the number of the ordered set p
 # Examples
 ```julia-repl
 julia> P097805(3)
-Nemo.fmpz_poly
+fmpz_poly
 x^3 + 2*x^2 + x
 ```
 """
@@ -93,7 +93,7 @@ Return the number of ordered set partitions of an ``n``-set which are of shape t
 # Examples
 ```julia-repl
 julia> L131689(3)
-4-element Array{Nemo.fmpz,1}:
+4-element Array{fmpz,1}:
 [0, 1, 6, 6]
 ```
 """
@@ -105,7 +105,7 @@ Return ``len`` rows of the triangle of ordered set partitions of ``n``.
 # Examples
 ```julia-repl
 julia> T131689(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
+5-element Array{Array{fmpz,1},1}:
 [1]
 [0, 1]
 [0, 1, 2]
@@ -132,7 +132,7 @@ Return the number of ordered set partitions of a ``2n`` set into even sized bloc
 # Examples
 ```julia-repl
 julia> L241171(3)
-4-element Array{Nemo.fmpz,1}:
+4-element Array{fmpz,1}:
 [0, 1, 30, 90]
 ```
 """
@@ -144,7 +144,7 @@ Return ``len`` rows of the triangle ordered set partitions of a ``2n`` set into 
 # Examples
 ```julia-repl
 julia> T241171(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
+5-element Array{Array{fmpz,1},1}:
 [1]
 [0, 1]
 [0, 1, 6]
@@ -171,7 +171,7 @@ Return the number of ordered set partitions of a ``3n`` set into 3-sized blocks 
 # Examples
 ```julia-repl
 julia> L278073(3)
-4-element Array{Nemo.fmpz,1}:
+4-element Array{fmpz,1}:
 [0, 1, 168, 1680]
 ```
 """
@@ -183,7 +183,7 @@ Return ``len`` rows of the triangle ordered set partitions of a ``3n`` set into 
 # Examples
 ```julia-repl
 julia> T278073(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
+5-element Array{Array{fmpz,1},1}:
 [1]
 [0, 1]
 [0, 1, 20]
@@ -210,7 +210,7 @@ Return the number of ordered set partitions of a ``4n`` set into 4-sized blocks 
 # Examples
 ```julia-repl
 julia> L278074(3)
-4-element Array{Nemo.fmpz,1}:
+4-element Array{fmpz,1}:
 [0, 1, 990, 34650]
 ```
 """
@@ -222,7 +222,7 @@ Return ``len`` rows of the triangle ordered set partitions of a ``4n`` set into 
 # Examples
 ```julia-repl
 julia> T278074(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
+5-element Array{Array{fmpz,1},1}:
 [1]
 [0, 1]
 [0, 1, 70]
@@ -238,7 +238,7 @@ Return the central column of the triangle of the ordered set partitions of shape
 # Examples
 ```julia-repl
 julia> L088218(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, 1, 3, 10, 35, 126]
 ```
 """
@@ -249,7 +249,7 @@ Return the central column of the triangle of the ordered set partitions of shape
 # Examples
 ```julia-repl
 julia> L210029(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, 1, 14, 540, 40824, 5103000]
 ```
 """
@@ -261,7 +261,7 @@ Return the central column of the triangle of the ordered set partitions of shape
 # Examples
 ```julia-repl
 julia> L281478(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, 1, 126, 126720, 494053560, 5283068427000]
 ```
 """
@@ -273,7 +273,7 @@ Return the central column of the triangle of the ordered set partitions of shape
 # Examples
 ```julia-repl
 julia> L281479(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, 1, 1364, 42771456, 10298900437056, 11287986820196486400]
 ```
 """
@@ -284,7 +284,7 @@ Return the central column of the triangle of the ordered set partitions of shape
 # Examples
 ```julia-repl
 julia> L281480(5)
-5-element Array{Nemo.fmpz,1}:
+5-element Array{fmpz,1}:
 [1, 1, 16510, 17651304000, 286988816206755000]
 ```
 """
@@ -296,7 +296,7 @@ Return the number of the ordered set partitions of shape type ``2``.
 # Examples
 ```julia-repl
 julia> L094088(5)
-5-element Array{Nemo.fmpz,1}:
+5-element Array{fmpz,1}:
 [1, 1, 7, 121, 3907, 202741]
 ```
 """
@@ -308,7 +308,7 @@ Return the number of the ordered set partitions of shape type ``3``.
 # Examples
 ```julia-repl
 julia> L243664(5)
-5-element Array{Nemo.fmpz,1}:
+5-element Array{fmpz,1}:
 [1, 1, 21, 1849, 426405]
 ```
 """
@@ -319,7 +319,7 @@ Return the number of the ordered set partitions of shape type ``4``.
 # Examples
 ```julia-repl
 julia> L243665(5)
-5-element Array{Nemo.fmpz,1}:
+5-element Array{fmpz,1}:
 [1, 1, 71, 35641, 65782211]
 ```
 """
@@ -331,7 +331,7 @@ Return the alternating row sums of the ordered set polynomials of shape type ``2
 # Examples
 ```julia-repl
 julia> L028296(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, -1, 5, -61, 1385, -50521, 2702765]
 ```
 """
@@ -343,7 +343,7 @@ Return the alternating row sums of the ordered set polynomials of shape type ``3
 # Examples
 ```julia-repl
 julia> L002115(7)
-7-element Array{Nemo.fmpz,1}:
+7-element Array{fmpz,1}:
 [1, -1, 19, -1513, 315523, -136085041, 105261234643]
 ```
 """
@@ -355,7 +355,7 @@ Return the alternating row sums of the ordered set polynomials of shape type ``4
 # Examples
 ```julia-repl
 julia> L211212(6)
-6-element Array{Nemo.fmpz,1}:
+6-element Array{fmpz,1}:
 [1, -1, 69, -33661, 60376809, -288294050521]
 ```
 """
@@ -373,10 +373,22 @@ julia> CardinalityOfShapePartitions([3, 3, 3, 2, 2])
 ```
 """
 function CardinalityOfShapePartitions(Shape)
-    Shape == [] && return ZZ(1)
+    Shape == [] && return fmpz(1)
     M = Multinomial(Shape)
     R = values(counter(Shape))
-    P =  ∏([fac(s) for s ∈ R])
+    P =  ∏([F!(s) for s ∈ R])
+    div(M, P)
+end
+
+"""
+
+--
+"""
+function CardinalityOfOrderedShapePartitions(Shape)
+    Shape == [] && return fmpz(1)
+    M = Multinomial(Shape)*F!(length(Shape))
+    R = values(counter(Shape))
+    P = ∏([F!(s) for s ∈ R])
     div(M, P)
 end
 
@@ -396,18 +408,6 @@ end
 """
 function ShapePartitions(m, n)
     reduce(vcat, [ShapePartitions(m, n, k) for k ∈ 0:n])
-end
-
-"""
-
---
-"""
-function CardinalityOfOrderedShapePartitions(Shape)
-    Shape == [] && return ZZ(1)
-    M = Multinomial(Shape)*F!(length(Shape))
-    R = values(counter(Shape))
-    P = ∏([F!(s) for s ∈ R])
-    div(M, P)
 end
 
 """
@@ -497,7 +497,7 @@ Return the number of set partitions of ``4n`` with block sizes given by the part
 # Examples
 ```julia-repl
 for n in 0:5 OrderedShapePartitions(4, n) |> Println end
-8-element Array{Nemo.fmpz,1}:
+8-element Array{fmpz,1}:
 [1]
 [0, 1]
 [0, 1, 70]
@@ -605,7 +605,7 @@ Return the number of ordered set partitions of an ``n``-set which are of shape t
 # Examples
 ```julia-repl
 julia> L097805(3)
-4-element Array{Nemo.fmpz,1}:
+4-element Array{fmpz,1}:
 [0, 1, 2, 1]
 ```
 """
@@ -617,7 +617,7 @@ Return the first ``len`` rows of the triangle of compositions of ``n``.
 # Examples
 ```julia-repl
 julia> T097805(3, 5)
-5-element Array{Array{Nemo.fmpz,1},1}:
+5-element Array{Array{fmpz,1},1}:
 [1]
 [0, 1]
 [0, 1, 1]

@@ -14,7 +14,7 @@ G  | Generating function
 I  | Iteration
 L  | List (array based)
 M  | Matrix (2-dim square)
-P  | Polynomial (over ZZ or QQ)
+P  | Polynomial (over ℤ or QQ)
 R  | RealFunction (Float64)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
@@ -55,7 +55,7 @@ L000045(n) = coefficients(G000045, n)
 * Return the ``n``-th Fibonacci number.
 ```javascript
 function V000045(n)
-   F = ZZ[1 1; 1 0]
+   F = ℤ[1 1; 1 0]
    Fn = F^n
    Fn[2, 1]
 end

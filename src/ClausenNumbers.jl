@@ -21,7 +21,7 @@ const ModuleClausenNumbers = ""
 Return the Clausen number ``C_n`` which is the denominator of the Bernoulli number ``B_{2n}``.
 """
 function ClausenNumber(n::Int)
-    n == 0 && return ZZ(1)
+    n == 0 && return fmpz(1)
     m = [d + 1 for d ∈ Divisors(2n)]
     ∏([q for q ∈ m if isPrime(q)])
 end
@@ -33,7 +33,7 @@ Return the list of length len of Clausen numbers which are the denominators of t
 function ClausenNumberList(len::Int)
     len ≤ 0 && return fmpz[]
 
-    A = fill(ZZ(2), len)
+    A = fill(fmpz(2), len)
     A[1] = 1
     m = len - 1
     m == 0 && return A
@@ -65,8 +65,8 @@ Return the denominator of Bernoulli number ``B_n``.
 """
 function V027642(n::Int)
     isEven(n) && return ClausenNumber(div(n, 2))
-    n == 1 && return ZZ(2)
-    return ZZ(1)
+    n == 1 && return fmpz(2)
+    return fmpz(1)
 end
 
 #START-TEST-########################################################
@@ -81,8 +81,8 @@ function test()
         @test C[781] == 32695402455500348373810
         @test C[794] == 6
 
-        @test isa(C[781], Nemo.fmpz)
-        @test isa(ClausenNumber(10), Nemo.fmpz)
+        @test isa(C[781], fmpz)
+        @test isa(ClausenNumber(10), fmpz)
     end
 
     if data_installed()
@@ -142,13 +142,13 @@ end # module
 
 #=
 
-0 ↦ Nemo.fmpz[]
-1 ↦ Nemo.fmpz[3]
-2 ↦ Nemo.fmpz[3, 30]
-3 ↦ Nemo.fmpz[3, 30, 42]
-4 ↦ Nemo.fmpz[3, 30, 42, 30]
-5 ↦ Nemo.fmpz[3, 30, 42, 30, 66]
-6 ↦ Nemo.fmpz[3, 30, 42, 30, 66, 2730]
+0 ↦ fmpz[]
+1 ↦ fmpz[3]
+2 ↦ fmpz[3, 30]
+3 ↦ fmpz[3, 30, 42]
+4 ↦ fmpz[3, 30, 42, 30]
+5 ↦ fmpz[3, 30, 42, 30, 66]
+6 ↦ fmpz[3, 30, 42, 30, 66, 2730]
 
 0 ↦ 1
 1 ↦ 2

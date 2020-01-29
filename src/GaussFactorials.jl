@@ -114,9 +114,10 @@ L193339(n) = collect(I193339(n))
 
 """
 
-Return the index of the ``n``-th record value of the Gauß factorial.
+Return the index of the ``n``-th record value of the Gauß factorial. Indexing starts with 1.
 """
-V193339(n) = nth(I193339(n+1), n+1)
+V193339(n) = nth(I193339(n), n)
+# V193339(n) = nth(I193339(n+1), n+1) Indexing starts with 0.
 
 # -----------------------------------------------------------------
 # Values!
@@ -139,11 +140,13 @@ Return the first ``n`` record values of the Gauß factorial as an array.
 """
 L193338(n) = collect(I193338(n))
 
+
 """
 
-Return the (value of the) ``n``-th record of the Gauß factorial.
+Return the (value of the) ``n``-th record of the Gauß factorial. Indexing starts with 1.
 """
-V193338(n) = nth(I193338(n+1), n+1)
+V193338(n) = nth(I193338(n), n)
+# V193338(n) = nth(I193338(n+1), n+1) Indexing starts with 0.
 
 #START-TEST-########################################################
 
@@ -221,27 +224,27 @@ end # module
 
 #=
 Iterate over the indices of the first 10 record values ofthe Gauß factorial.
-1, 3, 4, 5, 7, 9, 11, 13, 17, ...
+1, 3, 4, 5, 7, 9, 11, 13, 17, 19, ...
 
 Iterate over indices of the record values of the Gauß factorial which do not exceed 10.
 1, 3, 4, 5, 7, 9, ...
 
 Return the indices of the first 10 record values of the Gauß factorial as an array.
-Nemo.fmpz[1, 3, 4, 5, 7, 9, 11, 13, 17]
+fmpz[1, 3, 4, 5, 7, 9, 11, 13, 17, 19]
 
-Return the index of the 9-th record value of the Gauß factorial.
-9 -> 13
+Return the index of the record value of the Gauß factorial with index 9 (indexing starts with 1).
+9 -> 17
 
 Iterate over the first 10 record values of the Gauß factorial.
-1, 2, 3, 24, 720, 2240, 3628800, 479001600, 20922789888000, ...
+1, 2, 3, 24, 720, 2240, 3628800, 479001600, 20922789888000, 6402373705728000, ...
 
 Iterate over the record values of Gauß factorial which do
 not exceed 10.
 1, 2, 3, 24, 720, 2240, ...
 
 Return the first 10 record values of the Gauß factorial as an array.
-Nemo.fmpz[1, 2, 3, 24, 720, 2240, 3628800, 479001600, 20922789888000]
+Nemo.fmpz[1, 2, 3, 24, 720, 2240, 3628800, 479001600, 20922789888000, 6402373705728000]
 
-Return the (value of the) 9-th record of the Gauß factorial.
-9 -> 479001600
+Return the value of the record of the Gauß factorial with index 9 (indexing starts with 1).
+9 -> 20922789888000
 =#

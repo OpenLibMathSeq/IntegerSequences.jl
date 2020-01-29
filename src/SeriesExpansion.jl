@@ -7,7 +7,7 @@ module SeriesExpansion
 using Nemo
 
 export ModuleSeriesExpansion
-export Coefficients, G000045, G000257, L000257
+export Coefficients, EgfExpansion, G000045, G000257, L000257
 export G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957
 export G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426
 export G005043, L005043, G006318, G068875, L068875
@@ -16,7 +16,7 @@ export G005043, L005043, G006318, G068875, L068875
 
 The generating functions of various combinatorial and number-theoretic functions.
 
-* Coefficients, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
+* Coefficients, EgfExpansion, G000045, G000257, L000257, G000032, L000032, G000073, L000073, G000108, L000108, G000957, L000957, G001003, L001003, G001006, L001006, G001045, L001045, G002426, L002426, G005043, L005043, G006318, G068875, L068875
 """
 const ModuleSeriesExpansion = ""
 
@@ -29,6 +29,47 @@ function Coefficients(s, len)
     ser = s(x)
     [coeff(ser, k) for k ∈ 0:len-1]
 end
+
+"""
+
+Return the coefficient triangle of the bivariate generating function gf.
+"""
+function EgfExpansion(gf, prec)
+    R, x = PolynomialRing(QQ, "x")
+    S, t = PowerSeriesRing(R, prec+1, "t")
+    ser = gf(x, t)
+    L = Vector{Array{fmpz,1}}(undef,prec)
+    for k ∈ 0:prec-1
+        p = factorial(k)*coeff(ser, k)
+        L[k+1] = [numerator(coeff(p, n)) for n ∈ 0:k]
+    end
+    L
+end
+
+#"""
+#The generating function of the Lah triangle.
+#"""
+#G271703(x, t) = exp(t*divexact(x, 1-t) )
+#"""
+#The Lah triangle.
+#"""
+#T271703(n) = EgfExpansion(G271703, n)
+#
+# Bernoulli polynomials
+#function EgfExpansion(prec, gf)
+#    R, x = PolynomialRing(QQ, "x")
+#    S, t = PowerSeriesRing(R, prec+1, "t")
+#    ser = gf(x, t)
+#    L = QQTriangle(prec, undef)
+#    for k ∈ 0:prec-1
+#        p = factorial(k)*coeff(ser, k)
+#        L[k+1] = [coeff(p, n) for n ∈ 0:k]
+#    end
+#    L
+#end
+#GBERN(x, t) = divexact(t*exp(x*t), 1-exp(-t))
+#TBERN(n) = EgfExpansion(n, GBERN)
+#TBERN(8)
 
 """
 

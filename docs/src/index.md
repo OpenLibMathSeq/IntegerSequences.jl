@@ -151,6 +151,9 @@ Divisors
 EgfCoeffs
 ```
 ```@docs
+EgfExpansion
+```
+```@docs
 EgfPoly
 ```
 ```@docs
@@ -203,6 +206,12 @@ JacobiTheta4Powers
 ```
 ```@docs
 KolakoskiList
+```
+```@docs
+Lah
+```
+```@docs
+LahTriangle
 ```
 ```@docs
 List
@@ -371,9 +380,6 @@ Nand
 ```
 ```@docs
 NarayanasCows
-```
-```@docs
-Nemofmpz
 ```
 ```@docs
 NextPrime
@@ -1634,6 +1640,9 @@ T039599
 ```
 ```@docs
 T039683
+```
+```@docs
+L039834
 ```
 ```@docs
 L042965

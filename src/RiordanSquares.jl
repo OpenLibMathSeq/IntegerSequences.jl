@@ -29,7 +29,7 @@ Return the Riordan array associated with the generating functions a and b.
 """
 function RiordanProduct(a, b, dim, expo = false)
     A = Coefficients(a, dim)
-    B = b == nothing ? A : Coefficients(b, dim)
+    B = b === nothing ? A : Coefficients(b, dim)
     M = identity_matrix(QQ, dim)
     for k ∈ 1:dim
         M[k, 1] = A[k]

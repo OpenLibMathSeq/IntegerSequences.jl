@@ -22,7 +22,7 @@ I  | Iteration (over n terms)
 L  | List (array based)
 M  | Matrix (2-dim square)
 R  | Real function (Float64)
-P  | Polynomial (univariate over ZZ)
+P  | Polynomial (univariate over ℤ)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
 V  | Value (single term)
@@ -62,7 +62,7 @@ L000045(n) = coefficients(G000045, n)
 * Return the ``n``-th Fibonacci number.
 ```
 function V000045(n)
-   F = ZZ[1 1; 1 0]
+   F = ℤ[1 1; 1 0]
    Fn = F^n
    Fn[2, 1]
 end
