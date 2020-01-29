@@ -1,6 +1,6 @@
 <img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl)
+[![Build status](https://travis-ci.org/PeterLuschny/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/PeterLuschny/IntegerSequences.jl)
 [![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
