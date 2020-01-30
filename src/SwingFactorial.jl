@@ -11,6 +11,7 @@ export ModuleSwingFactorial
 export Sfactorial
 
 """
+
 Basic implementation of the swing algorithm using no primes. Claims to be the most efficient simple algorithm to compute the factorial. An advanced version based on prime-factorization is available as the prime-swing factorial factorialPS.
 
 * Sfactorial
@@ -18,6 +19,7 @@ Basic implementation of the swing algorithm using no primes. Claims to be the mo
 const ModuleSwingFactorial = ""
 
 """
+
 Return the factorial of ``n``. Basic implementation of the swing algorithm using no primes. An advanced version based on prime-factorization is available as the prime-swing factorial factorialPS.
 """
 function Sfactorial(n::Int)::fmpz
@@ -47,7 +49,7 @@ function Sfactorial(n::Int)::fmpz
     function oddProduct(m::Int, len::Int)
         if len < 24
             p = fmpz(m)
-            for k in 2:2:2(len-1)
+            for k ∈ 2:2:2(len - 1)
                 p *= (m - k)
             end
             return p
@@ -72,7 +74,9 @@ function Sfactorial(n::Int)::fmpz
     end
 
     n < 0 && ArgumentError("n must be ≥ 0")
-    if n == 0 return fmpz(1) end
+    if n == 0
+        return fmpz(1)
+    end
     sh = n - count_ones(n)
     oddFactorial(n)[1] << sh
 end
@@ -83,7 +87,7 @@ using Test
 
 function test()
     @testset "SwingFactorial" begin
-        for n in 0:999
+        for n ∈ 0:999
             S = Sfactorial(n)
             B = Base.factorial(BigInt(n))
             @test S == B
@@ -91,8 +95,7 @@ function test()
     end
 end
 
-function demo()
-end
+function demo() end
 
 function perf()
     # n = 10^6

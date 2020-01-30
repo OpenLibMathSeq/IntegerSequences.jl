@@ -34,7 +34,7 @@ const ModuleBernoulliNumbers = ""
 """
 Return the generalized integer Bernoulli numbers ``b_{m}(n) = n × ``André``(m, n-1)``.
 """
-BernoulliInt(m::Int, n::Int) = n == 0 ? ZZ(0) : n * André(m, n - 1)
+BernoulliInt(m::Int, n::Int) = n == 0 ? fmpz(0) : n * André(m, n - 1)
 
 """
 Return the number of down-up permutations w on ``[n+1]`` such that ``w_2 = 1``.
@@ -56,20 +56,20 @@ Return a list of length `len` of the integer Bernoulli numbers ``b_{m}(n)`` usin
 """
 function BernoulliIntList(m::Int, len::Int)
     len ≤ 0 && return fmpz[]
-    R = zeros(ZZ, len)
+    R = fill(fmpz(0), len)
     len == 1 && return R
     R[2] = 1
     len == 2 && return R
-    A = zeros(ZZ, len)
+    A = fill(fmpz(0), len)
     A[1] = 1; A[2] = 1
 
-    for n in 1:len - 2
+    for n ∈ 1:len - 2
         if n % m ≠ 0
-            for i in n:-1:1 A[i] += A[i + 1] end
+            for i ∈ n:-1:1 A[i] += A[i + 1] end
             C = A[1]
         else
             C = 0
-            for i in 1:(n + 2) A[i], C = C, A[i]; C = A[i] - C end
+            for i ∈ 1:(n + 2) A[i], C = C, A[i]; C = A[i] - C end
         end
         R[n + 2] = C
     end
@@ -81,15 +81,15 @@ Computes a list of length `len` of the integer Bernoulli numbers ``b_{2}(n)`` us
 """
 function L065619(len::Int)
     len ≤ 0  && return fmpz[]
-    R  = zeros(ZZ, len)
+    R  = fill(fmpz(0), len)
     len == 1 && return R[0]
     len == 2 && (R[0, 1] = 1; return R)
 
     A = Dict{Int,fmpz}(-1 => 1, 0 => 0)
     k = 0; e = 1
-    for i in 0:len - 1
+    for i ∈ 0:len - 1
         Am = 0; A[k + e] = 0; e = -e
-        for j in 0:i
+        for j ∈ 0:i
             Am += A[k]; A[k] = Am; k += e
         end
         j = e < 0 ? div(-i, 2) : div(i, 2)
@@ -104,7 +104,7 @@ Return the rational Bernoulli number ``B_n``  (cf. A027641/A027642).
 function Bernoulli(n::Int)
     isOdd(n) && (n == 1 ? (return fmpq(1, 2)) : (return fmpq(0, 1)))
     n == 0 && return fmpq(1, 1)
-    denom = ^(ZZ(4), n) - ^(ZZ(2), n)
+    denom = ^(fmpz(4), n) - ^(fmpz(2), n)
     fmpq(BernoulliInt(2, n), denom)
 end
 
@@ -113,7 +113,7 @@ Return a list of the first `len` Bernoulli numbers ``B_n`` (cf. A027641/A027642)
 """
 function BernoulliList(len::Int)
     if len ≤ 0 return fmpq[] end
-    R = zeros(QQ, len)
+    R = fill(QQ(0), len)
     R[1] = fmpq(1, 1); len == 1 && return R
     R[2] = fmpq(1, 2); len == 2 && return R
 
@@ -121,9 +121,9 @@ function BernoulliList(len::Int)
     a = fmpz(12); b = fmpz(240)
     k = e = 1
 
-    for i in 2:len - 1
+    for i ∈ 2:len - 1
         Am = 0; A[k + e] = 0; e = -e
-        for j in 0:i
+        for j ∈ 0:i
             Am += A[k]; A[k] = Am; k += e
         end
         if e > 0
@@ -141,9 +141,9 @@ end
 Return the numerator of the Bernoulli number ``B_n``.
 """
 function V027641(n::Int)
-    isOdd(n) && (n == 1 ? (return ZZ(-1)) : return ZZ(0))
-    n == 0 && return ZZ(1)
-    denom = ^(ZZ(4), n) - ^(ZZ(2), n)
+    isOdd(n) && (n == 1 ? (return fmpz(-1)) : return fmpz(0))
+    n == 0 && return fmpz(1)
+    denom = ^(fmpz(4), n) - ^(fmpz(2), n)
     Nemo.numerator(BernoulliInt(2, n) // denom)
 end
 
@@ -156,9 +156,9 @@ end
 Return denominator(Bernoulli ``_{n+1}(x) - `` Bernoulli ``_{n+1})``.
 """
 function V195441(n::Int)
-    n < 4 && return ZZ([1, 1, 2, 1][n + 1])
+    n < 4 && return fmpz([1, 1, 2, 1][n + 1])
     P = Primes(2, div(n + 2, 2 + n % 2))
-    ∏([p for p in P if p ≤ sum(digits(n + 1, base=Int(p)))])
+    ∏([p for p ∈ P if p ≤ sum(digits(n + 1, base=Int(p)))])
 end
 
 #START-TEST-########################################################
@@ -169,50 +169,50 @@ function test()
 
     @testset "BernoulliNum" begin
 
-        @test BernoulliInt(2, 10) == ZZ(79360)
-        @test BernoulliInt(3, 30) == ZZ(-7708110416280010548302670)
-        @test BernoulliInt(4, 40) == ZZ(-44494882577309421077208834962882560)
+        @test BernoulliInt(2, 10) == fmpz(79360)
+        @test BernoulliInt(3, 30) == fmpz(-7708110416280010548302670)
+        @test BernoulliInt(4, 40) == fmpz(-44494882577309421077208834962882560)
 
-        @test isa(BernoulliInt(3, 30), Nemo.fmpz)
-        @test isa(BernoulliIntList(2, 20)[end], Nemo.fmpz)
+        @test isa(BernoulliInt(3, 30), fmpz)
+        @test isa(BernoulliIntList(2, 20)[end], fmpz)
         @test isa(Bernoulli(0), Nemo.fmpq)
 
-        @test isa(V027641(10), Nemo.fmpz)
-        @test isa(V195441(10), Nemo.fmpz)
+        @test isa(V027641(10), fmpz)
+        @test isa(V195441(10), fmpz)
 
-        for m in 1:20
+        for m ∈ 1:20
             @test BernoulliInt(m, 200) == BernoulliIntList(m, 200 + 1)[end]
         end
 
-        for n in 0:20
+        for n ∈ 0:20
             @test denominator(Rational(Bernoulli(2 * n))) == ClausenNumber(n)
         end
 
-        t = ZZ(8622529719094842064796322984685715031642180319435676189471082876882585178647210)
+        t = fmpz(8622529719094842064796322984685715031642180319435676189471082876882585178647210)
         @test V195441(10000) == t
 
         # A065619 in the OEIS has an arbitrary offset of 1.
         l = fmpz[0, 1, 2, 3, 8, 25, 96, 427, 2176]
         @test all(L065619(9) .== l)
 
-        if is_oeis_installed()
+        if data_installed()
             V = [V195441, V281586, V281588, V027641]
-            for v in V SeqTest(v, 'V') end
+            for v ∈ V SeqTest(v, 'V') end
         end
     end
 end
 
 function demo()
     println("\nGeneralized integer Bernoulli numbers BernoulliInt(m, n):")
-    for m in 1:5
-        println([BernoulliInt(m, n) for n in 0:10])
+    for m ∈ 1:5
+        println([BernoulliInt(m, n) for n ∈ 0:10])
     end
     println("\nGeneralized integer Bernoulli numbers BernoulliInt(3, n):")
-    for len in 1:6
+    for len ∈ 1:6
         println(BernoulliIntList(3, len))
     end
     println("\nClassical rational Bernoulli numbers:")
-    for n in 0:20
+    for n ∈ 0:20
         print(fmpq(Nemo.numerator(Bernoulli(n)), Nemo.denominator(Bernoulli(n))), ", ")
     end
     println()
@@ -222,31 +222,31 @@ end
 Since the BernoulliInts are cached via the André numbers the benchmarks below
 depend on the cache history.
 
-for m in 1:10, n in 0:499 BernoulliInt(m,n) end
+for m ∈ 1:10, n ∈ 0:499 BernoulliInt(m,n) end
     0.983624 seconds (1.67 M allocations: 36.160 MiB, 9.71% gc time)
-for m in 1:10 BernoulliIntList(m,500) end
+for m ∈ 1:10 BernoulliIntList(m,500) end
     0.504717 seconds (1.26 M allocations: 19.258 MiB)
-for n in 0:1000 Bernoulli(n) end
+for n ∈ 0:1000 Bernoulli(n) end
     1.104452 seconds (946.74 k allocations: 20.252 MiB)
 BernoulliList(1000)
     0.789146 seconds (508.75 k allocations: 7.891 MiB, 11.06% gc time)
-for n in 0:1000 V027641(n) end
+for n ∈ 0:1000 V027641(n) end
     0.005921 seconds (7.74 k allocations: 144.313 KiB)
-for n in 0:10000 V195441(n) end
+for n ∈ 0:10000 V195441(n) end
     0.881609 seconds (3.49 M allocations: 330.094 MiB, 26.84% gc time)
 """
 function perf()
     GC.gc()
-    @time (for m in 1:10, n in 0:499 BernoulliInt(m, n) end)
-    @time (for m in 1:10 BernoulliIntList(m, 500) end)
+    @time (for m ∈ 1:10, n ∈ 0:499 BernoulliInt(m, n) end)
+    @time (for m ∈ 1:10 BernoulliIntList(m, 500) end)
 
     GC.gc()
-    @time (for n in 0:1000 Bernoulli(n) end)
+    @time (for n ∈ 0:1000 Bernoulli(n) end)
     @time BernoulliList(1000)
-    @time (for n in 0:1000 V027641(n) end)
+    @time (for n ∈ 0:1000 V027641(n) end)
 
     GC.gc()
-    @time (for n in 0:10000 V195441(n) end)
+    @time (for n ∈ 0:10000 V195441(n) end)
 end
 
 function main()
@@ -255,7 +255,7 @@ function main()
     perf()
 end
 
-main()
+# main()
 
 end # module
 

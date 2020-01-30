@@ -8,46 +8,55 @@ module SeqUtils
 using Nemo
 
 export ModuleSeqUtils
-export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray, Nemofmpz
+export SeqShow, SeqPrint, SeqName, SeqNum, Println, ZArray
 
 """
+
 Nemo is a library designed, developed and maintained by William Hart with the help of others. Many functions in our project are based on Nemo.
 """
 const ModuleSeqUtils = ""
 
 """
-The basic integer type of our project is 'Nemo.fmpz'. Think of a 'Nemo.fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl' (zahl=integer). The mathematical symbol for the ring of integers is the blackboard (double-struck) Z, also written ZZ. In reference to this ZZ(n) defines the integer n as a fmpz.
-"""
-function Nemofmpz(n::Int) return ZZ(n) end
 
+The basic integer type of our project is 'fmpz'. Think of a 'fmpz' as a 'BigInt'. 'fmpz' stands for 'fast multiple precision zahl' (zahl=integer). The mathematical symbol for the ring of integers is the blackboard (double-struck) Z, also written fmpz. In reference to this fmpz(n) defines the integer n as a fmpz.
 """
-Return an array of type `fmpz` of length ``n`` preset with ``0``.
-"""
-ZArray(len::Int) = zeros(ZZ, len)
-
-"""
-Return an array of type fmpz and of size ``n`` filled by the values of the function ``f`` in the range `offset:n`.
-"""
-function ZArray(n::Int, f::Function, offset=1)
-    n ≤ 0 && return fmpz[]
-    fmpz[f(k) for k in offset:offset+n-1] # !
+function Nemofmpz(n::Int)
+    return fmpz(n)
 end
 
 """
+
+Return an array of type `fmpz` of length ``n`` preset with ``0``.
+"""
+ZArray(len::Int) = fill(fmpz(0), len)
+
+"""
+
+Return an array of type fmpz and of size ``n`` filled by the values of the function ``f`` in the range `offset:n`.
+"""
+function ZArray(n::Int, f::Function, offset = 1)
+    n ≤ 0 && return fmpz[]
+    fmpz[f(k) for k ∈ offset:offset+n-1] # !
+end
+
+"""
+
 Return the size of the array ``A``.
 """
 SeqSize(A) = Base.length(A)
 
 """
+
 Return the range of a SeqArray.
 """
 SeqRange(A) = 1:SeqSize(A)
 
 """
+
 Print the array ``A`` in the format ``n ↦ A[n]`` for n in the given range.
 """
-function SeqShow(A::Array, R::AbstractRange, offset=0)
-    for k in R
+function SeqShow(A::Array, R::AbstractRange, offset = 0)
+    for k ∈ R
         if isassigned(A, k)
             println(k + offset, " ↦ ", A[k])
         else
@@ -57,19 +66,21 @@ function SeqShow(A::Array, R::AbstractRange, offset=0)
 end
 
 """
+
 Print the array ``A`` in the format ``n ↦ A[n]`` for n in the range first:last.
 """
 SeqShow(A, first::Int, last::Int) = SeqShow(A, first:last)
 
 """
+
 Print the array ``A`` in the format ``n ↦ A[n]``.
 """
-SeqShow(A::Array, offset=0) = SeqShow(A, 1:length(A), offset - 1)
+SeqShow(A::Array, offset = 0) = SeqShow(A, 1:length(A), offset - 1)
 
 
 function print_without_type(io, v::AbstractVector)
     print(io, "[")
-    for (i, el) in enumerate(v)
+    for (i, el) ∈ enumerate(v)
         i > 1 && print(io, ", ")
         print(io, el)
     end
@@ -77,11 +88,21 @@ function print_without_type(io, v::AbstractVector)
 end
 
 """
+
 Print the array without typeinfo.
 """
 Println(v::AbstractVector) = print_without_type(IOContext(stdout), v)
 
 """
+
+Print the array without typeinfo.
+"""
+function Println(V::Array{Array{fmpz,1},1})
+    for v ∈ V  v |> Println end
+end
+
+"""
+
 Print the array with or without typeinfo.
 """
 function SeqPrint(v::AbstractVector, typeinfo = false)
@@ -89,30 +110,31 @@ function SeqPrint(v::AbstractVector, typeinfo = false)
 end
 
 """
+
 Valid prefixes to the numerical part of the OEIS A-numbers.
 
-* C => Channel
-* F => Filter (all below n)
-* G => Generating function
-* I => Iteration
-* L => List (array based)
-* M => Matrix
-* R => RealFunction
-* S => Staircase (iteration)
-* T => Triangle (iteration)
-* TA => Triangle (triangular array)
-* TL => Triangle (flat-list array)
-* V => Value
+* C  => Coroutine (channel)
+* F  => Filter (all below n)
+* G  => Generating function
+* I  => Iteration
+* L  => List (array based)
+* M  => Matrix (2-dim square)
+* P  => Polynomial (over fmpz or QQ)
+* R  => RealFunction (Float64)
+* S  => Staircase (list iteration)
+* T  => Triangle (list iteration)
+* V  => Value (single term)
 * is => is a (predicate), boolean
 """
 const ValidPrefixes = ['C', 'F', 'G', 'I', 'L', 'M', 'R', 'S', 'T', 'V']
 
 """
+
 Return the name of a OEIS sequence given a similar named function as a string.
 """
 function SeqName(fun)
     aname = string(fun)
-    for X in ValidPrefixes
+    for X ∈ ValidPrefixes
         aname = replace(aname, X => 'A')
     end
 
@@ -128,6 +150,7 @@ function SeqName(fun)
 end
 
 """
+
 Return the A-number of a OEIS sequence given a similar named function as an integer.
 """
 function SeqNum(seq)
@@ -139,10 +162,7 @@ end
 
 using Test
 
-function test()
-    #@testset "SeqUtils" begin
-    #end
-end
+function test() end
 
 function demo()
     A = fmpz[1, 2, 3, 4, 5]
@@ -155,10 +175,13 @@ function demo()
     println()
 
     A |> Println
+
+    println()
+    V = Array{fmpz,1}[[1], [0, 1], [0, 1, 70], [0, 1, 990, 34650]]
+    for v ∈ V  v |> Println end
 end
 
-function perf()
-end
+function perf() end
 
 function main()
     test()
@@ -169,3 +192,6 @@ end
 main()
 
 end # module
+
+# a(f) = applicable(f, 1) ? f(1) : f(1,2)
+# m(f) = first(methods(h)).nargs == 1 ? f(1) : f(1,2)

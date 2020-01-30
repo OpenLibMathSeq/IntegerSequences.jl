@@ -1,6 +1,9 @@
 module QueensAlwaysMakeProblems
 
 # For some background see: https://wp.me/paipV7-E
+# There is also a 'distributed' version:
+# https://github.com/PeterLuschny/IntegerSequences.jl/blob/master/demos/DistributedQueens.jl
+
 
 function solve!(profile, level, size, start, cols, diag4, diag1)
 

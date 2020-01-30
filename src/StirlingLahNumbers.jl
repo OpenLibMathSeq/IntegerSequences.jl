@@ -8,170 +8,231 @@ module StirlingNumbers
 using Nemo, IterTools, Triangles
 
 export ModuleStirlingNumbers
-export I132393, L132393, V132393, M132393
-export I048993, L048993, V048993, M048993
-export I271703, L271703, V271703, M271703
-export I094587, L094587, V094587, M094587
-export I008279, L008279, V008279, M008279
+export T132393, L132393, V132393, M132393
+export T048993, L048993, V048993, M048993
+export T271703, L271703, V271703, M271703
+export T094587, L094587, V094587, M094587
+export T008279, L008279, V008279, M008279
 # export Lah, StirlingSet, StirlingCycle
 
 """
-* I132393, L132393, V132393, M132393, I048993, L048993, V048993, M048993, I271703, L271703, V271703, M271703, I094587, L094587, V094587, M094587, I008279, L008279, V008279, M008279
+
+* T132393, L132393, V132393, M132393, T048993, L048993, V048993, M048993, T271703, L271703, V271703, M271703, T094587, L094587, V094587, M094587, T008279, L008279, V008279, M008279
 """
 const ModuleStirlingNumbers = ""
 
 """
+
 Recurrence for A132393, StirlingCycle numbers.
 """
 function R132393(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
-    (n - 1)*prevrow(k) + prevrow(k - 1)
+    (k == 0 && n == 0) && return fmpz(1)
+    (n - 1) * prevrow(k) + prevrow(k - 1)
 end
 """
+
 Recurrence for A048993, StirlingSet numbers.
 """
 function R048993(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
-    k*prevrow(k) + prevrow(k - 1)
+    (k == 0 && n == 0) && return fmpz(1)
+    k * prevrow(k) + prevrow(k - 1)
 end
 """
+
 Recurrence for A271703, Lah numbers.
 """
 function R271703(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
-    (k - 1 + n)*prevrow(k) + prevrow(k - 1)
+    (k == 0 && n == 0) && return fmpz(1)
+    (k - 1 + n) * prevrow(k) + prevrow(k - 1)
 end
 """
-Recurrence for A094587.
+
+Recurrence for A094587, (Rising factorials).
 """
 function R094587(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
-    (n - k)*prevrow(k) + prevrow(k - 1)
+    (k == 0 && n == 0) && return fmpz(1)
+    (n - k) * prevrow(k) + prevrow(k - 1)
 end
 """
-Recurrence for A008279. Number of permutations of n things k at a time.
+
+Recurrence for A008279. Number of permutations of n things k at a time. (Falling factorials)
 """
 function R008279(n::Int, k::Int, prevrow::Function)
-    (k == 0 && n == 0) && return ZZ(1)
-    prevrow(k) + k*prevrow(k - 1)
+    (k == 0 && n == 0) && return fmpz(1)
+    prevrow(k) + k * prevrow(k - 1)
 end
 """
+
 Iterates over the first n rows of `A132393`.
 """
-I132393(n) = RecTriangle(n, R132393)
+T132393(n) = RecTriangle(n, R132393)
 """
+
 Iterates over the first n rows of `A048993`.
 """
-I048993(n) = RecTriangle(n, R048993)
+T048993(n) = RecTriangle(n, R048993)
 """
+
 Iterates over the first n rows of `A271703`.
 """
-I271703(n) = RecTriangle(n, R271703)
+T271703(n) = RecTriangle(n, R271703)
 """
+
 Iterates over the first n rows of `A094587`.
 """
-I094587(n) = RecTriangle(n, R094587)
+T094587(n) = RecTriangle(n, R094587)
 """
+
 Iterates over the first n rows of `A008279`.
 """
-I008279(n) = RecTriangle(n, R008279)
+T008279(n) = RecTriangle(n, R008279)
 """
+
 Lists the first n rows of `A132393` by concatenating.
 """
-L132393(n) = vcat(I132393(n)...)
+L132393(n) = vcat(T132393(n)...)
 """
+
 Lists the first n rows of `A048993` by concatenating.
 """
-L048993(n) = vcat(I048993(n)...)
+L048993(n) = vcat(T048993(n)...)
 """
+
 Lists the first n rows of `A271703` by concatenating.
 """
-L271703(n) = vcat(I271703(n)...)
+L271703(n) = vcat(T271703(n)...)
 """
+
 Lists the first n rows of `A094587` by concatenating.
 """
-L094587(n) = vcat(I094587(n)...)
+L094587(n) = vcat(T094587(n)...)
 """
+
 Lists the first n rows of `A008279` by concatenating.
 """
-L008279(n) = vcat(I008279(n)...)
+L008279(n) = vcat(T008279(n)...)
 """
+
 Return the triangular array as a square matrix with dim rows.
 """
-M132393(dim) = fromΔ(I132393(dim))
+M132393(dim) = fromΔ(T132393(dim))
 """
+
 Return the triangular array as a square matrix with dim rows.
 """
-M048993(dim) = fromΔ(I048993(dim))
+M048993(dim) = fromΔ(T048993(dim))
 """
+
 Return the triangular array as a square matrix with dim rows.
 """
-M271703(dim) = fromΔ(I271703(dim))
+M271703(dim) = fromΔ(T271703(dim))
 """
+
 Return the triangular array as a square matrix with dim rows.
 """
-M094587(dim) = fromΔ(I094587(dim))
+M094587(dim) = fromΔ(T094587(dim))
 """
+
 Return the triangular array as a square matrix with dim rows.
 """
-M008279(dim) = fromΔ(I008279(dim))
+M008279(dim) = fromΔ(T008279(dim))
 """
-Return row n of A132393 based on the iteration `I132393`(n).
+
+Return row n of A132393 based on the iteration `T132393`(n).
 """
-V132393(n) = nth(I132393(n+1), n+1)
+V132393(n) = nth(T132393(n + 1), n + 1)
 """
-Return row n of A048993 based on the iteration `I048993`(n).
+
+Return row n of A048993 based on the iteration `T048993`(n).
 """
-V048993(n) = nth(I048993(n+1), n+1)
+V048993(n) = nth(T048993(n + 1), n + 1)
 """
-Return row n of A271703 based on the iteration `I271703`(n).
+
+Return row n of A271703 based on the iteration `T271703`(n).
 """
-V271703(n) = nth(I271703(n+1), n+1)
+V271703(n) = nth(T271703(n + 1), n + 1)
 """
-Return row n of A094587 based on the iteration `I094587`(n).
+
+Return row n of A094587 based on the iteration `T094587`(n).
 """
-V094587(n) = nth(I094587(n+1), n+1)
+V094587(n) = nth(T094587(n + 1), n + 1)
 """
-Return row n of A008279 based on the iteration `I008279`(n).
+
+Return row n of A008279 based on the iteration `T008279`(n).
 """
-V008279(n) = nth(I008279(n+1), n+1)
+V008279(n) = nth(T008279(n + 1), n + 1)
 
 #START-TEST-########################################################
 
-using Test, Combinatorics
+using Test, SeqUtils
 
 function test()
 
+    # From JuliaMath/Combinatorics/numbers.jl
+    function stirlings1(n::Int, k::Int, signed::Bool=false)
+        signed == true && return (-1)^(n - k) * stirlings1(n, k)
+        if n < 0 throw(DomainError(n, "n must be nonnegative"))
+        elseif n == k == 0 return 1
+        elseif n == 0 || k == 0  return 0
+        elseif n == k return 1
+        elseif k == 1 return factorial(n-1)
+        elseif k == n - 1 return binomial(n, 2)
+        elseif k == n - 2 return div((3 * n - 1) * binomial(n, 3), 4)
+        elseif k == n - 3 return binomial(n, 2) * binomial(n, 4)
+        end
+        return (n - 1) * stirlings1(n - 1, k) + stirlings1(n - 1, k - 1)
+    end
+
+    # From JuliaMath/Combinatorics/numbers.jl
+    function stirlings2(n::Int, k::Int)
+        if n < 0 throw(DomainError(n, "n must be nonnegative"))
+        elseif n == k == 0 return 1
+        elseif n == 0 || k == 0 return 0
+        elseif k == n - 1 return binomial(n, 2)
+        elseif k == 2  return 2^(n-1) - 1
+        end
+        return k * stirlings2(n - 1, k) + stirlings2(n - 1, k - 1)
+    end
+
     @testset "Stirling1" begin
 
-        for (n, S1) in enumerate(I132393(10))
-            SC = [stirlings1(n-1, k) for k in 0:n-1]
+        for (n, S1) ∈ enumerate(T132393(10))
+            SC = [stirlings1(n - 1, k) for k ∈ 0:n-1]
             @test S1 == SC
         end
     end
 
     @testset "Stirling2" begin
 
-        for (n, S2) in enumerate(I048993(10))
-            SC = [stirlings2(n-1, k) for k in 0:n-1]
+        for (n, S2) ∈ enumerate(T048993(10))
+            SC = [stirlings2(n - 1, k) for k ∈ 0:n-1]
             @test S2 == SC
         end
     end
 end # test
 
 function demo()
-    for row in I132393(9) println(row) end
+    for row ∈ T132393(9)
+        Println(row)
+    end
     println()
 
-    for n in 0:8 println(n, ": ", V132393(n)) end
+    for n ∈ 0:8
+        print(n, ": "); Println(V132393(n))
+    end
     println()
 
-    ShowAsΔ(I132393(9), "\t")
+    reduce(vcat, [row for row in T132393(6)]) |> Println
+    [row for row in T132393(6)] |> println
+    [row for row in T132393(6)] |> Println
+    for row ∈ T132393(6) Println(row) end
 
-    println(L132393(9))
+    ShowAsΔ(T132393(9), "\t")
+
+    Println(L132393(9))
     println()
 
-    ShowAsMatrix(I132393(9))
+    ShowAsMatrix(T132393(9))
     println()
 
     println(M132393(9))
@@ -182,18 +243,22 @@ function demo()
 
     # ===================================
 
-    for row in I048993(9) println(row) end
+    for row ∈ T048993(9)
+        Println(row)
+    end
     println()
 
-    for n in 0:8 println(n, ": ", V048993(n)) end
+    for n ∈ 0:8
+        print(n, ": "); Println(V048993(n))
+    end
     println()
 
-    ShowAsΔ(I048993(9), "\t")
+    ShowAsΔ(T048993(9), "\t")
 
-    println(L048993(9))
+    Println(L048993(9))
     println()
 
-    ShowAsMatrix(I048993(9))
+    ShowAsMatrix(T048993(9))
     println()
 
     println(M048993(9))
@@ -204,18 +269,22 @@ function demo()
 
     # ===================================
 
-    for row in I008279(9) println(row) end
+    for row ∈ T008279(9)
+        Println(row)
+    end
     println()
 
-    for n in 0:8 println(n, ": ", V008279(n)) end
+    for n ∈ 0:8
+        print(n, ": "); Println(V008279(n))
+    end
     println()
 
-    ShowAsΔ(I008279(9), "\t")
+    ShowAsΔ(T008279(9), "\t")
 
     println(L008279(9))
     println()
 
-    ShowAsMatrix(I008279(9))
+    ShowAsMatrix(T008279(9))
     println()
 
     println(M008279(9))
@@ -226,16 +295,20 @@ function demo()
 end
 
 """
-(for row in I132393(500) end)
+
+(for row ∈ T132393(500) end)
     0.246288 seconds (379.25 k allocations: 8.748 MiB)
 """
 function perf()
     GC.gc()
-    @time (for row in I132393(500) end)
+    @time (for row ∈ T132393(500)
+    end)
     GC.gc()
-    @time (for row in I048993(500) end)
+    @time (for row ∈ T048993(500)
+    end)
     GC.gc()
-    @time (for row in I271703(500) end)
+    @time (for row ∈ T271703(500)
+    end)
 end
 
 function main()

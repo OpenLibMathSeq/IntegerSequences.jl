@@ -1,11 +1,10 @@
 <img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl) 
-[![Build status](https://ci.appveyor.com/api/projects/status/1irsamfi66jnk71m/branch/master?svg=true)](https://ci.appveyor.com/project/OpenLibMathSeq/integersequences-jl)
+[![Build status](https://travis-ci.org/PeterLuschny/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/PeterLuschny/IntegerSequences.jl)
 [![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
 --
 
-The package is tested against, and being developed for, Julia 1.1 and above on Linux, macOS, and Windows64.
+The package is tested against Julia 1.3 and above on Linux, macOS, and Windows64.
 
 ## Naming conventions
 
@@ -23,10 +22,9 @@ I  | Iteration (over n terms)
 L  | List (array based)
 M  | Matrix (2-dim square)
 R  | Real function (Float64)
+P  | Polynomial (univariate over ℤ)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
-TA | Triangle (triangular array)
-TL | Triangle (flat-list array)
 V  | Value (single term)
 is | is a member (predicate query)
 
@@ -64,7 +62,7 @@ L000045(n) = coefficients(G000045, n)
 * Return the ``n``-th Fibonacci number.
 ```
 function V000045(n)
-   F = ZZ[1 1; 1 0]
+   F = ℤ[1 1; 1 0]
    Fn = F^n
    Fn[2, 1]
 end
@@ -149,7 +147,7 @@ chain of lists. On the first level a triangle iterates over the rows of the
 triangle and on the secondary level over the terms of the rows, which are
 given by the user-supplied function t(n, k).
 
-``` 
+```
     T = (row(0), row(1), ..., row(dim-1))
     Row(T, n) = [t(n, 0), t(n, 1), ..., t(n, n)]
 ```
@@ -158,9 +156,9 @@ given by the user-supplied function t(n, k).
 
 Sequence A097805 gives the number of ordered partitions of n into k parts.
 The corresponding triangle can be constructed like this:
-* Triangle T097805 based of explicite value.
+* Triangle T097805 based of explicit value.
 
-``` 
+```
 V097805(n, k) = k == 0 ? k^n : binomial(n-1, k-1)
 T097805(dim) = Triangle(dim, V097805)
 ```
@@ -170,7 +168,7 @@ To support this the type RecTriangle has a buffer which saves the
 previously computed row. This buffer can be accessed through a function 'prevrow'.  
 
 * Triangle T097805 based on recurrence.
-``` 
+```
 R097805(n, k, prevrow) = k == 0 ? k^n : prevrow(k-1) + prevrow(k)
 T097805(dim) = RecTriangle(dim, R097805)
 ```
@@ -185,7 +183,7 @@ A nice alternative for 'prevrow' is 'Tn_1' because Tn_1(k) = T(n-1, k) in matrix
 The following functions are supplied:
 
 * Return the row n (0 <= n < dim) of a triangle.
-``` 
+```
 Row(T::Triangle, n::Int, rev=true) = rev ? reversed(T(n)) : T(n)
 ```
 
@@ -193,12 +191,12 @@ If in the call the third -- optional -- parameter `rev` is true the
 row is returned in reversed order.
 
 * Return the triangle as a list of rows.
-``` 
+```
 TriangularArray(T::Triangle) = [row for row in T]
 ```
 
 * Return the triangle as a list of integers.
-``` 
+```
 TriangleToList(T::Triangle) = [k for row in T for k in row]
 ```
 
@@ -207,7 +205,7 @@ returns a list of integers of length dim(dim + 1)/2. Conversely, given
 an integer list of length n(n + 1)/2 the function ListToTriangle returns a
 triangle as a chain of iterators.
 
-``` 
+```
 ListToTriangle(A::Array{})
 ```
 

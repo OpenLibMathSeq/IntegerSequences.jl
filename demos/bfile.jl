@@ -25,6 +25,7 @@ function write_oeis_bfile(anum, range, seq, comments, targetdir)
         end
         println(file, n, " ", val)
     end
+    print("\n")
     close(file)
 end
 

@@ -11,6 +11,7 @@ export ModuleZumkellerNumbers
 export isZumkeller, is083207, I083207, F083207, L083207, V083207
 
 """
+
 A Zumkeller number ``n`` is an integer whose divisors can be partitioned into two disjoint sets whose sums are both ``σ(n)/2``.
 
 * isZumkeller, is083207, I083207, F083207, L083207, V083207
@@ -18,6 +19,7 @@ A Zumkeller number ``n`` is an integer whose divisors can be partitioned into tw
 const ModuleZumkellerNumbers = ""
 
 """
+
 Is ``n`` a Zumkeller number? A Zumkeller number ``n`` is an integer whose divisors can be partitioned into two disjoint sets whose sums are both ``σ(n)/2``.
 """
 function isZumkeller(n::Int)
@@ -25,38 +27,44 @@ function isZumkeller(n::Int)
     s = σ(n)
     ((s % 2 ≠ 0) || (s < 2n)) && return false
     S = s >> 1 - n
-    D = [d for d in Divisors(n) if d ≤ S]
+    D = [d for d ∈ Divisors(n) if d ≤ S]
     D == [] && return true
-    for c in Combinations(D)
+    for c ∈ Combinations(D)
         S == sum(c) && return true
     end
     return false
 end
 
 """
+
 Is ``n`` a Zumkeller number?
 """
 is083207(n) = isZumkeller(n)
 
 """
+
 Iterate over the first ``n`` Zumkeller numbers.
 """
-I083207(n) = Iterators.take(Iterators.filter(isZumkeller, Iterators.countfrom(1)), n)
+I083207(n) =
+    Iterators.take(Iterators.filter(isZumkeller, Iterators.countfrom(1)), n)
 
 """
+
 Iterate over the Zumkeller numbers ``z`` which are below ``n, (1 ≤ z ≤ n)``.
 """
 F083207(n) = Iterators.filter(isZumkeller, 1:n)
 
 """
+
 List the first ``n`` Zumkeller numbers.
 """
 L083207(n) = collect(I083207(n))
 
 """
+
 Return the ``n``-th Zumkeller number.
 """
-V083207(n) = nth(I083207(n), n)
+V083207(n) = nth(I083207(n+1), n+1)
 
 #START-TEST-########################################################
 
@@ -73,33 +81,42 @@ end
 
 function demo()
     println(L083207(10))
-    for a in I083207(30) print(a, ", ") end; println("...")
-    for a in F083207(30) print(a, ", ") end; println("...")
+    for a ∈ I083207(30)
+        print(a, ", ")
+    end
+    println("...")
+    for a ∈ F083207(30)
+        print(a, ", ")
+    end
+    println("...")
 
-    for n in 20:30
-        println(n, " ↦ ",  isZumkeller(n))
+    for n ∈ 20:30
+        println(n, " ↦ ", isZumkeller(n))
     end
 
-    for (index, value) in enumerate(I083207(10))
+    for (index, value) ∈ enumerate(I083207(10))
         println("$index -> $value")
     end
 
     println(V083207(10))
 
-    for n in 1:6
+    for n ∈ 1:6
         println(n, " ↦ ", L083207(n))
     end
 end
 
 """
-@time (for n in 1:2000 isZumkeller(n) end) ::
+
+@time (for n ∈ 1:2000 isZumkeller(n) end) ::
     0.311896 seconds (1.86 M allocations: 63.875 MiB, 31.28% gc time)
 @time L083207(500) ::
     0.295718 seconds (2.21 M allocations: 75.920 MiB, 40.89% gc time)
 """
 function perf()
     GC.gc()
-    @time (for n in 1:2000 isZumkeller(n) end)
+    @time (for n ∈ 1:2000
+        isZumkeller(n)
+    end)
     @time L083207(500)
 end
 

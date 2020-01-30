@@ -9,18 +9,17 @@ We use the following prefixes to indicate the type of the function.
 Prefix | Function Type
 ------ | -------------
 C  | Coroutine (channel)
-F  | Filter (not exceeding n)
+F  | Filter (all below n)
 G  | Generating function
-I  | Iteration (over n terms)
+I  | Iteration
 L  | List (array based)
 M  | Matrix (2-dim square)
-R  | Real function (Float64)
+P  | Polynomial (over ℤ or QQ)
+R  | RealFunction (Float64)
 S  | Staircase (list iteration)
 T  | Triangle (list iteration)
-TA | Triangle (triangular array)
-TL | Triangle (flat-list array)
 V  | Value (single term)
-is | is a member (predicate query)
+is | is a (predicate), boolean
 
 These conventions can be seen as an application programming interface
 which we explain by three examples.
@@ -56,7 +55,7 @@ L000045(n) = coefficients(G000045, n)
 * Return the ``n``-th Fibonacci number.
 ```javascript
 function V000045(n)
-   F = ZZ[1 1; 1 0]
+   F = ℤ[1 1; 1 0]
    Fn = F^n
    Fn[2, 1]
 end
@@ -150,7 +149,7 @@ given by the user-supplied function t(n, k).
 
 Sequence A097805 gives the number of ordered partitions of n into k parts.
 The corresponding triangle can be constructed like this:
-* Triangle T097805 based of explicite value.
+* Triangle T097805 based of explicit value.
 ```javascript
 V097805(n, k) = k == 0 ? k^n : binomial(n-1, k-1)
 T097805(dim) = Triangle(dim, V097805)

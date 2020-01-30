@@ -11,6 +11,7 @@ using IterTools
 export ModuleNarayanaCows, NarayanasCows, L214551
 
 """
+
 * NarayanasCows, L214551
 
 For background information see
@@ -20,6 +21,7 @@ For background information see
 const ModuleNarayanaCows = ""
 
 """
+
 The type object to construct a new instance of the modified Narayanas cows sequence with given length.
 """
 struct NarayanasCows
@@ -27,6 +29,7 @@ struct NarayanasCows
 end
 
 """
+
 Return the first term of the modified Narayanas cows sequence.
 """
 function Base.iterate(I::NarayanasCows)
@@ -35,6 +38,7 @@ function Base.iterate(I::NarayanasCows)
 end
 
 """
+
 Return the next term of the modified Narayanas cows sequence.
 """
 function Base.iterate(I::NarayanasCows, (x, y, z, c))
@@ -47,6 +51,7 @@ Base.length(f::NarayanasCows) = f.length
 Base.eltype(f::NarayanasCows) = Int
 
 """
+
 Return a list of the first n terms of the modified Narayanas cows sequence.
 """
 L214551(n) = collect(NarayanasCows(n))
@@ -62,7 +67,7 @@ function test()
 end
 
 function demo()
-    for cow in NarayanasCows(20)
+    for cow ∈ NarayanasCows(20)
         print(cow, ", ")
     end
     println()
@@ -74,7 +79,8 @@ function demo()
 end
 
 function perf()
-    @time (for cow in NarayanasCows(10000) end)
+    @time (for cow ∈ NarayanasCows(10000)
+    end)
 end
 
 function main()

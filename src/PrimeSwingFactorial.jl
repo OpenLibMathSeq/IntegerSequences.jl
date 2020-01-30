@@ -11,29 +11,62 @@ export ModulePrimeSwingFactorial
 export PSfactorial, Swing
 
 """
+
  Cf. P. Luschny, [Swing, divide and conquer the factorial](https://oeis.org/A000142/a000142.pdf), excerpt.
 
 * PSfactorial, Swing
 """
 const ModulePrimeSwingFactorial = ""
 
-const SwingOddpart = [1,1,1,3,3,15,5,35,35, 315, 63, 693, 231,
-   3003, 429, 6435, 6435, 109395,12155,230945,46189,969969,
-   88179,2028117, 676039,16900975,1300075,35102025,5014575,
-   145422675,9694845,300540195,300540195]
+const SwingOddpart = [
+    1,
+    1,
+    1,
+    3,
+    3,
+    15,
+    5,
+    35,
+    35,
+    315,
+    63,
+    693,
+    231,
+    3003,
+    429,
+    6435,
+    6435,
+    109395,
+    12155,
+    230945,
+    46189,
+    969969,
+    88179,
+    2028117,
+    676039,
+    16900975,
+    1300075,
+    35102025,
+    5014575,
+    145422675,
+    9694845,
+    300540195,
+    300540195
+]
 
 """
+
 Computes the odd part of the swinging factorial ``n≀`` (cf. A163590).
 """
 function swing_oddpart(n::Int)
-    n < 33 && return ZZ(SwingOddpart[n+1])
+    n < 33 && return fmpz(SwingOddpart[n+1])
 
     sqrtn = isqrt(n)
-    factors = Primes(div(n,2) + 1, n)
+    factors = Primes(div(n, 2) + 1, n)
     P = Primes(sqrtn + 1, div(n, 3))
-    s = [p for p in P if isodd(div(n, p))]
+    s = [p for p ∈ P if isodd(div(n, p))]
 
-    for prime in Primes(3, sqrtn)
+    for prime ∈ Primes(3, sqrtn)
         p, q = 1, n
         while true
             q = div(q, prime)
@@ -43,10 +76,11 @@ function swing_oddpart(n::Int)
         p > 1 && push!(s, p)
     end
 
-    return ∏(factors)*∏(s)
+    return ∏(factors) * ∏(s)
 end
 
 """
+
 Computes the swinging factorial (a.k.a. Swing numbers n≀) (cf. A056040).
 """
 function Swing(n::Int)
@@ -54,20 +88,46 @@ function Swing(n::Int)
     swing_oddpart(n) << sh
 end
 
-const FactorialOddPart = [1, 1, 1, 3, 3, 15, 45, 315, 315, 2835, 14175, 155925,
-    467775, 6081075, 42567525, 638512875, 638512875, 10854718875, 97692469875,
-    1856156927625, 9280784638125, 194896477400625, 2143861251406875,
-    49308808782358125, 147926426347074375, 3698160658676859375]
+const FactorialOddPart = [
+    1,
+    1,
+    1,
+    3,
+    3,
+    15,
+    45,
+    315,
+    315,
+    2835,
+    14175,
+    155925,
+    467775,
+    6081075,
+    42567525,
+    638512875,
+    638512875,
+    10854718875,
+    97692469875,
+    1856156927625,
+    9280784638125,
+    194896477400625,
+    2143861251406875,
+    49308808782358125,
+    147926426347074375,
+    3698160658676859375
+]
 
 """
+
 Return the largest odd divisor of ``n!``. Cf. A049606.
 """
 function factorial_oddpart(n::Int)
-    n < length(FactorialOddPart) && return ZZ(FactorialOddPart[n+1])
-    swing_oddpart(n)*(factorial_oddpart(div(n,2))^2)
+    n < length(FactorialOddPart) && return fmpz(FactorialOddPart[n+1])
+    swing_oddpart(n) * (factorial_oddpart(div(n, 2))^2)
 end
 
 """
+
 Return the factorial ``n! = 1×2× ... ×n``, which is the order of the symmetric group S_n or the number of permutations of n letters (cf. A000142).
 """
 function PSfactorial(n::Int)
@@ -82,7 +142,7 @@ using Test, BenchmarkTools
 
 function test()
     @testset "PrimeSwingF" begin
-        for n in 0:999
+        for n ∈ 0:999
             S = PSfactorial(n)
             B = Base.factorial(BigInt(n))
             #@test S == B
@@ -91,10 +151,10 @@ function test()
     end
 end
 
-function demo()
-end
+function demo() end
 
 """
+
 10^1  128.016 ns (3        allocations:     48 bytes)
 10^2    8.148 μs (78       allocations:   3.31 KiB)
 10^3   68.933 μs (469      allocations:  16.53 KiB)

@@ -1,8 +1,10 @@
 module QueensAlwaysPuzzleMe
 
-using Distributed
+using Distributed, BenchmarkTools
 
-# For some background see: https://wp.me/paipV7-E
+# There is also a simple (i.e. not distributed) version:
+# https://github.com/PeterLuschny/IntegerSequences.jl/blob/master/demos/SimpleQueens.jl
+# For some background see https://wp.me/paipV7-E and https://oeis.org/A319284
 
 function solve!(profile, level, size, start, cols, diag4, diag1)
 
@@ -57,22 +59,42 @@ function queens(n::Int)
     [profile[n-i+1] for i = 0:n]
 end
 
-function demo(up_to)
-    # The number of threads used for multithreading.
-    println(Base.Sys.CPU_THREADS)
-    println(Threads.nthreads())
-
+function ProfileQueens(up_to)
     for n in 0:up_to
-        print("elapsed: ")
-        @time profile = queens(n)
-        println("size:      ", n)
-        println("profile:   ", profile)
-        println("nodes:     ", sum(profile))
-        println("solutions: ", profile[n+1])
-        println()
+        profile = queens(n)
+        #show_profile(n, profile)
     end
 end
 
-demo(10)
+"""
+julia> show_profile(7, queens(7))
+    size:      7
+    profile:   [1, 7, 30, 76, 140, 164, 94, 40]
+    nodes:     552
+    solutions: 40
+"""
+function show_profile(n, p)
+    println("size:      ", n)
+    println("profile:   ", p)
+    println("nodes:     ", sum(p))
+    println("solutions: ", p[n+1])
+    println()
+end
+
+"""
+julia> BechmarkQueens()
+    Number of cpu-threads : 4
+    Number of threads used: 4
+    95.699 ms (589 allocations: 48.88 KiB)
+"""
+function BechmarkQueens()
+    println("Number of cpu-threads : ", Base.Sys.CPU_THREADS)
+    println("Number of threads used: ", Threads.nthreads())
+    println()
+
+    @btime ProfileQueens(12)
+end
+
+BechmarkQueens()
 
 end # module

@@ -73,7 +73,7 @@ Turán graph T(2n, n) for n = 20.")
 g = V033815(20)
 println(g)
 
-println("\nThe binomial function defined for all ZZ.
+println("\nThe binomial function defined for all fmpz.
 The same way as Maple and Mathematica compute the binomial.
 First the familiar Pascal case:")
 for n in 0:8

@@ -9,6 +9,7 @@ export ModuleQueensProblems
 export L319284, Queens
 
 """
+
 For some background see: [Backtracking with profiles](https://wp.me/paipV7-E).
 
 * Queens, L319284
@@ -18,29 +19,28 @@ const ModuleQueensProblems = ""
 function solve!(profile, level, size, start, cols, diag4, diag1)
 
     if level > 0
-        for i in start:size
-            save = cols & (1 << i) +
-            diag1 & (1 << (i + level)) +
-            diag4 & (1 << (32 + i - level))
+        for i ∈ start:size
+            save = cols & (1 << i) + diag1 & (1 << (i + level)) +
+                   diag4 & (1 << (32 + i - level))
 
             if save == 0
 
-                cols  = xor(cols,  1 << i)
+                cols = xor(cols, 1 << i)
                 diag1 = xor(diag1, 1 << (i + level))
                 diag4 = xor(diag4, 1 << (32 + i - level))
 
                 solve!(profile, level - 1, size, 0, cols, diag4, diag1)
 
-                cols  = xor(cols,  1 << i)
+                cols = xor(cols, 1 << i)
                 diag1 = xor(diag1, 1 << (i + level))
                 diag4 = xor(diag4, 1 << (32 + i - level))
 
-                profile[level + 1] += 1
+                profile[level+1] += 1
             end
         end
     else
-        for i in 0:size
-            save = cols & (1<<i) + diag1 & (1<<i) + diag4 & (1<<(32+i))
+        for i ∈ 0:size
+            save = cols & (1 << i) + diag1 & (1 << i) + diag4 & (1 << (32 + i))
             save == 0 && (profile[1] += 1)
         end
     end
@@ -54,6 +54,7 @@ function search(n::Int)
 end
 
 """
+
 Returns the profile of the backtrack tree for the n queens problem (see `A319284`).
 """
 function Queens(n::Int)
@@ -64,9 +65,11 @@ function Queens(n::Int)
 end
 
 """
+
 Returns the profile of the backtrack tree for the n queens problem.
 """
 L319284(n) = Queens(n)
+
 
 #START-TEST-########################################################
 
@@ -82,7 +85,7 @@ end
 function demo()
 
     up_to = 10
-    for n in 0:up_to
+    for n ∈ 0:up_to
         print("elapsed: ")
         @time profile = Queens(n)
         println("size:      ", n)
@@ -94,8 +97,8 @@ function demo()
 end
 
 """
-L319284(15)
-    18.731622 seconds (4 allocations: 480 bytes)
+
+L319284(15) :: 18.731622 seconds (4 allocations: 480 bytes)
 """
 function perf()
     @time L319284(15)

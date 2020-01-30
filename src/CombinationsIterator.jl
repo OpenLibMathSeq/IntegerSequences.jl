@@ -11,6 +11,7 @@ export ModuleCombinationsIterator
 export Combinations
 
 """
+
 * Combinations
 """
 const ModuleCombinationsIterator = ""
@@ -21,18 +22,18 @@ struct combinations
     t::Int
 end
 
-function Base.iterate(c::combinations, s=[min(c.t - 1, i) for i in 1:c.t])
+function Base.iterate(c::combinations, s = [min(c.t - 1, i) for i ∈ 1:c.t])
     if c.t == 0 # special case to generate 1 result for t==0
         isempty(s) && return (s, [1])
         return
     end
-    for i in c.t:-1:1
+    for i ∈ c.t:-1:1
         s[i] += 1
         if s[i] > (c.n - (c.t - i))
             continue
         end
-        for j in i + 1:c.t
-            s[j] = s[j - 1] + 1
+        for j ∈ i+1:c.t
+            s[j] = s[j-1] + 1
         end
         break
     end
@@ -44,6 +45,7 @@ Base.length(c::combinations) = binomial(c.n, c.t)
 Base.eltype(::Type{combinations}) = Vector{Int}
 
 """
+
 Generate all Combinations of ``n`` elements from an indexable object ``a``. Because the number of Combinations can be very large, this function returns an iterator object.
  Use collect(Combinations(a, n)) to get an array of all Combinations.
 """
@@ -52,11 +54,12 @@ function Combinations(a, t::Integer)
         # generate 0 Combinations for negative argument
         t = length(a) + 1
     end
-    reorder(c) = [a[ci] for ci in c]
-    (reorder(c) for c in combinations(length(a), t))
+    reorder(c) = [a[ci] for ci ∈ c]
+    (reorder(c) for c ∈ combinations(length(a), t))
 end
 
 """
+
 Generate Combinations of the elements of ``a`` of all orders. Chaining of order iterators is eager, but the sequence at each order is lazy.
 """
 Combinations(a) = Iterators.flatten([Combinations(a, k) for k = 1:length(a)])
@@ -76,7 +79,7 @@ function demo()
     Println([Combinations("abcd", 3)...])
 
     D = [2, 3, 4, 5]
-    for c in Combinations(D)
+    for c ∈ Combinations(D)
         println(c)
     end
 

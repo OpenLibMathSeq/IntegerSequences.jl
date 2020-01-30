@@ -13,6 +13,7 @@ export T039599, T116392, T172094, T321620, T321621
 export T321623, T321624, T322942
 
 """
+
 The Riordan product is a map a, b ↦ [a, b] associating two formal power series a, b with a lower triangular matrix [a, b]. The Riordan square is the case a = b of the Riordan product. Formally we can describe the Riordan square as a transform RS: Z[[x]] ↦ Mat[Z] which maps power series over the integers to (lower triangular) integer matrices.
 
 * RiordanProduct, RiordanSquare
@@ -23,62 +24,74 @@ The Riordan product is a map a, b ↦ [a, b] associating two formal power series
 const ModuleRiordanSquares = ""
 
 """
+
 Return the Riordan array associated with the generating functions a and b.
 """
-function RiordanProduct(a, b, dim, expo=false)
+function RiordanProduct(a, b, dim, expo = false)
     A = Coefficients(a, dim)
-    B = b == nothing ? A : Coefficients(b, dim)
+    B = b === nothing ? A : Coefficients(b, dim)
     M = identity_matrix(QQ, dim)
-    for k in 1:dim M[k, 1] = A[k] end
+    for k ∈ 1:dim
+        M[k, 1] = A[k]
+    end
 
-    for k in 2:dim, m in k+1:dim
-        M[m, k] = sum(M[j+1, k-1]*B[m-j] for j in k-2:m-2)
+    for k ∈ 2:dim, m ∈ k+1:dim
+        M[m, k] = sum(M[j+1, k-1] * B[m-j] for j ∈ k-2:m-2)
     end
     #expo ? ExponentialWeights(M) : M
     toΔ(M)
 end
 
 """
-Return the Riordan array (Riordan product) ``a \times a``.
+
+Return the Riordan array (Riordan product) ``a \\times a``.
 """
-RiordanSquare(a, n, expo=false) = RiordanProduct(a, nothing, n, expo)
+RiordanSquare(a, n, expo = false) = RiordanProduct(a, nothing, n, expo)
 
 """
+
 The Riordan square of the Catalan numbers.
 """
 T039599(n) = RiordanSquare(G000108, n)
 
 """
+
 The Riordan square of the central trinomial.
 """
 T116392(n) = RiordanSquare(G002426, n)
 
 """
+
 The Riordan square of the little Schröder numbers.
 """
 T172094(n) = RiordanSquare(G001003, n)
 
 """
+
 The Riordan square of the Riordan numbers (with 1 prepended).
 """
 T321620(n) = RiordanSquare(G005043, n)
 
 """
+
 The Riordan square of the Motzkin numbers.
 """
 T321621(n) = RiordanSquare(G001006, n)
 
 """
+
 The Riordan square of the large Schröder numbers.
 """
 T321623(n) = RiordanSquare(G006318, n)
 
 """
+
 The Riordan square of the Lucas numbers.
 """
 T321624(n) = RiordanSquare(G000032, n)
 
 """
+
 The Riordan square of the Jacobsthal numbers.
 """
 T322942(n) = RiordanSquare(G001045, n)
@@ -156,9 +169,7 @@ function demo()
     T322942(5) |> ShowAsΔ
 end
 
-function perf()
-    # @time
-end
+function perf() end
 
 function main()
     test()

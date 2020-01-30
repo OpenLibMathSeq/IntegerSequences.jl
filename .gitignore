@@ -1,5 +1,8 @@
+Manifest.toml
 local/*
 docs/build/*
-.vscode/*
+.vsc/*
 data/A123456.json
 data/b000290.txt
+demos/.ipynb_checkpoints
+UnderConstruction/*

@@ -12,6 +12,7 @@ export EuclidTree, CalkinWilfTree, SchinzelSierpinskiEncoding
 
 
 """
+
 Rational trees as understood here are binary trees enumerating the positive or
 nonnegative rational numbers. Examples are the Euclid tree, the Kepler tree and the
 Stern-Brocot tree (a.k.a. Farey tree). They are closely related to binary partitions
@@ -27,8 +28,9 @@ const ModuleRationalTrees = ""
 # A294442 A294446
 
 """
+
 ```
-julia> for n in 1:4 Println(EuclidTree(n)) end
+julia> for n ∈ 1:4 Println(EuclidTree(n)) end
 [1//1]
 [1//2, 2//1]
 [1//3, 3//2, 2//3, 3//1]
@@ -43,41 +45,44 @@ function EuclidTree(n)
             k % 2 == 1 ? b += a : a += b
             k = k >> 1
         end
-    b end
+        b
+    end
 
-    DF = [DijkstraFusc(k) for k in 2^(n-1):2^n]
-    [fmpq(DF[j], DF[j+1]) for j in 1:2^(n-1)]
+    DF = [DijkstraFusc(k) for k ∈ 2^(n-1):2^n]
+    [fmpq(DF[j], DF[j+1]) for j ∈ 1:2^(n-1)]
 end
 
 """
+
 Alias for the (much better named) EuclidTree. See Malter, Schleicher, Zagier, New looks at old number theory, Amer. Math. Monthly, 120(3), 2013, pp. 243-264.
 """
 CalkinWilfTree(n) = EuclidTree(n)
 
 """
+
 Return the Schinzel-Sierpinski encoding of the positive rational number r.
 
 ```
-julia> for n in 1:4 println([SchinzelSierpinski(l) for l in EuclidTree(n)]) end
+julia> for n ∈ 1:4 println([SchinzelSierpinski(l) for l ∈ EuclidTree(n)]) end
 [1//1]
 [2//5, 5//2]
 [3//11, 5//3, 3//5, 11//3]
 [2//11, 3//2, 11//19, 19//7, 7//19, 19//11, 2//3, 11//2]
 ```
 """
-function SchinzelSierpinskiEncoding(l, searchLimit=500000)
+function SchinzelSierpinskiEncoding(l, searchLimit = 500000)
 
     a, b = numerator(l), denominator(l)
     sgn = a < b ? -1 : 1
     p, q = 1, 2
 
     while q < searchLimit
-        r = a*(q + 1)
+        r = a * (q + 1)
         r % b == 0 && (p = div(r, b) - 1)
         isPrime(p) && return fmpq(p, q)
         q = NextPrime(q)
     end
-    warn("Search limit reached for ", l )
+    warn("Search limit reached for ", l)
     return 0
 end
 
@@ -87,42 +92,43 @@ using Test, SeqUtils, PrimesIterator
 
 function test()
     @testset "EuclidTree" begin
-        S = [numerator(sum(r for r in EuclidTree(n))) for n in 1:9]
-        L = Nemo.fmpz[1, 5, 11, 23, 47, 95, 191, 383, 767] # A052940
+        S = [numerator(sum(r for r ∈ EuclidTree(n))) for n ∈ 1:9]
+        L = fmpz[1, 5, 11, 23, 47, 95, 191, 383, 767] # A052940
         @test all(S[1:9] .== L[1:9])
     end
 end
 
 function demo()
     println("\nEuclidTree")
-    for n in 1:5
+    for n ∈ 1:5
         Println(EuclidTree(n))
     end
     println()
 
     println("\nSchinzelSierpinskiEncoding of the Euclid tree")
-    for n in 1:5
-        Println([SchinzelSierpinskiEncoding(l) for l in EuclidTree(n)])
-        # println(sum([SchinzelSierpinskiEncoding(l) for l in EuclidTree(n)]))
+    for n ∈ 1:5
+        Println([SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(n)])
+        # println(sum([SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(n)]))
     end
     println()
 
     println("\nSchinzelSierpinskiEncoding of primes")
-    Println([SchinzelSierpinskiEncoding(fmpq(p,1)) for p in Primes(100)])
+    Println([SchinzelSierpinskiEncoding(fmpq(p, 1)) for p ∈ Primes(100)])
     println()
 end
 
 """
+
 EuclidTree(100) ::
     0.000005 seconds (4 allocations: 224 bytes)
-[SchinzelSierpinskiEncoding(l) for l in EuclidTree(100)] ::
+[SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(100)] ::
     0.000007 seconds (6 allocations: 320 bytes)
 """
 function perf()
     GC.gc()
     @time EuclidTree(100)
     GC.gc()
-    @time [SchinzelSierpinskiEncoding(l) for l in EuclidTree(100)]
+    @time [SchinzelSierpinskiEncoding(l) for l ∈ EuclidTree(100)]
 end
 
 function main()

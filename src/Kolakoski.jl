@@ -11,23 +11,26 @@ export ModuleKolakoski
 export KolakoskiList, C000002, I000002, L000002
 
 """
+
 * KolakoskiList, C000002, I000002, L000002
 """
 const ModuleKolakoski = ""
 
 """
+
 Generate the Kolakoski sequence which is the unique sequence over the alphabet ``{1, 2}`` starting with ``1`` and having the sequence of run lengths identical with itself.
 """
-C000002() = Channel(csize = 10) do c
-    x = y = Int(-1)
+C000002() =
+    Channel(csize = 10) do c
+        x = y = Int(-1)
 
-    while true
-        put!(c, [2, 1][(x & 1) + 1])
-        f = y & ~(y + 1)
-        x = xor(x, f)
-        y = (y + 1) | (f & (x >> 1))
+        while true
+            put!(c, [2, 1][(x&1)+1])
+            f = y & ~(y + 1)
+            x = xor(x, f)
+            y = (y + 1) | (f & (x >> 1))
+        end
     end
-end
 
 struct KolakoskiSeq
     count::Int
@@ -56,22 +59,25 @@ Base.length(I::KolakoskiSeq) = I.count
 Base.eltype(I::KolakoskiSeq) = Int
 
 """
+
 Iterate over the first ``n`` Kolakoski numbers.
 """
 I000002(n::Int) = KolakoskiSeq(n)
 
 """
+
 Return the list of the first ``n`` terms of the Kolakoski sequence.
 """
 function KolakoskiList(len::Int)
     len ≤ 0 && return []
     generator = C000002()
-    L = [take!(generator) for _ in 1:len]
+    L = [take!(generator) for _ ∈ 1:len]
     close(generator)
     return L
 end
 
 """
+
 Return the list of the first ``n`` terms of the Kolakoski sequence.
 """
 L000002(n::Int) = KolakoskiList(n)
@@ -84,12 +90,12 @@ function test()
 
     @testset "Kolakoski" begin
         K = KolakoskiList(100)
-        @test K[1]  == 1
+        @test K[1] == 1
         @test K[33] == 2
         @test K[72] == 2
 
         generator = C000002()
-        for n in [1, 33, 72]
+        for n ∈ [1, 33, 72]
             k = take!(generator)
             @test K[n] == k
         end
@@ -102,18 +108,23 @@ function demo()
 
     generator = C000002()
     o = e = 0
-    for n in 1:80
+    for n ∈ 1:80
         take!(generator) == 1 ? o += 1 : e += 1
         print(o - e, " ")
     end
     println()
     close(generator)
 
-    for f in I000002(20) print(f, ", ") end; println()
-    print(L000002(20)); println()
+    for f ∈ I000002(20)
+        print(f, ", ")
+    end
+    println()
+    print(L000002(20))
+    println()
 end
 
 """
+
 I000002(100000) ::
     0.000035 seconds (31 allocations: 2.969 KiB)
 KolakoskiList(10000) ::

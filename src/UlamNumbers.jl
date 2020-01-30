@@ -9,17 +9,20 @@ export ModuleUlamNumbers
 export L002858, UlamList, isUlam
 
 """
-An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+
+An Ulam number ``u(n)`` is the least number ``> u(n-1)`` which is a unique sum of two distinct earlier terms; ``u(1) = 1`` and ``u(2) = 2``.
 
 * UlamList, isUlam, L002858
 """
 const ModuleUlamNumbers = ""
 
 """
+
 Is ``n`` an Ulam number?
 """
 function isUlam(u, n, h, i, r)
-    ur = u[r]; ui = u[i]
+    ur = u[r]
+    ui = u[i]
     ur <= ui && return h
     if ur + ui > n
         r -= 1
@@ -27,18 +30,23 @@ function isUlam(u, n, h, i, r)
         i += 1
     else
         h && return false
-        h = true; i += 1; r -= 1
+        h = true
+        i += 1
+        r -= 1
     end
     isUlam(u, n, h, i, r)
 end
 
 """
-Return a list of Ulam numbers. An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+
+Return a list of Ulam numbers. An Ulam number ``u(n)`` is the least number ``> u(n-1)`` which is a unique sum of two distinct earlier terms; ``u(1) = 1`` and ``u(2) = 2``.
 """
 function UlamList(len)
-    u = Array{Int, 1}(undef, len)
-    u[1] = 1; u[2] = 2
-    i = 2; n = 2
+    u = Array{Int,1}(undef, len)
+    u[1] = 1
+    u[2] = 2
+    i = 2
+    n = 2
 
     while i < len
         n += 1
@@ -52,6 +60,7 @@ function UlamList(len)
 end
 
 """
+
 Return a list of Ulam numbers.
 """
 L002858(len) = UlamList(len)
@@ -60,9 +69,9 @@ L002858(len) = UlamList(len)
 
 using Test
 
-function test(oeis_isinstalled=false)
+function test(data_installed = false)
     @testset "UlamNumbers" begin
-    @test UlamList(6)[end] == 8
+        @test UlamList(6)[end] == 8
     end
 end
 
@@ -76,15 +85,16 @@ function demo()
 end
 
 """
-0.000061 seconds (1 allocation: 624 bytes)
-0.000296 seconds (1 allocation: 1.141 KiB)
-0.001216 seconds (1 allocation: 2.125 KiB)
-0.005786 seconds (1 allocation: 4.125 KiB)
-0.018729 seconds (1 allocation: 8.125 KiB)
+
+  64: 0.000061 seconds (1 allocation: 624 bytes)
+ 128: 0.000296 seconds (1 allocation: 1.141 KiB)
+ 256: 0.001216 seconds (1 allocation: 2.125 KiB)
+ 512: 0.005786 seconds (1 allocation: 4.125 KiB)
+1024: 0.018729 seconds (1 allocation: 8.125 KiB)
 """
 function perf()
     GC.gc()
-    for n in 6:10
+    for n ∈ 6:10
         @time UlamList(2^n)
     end
 end
