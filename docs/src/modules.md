@@ -23,7 +23,7 @@ For n = 100 the benchmark shows:
 
 Our function is slower but the Combinatorics function takes vastly more space.
 
-In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographicaly. It has a nice algorithm implemented directly (i.e. without iteration).
+In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographically. It has a nice algorithm implemented directly (i.e. without iteration).
 
 * Partition, V080577, V026791
 

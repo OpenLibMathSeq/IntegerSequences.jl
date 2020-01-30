@@ -156,7 +156,7 @@ given by the user-supplied function t(n, k).
 
 Sequence A097805 gives the number of ordered partitions of n into k parts.
 The corresponding triangle can be constructed like this:
-* Triangle T097805 based of explicite value.
+* Triangle T097805 based of explicit value.
 
 ```
 V097805(n, k) = k == 0 ? k^n : binomial(n-1, k-1)
