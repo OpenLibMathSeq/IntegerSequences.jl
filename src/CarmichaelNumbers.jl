@@ -20,7 +20,7 @@ const ModuleCarmichaelNumbers = ""
 
 """
 
-Is ``n`` a Carmichael/Šimerka number?
+Is ``n`` a Carmichael (or Šimerka) number?
 """
 function isCarmichael(n)
     (n == 1 || isEven(n) || isPrime(n)) && return false
@@ -32,19 +32,19 @@ end
 
 """
 
-Iterate over the first n Carmichael/Šimerka numbers.
+Iterate over the first ``n`` Carmichael (or Šimerka) numbers.
 """
 I002997(n) = takeFirst(isCarmichael, n)
 
 """
 
-Iterate over the Carmichael/Šimerka numbers which do not exceed n.
+Iterate over the Carmichael (or Šimerka) numbers which do not exceed ``n``.
 """
 F002997(n) = filter(isCarmichael, 1:n)
 
 """
 
-Return the first n Carmichael/Šimerka numbers in an array.
+Return the first ``n`` Carmichael (or Šimerka) numbers in an array.
 """
 L002997(n) = collect(I002997(n))
 
@@ -62,19 +62,19 @@ end
 
 """
 
-Iterate over the first n weak Carmichael numbers.
+Iterate over the first ``n`` weak Carmichael numbers.
 """
 I225498(n) = takeFirst(isweakCarmichael, n)
 
 """
 
-Iterate over the weak Carmichael numbers which do not exceed n.
+Iterate over the weak Carmichael numbers which do not exceed ``n``.
 """
 F225498(n) = filter(isweakCarmichael, 1:n)
 
 """
 
-Return the first n weak Carmichael numbers in an array.
+Return the first ``n`` weak Carmichael numbers in an array.
 """
 L225498(n) = collect(I225498(n))
 

@@ -81,7 +81,7 @@ end
 
 """
 
-Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*x^k/k!``. Note that integer division is used.
+Return the polynomial ``p`` with the coefficients C used in the form ``c[k] x^k/k!``. Note that integer division is used.
 """
 function EgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
@@ -90,7 +90,7 @@ end
 
 """
 
-Return the polynomial ``p`` with the coefficients C used in the form ``c[k]*k!*x^k``.
+Return the polynomial ``p`` with the coefficients C used in the form ``c[k] k! x^k``.
 """
 function OgfPoly(C)
     T, x = PolynomialRing(ZZ, "x")
@@ -107,7 +107,7 @@ AltPoly(p::fmpz_poly) = Poly(AltCoeffs(p))
 
 """
 
-Return the polynomial ``p`` with coefficients in exponential form (i.e. with c[k]*x^k/k!).
+Return the polynomial ``p`` with coefficients in exponential form (i.e. with ``c[k] x^k/k!``).
 """
 EgfPoly(p::fmpz_poly) = Poly(EgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")
@@ -115,7 +115,7 @@ EgfPoly(p::fmpz_poly) = Poly(EgfCoeffs(p))
 
 """
 
-Return the polynomial ``p`` with coefficients in exponential form and alternating signs (i.e. with (-1)^k*c[k]*x^k/k!).
+Return the polynomial ``p`` with coefficients in exponential form and alternating signs (i.e. with ``(-1)^k c[k] x^k/k!``).
 """
 AltEgfPoly(p::fmpz_poly) = Poly(AltEgfCoeffs(p))
 #    T, x = PolynomialRing(ZZ, "x")

@@ -8,7 +8,7 @@ module RecordSearch
 using Nemo
 
 export ModuleRecordSearch
-export Records, RecordsCached
+export Records
 
 """
 

@@ -459,7 +459,7 @@ L001481(bound::Int) = binaryQF(1, 0, 1, bound) # "positive"
 
 """
 
-Return numbers ``n`` that are primitively represented by ``x^2 + y^2``. Also numbers n such that ``√(-1)`` mod ``n`` exists.
+Return numbers ``n`` that are primitively represented by ``x^2 + y^2``. Also numbers ``n`` such that ``√(-1)`` mod ``n`` exists.
 """
 L008784(bound::Int) = binaryQF(1, 0, 1, bound, "primitively")
 

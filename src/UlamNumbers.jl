@@ -10,7 +10,7 @@ export L002858, UlamList, isUlam
 
 """
 
-An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+An Ulam number ``u(n)`` is the least number ``> u(n-1)`` which is a unique sum of two distinct earlier terms; ``u(1) = 1`` and ``u(2) = 2``.
 
 * UlamList, isUlam, L002858
 """
@@ -39,7 +39,7 @@ end
 
 """
 
-Return a list of Ulam numbers. An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+Return a list of Ulam numbers. An Ulam number ``u(n)`` is the least number ``> u(n-1)`` which is a unique sum of two distinct earlier terms; ``u(1) = 1`` and ``u(2) = 2``.
 """
 function UlamList(len)
     u = Array{Int,1}(undef, len)

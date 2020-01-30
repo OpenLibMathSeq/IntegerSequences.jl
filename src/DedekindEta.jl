@@ -38,55 +38,55 @@ end
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)``.
 """
 L010815(len::Int) = DedekindEtaPowers(len, 1)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^2``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^2``.
 """
 L002107(len::Int) = DedekindEtaPowers(len, 2)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^3``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^3``.
 """
 L010816(len::Int) = DedekindEtaPowers(len, 3)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^4``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^4``.
 """
 L000727(len::Int) = DedekindEtaPowers(len, 4)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^5``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^5``.
 """
 L000728(len::Int) = DedekindEtaPowers(len, 5)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^6``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^6``.
 """
 L000729(len::Int) = DedekindEtaPowers(len, 6)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^7``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^7``.
 """
 L000730(len::Int) = DedekindEtaPowers(len, 7)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^8``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^8``.
 """
 L000731(len::Int) = DedekindEtaPowers(len, 8)
 
 """
 
-Compute the expansion of ``∏_{m≥1} (1 - q^m)^9``.
+Compute the expansion of ``∏ _{m≥1} (1 - q^m)^9``.
 """
 L010817(len::Int) = DedekindEtaPowers(len, 9)
 

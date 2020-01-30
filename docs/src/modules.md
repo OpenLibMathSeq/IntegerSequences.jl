@@ -23,7 +23,7 @@ For n = 100 the benchmark shows:
 
 Our function is slower but the Combinatorics function takes vastly more space.
 
-In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographically. It has a nice algorithm implemented directly (i.e. without iteration).
+In the second alternative implementation the representation of the partitions for fixed n is a weakly increasing lists ordered lexicographicaly. It has a nice algorithm implemented directly (i.e. without iteration).
 
 * Partition, V080577, V026791
 
@@ -47,9 +47,11 @@ Generalized André numbers count the ``m``-alternating permutations of length ``
 ##   🔶  [BellNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BellNumbers.jl)
 
 
-The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
+The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials. Let ``X`` be an integer sequence, then
 
-Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \sum_{m=1}^{n-k+1} \binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+``B_{n, k}(X) = \sum_{m=1}^{n-k+1} \binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)``
+
+where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 
 The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
 
@@ -79,7 +81,7 @@ The rational Bernoulli numbers are defined here with ``B(1) = 1/2``. Why this is
 ##   🔶  [BinaryInteger](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/BinaryInteger.jl)
 
 
-For positive n, BinaryIntegerLength is ``⌊ log[2](n) ⌋ + 1``, BinaryIntegerLength(0) = 0.
+For positive n, BinaryIntegerLength is ``⌊ \log_{2}(n) ⌋ + 1``, BinaryIntegerLength(0) = 0.
 
 * BinaryIntegerLength, Bil, V001855, V003314, V033156, V054248, V061168, V083652, V097383, V123753, V295513
 
@@ -321,18 +323,6 @@ Rooted trees and similar topics.
 
 A collection of utilities for handling OEIS related tasks.
 
-##   🔶  [OrderedSetPartitionsTypeM](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/OrderedSetPartitionsTypeM.jl)
-
-
-| type | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
-|------|-------|-------|-------|-------|-------|
-| by shape | [A178803](https://oeis.org/A178803) | [A133314](https://oeis.org/A133314) | [A327022](https://oeis.org/A327022) | [A327023](https://oeis.org/A327023) | [A327024](https://oeis.org/A327024) |
-| by length | [A318144](https://oeis.org/A318144) | [A131689](https://oeis.org/A131689) | [A241171](https://oeis.org/A241171) | [A278073](https://oeis.org/A278073) | [A278074](https://oeis.org/A278074) |
-| diagonal | [A000142](https://oeis.org/A000142) | [A000142](https://oeis.org/A000142) | [A000680](https://oeis.org/A000680) | [A014606](https://oeis.org/A014606) | [A014608](https://oeis.org/A014608) |
-| row sum | [A101880](https://oeis.org/A101880) | [A000670](https://oeis.org/A000670) | [A094088](https://oeis.org/A094088) | [A243664](https://oeis.org/A243664) | [A243665](https://oeis.org/A243665) |
-| alt row sum | [A260845](https://oeis.org/A260845) | [A033999](https://oeis.org/A033999) | [A028296](https://oeis.org/A028296) | [A002115](https://oeis.org/A002115) | [A211212](https://oeis.org/A211212) |
-| central | [A053529](https://oeis.org/A053529) | [A210029](https://oeis.org/A210029) | [A281478](https://oeis.org/A281478) | [A281479](https://oeis.org/A281479) | [A281480](https://oeis.org/A281480) |
-
 ##   🔶  [OrthoPolynomials](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/OrthoPolynomials.jl)
 
 
@@ -454,32 +444,6 @@ Return the numbers of partitions of an ``n``-set into nonempty subsets.
 * SetNumber(n::Int, m::Int)
 Return the numbers of partitions of an ``n``-set into ``m`` nonempty subsets.
 
-##   🔶  [SetPartitionsTypeM](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SetPartitionsTypeM.jl)
-
-
-For example consider the case n = 4. There are five integer partitions of 4:
-
-* P = [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]. The shapes are m times the parts of the integer partitions: S(m) = [[4m], [3m, m], [2m, 2m], [2m, m, m], [m, m, m, m]].
-
-* In the case m = 1 we look at set partitions of {1, 2, 3, 4} with sizes ∈  [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]] which gives rise to [1, 4, 3, 6, 1] with sum 15.
-
-* In the case m = 2 we look at set partitions of {1, 2, .., 8} with sizes ∈ [[8], [6, 2], [4, 4], [4, 2, 2], [2, 2, 2, 2]] which gives rise to [1, 28, 35, 210, 105] with sum 379.
-
-* In the case m = 0 we look at set partitions of {} with sizes ∈ [[0], [0, 0], [0, 0], [0, 0, 0], [0, 0, 0, 0]] which gives rise to [1, 1, 1, 1, 1] with sum 5 (because the only partition of the empty set is the set that contains the empty set, thus from the definition T(0,4) = Sum_{S(0)} card({0}) = A000041(4) = 5).
-
-* If n runs through 0, 1, 2,... then the result is an irregular triangle ∈ which the n-th row lists multinomials for partitions of [m*n] which have only parts which are multiples of m. These are the triangles A080575 (m = 1), A257490 (m = 2), A327003 (m = 3), A327004 (m = 4). In the case m = 0 the triangle is A000012 subdivided into rows of length A000041. See the  references below how this case integrates into the full picture.
-
-| type  | m = 0 | m = 1 | m = 2 | m = 3 | m = 4 |
-|-------|-------|-------|-------|-------|-------|
-| by shape | [A000012](https://oeis.org/A000012) | [A036040](https://oeis.org/A036040) | [A257490](https://oeis.org/A257490) | [A327003](https://oeis.org/A327003) | [A327004](https://oeis.org/A327004) |
-| by length | [A008284](https://oeis.org/A008284) | [A048993](https://oeis.org/A048993) | [A156289](https://oeis.org/A156289) | [A291451](https://oeis.org/A291451) | [A291452](https://oeis.org/A291452) |
-| diagonal | [A000012](https://oeis.org/A000012) | [A000012](https://oeis.org/A000012) | [A001147](https://oeis.org/A001147) | [A025035](https://oeis.org/A025035) | [A025036](https://oeis.org/A025036) |
-| row sum | [A000041](https://oeis.org/A000041) | [A000110](https://oeis.org/A000110) | [A005046](https://oeis.org/A005046) | [A291973](https://oeis.org/A291973) | [A291975](https://oeis.org/A291975) |
-| alt row sum | [A081362](https://oeis.org/A081362) | [A000587](https://oeis.org/A000587) | [A260884](https://oeis.org/A260884) | [A291974](https://oeis.org/A291974) | [A291976](https://oeis.org/A291976) |
-| central | [A000041](https://oeis.org/A000041) | [A007820](https://oeis.org/A007820) | [A327416](https://oeis.org/A327416) | [A327417](https://oeis.org/A327417) | [A327418](https://oeis.org/A327418) |
-
-See also [A260876](https://oeis.org/A260876).
-
 ##   🔶  [SpigotPi](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/SpigotPi.jl)
 
 Computes the first n decimal digits of Pi, uses a variant of the spigot algorithm valid as long as the number of digits <= 54900. Based on ideas of A. Sale (1968). Algorithm due to D. Saada (1988) and S. Rabinowitz (1991). Proof due to [Rabinowitz and S. Wagon](https://www.maa.org/sites/default/files/pdf/pubs/amm_supplements/Monthly_Reference_12.pdf) (1995).
@@ -506,7 +470,7 @@ Basic implementation of the swing algorithm using no primes. Claims to be the mo
 ##   🔶  [UlamNumbers](https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/src/UlamNumbers.jl)
 
 
-An Ulam number u(n) is the least number > u(n-1) which is a unique sum of two distinct earlier terms; u(1) = 1 and u(2) = 2.
+An Ulam number ``u(n)`` is the least number ``> u(n-1)`` which is a unique sum of two distinct earlier terms; ``u(1) = 1`` and ``u(2) = 2``.
 
 * UlamList, isUlam, L002858
 

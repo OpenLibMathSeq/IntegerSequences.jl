@@ -39,7 +39,7 @@ const ModuleIntPartitions = ""
 
 """
 
-Conventional names for orderings of integer partitions of ``n``. ``byMaxPart`` means first order by the biggest part. ``byNumPart`` means first order by the number of parts. The secondary order is in both cases colexicographic.
+Conventional names for orderings of integer partitions of ``n``. byMaxPart means first order by the biggest part. byNumPart means first order by the number of parts. The secondary order is in both cases colexicographic.
 """
 @enum PartOrder begin
     byNumPart

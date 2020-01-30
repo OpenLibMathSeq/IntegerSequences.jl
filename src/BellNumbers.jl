@@ -14,9 +14,11 @@ export T004747, T051141, T265606, T119274, T000369, T051142
 
 """
 
-The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
+The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials. Let ``X`` be an integer sequence, then
 
-Let ``X`` be an integer sequence, then ``B_{n, k}(X) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+ ``B_{n, k}(X) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)``
+
+ where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 
 The Bell transform is (0,0)-based and the associated triangle always has as first column 1,0,0,0,... This column is often missing in the OEIS. Other Stirling number related sequences are implemented in the module StirlingLahNumbers.
 
@@ -90,9 +92,11 @@ L000110(len::Int) = BellNumberList(len)
 
 """
 
-The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
+The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials. Let ``X`` be an integer sequence, then
 
-Let ``X`` be an integer sequence, then ``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)``
+
+where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, X::Array)
     global CacheBellA
@@ -114,9 +118,11 @@ const CacheBellA = Dict{Tuple{Int,Int,Array},fmpz}()
 
 """
 
-The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials.
+The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials. Let ``F`` be an integer sequence generating function, then
 
-Let ``F`` be an integer sequence generating function, then ``B_{n,k}(F) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} F(m) B_{n-m,k-1}(F)`` where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
+``B_{n,k}(F) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} F(m) B_{n-m,k-1}(F)``
+
+where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, F::Function)
     global CacheBellF

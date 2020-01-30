@@ -87,7 +87,7 @@ end
 
 """
 
-The inverse function of the boustrophedonic Cantor enumeration (the pairing function), computes n for given ``(x, y)`` and returns ``(x + y)(x + y + 1)/2 + m`` where ``m = abs(x - y) - (x > y ? 1 : 0)``.
+The inverse function of the boustrophedonic Cantor enumeration (the pairing function), computes n for given ``(x, y)`` and returns ``(x + y)(x + y + 1)/2 + m`` where ``m = |x - y| - (x > y  ?  1 : 0)``.
 """
 function CantorBoustrophedonicPairing(x, y)
     m = abs(x - y) - (x > y ? 1 : 0)

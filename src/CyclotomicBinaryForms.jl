@@ -53,7 +53,7 @@ end
 
 """
 
-Filter the integers which are A206942 and <= ``n``.
+Filter the integers which are A206942 and  ``<= n``.
 """
 F206942(n) = filter(is206942, 1:n)
 
@@ -73,14 +73,14 @@ L206942(n) = collect(I206942(n))
 
 """
 
-Is ``n`` a prime of the form ``Phi_k(m)`` with ``k > 2`` and ``|m| > 1``
-where ``Phi_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
+Is ``n`` a prime of the form ``𝚽_k(m)`` with ``k > 2`` and ``|m| > 1``
+where ``𝚽_k(m)`` denotes the ``k``-th cyclotomic polynomial evaluated at ``m``.
 """
 is206864(n) = isPrime(n) && is206942(n)
 
 """
 
-Filter the integers which are A206864 and <= ``n``.
+Filter the integers which are A206864 and ``<= n``.
 """
 F206864(n) = (j for j ∈ 1:n if is206864(j))
 

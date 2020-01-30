@@ -24,7 +24,7 @@ const ModuleLah = ""
 
 """
 
-Return the ``n``-th Lah number.
+Return the ``n``-th row of the Lah number triangle.
 """
 function Lah(n)
     haskey(CacheLah, n) && return CacheLah[n]
@@ -39,24 +39,19 @@ end
 
 const CacheLah = Dict{Int, Array{fmpz,1}}([0 => [fmpz(1)]])
 
+"""
+
+Return the ``k``-th term of the ``n``-th row of the Lah number triangle.
+"""
 Lah(n, k) = Lah(n+1)[k+1]
 
+"""
+
+Return the unsigned Lah number triangle. (A271703)
+"""
 function LahTriangle(size)
     length(CacheLah) < size && Lah(size)
     [CacheLah[n] for n in 0:size-1]
-end
-
-const CacheLah2 = Dict{Int, Array{fmpz,1}}([0 => [fmpz(1)], 1 => fmpz[]])
-function Lah2(n)
-    global CacheLah2
-    n == 0 && return CacheLah2[0]
-    prevrow = Lah2(n-1)
-    row = iseven(n) ? CacheLah2[0] : CacheLah2[1]
-    push!(row, 0); push!(row, 1)
-    for k in 2:n
-        row[k] = prevrow[k-1] + prevrow[k]*(n+k-2)
-    end
-    row
 end
 
 #START-TEST-########################################################
@@ -84,8 +79,6 @@ end
 
 function perf()
     @time Lah(1000)
-    @time Lah2(1000)
-    @time RowSum(LahTriangle(1000))
     @time RowSum(LahTriangle(1000))
 end
 

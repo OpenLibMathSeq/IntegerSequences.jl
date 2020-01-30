@@ -319,7 +319,7 @@ V327987(n) = sum([Bits("AND", d, div(n, d)) for d ∈ divisors(n)])
 
 """
 
-Is V327987(n) = ``∑_{d|n} d & (n/d) = 0`` ?
+Is V327987(n) = ∑``_{d|n} d & (n/d) = 0`` ?
 """
 is327988(n) = V327987(n) == 0
 

@@ -44,7 +44,7 @@ end
 
 """
 
-Return the Riordan array (Riordan product) ``a \times a``.
+Return the Riordan array (Riordan product) ``a \\times a``.
 """
 RiordanSquare(a, n, expo = false) = RiordanProduct(a, nothing, n, expo)
 
