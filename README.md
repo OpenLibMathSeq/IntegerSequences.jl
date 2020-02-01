@@ -1,7 +1,7 @@
 <img src="https://github.com/OpenLibMathSeq/IntegerSequences.jl/blob/master/SequencesLogo.jpg">
 
-[![Build status](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/OpenLibMathSeq/IntegerSequences.jl)
-[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://openlibmathseq.github.io/IntegerSequences.jl/dev)
+[![Build status](https://travis-ci.org/PeterLuschny/IntegerSequences.jl.svg?branch=master)](https://travis-ci.org/PeterLuschny/IntegerSequences.jl)
+[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://peterluschny.github.io/IntegerSequences.jl/stable)
 --
 
 The package is tested against Julia 1.3 and above on Linux, macOS, and Windows64.

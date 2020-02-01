@@ -93,9 +93,7 @@ L000110(len::Int) = BellNumberList(len)
 """
 
 The Bell transform transforms an integer sequence into an integer triangle; also known as incomplete Bell polynomials. Let ``X`` be an integer sequence, then
-
 ``B_{n,k}(X) = \\sum_{m=1}^{n-k+1} \\binomial{n-1}{m-1} X[m] B_{n-m,k-1}(X)``
-
 where ``B_{0,0} = 1, B_{n,0} = 0`` for ``n≥1, B_{0,k} = 0`` for ``k≥1``.
 """
 function BellTrans(n::Int, k::Int, X::Array)

@@ -6,10 +6,10 @@ using Documenter, IntegerSequences
 
 makedocs(
    modules = [IntegerSequences],
+   format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
    clean = true,
    doctest = false,
-   format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
-   sitename = "IntegerSequences",
+   sitename = "IntegerSequences.jl",
    pages = [
       "About" => "about.md",
       "Sequences" => "index.md",
@@ -22,6 +22,9 @@ makedocs(
    ]
 )
 
+# repo = "github.com/OpenLibMathSeq/IntegerSequences.jl.git",
+
 deploydocs(
-    repo = "github.com/OpenLibMathSeq/IntegerSequences.jl.git"
-)
+    repo = "github.com/PeterLuschny/IntegerSequences.jl.git",
+    push_preview = true
+    )

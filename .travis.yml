@@ -21,8 +21,7 @@ env:
     - DOCUMENTER_DEBUG=true
 
 script:
-  - julia --color=yes -e 'using Pkg; Pkg.build()'
-  - julia --check-bounds=yes --color=yes -e 'using Pkg; Pkg.test(coverage=true)'
+  - julia -e 'using Pkg; Pkg.build()'
 
 jobs:
   include:

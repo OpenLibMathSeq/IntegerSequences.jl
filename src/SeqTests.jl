@@ -5,7 +5,7 @@
 
 module SeqTests
 
-using Test, OEISUtils, SeqUtils
+using Test, OEISUtils, SeqUtils, Triangles
 export SeqTest, GenerateAllTest, data_installed
 
 const ShowTest = true
@@ -103,8 +103,7 @@ function SeqPTest(seqarray)
         S = seq(7)
         if ShowTest
             println("P --> ", name)
-            ShowAsΔ(O)
-            ShowAsΔ(S)
+            #ShowAsΔ(O); ShowAsΔ(S)
         end
     end
 end
